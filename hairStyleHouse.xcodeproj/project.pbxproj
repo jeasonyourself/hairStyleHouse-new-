@@ -74,40 +74,6 @@
 		7A37D7491844CB3900D9C4D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D7481844CB3900D9C4D9 /* CoreLocation.framework */; };
 		7A37D74B1844CB4000D9C4D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D74A1844CB4000D9C4D9 /* QuartzCore.framework */; };
 		7A37D74D1844CB4600D9C4D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */; };
-		7A37D7711844CC4C00D9C4D9 /* 01找发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D74F1844CC4C00D9C4D9 /* 01找发型.png */; };
-		7A37D7721844CC4C00D9C4D9 /* 02发型师.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7501844CC4C00D9C4D9 /* 02发型师.png */; };
-		7A37D7731844CC4C00D9C4D9 /* 03广场.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7511844CC4C00D9C4D9 /* 03广场.png */; };
-		7A37D7741844CC4C00D9C4D9 /* 04我的.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7521844CC4C00D9C4D9 /* 04我的.png */; };
-		7A37D7751844CC4C00D9C4D9 /* 1发型师.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7531844CC4C00D9C4D9 /* 1发型师.png */; };
-		7A37D7761844CC4C00D9C4D9 /* 2个人用户.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7541844CC4C00D9C4D9 /* 2个人用户.png */; };
-		7A37D7771844CC4C00D9C4D9 /* jifen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7551844CC4C00D9C4D9 /* jifen.png */; };
-		7A37D7781844CC4C00D9C4D9 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7561844CC4C00D9C4D9 /* like.png */; };
-		7A37D7791844CC4C00D9C4D9 /* like1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7571844CC4C00D9C4D9 /* like1.png */; };
-		7A37D77A1844CC4C00D9C4D9 /* renzhengfaxingshi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7581844CC4C00D9C4D9 /* renzhengfaxingshi.png */; };
-		7A37D77B1844CC4C00D9C4D9 /* renzhengziliao.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7591844CC4C00D9C4D9 /* renzhengziliao.png */; };
-		7A37D77C1844CC4C00D9C4D9 /* shalong.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75A1844CC4C00D9C4D9 /* shalong.png */; };
-		7A37D77D1844CC4C00D9C4D9 /* shoucang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75B1844CC4C00D9C4D9 /* shoucang.png */; };
-		7A37D77E1844CC4C00D9C4D9 /* x0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75C1844CC4C00D9C4D9 /* x0.png */; };
-		7A37D77F1844CC4C00D9C4D9 /* x1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75D1844CC4C00D9C4D9 /* x1.png */; };
-		7A37D7801844CC4C00D9C4D9 /* x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75E1844CC4C00D9C4D9 /* x2.png */; };
-		7A37D7811844CC4C00D9C4D9 /* x3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D75F1844CC4C00D9C4D9 /* x3.png */; };
-		7A37D7821844CC4C00D9C4D9 /* x4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7601844CC4C00D9C4D9 /* x4.png */; };
-		7A37D7831844CC4C00D9C4D9 /* x5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7611844CC4C00D9C4D9 /* x5.png */; };
-		7A37D7841844CC4C00D9C4D9 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7621844CC4C00D9C4D9 /* xiaoxi.png */; };
-		7A37D7851844CC4C00D9C4D9 /* xunzhang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7631844CC4C00D9C4D9 /* xunzhang.png */; };
-		7A37D7861844CC4C00D9C4D9 /* 全部.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7641844CC4C00D9C4D9 /* 全部.png */; };
-		7A37D7871844CC4C00D9C4D9 /* 关注.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7651844CC4C00D9C4D9 /* 关注.png */; };
-		7A37D7881844CC4C00D9C4D9 /* 历史预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7661844CC4C00D9C4D9 /* 历史预约.png */; };
-		7A37D7891844CC4C00D9C4D9 /* 同城1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7671844CC4C00D9C4D9 /* 同城1.png */; };
-		7A37D78A1844CC4C00D9C4D9 /* 当前预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7681844CC4C00D9C4D9 /* 当前预约.png */; };
-		7A37D78B1844CC4C00D9C4D9 /* 推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7691844CC4C00D9C4D9 /* 推荐.png */; };
-		7A37D78C1844CC4C00D9C4D9 /* 星级.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76A1844CC4C00D9C4D9 /* 星级.png */; };
-		7A37D78D1844CC4C00D9C4D9 /* 添加图片.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76B1844CC4C00D9C4D9 /* 添加图片.png */; };
-		7A37D78E1844CC4C00D9C4D9 /* 皇冠.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76C1844CC4C00D9C4D9 /* 皇冠.png */; };
-		7A37D78F1844CC4C00D9C4D9 /* 私信.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76D1844CC4C00D9C4D9 /* 私信.png */; };
-		7A37D7901844CC4C00D9C4D9 /* 粉丝.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76E1844CC4C00D9C4D9 /* 粉丝.png */; };
-		7A37D7911844CC4C00D9C4D9 /* 评论.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D76F1844CC4C00D9C4D9 /* 评论.png */; };
-		7A37D7921844CC4C00D9C4D9 /* 钻石.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A37D7701844CC4C00D9C4D9 /* 钻石.png */; };
 		7A43796018691E05007F64DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795D18691E05007F64DB /* Default-568h@2x.png */; };
 		7A43796118691E05007F64DB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795E18691E05007F64DB /* Default.png */; };
 		7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A43796C186936FD007F64DB /* hairStyleCategory.m */; };
@@ -165,14 +131,81 @@
 		7A4379D618693CE0007F64DB /* 三角.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4379A318693CE0007F64DB /* 三角.png */; };
 		7A4379D918696CB7007F64DB /* hairStyleIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4379D818696CB7007F64DB /* hairStyleIconCell.m */; };
 		7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C13186C06A800F96949 /* Default@2x.png */; };
+		7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C17186C1BCD00F96949 /* 找发型01.png */; };
+		7A5D5C1C186C1C8B00F96949 /* 发型师02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C19186C1C8B00F96949 /* 发型师02.png */; };
+		7A5D5C1D186C1C8B00F96949 /* 问题03.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C1A186C1C8B00F96949 /* 问题03.png */; };
+		7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C1B186C1C8B00F96949 /* 我的04.png */; };
+		7A5D5C67186C289400F96949 /* 1发型师.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C20186C289400F96949 /* 1发型师.png */; };
+		7A5D5C68186C289400F96949 /* 2个人用户.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C21186C289400F96949 /* 2个人用户.png */; };
+		7A5D5C69186C289400F96949 /* 4关注.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C22186C289400F96949 /* 4关注.png */; };
+		7A5D5C6A186C289400F96949 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C23186C289400F96949 /* comment.png */; };
+		7A5D5C6D186C289400F96949 /* fenxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C26186C289400F96949 /* fenxiang.png */; };
+		7A5D5C6E186C289400F96949 /* jifen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C27186C289400F96949 /* jifen.png */; };
+		7A5D5C6F186C289400F96949 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C28186C289400F96949 /* like.png */; };
+		7A5D5C70186C289400F96949 /* like1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C29186C289400F96949 /* like1.png */; };
+		7A5D5C71186C289400F96949 /* renzhengfaxingshi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2A186C289400F96949 /* renzhengfaxingshi.png */; };
+		7A5D5C72186C289400F96949 /* renzhengziliao.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2B186C289400F96949 /* renzhengziliao.png */; };
+		7A5D5C73186C289400F96949 /* shalong.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2C186C289400F96949 /* shalong.png */; };
+		7A5D5C74186C289400F96949 /* shoucang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2D186C289400F96949 /* shoucang.png */; };
+		7A5D5C75186C289400F96949 /* sixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2E186C289400F96949 /* sixin.png */; };
+		7A5D5C76186C289400F96949 /* x0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C2F186C289400F96949 /* x0.png */; };
+		7A5D5C77186C289400F96949 /* x1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C30186C289400F96949 /* x1.png */; };
+		7A5D5C78186C289400F96949 /* x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C31186C289400F96949 /* x2.png */; };
+		7A5D5C79186C289400F96949 /* x3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C32186C289400F96949 /* x3.png */; };
+		7A5D5C7A186C289400F96949 /* x4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C33186C289400F96949 /* x4.png */; };
+		7A5D5C7B186C289400F96949 /* x5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C34186C289400F96949 /* x5.png */; };
+		7A5D5C7C186C289400F96949 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C35186C289400F96949 /* xiaoxi.png */; };
+		7A5D5C7D186C289400F96949 /* xunzhang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C36186C289400F96949 /* xunzhang.png */; };
+		7A5D5C7E186C289400F96949 /* 个人用户.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C37186C289400F96949 /* 个人用户.png */; };
+		7A5D5C7F186C289400F96949 /* 中发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C38186C289400F96949 /* 中发.png */; };
+		7A5D5C80186C289400F96949 /* 全部.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C39186C289400F96949 /* 全部.png */; };
+		7A5D5C81186C289400F96949 /* 关注.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3A186C289400F96949 /* 关注.png */; };
+		7A5D5C82186C289400F96949 /* 其他.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3B186C289400F96949 /* 其他.png */; };
+		7A5D5C83186C289400F96949 /* 历史预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3C186C289400F96949 /* 历史预约.png */; };
+		7A5D5C84186C289400F96949 /* 发型师.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3D186C289400F96949 /* 发型师.png */; };
+		7A5D5C85186C289400F96949 /* 同城.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3E186C289400F96949 /* 同城.png */; };
+		7A5D5C86186C289400F96949 /* 同城1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C3F186C289400F96949 /* 同城1.png */; };
+		7A5D5C87186C289400F96949 /* 同城发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C40186C289400F96949 /* 同城发型.png */; };
+		7A5D5C88186C289400F96949 /* 名人堂.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C41186C289400F96949 /* 名人堂.png */; };
+		7A5D5C89186C289400F96949 /* 品牌名店.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C42186C289400F96949 /* 品牌名店.png */; };
+		7A5D5C8A186C289400F96949 /* 店铺.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C43186C289400F96949 /* 店铺.png */; };
+		7A5D5C8B186C289400F96949 /* 当前预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C44186C289400F96949 /* 当前预约.png */; };
+		7A5D5C8C186C289400F96949 /* 我型我秀.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C45186C289400F96949 /* 我型我秀.png */; };
+		7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C46186C289400F96949 /* 我的话题.png */; };
+		7A5D5C8E186C289400F96949 /* 护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C47186C289400F96949 /* 护理.png */; };
+		7A5D5C8F186C289400F96949 /* 招聘信息.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C48186C289400F96949 /* 招聘信息.png */; };
+		7A5D5C90186C289400F96949 /* 排行榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C49186C289400F96949 /* 排行榜.png */; };
+		7A5D5C91186C289400F96949 /* 推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4A186C289400F96949 /* 推荐.png */; };
+		7A5D5C92186C289400F96949 /* 推荐发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4B186C289400F96949 /* 推荐发型.png */; };
+		7A5D5C93186C289400F96949 /* 星级.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4C186C289400F96949 /* 星级.png */; };
+		7A5D5C94186C289400F96949 /* 最新发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4D186C289400F96949 /* 最新发型.png */; };
+		7A5D5C95186C289400F96949 /* 最新榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4E186C289400F96949 /* 最新榜.png */; };
+		7A5D5C96186C289400F96949 /* 未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4F186C289400F96949 /* 未选中.png */; };
+		7A5D5C97186C289400F96949 /* 染发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C50186C289400F96949 /* 染发.png */; };
+		7A5D5C98186C289400F96949 /* 每日聚焦.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C51186C289400F96949 /* 每日聚焦.png */; };
+		7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C52186C289400F96949 /* 洗剪吹.png */; };
+		7A5D5C9A186C289400F96949 /* 洗护方法.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C53186C289400F96949 /* 洗护方法.png */; };
+		7A5D5C9B186C289400F96949 /* 添加图片.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C54186C289400F96949 /* 添加图片.png */; };
+		7A5D5C9C186C289400F96949 /* 潮流学堂.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C55186C289400F96949 /* 潮流学堂.png */; };
+		7A5D5C9D186C289400F96949 /* 烫发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C56186C289400F96949 /* 烫发.png */; };
+		7A5D5C9E186C289400F96949 /* 热点话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C57186C289400F96949 /* 热点话题.png */; };
+		7A5D5C9F186C289400F96949 /* 热门话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C58186C289400F96949 /* 热门话题.png */; };
+		7A5D5CA0186C289400F96949 /* 特惠预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C59186C289400F96949 /* 特惠预约.png */; };
+		7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5A186C289400F96949 /* 男士发型.png */; };
+		7A5D5CA2186C289400F96949 /* 皇冠.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5B186C289400F96949 /* 皇冠.png */; };
+		7A5D5CA3186C289400F96949 /* 盘发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5C186C289400F96949 /* 盘发.png */; };
+		7A5D5CA4186C289400F96949 /* 短发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5D186C289400F96949 /* 短发.png */; };
+		7A5D5CA5186C289400F96949 /* 私信.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5E186C289400F96949 /* 私信.png */; };
+		7A5D5CA6186C289400F96949 /* 粉丝.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C5F186C289400F96949 /* 粉丝.png */; };
+		7A5D5CA7186C289400F96949 /* 行业情报.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C60186C289400F96949 /* 行业情报.png */; };
+		7A5D5CA8186C289400F96949 /* 评论.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C61186C289400F96949 /* 评论.png */; };
+		7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C62186C289400F96949 /* 评论榜.png */; };
+		7A5D5CAA186C289400F96949 /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C63186C289400F96949 /* 选中.png */; };
+		7A5D5CAB186C289400F96949 /* 钻石.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C64186C289400F96949 /* 钻石.png */; };
+		7A5D5CAC186C289400F96949 /* 长发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C65186C289400F96949 /* 长发.png */; };
+		7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C66186C289400F96949 /* 问答中心.png */; };
 		7A63A503185AF42800502E75 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A63A500185AF42800502E75 /* libWeiboSDK.a */; };
 		7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A63A501185AF42800502E75 /* WeiboSDK.bundle */; };
-		7AD545B2184EBA81009A6B79 /* 盘发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545AD184EBA81009A6B79 /* 盘发.png */; };
-		7AD545B3184EBA81009A6B79 /* 男士发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545AE184EBA81009A6B79 /* 男士发型.png */; };
-		7AD545B4184EBA81009A6B79 /* 中发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545AF184EBA81009A6B79 /* 中发.png */; };
-		7AD545B5184EBA81009A6B79 /* 长发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545B0184EBA81009A6B79 /* 长发.png */; };
-		7AD545B6184EBA81009A6B79 /* 其他.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545B1184EBA81009A6B79 /* 其他.png */; };
-		7AD545B8184ED4EF009A6B79 /* 短发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545B7184ED4EF009A6B79 /* 短发.png */; };
 		7AD545BB184EF6FD009A6B79 /* findStyleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */; };
 		7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BF184F2B08009A6B79 /* MBProgressHUD+Add.m */; };
 		7AD545F4184F2B08009A6B79 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545C0184F2B08009A6B79 /* MBProgressHUD.bundle */; };
@@ -200,19 +233,11 @@
 		7AD5460A184F2B08009A6B79 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545EE184F2B08009A6B79 /* UIImage+WebP.m */; };
 		7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */; };
 		7AD5460C184F2B08009A6B79 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */; };
-		7AD54614184F39EA009A6B79 /* 我型我秀.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD5460D184F39EA009A6B79 /* 我型我秀.png */; };
-		7AD54615184F39EA009A6B79 /* 热门话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD5460E184F39EA009A6B79 /* 热门话题.png */; };
-		7AD54616184F39EA009A6B79 /* 同城.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD5460F184F39EA009A6B79 /* 同城.png */; };
-		7AD54617184F39EA009A6B79 /* 特惠预约.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD54610184F39EA009A6B79 /* 特惠预约.png */; };
-		7AD54618184F39EA009A6B79 /* 问答中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD54611184F39EA009A6B79 /* 问答中心.png */; };
-		7AD54619184F39EA009A6B79 /* 招聘信息.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD54612184F39EA009A6B79 /* 招聘信息.png */; };
-		7AD5461A184F39EA009A6B79 /* 行业情报.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD54613184F39EA009A6B79 /* 行业情报.png */; };
 		7AD87DFC185024A60016A329 /* hairStyleCategoryScanImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */; };
 		7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0018502CA10016A329 /* timeline_image_loading.png */; };
 		7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0118502CA10016A329 /* timeline_image_loading@2x.png */; };
 		7ADC1A14184D6E22004C61BC /* beaspeakDresserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */; };
 		7ADC1A15184D6E22004C61BC /* beaspeakDresserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */; };
-		7ADC1A17184D8418004C61BC /* 4关注.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADC1A16184D8418004C61BC /* 4关注.png */; };
 		7ADC1A1A184D8C05004C61BC /* dresserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC1A19184D8C05004C61BC /* dresserCell.m */; };
 		7ADC1A1D184DBDC7004C61BC /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC1A1C184DBDC7004C61BC /* loginViewController.m */; };
 		7ADDE7AA18569C7500D48208 /* saleBeaspeaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7A918569C7500D48208 /* saleBeaspeaskViewController.m */; };
@@ -221,20 +246,6 @@
 		7ADDE7B41856B2E900D48208 /* sameCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7B31856B2E900D48208 /* sameCityCell.m */; };
 		7ADDE7B71856E4A900D48208 /* hotTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7B61856E4A900D48208 /* hotTalkCell.m */; };
 		7ADDE7BA1856E4C600D48208 /* hotTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7B91856E4C600D48208 /* hotTalkViewController.m */; };
-		7ADDE7C91856F78A00D48208 /* 洗护方法.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7BB1856F78A00D48208 /* 洗护方法.png */; };
-		7ADDE7CA1856F78A00D48208 /* 名人堂.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7BC1856F78A00D48208 /* 名人堂.png */; };
-		7ADDE7CB1856F78A00D48208 /* 品牌名店.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7BD1856F78A00D48208 /* 品牌名店.png */; };
-		7ADDE7CC1856F78A00D48208 /* 潮流学堂.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7BE1856F78A00D48208 /* 潮流学堂.png */; };
-		7ADDE7CD1856F78A00D48208 /* 我的话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7BF1856F78A00D48208 /* 我的话题.png */; };
-		7ADDE7CE1856F78A00D48208 /* 热点话题.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C01856F78A00D48208 /* 热点话题.png */; };
-		7ADDE7CF1856F78A00D48208 /* 每日聚焦.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C11856F78A00D48208 /* 每日聚焦.png */; };
-		7ADDE7D01856F78A00D48208 /* 洗剪吹.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C21856F78A00D48208 /* 洗剪吹.png */; };
-		7ADDE7D11856F78A00D48208 /* 烫发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C31856F78A00D48208 /* 烫发.png */; };
-		7ADDE7D21856F78A00D48208 /* 染发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C41856F78A00D48208 /* 染发.png */; };
-		7ADDE7D31856F78A00D48208 /* 护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C51856F78A00D48208 /* 护理.png */; };
-		7ADDE7D41856F78A00D48208 /* 店铺.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C61856F78A00D48208 /* 店铺.png */; };
-		7ADDE7D51856F78A00D48208 /* 个人用户.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C71856F78A00D48208 /* 个人用户.png */; };
-		7ADDE7D61856F78A00D48208 /* 发型师.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADDE7C81856F78A00D48208 /* 发型师.png */; };
 		7ADDE7DE1857037500D48208 /* pubQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7DD1857037500D48208 /* pubQViewController.m */; };
 		7ADDE7E118571F2700D48208 /* questionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7E018571F2700D48208 /* questionDetailViewController.m */; };
 		7ADDE7E418571F8600D48208 /* questionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7E318571F8600D48208 /* questionDetailCell.m */; };
@@ -243,8 +254,6 @@
 		7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D2D184589A400E14EDC /* singleTableCellBackgroundViewController.xib */; };
 		7AE03D341845B9F300E14EDC /* changeInforViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D321845B9F300E14EDC /* changeInforViewController.xib */; };
 		7AE03D371845BDA700E14EDC /* personInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03D361845BDA700E14EDC /* personInforViewController.m */; };
-		7AE03D3A1845CC0900E14EDC /* 未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D381845CC0900E14EDC /* 未选中.png */; };
-		7AE03D3B1845CC0900E14EDC /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D391845CC0900E14EDC /* 选中.png */; };
 		7AE03D441845D41C00E14EDC /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D3D1845D41C00E14EDC /* area.plist */; };
 		7AE03D451845D41C00E14EDC /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D3E1845D41C00E14EDC /* city.plist */; };
 		7AE03D461845D41C00E14EDC /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03D401845D41C00E14EDC /* HZAreaPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -278,9 +287,6 @@
 		7AE09E04185838D3007CA28D /* inviteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09E02185838D3007CA28D /* inviteDetailViewController.m */; };
 		7AE09E05185838D3007CA28D /* inviteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE09E03185838D3007CA28D /* inviteDetailViewController.xib */; };
 		7AE09E0818586AA7007CA28D /* pubInviteInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09E0718586AA7007CA28D /* pubInviteInforViewController.m */; };
-		7AE1B2FA184C26FF00F51BB2 /* fenxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1B2F7184C26FF00F51BB2 /* fenxiang.png */; };
-		7AE1B2FB184C26FF00F51BB2 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1B2F8184C26FF00F51BB2 /* comment.png */; };
-		7AE1B2FC184C26FF00F51BB2 /* sixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1B2F9184C26FF00F51BB2 /* sixin.png */; };
 		7AE1B2FF184C2E1200F51BB2 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1B2FE184C2E1200F51BB2 /* commentViewController.m */; };
 		7AE1B302184C2E2C00F51BB2 /* commentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1B301184C2E2C00F51BB2 /* commentCell.m */; };
 		7AE214601859AFA00030E5D3 /* pubInviteMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE2145F1859AFA00030E5D3 /* pubInviteMessage.xib */; };
@@ -290,9 +296,6 @@
 		7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615318473C26008A107C /* lookEvaluateCell.m */; };
 		7AE361571847556D008A107C /* scanImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE361561847556D008A107C /* scanImageViewController.m */; };
 		7AE3615A18475580008A107C /* scanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615918475580008A107C /* scanCell.m */; };
-		7AE5AC281852C4C100C1970E /* 最新发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC251852C4C100C1970E /* 最新发型.png */; };
-		7AE5AC291852C4C100C1970E /* 同城发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC261852C4C100C1970E /* 同城发型.png */; };
-		7AE5AC2A1852C4C100C1970E /* 推荐发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC271852C4C100C1970E /* 推荐发型.png */; };
 		7AE5AC2E1853017900C1970E /* renewSingleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */; };
 		7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */; };
 		7AE7F52E1855542400CAB2C6 /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F52B1855542400CAB2C6 /* AllAroundPullView.m */; };
@@ -300,9 +303,6 @@
 		7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F52D1855542400CAB2C6 /* arrow@2x.png */; };
 		7AE7F533185589F800CAB2C6 /* myShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F532185589F800CAB2C6 /* myShowViewController.m */; };
 		7AE7F53618558A7400CAB2C6 /* myShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F53518558A7400CAB2C6 /* myShowCell.m */; };
-		7AE7F53A1855926F00CAB2C6 /* 排行榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F5371855926F00CAB2C6 /* 排行榜.png */; };
-		7AE7F53B1855926F00CAB2C6 /* 最新榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F5381855926F00CAB2C6 /* 最新榜.png */; };
-		7AE7F53C1855926F00CAB2C6 /* 评论榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F5391855926F00CAB2C6 /* 评论榜.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -428,40 +428,6 @@
 		7A37D7481844CB3900D9C4D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7A37D74A1844CB4000D9C4D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		7A37D74F1844CC4C00D9C4D9 /* 01找发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01找发型.png"; sourceTree = "<group>"; };
-		7A37D7501844CC4C00D9C4D9 /* 02发型师.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02发型师.png"; sourceTree = "<group>"; };
-		7A37D7511844CC4C00D9C4D9 /* 03广场.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03广场.png"; sourceTree = "<group>"; };
-		7A37D7521844CC4C00D9C4D9 /* 04我的.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "04我的.png"; sourceTree = "<group>"; };
-		7A37D7531844CC4C00D9C4D9 /* 1发型师.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1发型师.png"; sourceTree = "<group>"; };
-		7A37D7541844CC4C00D9C4D9 /* 2个人用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2个人用户.png"; sourceTree = "<group>"; };
-		7A37D7551844CC4C00D9C4D9 /* jifen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jifen.png; sourceTree = "<group>"; };
-		7A37D7561844CC4C00D9C4D9 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
-		7A37D7571844CC4C00D9C4D9 /* like1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like1.png; sourceTree = "<group>"; };
-		7A37D7581844CC4C00D9C4D9 /* renzhengfaxingshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renzhengfaxingshi.png; sourceTree = "<group>"; };
-		7A37D7591844CC4C00D9C4D9 /* renzhengziliao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renzhengziliao.png; sourceTree = "<group>"; };
-		7A37D75A1844CC4C00D9C4D9 /* shalong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shalong.png; sourceTree = "<group>"; };
-		7A37D75B1844CC4C00D9C4D9 /* shoucang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoucang.png; sourceTree = "<group>"; };
-		7A37D75C1844CC4C00D9C4D9 /* x0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x0.png; sourceTree = "<group>"; };
-		7A37D75D1844CC4C00D9C4D9 /* x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x1.png; sourceTree = "<group>"; };
-		7A37D75E1844CC4C00D9C4D9 /* x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x2.png; sourceTree = "<group>"; };
-		7A37D75F1844CC4C00D9C4D9 /* x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x3.png; sourceTree = "<group>"; };
-		7A37D7601844CC4C00D9C4D9 /* x4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x4.png; sourceTree = "<group>"; };
-		7A37D7611844CC4C00D9C4D9 /* x5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x5.png; sourceTree = "<group>"; };
-		7A37D7621844CC4C00D9C4D9 /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
-		7A37D7631844CC4C00D9C4D9 /* xunzhang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xunzhang.png; sourceTree = "<group>"; };
-		7A37D7641844CC4C00D9C4D9 /* 全部.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部.png"; sourceTree = "<group>"; };
-		7A37D7651844CC4C00D9C4D9 /* 关注.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关注.png"; sourceTree = "<group>"; };
-		7A37D7661844CC4C00D9C4D9 /* 历史预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "历史预约.png"; sourceTree = "<group>"; };
-		7A37D7671844CC4C00D9C4D9 /* 同城1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城1.png"; sourceTree = "<group>"; };
-		7A37D7681844CC4C00D9C4D9 /* 当前预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "当前预约.png"; sourceTree = "<group>"; };
-		7A37D7691844CC4C00D9C4D9 /* 推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐.png"; sourceTree = "<group>"; };
-		7A37D76A1844CC4C00D9C4D9 /* 星级.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "星级.png"; sourceTree = "<group>"; };
-		7A37D76B1844CC4C00D9C4D9 /* 添加图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加图片.png"; sourceTree = "<group>"; };
-		7A37D76C1844CC4C00D9C4D9 /* 皇冠.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "皇冠.png"; sourceTree = "<group>"; };
-		7A37D76D1844CC4C00D9C4D9 /* 私信.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "私信.png"; sourceTree = "<group>"; };
-		7A37D76E1844CC4C00D9C4D9 /* 粉丝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉丝.png"; sourceTree = "<group>"; };
-		7A37D76F1844CC4C00D9C4D9 /* 评论.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论.png"; sourceTree = "<group>"; };
-		7A37D7701844CC4C00D9C4D9 /* 钻石.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "钻石.png"; sourceTree = "<group>"; };
 		7A43795D18691E05007F64DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7A43795E18691E05007F64DB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7A43796B186936FC007F64DB /* hairStyleCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleCategory.h; sourceTree = "<group>"; };
@@ -521,15 +487,82 @@
 		7A4379D718696CB7007F64DB /* hairStyleIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleIconCell.h; sourceTree = "<group>"; };
 		7A4379D818696CB7007F64DB /* hairStyleIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hairStyleIconCell.m; sourceTree = "<group>"; };
 		7A5D5C13186C06A800F96949 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7A5D5C17186C1BCD00F96949 /* 找发型01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "找发型01.png"; sourceTree = "<group>"; };
+		7A5D5C19186C1C8B00F96949 /* 发型师02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发型师02.png"; sourceTree = "<group>"; };
+		7A5D5C1A186C1C8B00F96949 /* 问题03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问题03.png"; sourceTree = "<group>"; };
+		7A5D5C1B186C1C8B00F96949 /* 我的04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的04.png"; sourceTree = "<group>"; };
+		7A5D5C20186C289400F96949 /* 1发型师.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1发型师.png"; sourceTree = "<group>"; };
+		7A5D5C21186C289400F96949 /* 2个人用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2个人用户.png"; sourceTree = "<group>"; };
+		7A5D5C22186C289400F96949 /* 4关注.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4关注.png"; sourceTree = "<group>"; };
+		7A5D5C23186C289400F96949 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
+		7A5D5C26186C289400F96949 /* fenxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fenxiang.png; sourceTree = "<group>"; };
+		7A5D5C27186C289400F96949 /* jifen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jifen.png; sourceTree = "<group>"; };
+		7A5D5C28186C289400F96949 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		7A5D5C29186C289400F96949 /* like1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like1.png; sourceTree = "<group>"; };
+		7A5D5C2A186C289400F96949 /* renzhengfaxingshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renzhengfaxingshi.png; sourceTree = "<group>"; };
+		7A5D5C2B186C289400F96949 /* renzhengziliao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renzhengziliao.png; sourceTree = "<group>"; };
+		7A5D5C2C186C289400F96949 /* shalong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shalong.png; sourceTree = "<group>"; };
+		7A5D5C2D186C289400F96949 /* shoucang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoucang.png; sourceTree = "<group>"; };
+		7A5D5C2E186C289400F96949 /* sixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sixin.png; sourceTree = "<group>"; };
+		7A5D5C2F186C289400F96949 /* x0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x0.png; sourceTree = "<group>"; };
+		7A5D5C30186C289400F96949 /* x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x1.png; sourceTree = "<group>"; };
+		7A5D5C31186C289400F96949 /* x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x2.png; sourceTree = "<group>"; };
+		7A5D5C32186C289400F96949 /* x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x3.png; sourceTree = "<group>"; };
+		7A5D5C33186C289400F96949 /* x4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x4.png; sourceTree = "<group>"; };
+		7A5D5C34186C289400F96949 /* x5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x5.png; sourceTree = "<group>"; };
+		7A5D5C35186C289400F96949 /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
+		7A5D5C36186C289400F96949 /* xunzhang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xunzhang.png; sourceTree = "<group>"; };
+		7A5D5C37186C289400F96949 /* 个人用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人用户.png"; sourceTree = "<group>"; };
+		7A5D5C38186C289400F96949 /* 中发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中发.png"; sourceTree = "<group>"; };
+		7A5D5C39186C289400F96949 /* 全部.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部.png"; sourceTree = "<group>"; };
+		7A5D5C3A186C289400F96949 /* 关注.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关注.png"; sourceTree = "<group>"; };
+		7A5D5C3B186C289400F96949 /* 其他.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "其他.png"; sourceTree = "<group>"; };
+		7A5D5C3C186C289400F96949 /* 历史预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "历史预约.png"; sourceTree = "<group>"; };
+		7A5D5C3D186C289400F96949 /* 发型师.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发型师.png"; sourceTree = "<group>"; };
+		7A5D5C3E186C289400F96949 /* 同城.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城.png"; sourceTree = "<group>"; };
+		7A5D5C3F186C289400F96949 /* 同城1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城1.png"; sourceTree = "<group>"; };
+		7A5D5C40186C289400F96949 /* 同城发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城发型.png"; sourceTree = "<group>"; };
+		7A5D5C41186C289400F96949 /* 名人堂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "名人堂.png"; sourceTree = "<group>"; };
+		7A5D5C42186C289400F96949 /* 品牌名店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "品牌名店.png"; sourceTree = "<group>"; };
+		7A5D5C43186C289400F96949 /* 店铺.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "店铺.png"; sourceTree = "<group>"; };
+		7A5D5C44186C289400F96949 /* 当前预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "当前预约.png"; sourceTree = "<group>"; };
+		7A5D5C45186C289400F96949 /* 我型我秀.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我型我秀.png"; sourceTree = "<group>"; };
+		7A5D5C46186C289400F96949 /* 我的话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的话题.png"; sourceTree = "<group>"; };
+		7A5D5C47186C289400F96949 /* 护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护理.png"; sourceTree = "<group>"; };
+		7A5D5C48186C289400F96949 /* 招聘信息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "招聘信息.png"; sourceTree = "<group>"; };
+		7A5D5C49186C289400F96949 /* 排行榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排行榜.png"; sourceTree = "<group>"; };
+		7A5D5C4A186C289400F96949 /* 推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐.png"; sourceTree = "<group>"; };
+		7A5D5C4B186C289400F96949 /* 推荐发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐发型.png"; sourceTree = "<group>"; };
+		7A5D5C4C186C289400F96949 /* 星级.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "星级.png"; sourceTree = "<group>"; };
+		7A5D5C4D186C289400F96949 /* 最新发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新发型.png"; sourceTree = "<group>"; };
+		7A5D5C4E186C289400F96949 /* 最新榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新榜.png"; sourceTree = "<group>"; };
+		7A5D5C4F186C289400F96949 /* 未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选中.png"; sourceTree = "<group>"; };
+		7A5D5C50186C289400F96949 /* 染发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "染发.png"; sourceTree = "<group>"; };
+		7A5D5C51186C289400F96949 /* 每日聚焦.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "每日聚焦.png"; sourceTree = "<group>"; };
+		7A5D5C52186C289400F96949 /* 洗剪吹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗剪吹.png"; sourceTree = "<group>"; };
+		7A5D5C53186C289400F96949 /* 洗护方法.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗护方法.png"; sourceTree = "<group>"; };
+		7A5D5C54186C289400F96949 /* 添加图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加图片.png"; sourceTree = "<group>"; };
+		7A5D5C55186C289400F96949 /* 潮流学堂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "潮流学堂.png"; sourceTree = "<group>"; };
+		7A5D5C56186C289400F96949 /* 烫发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "烫发.png"; sourceTree = "<group>"; };
+		7A5D5C57186C289400F96949 /* 热点话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "热点话题.png"; sourceTree = "<group>"; };
+		7A5D5C58186C289400F96949 /* 热门话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "热门话题.png"; sourceTree = "<group>"; };
+		7A5D5C59186C289400F96949 /* 特惠预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "特惠预约.png"; sourceTree = "<group>"; };
+		7A5D5C5A186C289400F96949 /* 男士发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男士发型.png"; sourceTree = "<group>"; };
+		7A5D5C5B186C289400F96949 /* 皇冠.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "皇冠.png"; sourceTree = "<group>"; };
+		7A5D5C5C186C289400F96949 /* 盘发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "盘发.png"; sourceTree = "<group>"; };
+		7A5D5C5D186C289400F96949 /* 短发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "短发.png"; sourceTree = "<group>"; };
+		7A5D5C5E186C289400F96949 /* 私信.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "私信.png"; sourceTree = "<group>"; };
+		7A5D5C5F186C289400F96949 /* 粉丝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉丝.png"; sourceTree = "<group>"; };
+		7A5D5C60186C289400F96949 /* 行业情报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行业情报.png"; sourceTree = "<group>"; };
+		7A5D5C61186C289400F96949 /* 评论.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论.png"; sourceTree = "<group>"; };
+		7A5D5C62186C289400F96949 /* 评论榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论榜.png"; sourceTree = "<group>"; };
+		7A5D5C63186C289400F96949 /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
+		7A5D5C64186C289400F96949 /* 钻石.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "钻石.png"; sourceTree = "<group>"; };
+		7A5D5C65186C289400F96949 /* 长发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长发.png"; sourceTree = "<group>"; };
+		7A5D5C66186C289400F96949 /* 问答中心.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问答中心.png"; sourceTree = "<group>"; };
 		7A63A500185AF42800502E75 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		7A63A501185AF42800502E75 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		7A63A502185AF42800502E75 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
-		7AD545AD184EBA81009A6B79 /* 盘发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "盘发.png"; sourceTree = "<group>"; };
-		7AD545AE184EBA81009A6B79 /* 男士发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男士发型.png"; sourceTree = "<group>"; };
-		7AD545AF184EBA81009A6B79 /* 中发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中发.png"; sourceTree = "<group>"; };
-		7AD545B0184EBA81009A6B79 /* 长发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长发.png"; sourceTree = "<group>"; };
-		7AD545B1184EBA81009A6B79 /* 其他.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "其他.png"; sourceTree = "<group>"; };
-		7AD545B7184ED4EF009A6B79 /* 短发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "短发.png"; sourceTree = "<group>"; };
 		7AD545B9184EF6FD009A6B79 /* findStyleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findStyleDetailViewController.h; sourceTree = "<group>"; };
 		7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findStyleDetailViewController.m; sourceTree = "<group>"; };
 		7AD545BE184F2B08009A6B79 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
@@ -583,13 +616,6 @@
 		7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		7AD545F1184F2B08009A6B79 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		7AD5460D184F39EA009A6B79 /* 我型我秀.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我型我秀.png"; sourceTree = "<group>"; };
-		7AD5460E184F39EA009A6B79 /* 热门话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "热门话题.png"; sourceTree = "<group>"; };
-		7AD5460F184F39EA009A6B79 /* 同城.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城.png"; sourceTree = "<group>"; };
-		7AD54610184F39EA009A6B79 /* 特惠预约.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "特惠预约.png"; sourceTree = "<group>"; };
-		7AD54611184F39EA009A6B79 /* 问答中心.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问答中心.png"; sourceTree = "<group>"; };
-		7AD54612184F39EA009A6B79 /* 招聘信息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "招聘信息.png"; sourceTree = "<group>"; };
-		7AD54613184F39EA009A6B79 /* 行业情报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行业情报.png"; sourceTree = "<group>"; };
 		7AD87DFA185024A60016A329 /* hairStyleCategoryScanImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleCategoryScanImageCell.h; sourceTree = "<group>"; };
 		7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hairStyleCategoryScanImageCell.m; sourceTree = "<group>"; };
 		7AD87E0018502CA10016A329 /* timeline_image_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_image_loading.png; sourceTree = "<group>"; };
@@ -597,7 +623,6 @@
 		7ADC1A11184D6E22004C61BC /* beaspeakDresserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = beaspeakDresserViewController.h; sourceTree = "<group>"; };
 		7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = beaspeakDresserViewController.m; sourceTree = "<group>"; };
 		7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = beaspeakDresserViewController.xib; sourceTree = "<group>"; };
-		7ADC1A16184D8418004C61BC /* 4关注.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4关注.png"; sourceTree = "<group>"; };
 		7ADC1A18184D8C05004C61BC /* dresserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dresserCell.h; sourceTree = "<group>"; };
 		7ADC1A19184D8C05004C61BC /* dresserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dresserCell.m; sourceTree = "<group>"; };
 		7ADC1A1B184DBDC7004C61BC /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
@@ -614,20 +639,6 @@
 		7ADDE7B61856E4A900D48208 /* hotTalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hotTalkCell.m; sourceTree = "<group>"; };
 		7ADDE7B81856E4C600D48208 /* hotTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotTalkViewController.h; sourceTree = "<group>"; };
 		7ADDE7B91856E4C600D48208 /* hotTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hotTalkViewController.m; sourceTree = "<group>"; };
-		7ADDE7BB1856F78A00D48208 /* 洗护方法.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗护方法.png"; sourceTree = "<group>"; };
-		7ADDE7BC1856F78A00D48208 /* 名人堂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "名人堂.png"; sourceTree = "<group>"; };
-		7ADDE7BD1856F78A00D48208 /* 品牌名店.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "品牌名店.png"; sourceTree = "<group>"; };
-		7ADDE7BE1856F78A00D48208 /* 潮流学堂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "潮流学堂.png"; sourceTree = "<group>"; };
-		7ADDE7BF1856F78A00D48208 /* 我的话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的话题.png"; sourceTree = "<group>"; };
-		7ADDE7C01856F78A00D48208 /* 热点话题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "热点话题.png"; sourceTree = "<group>"; };
-		7ADDE7C11856F78A00D48208 /* 每日聚焦.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "每日聚焦.png"; sourceTree = "<group>"; };
-		7ADDE7C21856F78A00D48208 /* 洗剪吹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗剪吹.png"; sourceTree = "<group>"; };
-		7ADDE7C31856F78A00D48208 /* 烫发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "烫发.png"; sourceTree = "<group>"; };
-		7ADDE7C41856F78A00D48208 /* 染发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "染发.png"; sourceTree = "<group>"; };
-		7ADDE7C51856F78A00D48208 /* 护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护理.png"; sourceTree = "<group>"; };
-		7ADDE7C61856F78A00D48208 /* 店铺.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "店铺.png"; sourceTree = "<group>"; };
-		7ADDE7C71856F78A00D48208 /* 个人用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人用户.png"; sourceTree = "<group>"; };
-		7ADDE7C81856F78A00D48208 /* 发型师.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发型师.png"; sourceTree = "<group>"; };
 		7ADDE7DC1857037500D48208 /* pubQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pubQViewController.h; sourceTree = "<group>"; };
 		7ADDE7DD1857037500D48208 /* pubQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pubQViewController.m; sourceTree = "<group>"; };
 		7ADDE7DF18571F2700D48208 /* questionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionDetailViewController.h; sourceTree = "<group>"; };
@@ -641,8 +652,6 @@
 		7AE03D321845B9F300E14EDC /* changeInforViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = changeInforViewController.xib; sourceTree = "<group>"; };
 		7AE03D351845BDA700E14EDC /* personInforViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInforViewController.h; sourceTree = "<group>"; };
 		7AE03D361845BDA700E14EDC /* personInforViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInforViewController.m; sourceTree = "<group>"; };
-		7AE03D381845CC0900E14EDC /* 未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选中.png"; sourceTree = "<group>"; };
-		7AE03D391845CC0900E14EDC /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
 		7AE03D3D1845D41C00E14EDC /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		7AE03D3E1845D41C00E14EDC /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		7AE03D3F1845D41C00E14EDC /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
@@ -701,9 +710,6 @@
 		7AE09E03185838D3007CA28D /* inviteDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = inviteDetailViewController.xib; sourceTree = "<group>"; };
 		7AE09E0618586AA7007CA28D /* pubInviteInforViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pubInviteInforViewController.h; sourceTree = "<group>"; };
 		7AE09E0718586AA7007CA28D /* pubInviteInforViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pubInviteInforViewController.m; sourceTree = "<group>"; };
-		7AE1B2F7184C26FF00F51BB2 /* fenxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fenxiang.png; sourceTree = "<group>"; };
-		7AE1B2F8184C26FF00F51BB2 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
-		7AE1B2F9184C26FF00F51BB2 /* sixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sixin.png; sourceTree = "<group>"; };
 		7AE1B2FD184C2E1200F51BB2 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
 		7AE1B2FE184C2E1200F51BB2 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
 		7AE1B300184C2E2C00F51BB2 /* commentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentCell.h; sourceTree = "<group>"; };
@@ -720,9 +726,6 @@
 		7AE361561847556D008A107C /* scanImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanImageViewController.m; sourceTree = "<group>"; };
 		7AE3615818475580008A107C /* scanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanCell.h; sourceTree = "<group>"; };
 		7AE3615918475580008A107C /* scanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanCell.m; sourceTree = "<group>"; };
-		7AE5AC251852C4C100C1970E /* 最新发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新发型.png"; sourceTree = "<group>"; };
-		7AE5AC261852C4C100C1970E /* 同城发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同城发型.png"; sourceTree = "<group>"; };
-		7AE5AC271852C4C100C1970E /* 推荐发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐发型.png"; sourceTree = "<group>"; };
 		7AE5AC2B1853017900C1970E /* renewSingleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renewSingleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = renewSingleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
 		7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = renewSingleTableCellBackgroundViewController.xib; sourceTree = "<group>"; };
@@ -734,9 +737,6 @@
 		7AE7F532185589F800CAB2C6 /* myShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowViewController.m; sourceTree = "<group>"; };
 		7AE7F53418558A7400CAB2C6 /* myShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myShowCell.h; sourceTree = "<group>"; };
 		7AE7F53518558A7400CAB2C6 /* myShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowCell.m; sourceTree = "<group>"; };
-		7AE7F5371855926F00CAB2C6 /* 排行榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排行榜.png"; sourceTree = "<group>"; };
-		7AE7F5381855926F00CAB2C6 /* 最新榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新榜.png"; sourceTree = "<group>"; };
-		7AE7F5391855926F00CAB2C6 /* 评论榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论榜.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -826,6 +826,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7A5D5C1F186C289400F96949 /* 11-20 */,
 				7A43797018693CE0007F64DB /* 新版找发型 */,
 				7A06F10618613482007624D3 /* resources */,
 				7A0191ED18602CC600AFD637 /* sinaweibo_ios_sdk */,
@@ -833,7 +834,6 @@
 				7AE7F5291855542400CAB2C6 /* PullRefresh */,
 				7AD545BC184F2B08009A6B79 /* lib */,
 				7AE03D3C1845D41C00E14EDC /* areapicker */,
-				7A37D74E1844CC4C00D9C4D9 /* 11-20 */,
 				7A37D6B91844CA2700D9C4D9 /* ASIHTTPRequst */,
 				7A37D6D41844CA2700D9C4D9 /* SBJson */,
 				7A37D68A1844C9E100D9C4D9 /* hairStyleHouse */,
@@ -1134,89 +1134,13 @@
 			path = SBJson;
 			sourceTree = "<group>";
 		};
-		7A37D74E1844CC4C00D9C4D9 /* 11-20 */ = {
-			isa = PBXGroup;
-			children = (
-				7ADDE7BB1856F78A00D48208 /* 洗护方法.png */,
-				7ADDE7BC1856F78A00D48208 /* 名人堂.png */,
-				7ADDE7BD1856F78A00D48208 /* 品牌名店.png */,
-				7ADDE7BE1856F78A00D48208 /* 潮流学堂.png */,
-				7ADDE7BF1856F78A00D48208 /* 我的话题.png */,
-				7ADDE7C01856F78A00D48208 /* 热点话题.png */,
-				7ADDE7C11856F78A00D48208 /* 每日聚焦.png */,
-				7ADDE7C21856F78A00D48208 /* 洗剪吹.png */,
-				7ADDE7C31856F78A00D48208 /* 烫发.png */,
-				7ADDE7C41856F78A00D48208 /* 染发.png */,
-				7ADDE7C51856F78A00D48208 /* 护理.png */,
-				7ADDE7C61856F78A00D48208 /* 店铺.png */,
-				7ADDE7C71856F78A00D48208 /* 个人用户.png */,
-				7ADDE7C81856F78A00D48208 /* 发型师.png */,
-				7AE7F5371855926F00CAB2C6 /* 排行榜.png */,
-				7AE7F5381855926F00CAB2C6 /* 最新榜.png */,
-				7AE7F5391855926F00CAB2C6 /* 评论榜.png */,
-				7AE5AC251852C4C100C1970E /* 最新发型.png */,
-				7AE5AC261852C4C100C1970E /* 同城发型.png */,
-				7AE5AC271852C4C100C1970E /* 推荐发型.png */,
-				7AD5460D184F39EA009A6B79 /* 我型我秀.png */,
-				7AD5460E184F39EA009A6B79 /* 热门话题.png */,
-				7AD5460F184F39EA009A6B79 /* 同城.png */,
-				7AD54610184F39EA009A6B79 /* 特惠预约.png */,
-				7AD54611184F39EA009A6B79 /* 问答中心.png */,
-				7AD54612184F39EA009A6B79 /* 招聘信息.png */,
-				7AD54613184F39EA009A6B79 /* 行业情报.png */,
-				7AD545B7184ED4EF009A6B79 /* 短发.png */,
-				7AD545AD184EBA81009A6B79 /* 盘发.png */,
-				7AD545AE184EBA81009A6B79 /* 男士发型.png */,
-				7AD545AF184EBA81009A6B79 /* 中发.png */,
-				7AD545B0184EBA81009A6B79 /* 长发.png */,
-				7AD545B1184EBA81009A6B79 /* 其他.png */,
-				7ADC1A16184D8418004C61BC /* 4关注.png */,
-				7AE1B2F7184C26FF00F51BB2 /* fenxiang.png */,
-				7AE1B2F8184C26FF00F51BB2 /* comment.png */,
-				7AE1B2F9184C26FF00F51BB2 /* sixin.png */,
-				7AE03D381845CC0900E14EDC /* 未选中.png */,
-				7AE03D391845CC0900E14EDC /* 选中.png */,
-				7A37D74F1844CC4C00D9C4D9 /* 01找发型.png */,
-				7A37D7501844CC4C00D9C4D9 /* 02发型师.png */,
-				7A37D7511844CC4C00D9C4D9 /* 03广场.png */,
-				7A37D7521844CC4C00D9C4D9 /* 04我的.png */,
-				7A37D7531844CC4C00D9C4D9 /* 1发型师.png */,
-				7A37D7541844CC4C00D9C4D9 /* 2个人用户.png */,
-				7A37D7551844CC4C00D9C4D9 /* jifen.png */,
-				7A37D7561844CC4C00D9C4D9 /* like.png */,
-				7A37D7571844CC4C00D9C4D9 /* like1.png */,
-				7A37D7581844CC4C00D9C4D9 /* renzhengfaxingshi.png */,
-				7A37D7591844CC4C00D9C4D9 /* renzhengziliao.png */,
-				7A37D75A1844CC4C00D9C4D9 /* shalong.png */,
-				7A37D75B1844CC4C00D9C4D9 /* shoucang.png */,
-				7A37D75C1844CC4C00D9C4D9 /* x0.png */,
-				7A37D75D1844CC4C00D9C4D9 /* x1.png */,
-				7A37D75E1844CC4C00D9C4D9 /* x2.png */,
-				7A37D75F1844CC4C00D9C4D9 /* x3.png */,
-				7A37D7601844CC4C00D9C4D9 /* x4.png */,
-				7A37D7611844CC4C00D9C4D9 /* x5.png */,
-				7A37D7621844CC4C00D9C4D9 /* xiaoxi.png */,
-				7A37D7631844CC4C00D9C4D9 /* xunzhang.png */,
-				7A37D7641844CC4C00D9C4D9 /* 全部.png */,
-				7A37D7651844CC4C00D9C4D9 /* 关注.png */,
-				7A37D7661844CC4C00D9C4D9 /* 历史预约.png */,
-				7A37D7671844CC4C00D9C4D9 /* 同城1.png */,
-				7A37D7681844CC4C00D9C4D9 /* 当前预约.png */,
-				7A37D7691844CC4C00D9C4D9 /* 推荐.png */,
-				7A37D76A1844CC4C00D9C4D9 /* 星级.png */,
-				7A37D76B1844CC4C00D9C4D9 /* 添加图片.png */,
-				7A37D76C1844CC4C00D9C4D9 /* 皇冠.png */,
-				7A37D76D1844CC4C00D9C4D9 /* 私信.png */,
-				7A37D76E1844CC4C00D9C4D9 /* 粉丝.png */,
-				7A37D76F1844CC4C00D9C4D9 /* 评论.png */,
-				7A37D7701844CC4C00D9C4D9 /* 钻石.png */,
-			);
-			path = "11-20";
-			sourceTree = "<group>";
-		};
 		7A43797018693CE0007F64DB /* 新版找发型 */ = {
 			isa = PBXGroup;
 			children = (
+				7A5D5C19186C1C8B00F96949 /* 发型师02.png */,
+				7A5D5C1A186C1C8B00F96949 /* 问题03.png */,
+				7A5D5C1B186C1C8B00F96949 /* 我的04.png */,
+				7A5D5C17186C1BCD00F96949 /* 找发型01.png */,
 				7A43797118693CE0007F64DB /* hairtype_1_1.png */,
 				7A43797218693CE0007F64DB /* hairtype_1_10.png */,
 				7A43797318693CE0007F64DB /* hairtype_1_2.png */,
@@ -1270,6 +1194,82 @@
 				7A4379A318693CE0007F64DB /* 三角.png */,
 			);
 			path = "新版找发型";
+			sourceTree = "<group>";
+		};
+		7A5D5C1F186C289400F96949 /* 11-20 */ = {
+			isa = PBXGroup;
+			children = (
+				7A5D5C20186C289400F96949 /* 1发型师.png */,
+				7A5D5C21186C289400F96949 /* 2个人用户.png */,
+				7A5D5C22186C289400F96949 /* 4关注.png */,
+				7A5D5C23186C289400F96949 /* comment.png */,
+				7A5D5C26186C289400F96949 /* fenxiang.png */,
+				7A5D5C27186C289400F96949 /* jifen.png */,
+				7A5D5C28186C289400F96949 /* like.png */,
+				7A5D5C29186C289400F96949 /* like1.png */,
+				7A5D5C2A186C289400F96949 /* renzhengfaxingshi.png */,
+				7A5D5C2B186C289400F96949 /* renzhengziliao.png */,
+				7A5D5C2C186C289400F96949 /* shalong.png */,
+				7A5D5C2D186C289400F96949 /* shoucang.png */,
+				7A5D5C2E186C289400F96949 /* sixin.png */,
+				7A5D5C2F186C289400F96949 /* x0.png */,
+				7A5D5C30186C289400F96949 /* x1.png */,
+				7A5D5C31186C289400F96949 /* x2.png */,
+				7A5D5C32186C289400F96949 /* x3.png */,
+				7A5D5C33186C289400F96949 /* x4.png */,
+				7A5D5C34186C289400F96949 /* x5.png */,
+				7A5D5C35186C289400F96949 /* xiaoxi.png */,
+				7A5D5C36186C289400F96949 /* xunzhang.png */,
+				7A5D5C37186C289400F96949 /* 个人用户.png */,
+				7A5D5C38186C289400F96949 /* 中发.png */,
+				7A5D5C39186C289400F96949 /* 全部.png */,
+				7A5D5C3A186C289400F96949 /* 关注.png */,
+				7A5D5C3B186C289400F96949 /* 其他.png */,
+				7A5D5C3C186C289400F96949 /* 历史预约.png */,
+				7A5D5C3D186C289400F96949 /* 发型师.png */,
+				7A5D5C3E186C289400F96949 /* 同城.png */,
+				7A5D5C3F186C289400F96949 /* 同城1.png */,
+				7A5D5C40186C289400F96949 /* 同城发型.png */,
+				7A5D5C41186C289400F96949 /* 名人堂.png */,
+				7A5D5C42186C289400F96949 /* 品牌名店.png */,
+				7A5D5C43186C289400F96949 /* 店铺.png */,
+				7A5D5C44186C289400F96949 /* 当前预约.png */,
+				7A5D5C45186C289400F96949 /* 我型我秀.png */,
+				7A5D5C46186C289400F96949 /* 我的话题.png */,
+				7A5D5C47186C289400F96949 /* 护理.png */,
+				7A5D5C48186C289400F96949 /* 招聘信息.png */,
+				7A5D5C49186C289400F96949 /* 排行榜.png */,
+				7A5D5C4A186C289400F96949 /* 推荐.png */,
+				7A5D5C4B186C289400F96949 /* 推荐发型.png */,
+				7A5D5C4C186C289400F96949 /* 星级.png */,
+				7A5D5C4D186C289400F96949 /* 最新发型.png */,
+				7A5D5C4E186C289400F96949 /* 最新榜.png */,
+				7A5D5C4F186C289400F96949 /* 未选中.png */,
+				7A5D5C50186C289400F96949 /* 染发.png */,
+				7A5D5C51186C289400F96949 /* 每日聚焦.png */,
+				7A5D5C52186C289400F96949 /* 洗剪吹.png */,
+				7A5D5C53186C289400F96949 /* 洗护方法.png */,
+				7A5D5C54186C289400F96949 /* 添加图片.png */,
+				7A5D5C55186C289400F96949 /* 潮流学堂.png */,
+				7A5D5C56186C289400F96949 /* 烫发.png */,
+				7A5D5C57186C289400F96949 /* 热点话题.png */,
+				7A5D5C58186C289400F96949 /* 热门话题.png */,
+				7A5D5C59186C289400F96949 /* 特惠预约.png */,
+				7A5D5C5A186C289400F96949 /* 男士发型.png */,
+				7A5D5C5B186C289400F96949 /* 皇冠.png */,
+				7A5D5C5C186C289400F96949 /* 盘发.png */,
+				7A5D5C5D186C289400F96949 /* 短发.png */,
+				7A5D5C5E186C289400F96949 /* 私信.png */,
+				7A5D5C5F186C289400F96949 /* 粉丝.png */,
+				7A5D5C60186C289400F96949 /* 行业情报.png */,
+				7A5D5C61186C289400F96949 /* 评论.png */,
+				7A5D5C62186C289400F96949 /* 评论榜.png */,
+				7A5D5C63186C289400F96949 /* 选中.png */,
+				7A5D5C64186C289400F96949 /* 钻石.png */,
+				7A5D5C65186C289400F96949 /* 长发.png */,
+				7A5D5C66186C289400F96949 /* 问答中心.png */,
+			);
+			path = "11-20";
 			sourceTree = "<group>";
 		};
 		7A63A4FF185AF42800502E75 /* libWeiboSDK */ = {
@@ -1465,164 +1465,164 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A37D7871844CC4C00D9C4D9 /* 关注.png in Resources */,
 				7A4379A718693CE0007F64DB /* hairtype_1_3.png in Resources */,
 				7A4379CB18693CE0007F64DB /* icon_facetype.png in Resources */,
+				7A5D5C7A186C289400F96949 /* x4.png in Resources */,
+				7A5D5C73186C289400F96949 /* shalong.png in Resources */,
 				7A4379D318693CE0007F64DB /* icon_women.png in Resources */,
-				7AD545B4184EBA81009A6B79 /* 中发.png in Resources */,
+				7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */,
+				7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */,
 				7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */,
-				7AE1B2FB184C26FF00F51BB2 /* comment.png in Resources */,
-				7A37D7811844CC4C00D9C4D9 /* x3.png in Resources */,
 				7A4379CA18693CE0007F64DB /* icon_color1.png in Resources */,
-				7ADC1A17184D8418004C61BC /* 4关注.png in Resources */,
+				7A5D5C71186C289400F96949 /* renzhengfaxingshi.png in Resources */,
+				7A5D5CA3186C289400F96949 /* 盘发.png in Resources */,
+				7A5D5C83186C289400F96949 /* 历史预约.png in Resources */,
 				7A06F10F18613482007624D3 /* other_focused.png in Resources */,
+				7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */,
 				7A4379C018693CE0007F64DB /* hairtype_4_5.png in Resources */,
-				7AE7F53B1855926F00CAB2C6 /* 最新榜.png in Resources */,
 				7A4379A618693CE0007F64DB /* hairtype_1_2.png in Resources */,
-				7AD5461A184F39EA009A6B79 /* 行业情报.png in Resources */,
+				7A5D5C7E186C289400F96949 /* 个人用户.png in Resources */,
 				7A4379B818693CE0007F64DB /* hairtype_3_1.png in Resources */,
+				7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */,
 				7A4379B218693CE0007F64DB /* hairtype_2_4.png in Resources */,
-				7AE5AC291852C4C100C1970E /* 同城发型.png in Resources */,
+				7A5D5C80186C289400F96949 /* 全部.png in Resources */,
 				7A4379B318693CE0007F64DB /* hairtype_2_5.png in Resources */,
-				7A37D77F1844CC4C00D9C4D9 /* x1.png in Resources */,
 				7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */,
+				7A5D5C9B186C289400F96949 /* 添加图片.png in Resources */,
+				7A5D5C75186C289400F96949 /* sixin.png in Resources */,
+				7A5D5CA0186C289400F96949 /* 特惠预约.png in Resources */,
 				7A4379CC18693CE0007F64DB /* icon_facetype1.png in Resources */,
 				7A4379C118693CE0007F64DB /* hairtype_4_6.png in Resources */,
-				7A37D7851844CC4C00D9C4D9 /* xunzhang.png in Resources */,
-				7ADDE7D21856F78A00D48208 /* 染发.png in Resources */,
 				7AD545F4184F2B08009A6B79 /* MBProgressHUD.bundle in Resources */,
-				7A37D7881844CC4C00D9C4D9 /* 历史预约.png in Resources */,
-				7ADDE7CF1856F78A00D48208 /* 每日聚焦.png in Resources */,
-				7A37D78A1844CC4C00D9C4D9 /* 当前预约.png in Resources */,
-				7AE03D3B1845CC0900E14EDC /* 选中.png in Resources */,
-				7A37D7751844CC4C00D9C4D9 /* 1发型师.png in Resources */,
-				7ADDE7CC1856F78A00D48208 /* 潮流学堂.png in Resources */,
 				7A4379AA18693CE0007F64DB /* hairtype_1_6.png in Resources */,
-				7AE1B2FC184C26FF00F51BB2 /* sixin.png in Resources */,
-				7A37D77A1844CC4C00D9C4D9 /* renzhengfaxingshi.png in Resources */,
-				7A37D7861844CC4C00D9C4D9 /* 全部.png in Resources */,
-				7A37D78E1844CC4C00D9C4D9 /* 皇冠.png in Resources */,
+				7A5D5CA2186C289400F96949 /* 皇冠.png in Resources */,
+				7A5D5C1C186C1C8B00F96949 /* 发型师02.png in Resources */,
 				7AE03D441845D41C00E14EDC /* area.plist in Resources */,
 				7A4379B918693CE0007F64DB /* hairtype_3_2.png in Resources */,
-				7ADDE7D01856F78A00D48208 /* 洗剪吹.png in Resources */,
-				7A37D78C1844CC4C00D9C4D9 /* 星级.png in Resources */,
-				7AE5AC281852C4C100C1970E /* 最新发型.png in Resources */,
+				7A5D5C82186C289400F96949 /* 其他.png in Resources */,
+				7A5D5C1D186C1C8B00F96949 /* 问题03.png in Resources */,
 				7A4379CF18693CE0007F64DB /* icon_perm.png in Resources */,
-				7A37D77C1844CC4C00D9C4D9 /* shalong.png in Resources */,
-				7A37D7921844CC4C00D9C4D9 /* 钻石.png in Resources */,
-				7A37D7891844CC4C00D9C4D9 /* 同城1.png in Resources */,
 				7A4379A518693CE0007F64DB /* hairtype_1_10.png in Resources */,
-				7A37D78F1844CC4C00D9C4D9 /* 私信.png in Resources */,
+				7A5D5C98186C289400F96949 /* 每日聚焦.png in Resources */,
+				7A5D5C8B186C289400F96949 /* 当前预约.png in Resources */,
 				7A4379B718693CE0007F64DB /* hairtype_2_9.png in Resources */,
 				7A4379BD18693CE0007F64DB /* hairtype_4_2.png in Resources */,
+				7A5D5CA6186C289400F96949 /* 粉丝.png in Resources */,
 				7A4379AC18693CE0007F64DB /* hairtype_1_8.png in Resources */,
 				7AE03D451845D41C00E14EDC /* city.plist in Resources */,
+				7A5D5C91186C289400F96949 /* 推荐.png in Resources */,
 				7A37D69D1844C9E100D9C4D9 /* Images.xcassets in Resources */,
+				7A5D5C6A186C289400F96949 /* comment.png in Resources */,
 				7AE03D561846172F00E14EDC /* pubImageViewController.xib in Resources */,
 				7A4379C418693CE0007F64DB /* hairtype_4_9.png in Resources */,
-				7A37D7901844CC4C00D9C4D9 /* 粉丝.png in Resources */,
 				7AE0701018519FBE00ED1EDE /* userDetailViewController.xib in Resources */,
 				7A43796118691E05007F64DB /* Default.png in Resources */,
 				7A4379CD18693CE0007F64DB /* icon_man.png in Resources */,
 				7A4379B018693CE0007F64DB /* hairtype_2_2.png in Resources */,
-				7AD545B5184EBA81009A6B79 /* 长发.png in Resources */,
 				7A4379AB18693CE0007F64DB /* hairtype_1_7.png in Resources */,
-				7A37D7791844CC4C00D9C4D9 /* like1.png in Resources */,
-				7A37D77E1844CC4C00D9C4D9 /* x0.png in Resources */,
 				7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */,
+				7A5D5C88186C289400F96949 /* 名人堂.png in Resources */,
 				7A4379C618693CE0007F64DB /* hairtype_5_2.png in Resources */,
+				7A5D5C69186C289400F96949 /* 4关注.png in Resources */,
 				7A4379CE18693CE0007F64DB /* icon_man1.png in Resources */,
-				7AD54616184F39EA009A6B79 /* 同城.png in Resources */,
-				7AD545B2184EBA81009A6B79 /* 盘发.png in Resources */,
 				7A06F10E18613482007624D3 /* mychat_normal.png in Resources */,
 				7A4379BF18693CE0007F64DB /* hairtype_4_4.png in Resources */,
+				7A5D5C86186C289400F96949 /* 同城1.png in Resources */,
+				7A5D5C81186C289400F96949 /* 关注.png in Resources */,
+				7A5D5C94186C289400F96949 /* 最新发型.png in Resources */,
 				7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */,
-				7ADDE7C91856F78A00D48208 /* 洗护方法.png in Resources */,
 				7ADC1A15184D6E22004C61BC /* beaspeakDresserViewController.xib in Resources */,
-				7A37D7761844CC4C00D9C4D9 /* 2个人用户.png in Resources */,
-				7A37D7821844CC4C00D9C4D9 /* x4.png in Resources */,
+				7A5D5C8A186C289400F96949 /* 店铺.png in Resources */,
+				7A5D5C7F186C289400F96949 /* 中发.png in Resources */,
+				7A5D5C74186C289400F96949 /* shoucang.png in Resources */,
 				7A37D68F1844C9E100D9C4D9 /* InfoPlist.strings in Resources */,
 				7A4379BB18693CE0007F64DB /* hairtype_3_4.png in Resources */,
-				7A37D77D1844CC4C00D9C4D9 /* shoucang.png in Resources */,
 				7A4379D118693CE0007F64DB /* icon_recommend.png in Resources */,
+				7A5D5C8E186C289400F96949 /* 护理.png in Resources */,
+				7A5D5C6D186C289400F96949 /* fenxiang.png in Resources */,
+				7A5D5CA4186C289400F96949 /* 短发.png in Resources */,
 				7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */,
+				7A5D5C68186C289400F96949 /* 2个人用户.png in Resources */,
 				7A4379C218693CE0007F64DB /* hairtype_4_7.png in Resources */,
+				7A5D5C9F186C289400F96949 /* 热门话题.png in Resources */,
 				7A4379A918693CE0007F64DB /* hairtype_1_5.png in Resources */,
-				7A37D7741844CC4C00D9C4D9 /* 04我的.png in Resources */,
-				7A37D7911844CC4C00D9C4D9 /* 评论.png in Resources */,
-				7AD545B6184EBA81009A6B79 /* 其他.png in Resources */,
+				7A5D5C97186C289400F96949 /* 染发.png in Resources */,
+				7A5D5C77186C289400F96949 /* x1.png in Resources */,
 				7A37D6981844C9E100D9C4D9 /* Main.storyboard in Resources */,
 				7A4379B618693CE0007F64DB /* hairtype_2_8.png in Resources */,
-				7ADDE7D31856F78A00D48208 /* 护理.png in Resources */,
-				7ADDE7D61856F78A00D48208 /* 发型师.png in Resources */,
-				7AD54619184F39EA009A6B79 /* 招聘信息.png in Resources */,
-				7A37D7801844CC4C00D9C4D9 /* x2.png in Resources */,
+				7A5D5C7B186C289400F96949 /* x5.png in Resources */,
+				7A5D5CAB186C289400F96949 /* 钻石.png in Resources */,
 				7A4379C718693CE0007F64DB /* hairtype_5_3.png in Resources */,
+				7A5D5C92186C289400F96949 /* 推荐发型.png in Resources */,
 				7A4379D418693CE0007F64DB /* icon_women1.png in Resources */,
 				7A4379C918693CE0007F64DB /* icon_color.png in Resources */,
-				7A37D77B1844CC4C00D9C4D9 /* renzhengziliao.png in Resources */,
-				7AE7F53A1855926F00CAB2C6 /* 排行榜.png in Resources */,
 				7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */,
 				7A4379B418693CE0007F64DB /* hairtype_2_6.png in Resources */,
+				7A5D5C9E186C289400F96949 /* 热点话题.png in Resources */,
+				7A5D5C7D186C289400F96949 /* xunzhang.png in Resources */,
 				7AE09E05185838D3007CA28D /* inviteDetailViewController.xib in Resources */,
-				7A37D7831844CC4C00D9C4D9 /* x5.png in Resources */,
-				7AD54617184F39EA009A6B79 /* 特惠预约.png in Resources */,
-				7ADDE7CD1856F78A00D48208 /* 我的话题.png in Resources */,
+				7A5D5C89186C289400F96949 /* 品牌名店.png in Resources */,
+				7A5D5C67186C289400F96949 /* 1发型师.png in Resources */,
+				7A5D5CAC186C289400F96949 /* 长发.png in Resources */,
+				7A5D5C85186C289400F96949 /* 同城.png in Resources */,
 				7A4379AD18693CE0007F64DB /* hairtype_1_9.png in Resources */,
 				7A4379D518693CE0007F64DB /* Thumbs.db in Resources */,
 				7A43796018691E05007F64DB /* Default-568h@2x.png in Resources */,
-				7AD54618184F39EA009A6B79 /* 问答中心.png in Resources */,
 				7A4379BC18693CE0007F64DB /* hairtype_4_1.png in Resources */,
-				7A37D7841844CC4C00D9C4D9 /* xiaoxi.png in Resources */,
+				7A5D5C90186C289400F96949 /* 排行榜.png in Resources */,
+				7A5D5C9A186C289400F96949 /* 洗护方法.png in Resources */,
 				7A06F10D18613482007624D3 /* mychat_focused.png in Resources */,
-				7A37D7731844CC4C00D9C4D9 /* 03广场.png in Resources */,
-				7ADDE7D11856F78A00D48208 /* 烫发.png in Resources */,
-				7A37D78B1844CC4C00D9C4D9 /* 推荐.png in Resources */,
+				7A5D5C76186C289400F96949 /* x0.png in Resources */,
 				7AD545F7184F2B08009A6B79 /* MJPhotoBrowser.bundle in Resources */,
-				7A37D78D1844CC4C00D9C4D9 /* 添加图片.png in Resources */,
 				7AE03D471845D41C00E14EDC /* HZAreaPickerView.xib in Resources */,
+				7A5D5C7C186C289400F96949 /* xiaoxi.png in Resources */,
+				7A5D5C9D186C289400F96949 /* 烫发.png in Resources */,
+				7A5D5C93186C289400F96949 /* 星级.png in Resources */,
 				7A4379D618693CE0007F64DB /* 三角.png in Resources */,
-				7AE03D3A1845CC0900E14EDC /* 未选中.png in Resources */,
 				7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */,
+				7A5D5C9C186C289400F96949 /* 潮流学堂.png in Resources */,
 				7A4379BE18693CE0007F64DB /* hairtype_4_3.png in Resources */,
 				7AE03D341845B9F300E14EDC /* changeInforViewController.xib in Resources */,
-				7ADDE7CB1856F78A00D48208 /* 品牌名店.png in Resources */,
+				7A5D5CA7186C289400F96949 /* 行业情报.png in Resources */,
 				7AE214601859AFA00030E5D3 /* pubInviteMessage.xib in Resources */,
-				7A37D7721844CC4C00D9C4D9 /* 02发型师.png in Resources */,
+				7A5D5CA5186C289400F96949 /* 私信.png in Resources */,
 				7A4379C818693CE0007F64DB /* hairtype_5_4.png in Resources */,
+				7A5D5C8C186C289400F96949 /* 我型我秀.png in Resources */,
+				7A5D5C6F186C289400F96949 /* like.png in Resources */,
 				7A4379A418693CE0007F64DB /* hairtype_1_1.png in Resources */,
-				7A37D7771844CC4C00D9C4D9 /* jifen.png in Resources */,
 				7A43796F186939F9007F64DB /* oprationMenue.xib in Resources */,
-				7AD545B8184ED4EF009A6B79 /* 短发.png in Resources */,
-				7AD545B3184EBA81009A6B79 /* 男士发型.png in Resources */,
+				7A5D5C72186C289400F96949 /* renzhengziliao.png in Resources */,
+				7A5D5C87186C289400F96949 /* 同城发型.png in Resources */,
 				7A06F10C18613482007624D3 /* messages.plist in Resources */,
+				7A5D5C8F186C289400F96949 /* 招聘信息.png in Resources */,
 				7A4379D018693CE0007F64DB /* icon_perm1.png in Resources */,
 				7AE7F52F1855542400CAB2C6 /* arrow.png in Resources */,
-				7AE7F53C1855926F00CAB2C6 /* 评论榜.png in Resources */,
+				7A5D5CA8186C289400F96949 /* 评论.png in Resources */,
+				7A5D5C79186C289400F96949 /* x3.png in Resources */,
+				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
 				7A4379B118693CE0007F64DB /* hairtype_2_3.png in Resources */,
+				7A5D5C84186C289400F96949 /* 发型师.png in Resources */,
 				7A4379C318693CE0007F64DB /* hairtype_4_8.png in Resources */,
-				7AE5AC2A1852C4C100C1970E /* 推荐发型.png in Resources */,
-				7A37D7711844CC4C00D9C4D9 /* 01找发型.png in Resources */,
+				7A5D5C95186C289400F96949 /* 最新榜.png in Resources */,
 				7A06F11718613493007624D3 /* HRChatCell.xib in Resources */,
+				7A5D5C78186C289400F96949 /* x2.png in Resources */,
+				7A5D5CAA186C289400F96949 /* 选中.png in Resources */,
 				7A4379BA18693CE0007F64DB /* hairtype_3_3.png in Resources */,
-				7AD54614184F39EA009A6B79 /* 我型我秀.png in Resources */,
 				7AE09DFD18582FBB007CA28D /* inviteViewController.xib in Resources */,
-				7ADDE7CA1856F78A00D48208 /* 名人堂.png in Resources */,
 				7A4379D218693CE0007F64DB /* icon_recommend1.png in Resources */,
-				7AD54615184F39EA009A6B79 /* 热门话题.png in Resources */,
 				7A4379AE18693CE0007F64DB /* hairtype_2_1.png in Resources */,
 				7AE03D5B1846175B00E14EDC /* dresserDetailViewController.xib in Resources */,
-				7A37D7781844CC4C00D9C4D9 /* like.png in Resources */,
-				7ADDE7D41856F78A00D48208 /* 店铺.png in Resources */,
-				7ADDE7CE1856F78A00D48208 /* 热点话题.png in Resources */,
+				7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */,
 				7A4379B518693CE0007F64DB /* hairtype_2_7.png in Resources */,
+				7A5D5C96186C289400F96949 /* 未选中.png in Resources */,
 				7A0191FB18602CC600AFD637 /* SinaWeibo.bundle in Resources */,
 				7A4379AF18693CE0007F64DB /* hairtype_2_10.png in Resources */,
+				7A5D5C70186C289400F96949 /* like1.png in Resources */,
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
-				7ADDE7D51856F78A00D48208 /* 个人用户.png in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,
+				7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */,
+				7A5D5C6E186C289400F96949 /* jifen.png in Resources */,
 				7A4379C518693CE0007F64DB /* hairtype_5_1.png in Resources */,
-				7AE1B2FA184C26FF00F51BB2 /* fenxiang.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

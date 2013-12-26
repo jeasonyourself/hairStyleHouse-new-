@@ -38,6 +38,10 @@
     mineViewController * mineController;
     UINavigationController * forthNav;
     
+    UILabel * firstLable;
+    UILabel * secondLable;
+    UILabel * thirdLable;
+    UILabel * forthLable;
 //    NSString * signStr;
 //    loginViewController* loginView;
     NSString* wbtoken;

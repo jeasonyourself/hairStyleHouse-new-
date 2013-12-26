@@ -28,24 +28,24 @@
     [WeiboSDK registerApp:kAppKey];
     self.sinaweibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
     
-    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
-    {
-        self.uid =[ud objectForKey:@"uid"];
-        self.type = [ud objectForKey:@"type"];
-        self.loginType = [ud objectForKey:@"loginType"];
-        
-        tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
-        
-            [self.tententOAuth setAccessToken:[ud objectForKey:@"tencentOAuth_accesstoken"]] ;
-            [self.tententOAuth setOpenId:[ud objectForKey:@"tencentOAuth_openId"]] ;
-            [self.tententOAuth setExpirationDate:[ud objectForKey:@"tencentOAuth_expirationDate"]] ;
-
-            [self.sinaweibo setAccessToken:[ud objectForKey:@"sina_accesstoken"]] ;
-            [self.sinaweibo setUserID:[ud objectForKey:@"sina_userId"]] ;
-            [self.sinaweibo setExpirationDate:[ud objectForKey:@"sina_expirationDate"]] ;
-
-     }
+//    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+//    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
+//    {
+//        self.uid =[ud objectForKey:@"uid"];
+//        self.type = [ud objectForKey:@"type"];
+//        self.loginType = [ud objectForKey:@"loginType"];
+//        
+//            tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+//        
+//            [self.tententOAuth setAccessToken:[ud objectForKey:@"tencentOAuth_accesstoken"]] ;
+//            [self.tententOAuth setOpenId:[ud objectForKey:@"tencentOAuth_openId"]] ;
+//            [self.tententOAuth setExpirationDate:[ud objectForKey:@"tencentOAuth_expirationDate"]] ;
+//
+//            [self.sinaweibo setAccessToken:[ud objectForKey:@"sina_accesstoken"]] ;
+//            [self.sinaweibo setUserID:[ud objectForKey:@"sina_userId"]] ;
+//            [self.sinaweibo setExpirationDate:[ud objectForKey:@"sina_expirationDate"]] ;
+//
+//     }
 
     
     
@@ -77,11 +77,52 @@
     rootTab.delegate=self;
     rootTab.viewControllers=tabArray;
     rootTab.selectedIndex = 0;
-    
+
     tabImageView=[[UIImageView alloc] init];
-    tabImageView.frame=CGRectMake(0,0, 320, rootTab.tabBar.frame.size.height);
-    tabImageView.image=[UIImage imageNamed:@"01找发型.png"];
+    tabImageView.frame=CGRectMake(0,-1, 320, 50);
+    NSLog(@"tabImageView.frame:%@",NSStringFromCGRect(tabImageView.frame));
+    NSLog(@"tabbar.frame:%@",NSStringFromCGRect(rootTab.tabBar.frame));
+    tabImageView.image=[UIImage imageNamed:@"找发型01.png"];
+    
+    firstLable= [[UILabel alloc] init];
+    firstLable.text = @"找发型";
+    firstLable.textAlignment = NSTextAlignmentCenter;
+    [firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    firstLable.backgroundColor = [UIColor clearColor];
+    firstLable.font = [UIFont systemFontOfSize:12.0];
+    firstLable.frame = CGRectMake(0, 32, 80, 19);
+    
+    secondLable= [[UILabel alloc] init];
+    secondLable.text = @"发型师";
+    secondLable.textAlignment = NSTextAlignmentCenter;
+    secondLable.textColor = [UIColor whiteColor];
+    secondLable.backgroundColor = [UIColor clearColor];
+    secondLable.font = [UIFont systemFontOfSize:12.0];
+    secondLable.frame = CGRectMake(80, 33, 80, 19);
+    
+    thirdLable= [[UILabel alloc] init];
+    thirdLable.text = @"问题";
+    thirdLable.textAlignment = NSTextAlignmentCenter;
+    thirdLable.textColor = [UIColor whiteColor];
+    thirdLable.backgroundColor = [UIColor clearColor];
+    thirdLable.font = [UIFont systemFontOfSize:12.0];
+    thirdLable.frame = CGRectMake(162, 32, 80, 19);
+    
+    forthLable= [[UILabel alloc] init];
+    forthLable.text = @"我的";
+    forthLable.textAlignment = NSTextAlignmentCenter;
+    forthLable.textColor = [UIColor whiteColor];
+    forthLable.backgroundColor = [UIColor clearColor];
+    forthLable.font = [UIFont systemFontOfSize:12.0];
+    forthLable.frame = CGRectMake(242, 32, 80, 19);
+    
     [rootTab.tabBar addSubview:tabImageView];
+    [tabImageView addSubview:firstLable];
+    [tabImageView addSubview:secondLable];
+    [tabImageView addSubview:thirdLable];
+    [tabImageView addSubview:forthLable];
+
+    
     
     rootNav = [[UINavigationController alloc] initWithRootViewController:rootTab ];
     rootNav.navigationBar.hidden=YES;
@@ -95,26 +136,42 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     if (viewController == firstNav) {
 //        signStr=@"1";
-        tabImageView.image=[UIImage imageNamed:@"01找发型.png"];
+        tabImageView.image=[UIImage imageNamed:@"找发型01.png"];
+        [firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+        secondLable.textColor = [UIColor whiteColor];
+        thirdLable.textColor = [UIColor whiteColor];
+        forthLable.textColor = [UIColor whiteColor];
        
     }
     else if (viewController == secondNav) {
 //        signStr=@"2";
 
-        tabImageView.image=[UIImage imageNamed:@"02发型师.png"];
+        tabImageView.image=[UIImage imageNamed:@"发型师02.png"];
+        [firstLable setTextColor:[UIColor whiteColor]];
+        secondLable.textColor = [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
+        thirdLable.textColor = [UIColor whiteColor];
+        forthLable.textColor = [UIColor whiteColor];
        
     }
     else if (viewController == thirdNav) {
 //        signStr=@"3";
 
-        tabImageView.image=[UIImage imageNamed:@"03广场.png"];
+        tabImageView.image=[UIImage imageNamed:@"问题03.png"];
+        [firstLable setTextColor:[UIColor whiteColor]];
+        secondLable.textColor = [UIColor whiteColor];
+        thirdLable.textColor = [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
+        forthLable.textColor = [UIColor whiteColor];
         
     }
     else if (viewController==forthNav){
         
 //        if (self.uid) {
 //            signStr=@"4";
-            tabImageView.image=[UIImage imageNamed:@"04我的.png"];
+            tabImageView.image=[UIImage imageNamed:@"我的04.png"];
+        [firstLable setTextColor:[UIColor whiteColor]];
+        secondLable.textColor = [UIColor whiteColor];
+        thirdLable.textColor = [UIColor whiteColor];
+        forthLable.textColor = [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
             
 //        }
 //        else

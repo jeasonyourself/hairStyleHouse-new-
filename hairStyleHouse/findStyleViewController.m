@@ -67,7 +67,7 @@
     fifthArr = [[NSArray alloc] initWithArray:[hairStyleCategory shareData].fifthArray];
     sixthArr = [[NSArray alloc] initWithArray:[hairStyleCategory shareData].sixthArray];
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(85, self.navigationController.navigationBar.frame.size.height+20, self.view.bounds.size.width-85, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-20-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(80, self.navigationController.navigationBar.frame.size.height+20, self.view.bounds.size.width-80, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-20-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.allowsSelection=NO;
     myTableView.dataSource=self;
@@ -176,7 +176,7 @@
 //    else
 //        
 //    {
-        return   tableView.frame.size.height/3-20;
+    return   110;
 //    }
 }
 

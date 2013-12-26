@@ -78,6 +78,8 @@
     
     dresserArray =[[NSMutableArray alloc] init];
     dresserArray1 =[[NSMutableArray alloc] init];
+    cleandresserArray =[[NSMutableArray alloc] init];
+    cleandresserArray1 =[[NSMutableArray alloc] init];
 
     page =[[NSString alloc] init];
     page=@"1";
@@ -88,8 +90,9 @@
     sign =[[NSString alloc] init];
     sign=@"1";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -100,7 +103,7 @@
         NSLog(@"loadMore");
         [self pullLoadMore];
     }];
-    bottomRefreshView.hidden=NO;
+    bottomRefreshView.hidden=YES;
     [myTableView addSubview:bottomRefreshView];
     
     
@@ -109,6 +112,7 @@
 }
 -(void)pullLoadMore
 {
+    
     if ([sign isEqualToString:@"1"]) {
         NSInteger _pageCount= [pageCount integerValue];
         
@@ -126,7 +130,6 @@
         else
         {
             [bottomRefreshView performSelector:@selector(finishedLoading)];
-            
         }
     }
     else
@@ -147,7 +150,7 @@
         else
         {
             [bottomRefreshView performSelector:@selector(finishedLoading)];
-            
+
         }
     }
     
@@ -229,6 +232,8 @@
     if (request.tag==1)
     {
         NSMutableArray * arr;
+        NSMutableArray * cleanarr;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -238,15 +243,26 @@
         NSLog(@"%@分类发型dic:%@",style,dic);
         
         pageCount = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"works_info"];
+            [dresserArray addObjectsFromArray:arr];
+            NSLog(@"dresser.count:%d",dresserArray.count);
+            
+        }
         if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
         {
             
         }
         else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"image_list"];
-            [dresserArray addObjectsFromArray:arr];
-            NSLog(@"dresser.count:%d",dresserArray.count);
+            cleanarr= [dic objectForKey:@"image_list"];
+            [cleandresserArray addObjectsFromArray:cleanarr];
+            NSLog(@"dresser1.count:%d",cleandresserArray.count);
             
         }
         [self freashView];
@@ -255,6 +271,8 @@
    else if (request.tag==2)
    {
         NSMutableArray * arr;
+       NSMutableArray * cleanarr;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -264,17 +282,28 @@
         NSLog(@"%@分类发型dic:%@",style,dic);
         
         pageCount1 = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
-        {
-            
-        }
-        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
-        {
-            arr= [dic objectForKey:@"image_list"];
-            [dresserArray1 addObjectsFromArray:arr];
-            NSLog(@"dresser1.count:%d",dresserArray1.count);
-            
-        }
+       if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+       {
+           
+       }
+       else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+       {
+           arr= [dic objectForKey:@"works_info"];
+           [dresserArray1 addObjectsFromArray:arr];
+           NSLog(@"dresser.count:%d",dresserArray1.count);
+           
+       }
+       if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
+       {
+           
+       }
+       else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+       {
+           cleanarr= [dic objectForKey:@"image_list"];
+           [cleandresserArray1 addObjectsFromArray:cleanarr];
+           NSLog(@"dresser1.count:%d",cleandresserArray1.count);
+           
+       }
         [self freashView];
     }
 }
@@ -323,7 +352,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return   160;
+    return   122;
 
 }
 
@@ -412,14 +441,14 @@
 -(void)selectImage:(NSInteger)_index
 {
     if ([sign isEqualToString:@"1"]) {
-        int count = dresserArray.count;
+        int count = cleandresserArray.count;
         // 1.封装图片数据
         NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
         for (int i = 0; i<count; i++) {
             // 替换为中等尺寸图片
-            NSString *url = [[dresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+            NSString *url = [[cleandresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
             MJPhoto *photo = [[MJPhoto alloc] init];
-            photo.work_id =[dresserArray[i] objectForKey:@"work_id"];
+            photo.work_id =[cleandresserArray[i] objectForKey:@"work_id"];
             photo.url = [NSURL URLWithString:url]; // 图片路径
             //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
             [photos addObject:photo];
@@ -433,14 +462,14 @@
     }
    else
    {
-       int count = dresserArray1.count;
+       int count = cleandresserArray1.count;
        // 1.封装图片数据
        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
        for (int i = 0; i<count; i++) {
            // 替换为中等尺寸图片
-           NSString *url = [[dresserArray1[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+           NSString *url = [[cleandresserArray1[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
            MJPhoto *photo = [[MJPhoto alloc] init];
-           photo.work_id =[dresserArray1[i] objectForKey:@"work_id"];
+           photo.work_id =[cleandresserArray1[i] objectForKey:@"work_id"];
            photo.url = [NSURL URLWithString:url]; // 图片路径
            //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
            [photos addObject:photo];

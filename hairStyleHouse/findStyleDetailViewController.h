@@ -19,7 +19,10 @@
     AllAroundPullView *bottomRefreshView;
 
     NSMutableArray * dresserArray;
+    NSMutableArray * cleandresserArray;
+
     NSMutableArray * dresserArray1;
+    NSMutableArray * cleandresserArray1;
 
     NSString * page;
     NSString * page1;

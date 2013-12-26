@@ -18,7 +18,7 @@
 {
     UIView* myInfoView;
     TencentOAuth* _tencentOAuth;
-        SinaWeibo* _sinaweibo;
+    SinaWeibo* _sinaweibo;
     NSArray* _permissions;
     NSString* imageUrl;
     NSString* type;
@@ -39,6 +39,7 @@
     NSString* touxiangUrl;
     NSString* nameLabelStr;
     
+    UILabel * introLable;
     UIButton * QQButton;
     UIButton * sinaButton;
     

@@ -48,9 +48,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
--(void)viewDidAppear:(BOOL)animated
-{
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (appDele.uid)
     {
@@ -58,10 +55,25 @@
     }
     else
     {
+        
         [self cLoginView];
         
     }
-    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    if (appDele.uid)
+//    {
+//        [self.navigationController popViewControllerAnimated:NO];
+//    }
+//    else
+//    {
+//        
+//        [self cLoginView];
+//        
+//    }
+//    
 }
 -(void)refreashNavLab
 {
@@ -133,6 +145,15 @@
 -(void)cLoginView//访问用户具体资料：
 {
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    introLable = [[UILabel alloc] init];
+    introLable.numberOfLines = 0;
+    introLable.textColor = [UIColor blackColor];
+    introLable.font = [UIFont systemFontOfSize:16.0];
+    introLable.text = @"登陆之后，您可以\n1、上传自己的发型和作品\n2、预约同城发型师或设置自己的预约\n3、可以在问答中心发布和回答问题\n4、收藏、评论、分享您喜欢的发型";
+    introLable.frame=CGRectMake(20, 20, 280, 300);
+    [self.view addSubview:introLable];
+    
     QQButton=[[UIButton alloc] init];
     QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [QQButton.layer setMasksToBounds:YES];
@@ -157,6 +178,7 @@
     [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [sinaButton addTarget:self action:@selector(sinaButtonClick) forControlEvents:UIControlEventTouchUpInside];
     sinaButton.frame = CGRectMake(10, 300, 300, 40);
+    
     [self.view addSubview:QQButton];
     [self.view addSubview:sinaButton];
     
