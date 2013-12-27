@@ -233,6 +233,9 @@
 		7AD5460A184F2B08009A6B79 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545EE184F2B08009A6B79 /* UIImage+WebP.m */; };
 		7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */; };
 		7AD5460C184F2B08009A6B79 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */; };
+		7AD7CB0D186D27F1005D1698 /* completeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7CB0C186D27F1005D1698 /* completeViewController.m */; };
+		7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AD7CB0E186D2808005D1698 /* completeView.xib */; };
+		7AD7CB12186D5D1E005D1698 /* mustCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7CB11186D5D1E005D1698 /* mustCompleteViewController.m */; };
 		7AD87DFC185024A60016A329 /* hairStyleCategoryScanImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */; };
 		7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0018502CA10016A329 /* timeline_image_loading.png */; };
 		7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0118502CA10016A329 /* timeline_image_loading@2x.png */; };
@@ -616,6 +619,11 @@
 		7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		7AD545F1184F2B08009A6B79 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		7AD7CB0B186D27F1005D1698 /* completeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = completeViewController.h; sourceTree = "<group>"; };
+		7AD7CB0C186D27F1005D1698 /* completeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = completeViewController.m; sourceTree = "<group>"; };
+		7AD7CB0E186D2808005D1698 /* completeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = completeView.xib; sourceTree = "<group>"; };
+		7AD7CB10186D5D1E005D1698 /* mustCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mustCompleteViewController.h; sourceTree = "<group>"; };
+		7AD7CB11186D5D1E005D1698 /* mustCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mustCompleteViewController.m; sourceTree = "<group>"; };
 		7AD87DFA185024A60016A329 /* hairStyleCategoryScanImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleCategoryScanImageCell.h; sourceTree = "<group>"; };
 		7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hairStyleCategoryScanImageCell.m; sourceTree = "<group>"; };
 		7AD87E0018502CA10016A329 /* timeline_image_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_image_loading.png; sourceTree = "<group>"; };
@@ -948,6 +956,11 @@
 				7AE2145F1859AFA00030E5D3 /* pubInviteMessage.xib */,
 				7ADC1A1B184DBDC7004C61BC /* loginViewController.h */,
 				7ADC1A1C184DBDC7004C61BC /* loginViewController.m */,
+				7AD7CB10186D5D1E005D1698 /* mustCompleteViewController.h */,
+				7AD7CB11186D5D1E005D1698 /* mustCompleteViewController.m */,
+				7AD7CB0B186D27F1005D1698 /* completeViewController.h */,
+				7AD7CB0C186D27F1005D1698 /* completeViewController.m */,
+				7AD7CB0E186D2808005D1698 /* completeView.xib */,
 				7A13F2B418681E4600F9CFE4 /* rigViewController.h */,
 				7A13F2B518681E4600F9CFE4 /* rigViewController.m */,
 				7A2BA6CC1844E0A200A46A09 /* LoginView.h */,
@@ -1578,6 +1591,7 @@
 				7A5D5C7C186C289400F96949 /* xiaoxi.png in Resources */,
 				7A5D5C9D186C289400F96949 /* 烫发.png in Resources */,
 				7A5D5C93186C289400F96949 /* 星级.png in Resources */,
+				7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */,
 				7A4379D618693CE0007F64DB /* 三角.png in Resources */,
 				7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */,
 				7A5D5C9C186C289400F96949 /* 潮流学堂.png in Resources */,
@@ -1646,6 +1660,7 @@
 				7A37D69B1844C9E100D9C4D9 /* ViewController.m in Sources */,
 				7A37D7151844CA2700D9C4D9 /* SBJsonStreamParserAccumulator.m in Sources */,
 				7AD54604184F2B08009A6B79 /* SDWebImageManager+MJ.m in Sources */,
+				7AD7CB12186D5D1E005D1698 /* mustCompleteViewController.m in Sources */,
 				7AD545FB184F2B08009A6B79 /* MJPhotoToolbar.m in Sources */,
 				7A0191FE18602CC600AFD637 /* SinaWeiboRequest.m in Sources */,
 				7A37D7181844CA2700D9C4D9 /* SBJsonStreamWriter.m in Sources */,
@@ -1680,6 +1695,7 @@
 				7AE3615118472232008A107C /* dresserInforViewController.m in Sources */,
 				7AE09DE91857F962007CA28D /* wayInforViewController.m in Sources */,
 				7AD54601184F2B08009A6B79 /* SDWebImageDecoder.m in Sources */,
+				7AD7CB0D186D27F1005D1698 /* completeViewController.m in Sources */,
 				7AE5AC2E1853017900C1970E /* renewSingleTableCellBackgroundViewController.m in Sources */,
 				7A37D7171844CA2700D9C4D9 /* SBJsonStreamParserState.m in Sources */,
 				7AE03D64184617DB00E14EDC /* talkCell.m in Sources */,

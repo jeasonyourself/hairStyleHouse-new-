@@ -102,6 +102,13 @@
 }
 -(void)rightButtonClick
 {
+    if([_nameField.text isEqualToString:@""]||[_QQfield.text isEqualToString:@""]||[areaText.text isEqualToString:@""]||[_personSignText.text isEqualToString:@""])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写完整信息以便修改" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
     if (ifchangeHeadImage==NO)
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;

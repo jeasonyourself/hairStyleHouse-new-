@@ -12,6 +12,7 @@
 #import "fansAndFouceAndmassegeViewController.h"
 #import "scanImageViewController.h"
 #import "beaspeakViewController.h"
+#import "completeViewController.h"
 @interface singleTableCellBackgroundViewController : UIViewController<UIScrollViewDelegate>
 {
     NSDictionary * infoDic;
@@ -22,6 +23,7 @@
     scanImageViewController * scanView;
     beaspeakViewController * beaspeakView;
 
+    completeViewController * completeView;
 }
 @property(nonatomic,strong)NSDictionary * infoDic;
 @property(nonatomic,strong)mineViewController * fatherController;

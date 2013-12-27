@@ -10,6 +10,7 @@
 #import "TencentOpenAPI/TencentOAuth.h"
 #import "SinaWeibo.h"
 #import "ASIHTTPRequest.h"
+#import "mustCompleteViewController.h"
 #define kAppKey             @"276585644"
 #define kAppSecret          @"a71b4382aeda47dfbdd5925b4b407648"
 #define kAppRedirectURI     @"http://www.faxingw.cn"
@@ -40,6 +41,11 @@
     NSString* nameLabelStr;
     
     UILabel * introLable;
+    UILabel * firstLable;
+    UILabel * secondLable;
+    UILabel * thirdLable;
+    UILabel * forthLable;
+
     UIButton * QQButton;
     UIButton * sinaButton;
     
@@ -50,6 +56,8 @@
     
     dresserViewController * dresserFatherController;
     NSString * _backsign;
+    
+    mustCompleteViewController * completeView;
 }
 -(void)getBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 @property(nonatomic,retain) TencentOAuth* tentenOAuth;

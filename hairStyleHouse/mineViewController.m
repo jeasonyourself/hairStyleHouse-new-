@@ -63,7 +63,7 @@
     pubImage._hidden=@"yes";
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     [appDele pushToViewController:pubImage];
-    
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -134,6 +134,8 @@
     NSDictionary* dic=[jsonP objectWithString:jsonString];
     NSLog(@"个人信息dic:%@",dic);
     inforDic = [dic objectForKey:@"user_info"];
+    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+    [ud setObject:[inforDic objectForKey:@"type"] forKey:@"type"];
     
     [self refreashNav];
     [self freashView];

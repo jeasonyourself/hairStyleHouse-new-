@@ -144,40 +144,77 @@
 #pragma mark - Creat View
 -(void)cLoginView//访问用户具体资料：
 {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
     
     introLable = [[UILabel alloc] init];
     introLable.numberOfLines = 0;
-    introLable.textColor = [UIColor blackColor];
+    introLable.textColor = [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0];
     introLable.font = [UIFont systemFontOfSize:16.0];
-    introLable.text = @"登陆之后，您可以\n1、上传自己的发型和作品\n2、预约同城发型师或设置自己的预约\n3、可以在问答中心发布和回答问题\n4、收藏、评论、分享您喜欢的发型";
-    introLable.frame=CGRectMake(20, 20, 280, 300);
+    introLable.text = @"登陆之后，您可以";
+    introLable.frame=CGRectMake(20, 90, 280, 30);
+    
+    firstLable = [[UILabel alloc] init];
+    firstLable.numberOfLines = 0;
+    firstLable.textColor = [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0];
+    firstLable.font = [UIFont systemFontOfSize:16.0];
+    firstLable.text = @"1、上传自己的发型和作品";
+    firstLable.frame=CGRectMake(20, 120, 280, 30);
+    
+    
+    secondLable = [[UILabel alloc] init];
+    secondLable.numberOfLines = 0;
+    secondLable.textColor = [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0];
+    secondLable.font = [UIFont systemFontOfSize:16.0];
+    secondLable.text = @"2、预约同城发型师或设置自己的预约";
+    secondLable.frame=CGRectMake(20, 150, 280, 30);
+    
+    
+    thirdLable = [[UILabel alloc] init];
+    thirdLable.numberOfLines = 0;
+    thirdLable.textColor = [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0];
+    thirdLable.font = [UIFont systemFontOfSize:16.0];
+    thirdLable.text = @"3、可以在问答中心发布和回答问题";
+    thirdLable.frame=CGRectMake(20, 180, 280, 30);
+    
+    
+    forthLable = [[UILabel alloc] init];
+    forthLable.numberOfLines = 0;
+    forthLable.textColor = [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0];
+    forthLable.font = [UIFont systemFontOfSize:16.0];
+    forthLable.text = @"4、收藏、评论、分享您喜欢的发型";
+    forthLable.frame=CGRectMake(20, 210, 280, 30);
     [self.view addSubview:introLable];
+    [self.view addSubview:firstLable];
+    [self.view addSubview:secondLable];
+    [self.view addSubview:thirdLable];
+    [self.view addSubview:forthLable];
     
     QQButton=[[UIButton alloc] init];
     QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [QQButton.layer setMasksToBounds:YES];
-    [QQButton.layer setCornerRadius:10.0];
+    [QQButton.layer setCornerRadius:5.0];
     [QQButton.layer setBorderWidth:1.0];
-    [QQButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 1, 0, 0, 1 })];//边框颜色
-    [QQButton setTitle:@"QQ登陆" forState:UIControlStateNormal];
-    [QQButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [QQButton setBackgroundColor:[UIColor colorWithRed:88.0/256.0 green:193.0/256.0 blue:189.0/256.0 alpha:1.0]];
+    [QQButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [QQButton setTitle:@"腾讯QQ登陆" forState:UIControlStateNormal];
+    [QQButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [QQButton addTarget:self action:@selector(QQButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    QQButton.frame = CGRectMake(10, 240, 300, 40);
+    QQButton.frame = CGRectMake(5, 270, 310, 40);
     
     
     sinaButton=[[UIButton alloc] init];
     sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sinaButton.layer setMasksToBounds:YES];
-    [sinaButton.layer setCornerRadius:10.0];
+    [sinaButton.layer setCornerRadius:5.0];
     [sinaButton.layer setBorderWidth:1.0];
-    [sinaButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 1, 0, 0, 1 })];//边框颜色
-    [sinaButton setTitle:@"新浪登陆" forState:UIControlStateNormal];
-    [sinaButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [sinaButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sinaButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [sinaButton setTitle:@"新浪微博登陆" forState:UIControlStateNormal];
+    [sinaButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [sinaButton addTarget:self action:@selector(sinaButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    sinaButton.frame = CGRectMake(10, 300, 300, 40);
+    sinaButton.frame = CGRectMake(5, 330, 310, 40);
     
     [self.view addSubview:QQButton];
     [self.view addSubview:sinaButton];
@@ -411,8 +448,6 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 //    self.navigationController.navigationBar.hidden=NO;
 
-    [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 
@@ -444,7 +479,8 @@
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     
-    if (request.tag==1) {
+    if (request.tag==1)//qq登陆
+    {
         
         NSLog(@"%@",request.responseString);
         //    if (request.tag==1||request.tag==2) {
@@ -453,11 +489,26 @@
         NSLog(@"1111111====%@",request.responseString);
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
-        backId=[dic objectForKey:@"uid"];
+        if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
+        {
+            if ([_leftButtonhidden isEqualToString:@"yes"])
+            {
+                completeView = nil;
+                completeView = [[mustCompleteViewController alloc] init];
+                 AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
+                [appDele pushToViewController:completeView];
+            }
+            else
+            {
+                
+            }
+        }
+        else
+        {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.type=[dic objectForKey:@"type"];
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
-        appDele.uid=backId;//将值赋再appdelegat.uid上
+        appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
 //        appDele.city=[dic objectForKey:@"city"];
         //        if (request.tag==1) {
         //            appDel.loginType=@"qq";
@@ -487,6 +538,11 @@
         [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
         
         [request startAsynchronous];
+            
+            [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }
         
         //    [interface performSelectorOnMainThread:successfun withObject:_rs waitUntilDone:YES];
         
@@ -510,11 +566,17 @@
         NSLog(@"1111111====%@",request.responseString);
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
-        backId=[dic objectForKey:@"uid"];
+        
+        if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
+        {
+            
+        }
+        else
+        {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.type=[dic objectForKey:@"type"];
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
-        appDele.uid=backId;//将值赋再appdelegat.uid上
+        appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
         
         NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
         [ud setObject:backId forKey:@"uid"];
@@ -537,7 +599,12 @@
         [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
         
         [request startAsynchronous];
-        
+            
+            [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+            //可改成请求个人信息成功后返回继续执行下一步
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }
 
     }
     
@@ -550,9 +617,10 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"修改经纬度dic:%@",dic);
         
-        [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
     }
     
+    
+
     
 }
 

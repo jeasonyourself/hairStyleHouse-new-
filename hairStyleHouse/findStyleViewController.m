@@ -529,8 +529,12 @@
          for (CLPlacemark *placemark in placemarks) {
              
              NSString * citystring =[NSString stringWithFormat: @"你当前的位置是：%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
-             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
              appDele.city=placemark.locality;
+             NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+             [ud setObject:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
+             [ud setObject:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"long"];
+             [ud setObject:appDele.city forKey:@"city"];
              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:citystring delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
              [alert show];
              
@@ -573,6 +577,15 @@
 //定位出错时被调
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+
+    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
+            {
+                appDele.city =[ud objectForKey:@"city"];
+                appDele.latitude = [[ud objectForKey:@"lat"] doubleValue];
+                appDele.longitude = [[ud objectForKey:@"long"] doubleValue];
+            }
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alert show];
     NSLog(@"获取经纬度失败，失败原因：%@", [error description]);
