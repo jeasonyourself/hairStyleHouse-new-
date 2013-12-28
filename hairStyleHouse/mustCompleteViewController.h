@@ -12,8 +12,13 @@
 {
     UITableView *myTableView;
     completeViewController * backView;
-    
+    id interface;
+    SEL sucfun;
+    SEL errfun;
 }
+@property(nonatomic , strong)NSString * _hidden;
 -(void)pushToViewController:(id)_sen;
+-(void)popToController;
+-(void)getBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 
 @end

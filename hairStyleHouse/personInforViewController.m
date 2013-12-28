@@ -139,7 +139,8 @@
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=5;
-        
+        [request startAsynchronous];
+
     }
     
 }

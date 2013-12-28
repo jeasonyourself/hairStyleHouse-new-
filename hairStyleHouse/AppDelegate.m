@@ -28,24 +28,24 @@
     [WeiboSDK registerApp:kAppKey];
     self.sinaweibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
     
-//    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-//    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
-//    {
-//        self.uid =[ud objectForKey:@"uid"];
-//        self.type = [ud objectForKey:@"type"];
-//        self.loginType = [ud objectForKey:@"loginType"];
-//        
-//            tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
-//        
-//            [self.tententOAuth setAccessToken:[ud objectForKey:@"tencentOAuth_accesstoken"]] ;
-//            [self.tententOAuth setOpenId:[ud objectForKey:@"tencentOAuth_openId"]] ;
-//            [self.tententOAuth setExpirationDate:[ud objectForKey:@"tencentOAuth_expirationDate"]] ;
-//
-//            [self.sinaweibo setAccessToken:[ud objectForKey:@"sina_accesstoken"]] ;
-//            [self.sinaweibo setUserID:[ud objectForKey:@"sina_userId"]] ;
-//            [self.sinaweibo setExpirationDate:[ud objectForKey:@"sina_expirationDate"]] ;
-//
-//     }
+    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
+    {
+        self.uid =[ud objectForKey:@"uid"];
+        self.type = [ud objectForKey:@"type"];
+        self.loginType = [ud objectForKey:@"loginType"];
+        
+            tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+        
+            [self.tententOAuth setAccessToken:[ud objectForKey:@"tencentOAuth_accesstoken"]] ;
+            [self.tententOAuth setOpenId:[ud objectForKey:@"tencentOAuth_openId"]] ;
+            [self.tententOAuth setExpirationDate:[ud objectForKey:@"tencentOAuth_expirationDate"]] ;
+
+            [self.sinaweibo setAccessToken:[ud objectForKey:@"sina_accesstoken"]] ;
+            [self.sinaweibo setUserID:[ud objectForKey:@"sina_userId"]] ;
+            [self.sinaweibo setExpirationDate:[ud objectForKey:@"sina_expirationDate"]] ;
+
+     }
 
     
     

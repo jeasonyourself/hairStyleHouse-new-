@@ -135,6 +135,7 @@
     [super viewDidLoad];
     ifchangeHeadImage = NO;
     type = [[NSString alloc] init];
+     type = @"1";
     headString= [[NSString alloc] init];
     whictButton= [[NSString alloc] init];
     whictButton=@"first";
@@ -226,6 +227,35 @@
 
 - (IBAction)saveButtonClick:(id)sender
 {
+    if ([whictButton isEqualToString: @"first" ])
+    {
+        if(ifchangeHeadImage==NO||[_nameField.text isEqualToString:@""])
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写完整的个人信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else
+        {
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+            
+            NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
+            NSUInteger dataLength = [imageData length];
+            
+            if(dataLength > MAX_IMAGEDATA_LEN) {
+                imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+            } else {
+                imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
+            }
+            
+            [request appendPostData:imageData];
+            request.delegate=self;
+            request.tag=5;
+            [request startAsynchronous];
+        }
+    }
+    
+    else//发型师
+    {
     if(ifchangeHeadImage==NO||[_nameField.text isEqualToString:@""]||[_storeNameField.text isEqualToString:@""]||[_mobileField.text isEqualToString:@""]||[_addressField.text isEqualToString:@""]||[areaText.text isEqualToString:@""]||[_selfmobileField.text isEqualToString:@""]||[_qqField.text isEqualToString:@""])
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写完整的个人信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
@@ -234,6 +264,18 @@
     }
     else
     {
+        NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        
+        BOOL isMatch = [pred evaluateWithObject:_selfmobileField.text];
+        
+        if (!isMatch)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else
+        {
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
         
         NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
@@ -248,25 +290,73 @@
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=5;
+        [request startAsynchronous];
+        }
     }
-    
+    }
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (request.tag==4)
+   
+    
+    if (request.tag==3)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"是否完善资料成功dic:%@",dic);
+        NSLog(@"是否完善第一步资料成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"201"]) {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善信息出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        appDele.type=type;
+        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        [ud setObject:appDele.uid forKey:@"uid"];
+        [ud setObject:type forKey:@"type"];
+            
+            if ([whictButton isEqualToString:@"first"])
+            {
+                [fatherView popToController];
+                
+            }
+            
+            else
+            {
+                [self postData1];
+            }
+        }
         
-        self.navigationController.navigationBar.hidden = YES;
-//        [self.navigationController popViewControllerAnimated:NO]
+        
+      
         
     }
+    else if (request.tag==4)
+    {
+       
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"是否完善认证资料成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"201"]) {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善认证信息出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            [fatherView popToController];
+
+        }
+    }
+    
     else if (request.tag==5)
     {
         NSLog(@"%@",request.responseString);
@@ -278,26 +368,78 @@
         headString=[dic objectForKey:@"image"];
         
         
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
-        request.delegate=self;
-        request.tag=4;
-        
-        [request setPostValue:appDele.uid forKey:@"uid"];
-        [request setPostValue:headString forKey:@"head_photo"];
-        [request setPostValue:_nameField.text forKey:@"username"];
-        
-        if ([whictButton isEqualToString:@"second"])
-        {
-            //        [request setPostValue:sexString forKey:@"sex"];
-            //        [request setPostValue:areaText.text forKey:@"city"];
-            //        [request setPostValue:_personSignText.text forKey:@"signature"];
-        }
-
-        
-        [request startAsynchronous];
+        [self postData];
     }
 
+}
+-(void)postData1
+{
+
+AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=legalize"]];
+request.delegate=self;
+request.tag=4;
+[request setPostValue:appDele.uid forKey:@"uid"];
+[request setPostValue:_addressField.text forKey:@"address"];
+[request setPostValue:areaText.text forKey:@"city"];
+[request setPostValue:_storeNameField.text forKey:@"store_name"];
+[request setPostValue:_mobileField.text forKey:@"telephone"];
+[request startAsynchronous];
+}
+
+
+-(void)postData
+{
+
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
+    request.delegate=self;
+    request.tag=3;
+//    [request setPostValue:appDele.uid forKey:@"uid"];
+//    [request setPostValue:headString forKey:@"head_photo"];
+//    [request setPostValue:_nameField.text forKey:@"username"];
+//    [request setPostValue:@"1" forKey:@"sex"];
+//    [request setPostValue:areaText.text forKey:@"city"];
+//    [request setPostValue:@"hehe" forKey:@"signature"];
+//    
+//    [request startAsynchronous];
+    if ([whictButton isEqualToString:@"first"])
+    {
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:headString forKey:@"head_photo"];
+        [request setPostValue:type forKey:@"type"];
+        [request setPostValue:_nameField.text forKey:@"username"];
+        [request setPostValue:areaText.text forKey:@"city"];
+
+        [request setPostValue:@"" forKey:@"sex"];
+        [request setPostValue:@"" forKey:@"signature"];
+        [request startAsynchronous];
+        
+    }
+    
+    else
+    {
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:headString forKey:@"head_photo"];
+        [request setPostValue:type forKey:@"type"];
+        [request setPostValue:_nameField.text forKey:@"username"];
+        [request setPostValue:areaText.text forKey:@"city"];
+
+        [request setPostValue:@"" forKey:@"sex"];
+        [request setPostValue:@"" forKey:@"signature"];
+        [request setPostValue:_selfmobileField.text forKey:@"mobile"];
+        [request setPostValue:_qqField.text forKey:@"qq"];
+        [request startAsynchronous];
+        
+    }
+
+}
+
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善信息失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
 }
 - (IBAction)headButtonClick:(id)sender {
     

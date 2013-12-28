@@ -489,18 +489,34 @@
         NSLog(@"1111111====%@",request.responseString);
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
+        appDele.uid=[dic objectForKey:@"uid"];
+        
+        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        [ud setObject:@"qq" forKey:@"loginType"];
+        [ud setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+        [ud setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+        [ud setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+        
         if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
         {
             if ([_leftButtonhidden isEqualToString:@"yes"])
             {
                 completeView = nil;
                 completeView = [[mustCompleteViewController alloc] init];
+                completeView._hidden = @"yes";
+                [completeView getBack:self andSuc:@selector(firstCompleteInfo) andErr:nil];
                  AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
                 [appDele pushToViewController:completeView];
             }
             else
             {
-                
+                completeView = nil;
+                completeView = [[mustCompleteViewController alloc] init];
+                completeView._hidden = @"no";
+                [self.navigationController pushViewController:completeView animated:NO];
+
             }
         }
         else
@@ -509,17 +525,9 @@
         appDele.type=[dic objectForKey:@"type"];
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
-//        appDele.city=[dic objectForKey:@"city"];
-        //        if (request.tag==1) {
-        //            appDel.loginType=@"qq";
-        //        }
-        //        else{
-        //        appDel.loginType=@"sina";
-        //        }
-        //
-        //NSuserDefaults
+
         NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:backId forKey:@"uid"];
+        [ud setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
         [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
         [ud setObject:@"qq" forKey:@"loginType"];
         [ud setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
@@ -532,29 +540,16 @@
         request.tag=3;
         
         [request setPostValue:appDele.uid forKey:@"uid"];
-//         NSLog(@"%f",appDele.longitude);
-//        NSLog(@"%f",appDele.latitude);
+
         [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ] forKey:@"lng"];
         [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
         
         [request startAsynchronous];
             
             [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:NO];
 
         }
-        
-        //    [interface performSelectorOnMainThread:successfun withObject:_rs waitUntilDone:YES];
-        
-        //        if (request.tag==1) {
-        //            [ud setObject:@"qq"forKey:@"loginType"];
-        //        }
-        //        else{
-        //            [ud setObject:@"sina"forKey:@"loginType"];
-        //        }
-        
-        //    }
-        //    AppDelegate* appdele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         
     }
     else if(request.tag==2)
@@ -567,9 +562,35 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
         
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
+        appDele.uid=[dic objectForKey:@"uid"];
+        
+        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        [ud setObject:@"sina" forKey:@"loginType"];
+        
+        [ud setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
+        [ud setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
+        [ud setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
         if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
         {
-            
+            if ([_leftButtonhidden isEqualToString:@"yes"])
+            {
+                completeView = nil;
+                completeView = [[mustCompleteViewController alloc] init];
+                completeView._hidden = @"yes";
+                [completeView getBack:self andSuc:@selector(firstCompleteInfo) andErr:nil];
+                AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
+                [appDele pushToViewController:completeView];
+            }
+            else
+            {
+                completeView = nil;
+                completeView = [[mustCompleteViewController alloc] init];
+                completeView._hidden = @"no";
+                [self.navigationController pushViewController:completeView animated:NO];
+                
+            }
         }
         else
         {
@@ -579,7 +600,7 @@
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
         
         NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:backId forKey:@"uid"];
+        [ud setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
         [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
         [ud setObject:@"sina" forKey:@"loginType"];
         
@@ -602,7 +623,7 @@
             
             [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
             //可改成请求个人信息成功后返回继续执行下一步
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:NO];
 
         }
 
@@ -618,10 +639,7 @@
         NSLog(@"修改经纬度dic:%@",dic);
         
     }
-    
-    
 
-    
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
@@ -630,6 +648,12 @@
     [alert show];
 }
 
+-(void)firstCompleteInfo
+{
+    [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+    //可改成请求个人信息成功后返回继续执行下一步
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 - (void)didReceiveMemoryWarning
 {

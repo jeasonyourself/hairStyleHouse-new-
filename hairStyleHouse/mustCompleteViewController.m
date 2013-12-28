@@ -13,7 +13,7 @@
 @end
 
 @implementation mustCompleteViewController
-
+@synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -177,10 +177,31 @@
 {
     [self.navigationController pushViewController:_sen animated:NO];
 }
+-(void)popToController
+{
+    [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+    
+    if ([self._hidden isEqualToString:@"yes"])
+    {
+        self.navigationController.navigationBar.hidden=YES;
+    }
+    else
+    {
+        self.navigationController.navigationBar.hidden=NO;
+
+    }
+    [self.navigationController popViewControllerAnimated:NO];
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)getBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err
+{
+    interface =inter;
+    sucfun = suc;
+    errfun =err;
+}
 @end
