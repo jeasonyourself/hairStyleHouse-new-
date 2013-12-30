@@ -23,6 +23,8 @@
     
     BOOL ifchangeHeadImage;
 }
+@property(nonatomic,strong)NSString* _hidden;
+
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UIButton *headButton;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;

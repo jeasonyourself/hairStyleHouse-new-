@@ -651,7 +651,7 @@
 -(void)firstCompleteInfo
 {
     [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
-    //可改成请求个人信息成功后返回继续执行下一步
+  
     [self.navigationController popViewControllerAnimated:NO];
 }
 

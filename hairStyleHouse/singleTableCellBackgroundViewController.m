@@ -30,11 +30,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    workScroll=[[UIScrollView alloc] init];
-    workScroll.delegate=self;
-    workScroll.frame = CGRectMake(0, _worksLable.frame.origin.y+_worksLable.frame.size.height,320,_secondBackView.frame.size.height-_worksLable.frame.size.height-_worksLable.frame.origin.y);
-    [_secondBackView addSubview:workScroll];
-
+    
+    _firstBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _firstBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _firstBackView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstBackView.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _clearPerson.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _clearPerson.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _clearPerson.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _myMessage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myMessage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myMessage.layer.masksToBounds = YES;//设为NO去试试
+    
+    _myBeaspeak.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myBeaspeak.layer.masksToBounds = YES;//设为NO去试试
+    
+    _myWorks.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myWorks.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myWorks.layer.masksToBounds = YES;//设为NO去试试
+    
+    _mySave.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _mySave.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _mySave.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _mySave.layer.masksToBounds = YES;//设为NO去试试
+    
+    _toolBox.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _toolBox.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _toolBox.layer.masksToBounds = YES;//设为NO去试试
+    
+    _myShow.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myShow.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myShow.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myShow.layer.masksToBounds = YES;//设为NO去试试
+    
+    _mySet.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _mySet.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _mySet.layer.masksToBounds = YES;//设为NO去试试
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -64,8 +108,10 @@
     [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
     _nameLable.text = nameStr;
     _addressLable.text = cityStr;
-    [_fansButton setTitle:[NSString stringWithFormat:@"我的粉丝%@",fansStr] forState:UIControlStateNormal];
-    [_fouceButton setTitle:[NSString stringWithFormat:@"我的关注%@",fouceStr] forState:UIControlStateNormal];
+    _fansLable.text =fansStr;
+    _fouceLable.text = fouceStr;
+//    [_fansButton setTitle:[NSString stringWithFormat:@"我的粉丝%@",fansStr] forState:UIControlStateNormal];
+//    [_fouceButton setTitle:[NSString stringWithFormat:@"我的关注%@",fouceStr] forState:UIControlStateNormal];
     _worksLable.text = [NSString stringWithFormat:@"作品集(共%@张)",workStr];
     _messageLable.text = [NSString stringWithFormat:@"%@",messageStr];
     _beaspeakLable.text = [NSString stringWithFormat:@"%@",beaspeakStr];
@@ -107,13 +153,7 @@
 
 -(void)selectImage:(UIButton*)button
 {
-    scanView=nil;
-    scanView = [[scanImageViewController alloc] init];
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    scanView.uid = appDele.uid;
-    scanView.worksOrsave = @"works";
-    scanView._hidden = @"yes";
-    [fatherController needAppdelegatePushToViewController:scanView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +166,7 @@
 {
     personInfor = nil;
     personInfor =[[personInforViewController alloc] init];
+    personInfor._hidden =@"yes";
     [fatherController needAppdelegatePushToViewController:personInfor];
 }
 
@@ -147,6 +188,16 @@
 
 }
 
+
+
+- (IBAction)clearPersonButtonClick:(id)sender
+{
+    sameCityView = nil;
+    sameCityView= [[sameCityViewController alloc] init];
+    sameCityView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:sameCityView];
+}
+
 - (IBAction)messageButtonClick:(id)sender
 {
     fansAndfouceAndMassege = nil;
@@ -164,6 +215,17 @@
     [fatherController needAppdelegatePushToViewController:beaspeakView];
 }
 
+- (IBAction)myWorksButtonClick:(id)sender
+{
+    scanView=nil;
+    scanView = [[scanImageViewController alloc] init];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    scanView.uid = appDele.uid;
+    scanView.worksOrsave = @"works";
+    scanView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:scanView];
+}
+
 - (IBAction)saveButtonClick:(id)sender
 {
     scanView=nil;
@@ -176,5 +238,31 @@
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
     [ appDele pushToViewController:scanView];
+    
+}
+
+- (IBAction)toolBoxButtonClick:(id)sender
+{
+    toolBoxView = nil;
+    toolBoxView = [[toolBoxViewController alloc] init];
+    toolBoxView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:toolBoxView];
+    
+}
+
+- (IBAction)myShowButtonClick:(id)sender
+{
+    myShowView = nil;
+    myShowView = [[myShowViewController alloc] init];
+    [ fatherController needAppdelegatePushToViewController:myShowView];
+}
+- (IBAction)mySetButtonClick:(id)sender
+{
+
+    mySetView = nil;
+    mySetView = [[mySetViewController alloc] init];
+    mySetView._hidden = @"yes";
+    [ fatherController needAppdelegatePushToViewController:mySetView];
+
 }
 @end

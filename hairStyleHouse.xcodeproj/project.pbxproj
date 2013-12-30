@@ -130,6 +130,24 @@
 		7A4379D518693CE0007F64DB /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 7A4379A218693CE0007F64DB /* Thumbs.db */; };
 		7A4379D618693CE0007F64DB /* 三角.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4379A318693CE0007F64DB /* 三角.png */; };
 		7A4379D918696CB7007F64DB /* hairStyleIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4379D818696CB7007F64DB /* hairStyleIconCell.m */; };
+		7A4BEC8718710616005E896C /* mycenter_dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC7C18710616005E896C /* mycenter_dongtai.png */; };
+		7A4BEC8818710616005E896C /* mycenter_fav.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC7D18710616005E896C /* mycenter_fav.png */; };
+		7A4BEC8918710616005E896C /* mycenter_faxingbaojia.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC7E18710616005E896C /* mycenter_faxingbaojia.png */; };
+		7A4BEC8A18710616005E896C /* mycenter_gongjuxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC7F18710616005E896C /* mycenter_gongjuxiang.png */; };
+		7A4BEC8B18710616005E896C /* mycenter_messag.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8018710616005E896C /* mycenter_messag.png */; };
+		7A4BEC8C18710616005E896C /* mycenter_mypic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8118710616005E896C /* mycenter_mypic.png */; };
+		7A4BEC8D18710616005E896C /* mycenter_shalong.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8218710616005E896C /* mycenter_shalong.png */; };
+		7A4BEC8E18710616005E896C /* mycenter_shezhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8318710616005E896C /* mycenter_shezhi.png */; };
+		7A4BEC8F18710616005E896C /* mycenter_woxingwoxiu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8418710616005E896C /* mycenter_woxingwoxiu.png */; };
+		7A4BEC9018710616005E896C /* mycenter_yuyue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8518710616005E896C /* mycenter_yuyue.png */; };
+		7A4BEC9118710616005E896C /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC8618710616005E896C /* Thumbs.db */; };
+		7A4BEC93187132B1005E896C /* zhaofaxing1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BEC92187132B1005E896C /* zhaofaxing1.png */; };
+		7A4BEC96187141CA005E896C /* toolBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BEC95187141CA005E896C /* toolBoxViewController.m */; };
+		7A4BECA21871459D005E896C /* toolBoxSingleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BECA01871459D005E896C /* toolBoxSingleCellViewController.m */; };
+		7A4BECA31871459D005E896C /* toolBoxSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BECA11871459D005E896C /* toolBoxSingleCellViewController.xib */; };
+		7A4BECA6187171F3005E896C /* mySetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BECA5187171F3005E896C /* mySetViewController.m */; };
+		7A4BECAA1871720F005E896C /* mySetSingleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BECA81871720F005E896C /* mySetSingleCellViewController.m */; };
+		7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BECA91871720F005E896C /* mySetSingleCellViewController.xib */; };
 		7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C13186C06A800F96949 /* Default@2x.png */; };
 		7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C17186C1BCD00F96949 /* 找发型01.png */; };
 		7A5D5C1C186C1C8B00F96949 /* 发型师02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C19186C1C8B00F96949 /* 发型师02.png */; };
@@ -489,6 +507,28 @@
 		7A4379A318693CE0007F64DB /* 三角.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "三角.png"; sourceTree = "<group>"; };
 		7A4379D718696CB7007F64DB /* hairStyleIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleIconCell.h; sourceTree = "<group>"; };
 		7A4379D818696CB7007F64DB /* hairStyleIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hairStyleIconCell.m; sourceTree = "<group>"; };
+		7A4BEC7C18710616005E896C /* mycenter_dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_dongtai.png; sourceTree = "<group>"; };
+		7A4BEC7D18710616005E896C /* mycenter_fav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_fav.png; sourceTree = "<group>"; };
+		7A4BEC7E18710616005E896C /* mycenter_faxingbaojia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_faxingbaojia.png; sourceTree = "<group>"; };
+		7A4BEC7F18710616005E896C /* mycenter_gongjuxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_gongjuxiang.png; sourceTree = "<group>"; };
+		7A4BEC8018710616005E896C /* mycenter_messag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_messag.png; sourceTree = "<group>"; };
+		7A4BEC8118710616005E896C /* mycenter_mypic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_mypic.png; sourceTree = "<group>"; };
+		7A4BEC8218710616005E896C /* mycenter_shalong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_shalong.png; sourceTree = "<group>"; };
+		7A4BEC8318710616005E896C /* mycenter_shezhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_shezhi.png; sourceTree = "<group>"; };
+		7A4BEC8418710616005E896C /* mycenter_woxingwoxiu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_woxingwoxiu.png; sourceTree = "<group>"; };
+		7A4BEC8518710616005E896C /* mycenter_yuyue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mycenter_yuyue.png; sourceTree = "<group>"; };
+		7A4BEC8618710616005E896C /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
+		7A4BEC92187132B1005E896C /* zhaofaxing1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhaofaxing1.png; sourceTree = "<group>"; };
+		7A4BEC94187141CA005E896C /* toolBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toolBoxViewController.h; sourceTree = "<group>"; };
+		7A4BEC95187141CA005E896C /* toolBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toolBoxViewController.m; sourceTree = "<group>"; };
+		7A4BEC9F1871459D005E896C /* toolBoxSingleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toolBoxSingleCellViewController.h; sourceTree = "<group>"; };
+		7A4BECA01871459D005E896C /* toolBoxSingleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toolBoxSingleCellViewController.m; sourceTree = "<group>"; };
+		7A4BECA11871459D005E896C /* toolBoxSingleCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = toolBoxSingleCellViewController.xib; sourceTree = "<group>"; };
+		7A4BECA4187171F3005E896C /* mySetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mySetViewController.h; sourceTree = "<group>"; };
+		7A4BECA5187171F3005E896C /* mySetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mySetViewController.m; sourceTree = "<group>"; };
+		7A4BECA71871720F005E896C /* mySetSingleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mySetSingleCellViewController.h; sourceTree = "<group>"; };
+		7A4BECA81871720F005E896C /* mySetSingleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mySetSingleCellViewController.m; sourceTree = "<group>"; };
+		7A4BECA91871720F005E896C /* mySetSingleCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mySetSingleCellViewController.xib; sourceTree = "<group>"; };
 		7A5D5C13186C06A800F96949 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7A5D5C17186C1BCD00F96949 /* 找发型01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "找发型01.png"; sourceTree = "<group>"; };
 		7A5D5C19186C1C8B00F96949 /* 发型师02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发型师02.png"; sourceTree = "<group>"; };
@@ -834,6 +874,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7A4BEC7B18710616005E896C /* 新版个人中心 */,
 				7A5D5C1F186C289400F96949 /* 11-20 */,
 				7A43797018693CE0007F64DB /* 新版找发型 */,
 				7A06F10618613482007624D3 /* resources */,
@@ -994,6 +1035,16 @@
 				7AE361561847556D008A107C /* scanImageViewController.m */,
 				7AE3615818475580008A107C /* scanCell.h */,
 				7AE3615918475580008A107C /* scanCell.m */,
+				7A4BEC94187141CA005E896C /* toolBoxViewController.h */,
+				7A4BEC95187141CA005E896C /* toolBoxViewController.m */,
+				7A4BEC9F1871459D005E896C /* toolBoxSingleCellViewController.h */,
+				7A4BECA01871459D005E896C /* toolBoxSingleCellViewController.m */,
+				7A4BECA11871459D005E896C /* toolBoxSingleCellViewController.xib */,
+				7A4BECA4187171F3005E896C /* mySetViewController.h */,
+				7A4BECA5187171F3005E896C /* mySetViewController.m */,
+				7A4BECA71871720F005E896C /* mySetSingleCellViewController.h */,
+				7A4BECA81871720F005E896C /* mySetSingleCellViewController.m */,
+				7A4BECA91871720F005E896C /* mySetSingleCellViewController.xib */,
 				7AE03D6D18461C0200E14EDC /* DemoViewController.h */,
 				7AE03D6E18461C0200E14EDC /* DemoViewController.m */,
 				7AE03D6B18461C0200E14EDC /* SlideImageView.h */,
@@ -1207,6 +1258,25 @@
 				7A4379A318693CE0007F64DB /* 三角.png */,
 			);
 			path = "新版找发型";
+			sourceTree = "<group>";
+		};
+		7A4BEC7B18710616005E896C /* 新版个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				7A4BEC92187132B1005E896C /* zhaofaxing1.png */,
+				7A4BEC7C18710616005E896C /* mycenter_dongtai.png */,
+				7A4BEC7D18710616005E896C /* mycenter_fav.png */,
+				7A4BEC7E18710616005E896C /* mycenter_faxingbaojia.png */,
+				7A4BEC7F18710616005E896C /* mycenter_gongjuxiang.png */,
+				7A4BEC8018710616005E896C /* mycenter_messag.png */,
+				7A4BEC8118710616005E896C /* mycenter_mypic.png */,
+				7A4BEC8218710616005E896C /* mycenter_shalong.png */,
+				7A4BEC8318710616005E896C /* mycenter_shezhi.png */,
+				7A4BEC8418710616005E896C /* mycenter_woxingwoxiu.png */,
+				7A4BEC8518710616005E896C /* mycenter_yuyue.png */,
+				7A4BEC8618710616005E896C /* Thumbs.db */,
+			);
+			path = "新版个人中心";
 			sourceTree = "<group>";
 		};
 		7A5D5C1F186C289400F96949 /* 11-20 */ = {
@@ -1486,6 +1556,7 @@
 				7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */,
 				7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */,
 				7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */,
+				7A4BEC93187132B1005E896C /* zhaofaxing1.png in Resources */,
 				7A4379CA18693CE0007F64DB /* icon_color1.png in Resources */,
 				7A5D5C71186C289400F96949 /* renzhengfaxingshi.png in Resources */,
 				7A5D5CA3186C289400F96949 /* 盘发.png in Resources */,
@@ -1494,6 +1565,7 @@
 				7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */,
 				7A4379C018693CE0007F64DB /* hairtype_4_5.png in Resources */,
 				7A4379A618693CE0007F64DB /* hairtype_1_2.png in Resources */,
+				7A4BEC8B18710616005E896C /* mycenter_messag.png in Resources */,
 				7A5D5C7E186C289400F96949 /* 个人用户.png in Resources */,
 				7A4379B818693CE0007F64DB /* hairtype_3_1.png in Resources */,
 				7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */,
@@ -1515,11 +1587,14 @@
 				7A5D5C82186C289400F96949 /* 其他.png in Resources */,
 				7A5D5C1D186C1C8B00F96949 /* 问题03.png in Resources */,
 				7A4379CF18693CE0007F64DB /* icon_perm.png in Resources */,
+				7A4BEC8C18710616005E896C /* mycenter_mypic.png in Resources */,
 				7A4379A518693CE0007F64DB /* hairtype_1_10.png in Resources */,
 				7A5D5C98186C289400F96949 /* 每日聚焦.png in Resources */,
 				7A5D5C8B186C289400F96949 /* 当前预约.png in Resources */,
+				7A4BEC9018710616005E896C /* mycenter_yuyue.png in Resources */,
 				7A4379B718693CE0007F64DB /* hairtype_2_9.png in Resources */,
 				7A4379BD18693CE0007F64DB /* hairtype_4_2.png in Resources */,
+				7A4BEC8A18710616005E896C /* mycenter_gongjuxiang.png in Resources */,
 				7A5D5CA6186C289400F96949 /* 粉丝.png in Resources */,
 				7A4379AC18693CE0007F64DB /* hairtype_1_8.png in Resources */,
 				7AE03D451845D41C00E14EDC /* city.plist in Resources */,
@@ -1532,6 +1607,7 @@
 				7A43796118691E05007F64DB /* Default.png in Resources */,
 				7A4379CD18693CE0007F64DB /* icon_man.png in Resources */,
 				7A4379B018693CE0007F64DB /* hairtype_2_2.png in Resources */,
+				7A4BEC8818710616005E896C /* mycenter_fav.png in Resources */,
 				7A4379AB18693CE0007F64DB /* hairtype_1_7.png in Resources */,
 				7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */,
 				7A5D5C88186C289400F96949 /* 名人堂.png in Resources */,
@@ -1556,6 +1632,7 @@
 				7A5D5CA4186C289400F96949 /* 短发.png in Resources */,
 				7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */,
 				7A5D5C68186C289400F96949 /* 2个人用户.png in Resources */,
+				7A4BECA31871459D005E896C /* toolBoxSingleCellViewController.xib in Resources */,
 				7A4379C218693CE0007F64DB /* hairtype_4_7.png in Resources */,
 				7A5D5C9F186C289400F96949 /* 热门话题.png in Resources */,
 				7A4379A918693CE0007F64DB /* hairtype_1_5.png in Resources */,
@@ -1589,6 +1666,7 @@
 				7AD545F7184F2B08009A6B79 /* MJPhotoBrowser.bundle in Resources */,
 				7AE03D471845D41C00E14EDC /* HZAreaPickerView.xib in Resources */,
 				7A5D5C7C186C289400F96949 /* xiaoxi.png in Resources */,
+				7A4BEC9118710616005E896C /* Thumbs.db in Resources */,
 				7A5D5C9D186C289400F96949 /* 烫发.png in Resources */,
 				7A5D5C93186C289400F96949 /* 星级.png in Resources */,
 				7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */,
@@ -1601,6 +1679,7 @@
 				7AE214601859AFA00030E5D3 /* pubInviteMessage.xib in Resources */,
 				7A5D5CA5186C289400F96949 /* 私信.png in Resources */,
 				7A4379C818693CE0007F64DB /* hairtype_5_4.png in Resources */,
+				7A4BEC8D18710616005E896C /* mycenter_shalong.png in Resources */,
 				7A5D5C8C186C289400F96949 /* 我型我秀.png in Resources */,
 				7A5D5C6F186C289400F96949 /* like.png in Resources */,
 				7A4379A418693CE0007F64DB /* hairtype_1_1.png in Resources */,
@@ -1625,14 +1704,19 @@
 				7AE09DFD18582FBB007CA28D /* inviteViewController.xib in Resources */,
 				7A4379D218693CE0007F64DB /* icon_recommend1.png in Resources */,
 				7A4379AE18693CE0007F64DB /* hairtype_2_1.png in Resources */,
+				7A4BEC8718710616005E896C /* mycenter_dongtai.png in Resources */,
+				7A4BEC8F18710616005E896C /* mycenter_woxingwoxiu.png in Resources */,
 				7AE03D5B1846175B00E14EDC /* dresserDetailViewController.xib in Resources */,
+				7A4BEC8E18710616005E896C /* mycenter_shezhi.png in Resources */,
 				7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */,
 				7A4379B518693CE0007F64DB /* hairtype_2_7.png in Resources */,
 				7A5D5C96186C289400F96949 /* 未选中.png in Resources */,
 				7A0191FB18602CC600AFD637 /* SinaWeibo.bundle in Resources */,
 				7A4379AF18693CE0007F64DB /* hairtype_2_10.png in Resources */,
+				7A4BEC8918710616005E896C /* mycenter_faxingbaojia.png in Resources */,
 				7A5D5C70186C289400F96949 /* like1.png in Resources */,
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
+				7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,
 				7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */,
 				7A5D5C6E186C289400F96949 /* jifen.png in Resources */,
@@ -1655,6 +1739,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A4BEC96187141CA005E896C /* toolBoxViewController.m in Sources */,
 				7A37D7091844CA2700D9C4D9 /* ASIDataCompressor.m in Sources */,
 				7A06F11618613493007624D3 /* Message.m in Sources */,
 				7A37D69B1844C9E100D9C4D9 /* ViewController.m in Sources */,
@@ -1700,6 +1785,7 @@
 				7A37D7171844CA2700D9C4D9 /* SBJsonStreamParserState.m in Sources */,
 				7AE03D64184617DB00E14EDC /* talkCell.m in Sources */,
 				7AD545FC184F2B08009A6B79 /* MJPhotoView.m in Sources */,
+				7A4BECAA1871720F005E896C /* mySetSingleCellViewController.m in Sources */,
 				7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */,
 				7A37D7141844CA2700D9C4D9 /* SBJsonStreamParser.m in Sources */,
 				7A37D7121844CA2700D9C4D9 /* NSObject+SBJson.m in Sources */,
@@ -1740,6 +1826,7 @@
 				7AE0700F18519FBE00ED1EDE /* userDetailViewController.m in Sources */,
 				7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */,
 				7AE09E0818586AA7007CA28D /* pubInviteInforViewController.m in Sources */,
+				7A4BECA21871459D005E896C /* toolBoxSingleCellViewController.m in Sources */,
 				7A37D71A1844CA2700D9C4D9 /* SBJsonStreamWriterState.m in Sources */,
 				7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */,
 				7A37D72C1844CA4400D9C4D9 /* findStyleViewController.m in Sources */,
@@ -1766,6 +1853,7 @@
 				7A37D7321844CA7300D9C4D9 /* squareViewController.m in Sources */,
 				7A37D70B1844CA2700D9C4D9 /* ASIDownloadCache.m in Sources */,
 				7AE7F533185589F800CAB2C6 /* myShowViewController.m in Sources */,
+				7A4BECA6187171F3005E896C /* mySetViewController.m in Sources */,
 				7AE3614E1846E8AE008A107C /* fansAndFouceAndmassegeViewController.m in Sources */,
 				7AE09DFC18582FBB007CA28D /* inviteViewController.m in Sources */,
 				7AD87DFC185024A60016A329 /* hairStyleCategoryScanImageCell.m in Sources */,

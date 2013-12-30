@@ -18,14 +18,27 @@
 @interface sameCityViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     UIImageView * topImage;
+    UIImageView * topImage1;
+    UIImageView * searchImage;
+
+    UIButton * oneButton;
+    UIButton * twoButton;
     UITableView *myTableView;
     UITextField * keyField;
     AllAroundPullView *bottomRefreshView;
     
     NSMutableArray * dresserArray;
+    NSMutableArray * dresserArray1;
+    NSMutableArray * dresserArray2;
+    NSMutableArray * dresserArray3;
     NSString * page;
+    NSString * page1;
     NSString * pageCount;
+    NSString * pageCount1;
     NSString * sign;
+    NSString * keyFieldSign;
+
+
     MJPhotoBrowser *browser;
     
     loginViewController* loginView;

@@ -39,6 +39,8 @@
     [self refreashNav];
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     dresserArray =[[NSMutableArray alloc] init];
+    cleandresserArray =[[NSMutableArray alloc] init];
+
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
@@ -161,6 +163,17 @@
             NSLog(@"粉丝列表dic:%@",dic);
             
             pageCount = [dic objectForKey:@"page_count"];
+            if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+            {
+                
+            }
+            else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+            {
+                arr= [dic objectForKey:@"works_info"];
+                [dresserArray addObjectsFromArray:arr];
+                NSLog(@"dresser.count:%d",dresserArray.count);
+                
+            }
             if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
             {
                 
@@ -168,10 +181,10 @@
             else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
             {
                 arr= [dic objectForKey:@"image_list"];
-                [dresserArray addObjectsFromArray:arr];
-                NSLog(@"dresser.count:%d",dresserArray.count);
+                [cleandresserArray addObjectsFromArray:arr];
                 
-            }            [self freashView];
+            }
+            [self freashView];
         
         }
     }
@@ -240,14 +253,14 @@
 
 -(void)selectImage:(NSInteger)_index
 {
-    int count = dresserArray.count;
+    int count = cleandresserArray.count;
     // 1.封装图片数据
     NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
     for (int i = 0; i<count; i++) {
         // 替换为中等尺寸图片
-        NSString *url = [[dresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        NSString *url = [[cleandresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
         MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.work_id =[dresserArray[i] objectForKey:@"work_id"];
+        photo.work_id =[cleandresserArray[i] objectForKey:@"work_id"];
         photo.url = [NSURL URLWithString:url]; // 图片路径
         //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
         [photos addObject:photo];
@@ -256,7 +269,20 @@
     // 2.显示相册
     browser=nil;
     browser = [[MJPhotoBrowser alloc] init];
-    browser.currentPhotoIndex = _index; // 弹出相册时显示的第一张图片是？
+    NSInteger reallIndex;
+    NSString * str = [dresserArray[_index] objectForKey:@"work_id"];
+    for (int i = 0; i<count; i++)//获得真实位置
+    {
+        // 替换为中等尺寸图片
+        NSString *string1 = [cleandresserArray[i] objectForKey:@"work_id"];
+        if ([string1 isEqualToString:str])
+        {
+            reallIndex =i;
+            break;
+        }
+    }
+    
+    browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？ // 弹出相册时显示的第一张图片是？
     browser.photos = photos; // 设置所有的图片
     [self.navigationController pushViewController:browser animated:YES];
     //    [browser show];

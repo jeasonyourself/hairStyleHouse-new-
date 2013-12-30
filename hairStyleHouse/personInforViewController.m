@@ -23,6 +23,7 @@
 @end
 
 @implementation personInforViewController
+@synthesize _hidden;
 @synthesize areaText;
 @synthesize areaValue=_areaValue, cityValue=_cityValue;
 @synthesize locatePicker=_locatePicker;
@@ -96,7 +97,15 @@
 }
 -(void)leftButtonClick
 {
-    self.navigationController.navigationBar.hidden = YES;
+    if ([_hidden  isEqualToString:@"yes"]) {
+        self.navigationController.navigationBar.hidden = YES;
+
+    }
+    else
+    {
+        self.navigationController.navigationBar.hidden = NO;
+
+    }
     [self.navigationController popViewControllerAnimated:NO];
     
 }

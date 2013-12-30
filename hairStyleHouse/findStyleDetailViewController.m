@@ -262,7 +262,7 @@
         {
             cleanarr= [dic objectForKey:@"image_list"];
             [cleandresserArray addObjectsFromArray:cleanarr];
-            NSLog(@"dresser1.count:%d",cleandresserArray.count);
+            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
             
         }
         [self freashView];
@@ -290,7 +290,7 @@
        {
            arr= [dic objectForKey:@"works_info"];
            [dresserArray1 addObjectsFromArray:arr];
-           NSLog(@"dresser.count:%d",dresserArray1.count);
+           NSLog(@"dresser1.count:%d",dresserArray1.count);
            
        }
        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
@@ -301,7 +301,7 @@
        {
            cleanarr= [dic objectForKey:@"image_list"];
            [cleandresserArray1 addObjectsFromArray:cleanarr];
-           NSLog(@"dresser1.count:%d",cleandresserArray1.count);
+           NSLog(@"cleandresserArray1.count:%d",cleandresserArray1.count);
            
        }
         [self freashView];
@@ -352,7 +352,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return   122;
+    return   150;
 
 }
 
@@ -457,7 +457,20 @@
         // 2.显示相册
         browser=nil;
         browser = [[MJPhotoBrowser alloc] init];
-        browser.currentPhotoIndex = _index; // 弹出相册时显示的第一张图片是？
+        NSInteger reallIndex;
+        NSString * str = [dresserArray[_index] objectForKey:@"work_id"];
+        for (int i = 0; i<count; i++)//获得真实位置
+        {
+            // 替换为中等尺寸图片
+            NSString *string1 = [cleandresserArray[i] objectForKey:@"work_id"];
+            if ([string1 isEqualToString:str])
+            {
+                reallIndex =i;
+                break;
+            }
+        }
+        
+        browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
         browser.photos = photos; // 设置所有的图片
     }
    else
@@ -478,7 +491,20 @@
        // 2.显示相册
        browser=nil;
        browser = [[MJPhotoBrowser alloc] init];
-       browser.currentPhotoIndex = _index; // 弹出相册时显示的第一张图片是？
+       NSInteger reallIndex;
+       NSString * str = [dresserArray1[_index] objectForKey:@"work_id"];
+       for (int i = 0; i<count; i++)//获得真实位置
+       {
+           // 替换为中等尺寸图片
+           NSString *string1 = [cleandresserArray1[i] objectForKey:@"work_id"];
+           if ([string1 isEqualToString:str])
+           {
+               reallIndex =i;
+               break;
+           }
+       }
+       
+       browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
        browser.photos = photos; // 设置所有的图片
    }
     [self.navigationController pushViewController:browser animated:YES];

@@ -20,9 +20,26 @@
     UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
     
+    UIButton * oneButton;
+    UIButton * twoButton;
+    UIButton * thirdButton;
+    
     NSMutableArray * dresserArray;
+    NSMutableArray * cleandresserArray;
+
     NSString * page;
     NSString * pageCount;
+    NSMutableArray * dresserArray1;
+    NSMutableArray * cleandresserArray1;
+
+    NSString * page1;
+    NSString * pageCount1;
+    NSMutableArray * dresserArray2;
+    NSMutableArray * cleandresserArray2;
+
+    NSString * page2;
+    NSString * pageCount2;
+    
     NSString * sign;
     
     NSString* style;

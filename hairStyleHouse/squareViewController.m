@@ -165,7 +165,8 @@
                 wayView._hidden = @"yes";
                 AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
                 [appDele pushToViewController:wayView ];
-            }            break;
+            }
+            break;
         case 3:
         {
             saleView = nil;

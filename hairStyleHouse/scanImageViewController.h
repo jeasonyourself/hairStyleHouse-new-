@@ -15,6 +15,8 @@
 {
 UITableView *myTableView;
 NSMutableArray * dresserArray;
+    NSMutableArray * cleandresserArray;
+
      NSString * pageCount;
     NSString * page;
     

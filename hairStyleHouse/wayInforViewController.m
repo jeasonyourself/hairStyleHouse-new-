@@ -36,42 +36,42 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-    [topImage setImage:[UIImage imageNamed:@"潮流学堂.png"]];
-    
-    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 80, 50);
-    oneButton.backgroundColor = [UIColor clearColor];
-    [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(80,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
-    twoButton.backgroundColor = [UIColor clearColor];
-    [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton * thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
-    thirdButton.backgroundColor = [UIColor clearColor];
-    [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton * forthButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    forthButton.frame = CGRectMake(240,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
-    forthButton.backgroundColor = [UIColor clearColor];
-    [forthButton addTarget:self action:@selector(forthButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:topImage];
-    [self.view addSubview:oneButton];
-    [self.view addSubview:twoButton];
-    [self.view addSubview:thirdButton];
-    [self.view addSubview:forthButton];
+//    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
+//    [topImage setImage:[UIImage imageNamed:@"潮流学堂.png"]];
+//    
+//    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+//    oneButton.backgroundColor = [UIColor clearColor];
+//    [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    twoButton.frame = CGRectMake(80,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+//    twoButton.backgroundColor = [UIColor clearColor];
+//    [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton * thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    thirdButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+//    thirdButton.backgroundColor = [UIColor clearColor];
+//    [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton * forthButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    forthButton.frame = CGRectMake(240,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+//    forthButton.backgroundColor = [UIColor clearColor];
+//    [forthButton addTarget:self action:@selector(forthButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:topImage];
+//    [self.view addSubview:oneButton];
+//    [self.view addSubview:twoButton];
+//    [self.view addSubview:thirdButton];
+//    [self.view addSubview:forthButton];
     
     dresserArray =[[NSMutableArray alloc] init];
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
     sign =[[NSString alloc] init];
-    sign = @"4";
+//    sign = @"4";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
@@ -153,7 +153,7 @@
     ASIFormDataRequest* request;
     request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=newslist&page=%@",page]]];
   
-        [request setPostValue:sign forKey:@"news_type"];
+        [request setPostValue:self.style forKey:@"news_type"];
     request.delegate=self;
     request.tag=1;
     [request startAsynchronous];
@@ -263,7 +263,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -278,8 +278,18 @@
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
     
-    
-    Lab.text = @"技术话题";
+    if ([self.style  isEqualToString:@"4"]) {
+        Lab.text = @"潮流学堂";
+
+    }
+    else if ([self.style  isEqualToString:@"5"]) {
+            Lab.text = @"护理方法";
+            
+        }
+        else if ([self.style  isEqualToString:@"1"]) {
+            Lab.text = @"品牌沙龙";
+            
+        }
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];

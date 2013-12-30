@@ -38,21 +38,32 @@
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-    [topImage setImage:[UIImage imageNamed:@"最新榜.png"]];
+    [topImage setBackgroundColor:[UIColor whiteColor]];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
     
-    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     oneButton.backgroundColor = [UIColor clearColor];
+    [oneButton setTitle:@"最新榜" forState:UIControlStateNormal];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     twoButton.backgroundColor = [UIColor clearColor];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitle:@"评论榜" forState:UIControlStateNormal];
+
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
     thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     thirdButton.backgroundColor = [UIColor clearColor];
+    [thirdButton setTitle:@"排行榜" forState:UIControlStateNormal];
+     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -62,13 +73,25 @@
     [self.view addSubview:thirdButton];
     
     dresserArray =[[NSMutableArray alloc] init];
+    cleandresserArray =[[NSMutableArray alloc] init];
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
+    dresserArray1 =[[NSMutableArray alloc] init];
+    cleandresserArray1 =[[NSMutableArray alloc] init];
+    page1 =[[NSString alloc] init];
+    page1=@"1";
+    pageCount1=[[NSString alloc] init];
+    dresserArray2 =[[NSMutableArray alloc] init];
+    cleandresserArray2 =[[NSMutableArray alloc] init];
+
+    page2 =[[NSString alloc] init];
+    page2=@"1";
+    pageCount2=[[NSString alloc] init];
     sign =[[NSString alloc] init];
     sign = @"add_time";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
@@ -85,74 +108,154 @@
     
     
     [self getData];
+    [self getData1];
+    [self getData2];
 }
 -(void)pullLoadMore
 {
-    NSInteger _pageCount= [pageCount integerValue];
-    
-    NSInteger _page = [page integerValue];
-    
-    NSLog(@"page:%@",page);
-    NSLog(@"pageCount:%@",pageCount);
-    
-    if (_page<_pageCount) {
-        _page++;
-        page = [NSString stringWithFormat:@"%d",_page];
+    if ([sign isEqualToString:@"add_time"])
+    {
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
         NSLog(@"page:%@",page);
-        [self getData];
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
+
     }
     else
-    {
-        [bottomRefreshView performSelector:@selector(finishedLoading)];
-        
+        if ([sign isEqualToString:@"comment_num"])
+        {
+            NSInteger _pageCount= [pageCount1 integerValue];
+            
+            NSInteger _page = [page1 integerValue];
+            
+            NSLog(@"page:%@",page1);
+            NSLog(@"pageCount:%@",pageCount1);
+            
+            if (_page<_pageCount) {
+                _page++;
+                page = [NSString stringWithFormat:@"%d",_page];
+                NSLog(@"page:%@",page1);
+                [self getData1];
+            }
+            else
+            {
+                [bottomRefreshView performSelector:@selector(finishedLoading)];
+                
+            }
+
+        }
+        else
+            if ([sign isEqualToString:@"collect_num"])
+            {
+                NSInteger _pageCount= [pageCount2 integerValue];
+                
+                NSInteger _page = [page2 integerValue];
+                
+                NSLog(@"page:%@",page2);
+                NSLog(@"pageCount:%@",pageCount2);
+                
+                if (_page<_pageCount) {
+                    _page++;
+                    page2 = [NSString stringWithFormat:@"%d",_page];
+                    NSLog(@"page:%@",page2);
+                    [self getData2];
+                }
+                else
+                {
+                    [bottomRefreshView performSelector:@selector(finishedLoading)];
+                    
+                }
+
+            }
     }
-}
+
 
 -(void)oneButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"最新榜.png"]];
-    sign =@"add_time";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    sign = @"add_time";
+    [myTableView reloadData];
     
 }
 -(void)twoButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"评论榜.png"]];
-    //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"comment_num";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+    
+    [myTableView reloadData];
 }
 -(void)thirdButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"排行榜.png"]];
-    sign =@"collect_num";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+    [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    sign = @"collect_num";
+    [myTableView reloadData];
     
 }
 -(void)getData
 {
-
+    
     ASIFormDataRequest* request;
     request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page]]];
-
     
-    [request setPostValue:sign forKey:@"condition"];
+    
+    [request setPostValue:@"add_time" forKey:@"condition"];
     
     request.delegate=self;
     request.tag=1;
     [request startAsynchronous];
 }
+
+-(void)getData1
+{
+    
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page]]];
+    
+    
+    [request setPostValue:@"comment_num" forKey:@"condition"];
+    
+    request.delegate=self;
+    request.tag=2;
+    [request startAsynchronous];
+}
+-(void)getData2
+{
+    
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page]]];
+    
+    
+    [request setPostValue:@"collect_num" forKey:@"condition"];
+    
+    request.delegate=self;
+    request.tag=3;
+    [request startAsynchronous];
+}
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     NSMutableArray * arr;
-    
+    NSMutableArray * arr1;
+
     if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -171,11 +274,101 @@
         {
             arr= [dic objectForKey:@"works_info"];
             [dresserArray addObjectsFromArray:arr];
+
             NSLog(@"dresser.count:%d",dresserArray.count);
+            
+        }
+        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+        {
+            arr1= [dic objectForKey:@"image_list"];
+            
+            [cleandresserArray addObjectsFromArray:arr1];
+            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
+
             
         }
         [self freashView];
     }
+    else if (request.tag==2) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@分类%@发型dic:%@",style,sign,dic);
+        
+        pageCount1 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"works_info"];
+            [dresserArray1 addObjectsFromArray:arr];
+
+            NSLog(@"dresser1.count:%d",dresserArray1.count);
+            
+        }
+        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+        {
+            arr1= [dic objectForKey:@"image_list"];
+            
+            [cleandresserArray1 addObjectsFromArray:arr1];
+            NSLog(@"cleandresserArray1.count:%d",cleandresserArray1.count);
+
+            
+        }
+        [self freashView];
+    }
+    else if (request.tag==3) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@分类%@发型dic:%@",style,sign,dic);
+        
+        pageCount1 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"works_info"];
+            [dresserArray2 addObjectsFromArray:arr];
+
+            NSLog(@"dresser2.count:%d",dresserArray2.count);
+            
+        }
+        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+        {
+            arr1= [dic objectForKey:@"image_list"];
+            
+            [cleandresserArray2 addObjectsFromArray:arr1];
+            
+            NSLog(@"cleandresserArray2.count:%d",cleandresserArray2.count);
+
+        }
+        [self freashView];
+    }
+
+
 }
 
 -(void)freashView
@@ -194,14 +387,52 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (dresserArray.count%2==0)
+    if ([sign isEqualToString:@"add_time"])
     {
-        return dresserArray.count/2;
+        if (dresserArray.count%2==0)
+        {
+            return dresserArray.count/2;
+        }
+        else
+        {
+            return dresserArray.count/2+1;
+        }
     }
     else
-    {
-        return dresserArray.count/2+1;
-    }
+        if ([sign isEqualToString:@"comment_num"])
+        {
+            if (dresserArray1.count%2==0)
+            {
+                return dresserArray1.count/2;
+            }
+            else
+            {
+                return dresserArray1.count/2+1;
+            }
+        }
+        else
+            if ([sign isEqualToString:@"collect_num"])
+            {
+                if (dresserArray2.count%2==0)
+                {
+                    return dresserArray2.count/2;
+                }
+                else
+                {
+                    return dresserArray2.count/2+1;
+                }
+            }
+   else
+   {
+       if (dresserArray.count%2==0)
+       {
+           return dresserArray.count/2;
+       }
+       else
+       {
+           return dresserArray.count/2+1;
+       }
+   }
     
 }
 
@@ -226,16 +457,36 @@
 //    NSUInteger row3 = [indexPath row]*3+2;
 //    NSLog(@"row3:%d",row3);
     
-    [cell setCell:[dresserArray objectAtIndex:row1] andIndex:row1];
-    
-    if (row2<dresserArray.count)//防止可能越界
+    if ([sign isEqualToString:@"add_time"])
     {
-        [cell setCell:[dresserArray objectAtIndex:row2] andIndex:row2];
+        [cell setCell:[dresserArray objectAtIndex:row1] andIndex:row1];
+        
+        if (row2<dresserArray.count)//防止可能越界
+        {
+            [cell setCell:[dresserArray objectAtIndex:row2] andIndex:row2];
+        }
     }
-//    if (row3<dresserArray.count)//防止可能越界
-//    {
-//        [cell setCell:[dresserArray objectAtIndex:row3] andIndex:row3];
-//    }
+    else
+        if ([sign isEqualToString:@"comment_num"])
+        {
+            [cell setCell:[dresserArray1 objectAtIndex:row1] andIndex:row1];
+            
+            if (row2<dresserArray1.count)//防止可能越界
+            {
+                [cell setCell:[dresserArray1 objectAtIndex:row2] andIndex:row2];
+            }
+        }
+        else
+            if ([sign isEqualToString:@"collect_num"])
+            {
+                [cell setCell:[dresserArray2 objectAtIndex:row1] andIndex:row1];
+                
+                if (row2<dresserArray2.count)//防止可能越界
+                {
+                    [cell setCell:[dresserArray2 objectAtIndex:row2] andIndex:row2];
+                }
+                }
+
     
     return cell;
     
@@ -327,24 +578,120 @@
 
 -(void)selectImage:(NSInteger)_index
 {
-    int count = dresserArray.count;
-    // 1.封装图片数据
-    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i<count; i++) {
-        // 替换为中等尺寸图片
-        NSString *url = [[dresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
-        MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.work_id =[dresserArray[i] objectForKey:@"work_id"];
-        photo.url = [NSURL URLWithString:url]; // 图片路径
-        //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
-        [photos addObject:photo];
+    if ([sign isEqualToString:@"add_time"])
+    {
+        int count = cleandresserArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+        for (int i = 0; i<count; i++)
+        {
+            // 替换为中等尺寸图片
+            NSString *string1 = [cleandresserArray[i] objectForKey:@"work_image"];
+            NSString *string2 = [string1 substringWithRange:NSMakeRange(1, string1.length-1)];
+            
+            NSString *url = [string2 stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.work_id =[cleandresserArray[i] objectForKey:@"work_id"];
+            photo.url = [NSURL URLWithString:url]; // 图片路径
+            //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
+            [photos addObject:photo];
+            
+        }
+        browser=nil;
+        browser = [[MJPhotoBrowser alloc] init];
+        NSInteger reallIndex;
+        NSString * str = [dresserArray[_index] objectForKey:@"work_id"];
+        for (int i = 0; i<count; i++)//获得真实位置
+        {
+            // 替换为中等尺寸图片
+            NSString *string1 = [cleandresserArray[i] objectForKey:@"work_id"];
+            if ([string1 isEqualToString:str])
+            {
+                reallIndex =i;
+                break;
+            }
+        }
+
+        browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
+        browser.photos = photos;
+
     }
+    else if ([sign isEqualToString:@"comment_num"])
+        {
+            int count = cleandresserArray1.count;
+            // 1.封装图片数据
+            NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+            for (int i = 0; i<count; i++)
+            {
+                // 替换为中等尺寸图片
+                NSString *string1 = [cleandresserArray1[i] objectForKey:@"work_image"];
+                NSString *string2 = [string1 substringWithRange:NSMakeRange(1, string1.length-1)];//去掉第一个空格
+                
+                NSString *url = [string2 stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+                MJPhoto *photo = [[MJPhoto alloc] init];
+                photo.work_id =[cleandresserArray1[i] objectForKey:@"work_id"];
+                photo.url = [NSURL URLWithString:url]; // 图片路径
+                //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
+                [photos addObject:photo];
+               
+            }
+            browser=nil;
+            browser = [[MJPhotoBrowser alloc] init];
+            NSInteger reallIndex;
+            NSString * str = [dresserArray1[_index] objectForKey:@"work_id"];
+            for (int i = 0; i<count; i++)//获得真实位置
+            {
+                // 替换为中等尺寸图片
+                NSString *string1 = [cleandresserArray1[i] objectForKey:@"work_id"];
+                if ([string1 isEqualToString:str])
+                {
+                    reallIndex =i;
+                    break;
+                }
+            }
+
+            browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
+            browser.photos = photos;
+        }
+        else
+            if ([sign isEqualToString:@"collect_num"])
+            {
+                int count = cleandresserArray2.count;
+                // 1.封装图片数据
+                NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+                for (int i = 0; i<count; i++) {
+                    // 替换为中等尺寸图片
+                    NSString *string1 = [cleandresserArray2[i] objectForKey:@"work_image"];
+                    NSString *string2 = [string1 substringWithRange:NSMakeRange(1, string1.length-1)];
+                    
+                    NSString *url = [string2 stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+                    MJPhoto *photo = [[MJPhoto alloc] init];
+                    photo.work_id =[cleandresserArray2[i] objectForKey:@"work_id"];
+                    photo.url = [NSURL URLWithString:url]; // 图片路径
+                    //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
+                    [photos addObject:photo];
+                   
+            }
+                browser=nil;
+                browser = [[MJPhotoBrowser alloc] init];
+                NSInteger reallIndex;
+                NSString * str = [dresserArray2[_index] objectForKey:@"work_id"];
+                for (int i = 0; i<count; i++)
+                {
+                    // 替换为中等尺寸图片
+                    NSString *string1 = [cleandresserArray2[i] objectForKey:@"work_id"];
+                    if ([string1 isEqualToString:str])
+                    {
+                        reallIndex =i;
+                        break;
+                    }
+                }
+                browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
+                browser.photos = photos;
     
+            }
     // 2.显示相册
-    browser=nil;
-    browser = [[MJPhotoBrowser alloc] init];
-    browser.currentPhotoIndex = _index; // 弹出相册时显示的第一张图片是？
-    browser.photos = photos; // 设置所有的图片
+    // 设置所有的图片
     [self.navigationController pushViewController:browser animated:YES];
     //    [browser show];
 }
