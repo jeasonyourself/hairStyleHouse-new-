@@ -33,6 +33,7 @@
     
     toolBoxViewController * toolBoxView;
     myShowViewController * myShowView;
+    
     mySetViewController * mySetView;
 }
 @property(nonatomic,strong)NSDictionary * infoDic;

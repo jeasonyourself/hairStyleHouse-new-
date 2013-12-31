@@ -21,6 +21,7 @@
 
 @implementation scanImageViewController
 @synthesize worksOrsave;
+@synthesize selfOrOther;
 @synthesize uid;
 @synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -120,7 +121,23 @@
 -(void)refreashNavLab
     {
         UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-        Lab.text = @"浏览图片";
+        if ([worksOrsave isEqualToString:@"works"])
+        {
+            if ([selfOrOther isEqualToString:@"self"]) {
+                Lab.text = @"我的作品";
+                
+            }
+            else
+            {
+                Lab.text = @"会做作品";
+            }
+        }
+        else
+        {
+            Lab.text = @"我的收藏";
+
+        }
+        
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
         Lab.textColor = [UIColor blackColor];
@@ -134,7 +151,14 @@
         ASIFormDataRequest* request;
         if ([worksOrsave isEqualToString:@"works"])
         {
-             request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=workslist&page=%@",page]]];
+            if ([selfOrOther isEqualToString:@"self"]) {
+                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoList&page=%@",page]]];
+            }
+            else
+            {
+                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=workslist&page=%@",page]]];
+            }
+            
         }
         else
         {

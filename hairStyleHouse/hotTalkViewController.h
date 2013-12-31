@@ -16,12 +16,22 @@
 @interface hotTalkViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView * topImage;
+    UIButton * oneButton;
+    UIButton * twoButton;
+    UIButton * thirdButton;
     UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
     
     NSMutableArray * dresserArray;
+    NSMutableArray * dresserArray1;
+    NSMutableArray * dresserArray2;
+
     NSString * page;
     NSString * pageCount;
+    NSString * page1;
+    NSString * pageCount1;
+    NSString * page2;
+    NSString * pageCount2;
     NSString * sign;
     
     NSString* style;

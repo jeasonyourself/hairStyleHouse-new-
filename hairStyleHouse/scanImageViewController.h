@@ -30,6 +30,8 @@ NSMutableArray * dresserArray;
     NSString* uid;
 }
 @property(nonatomic,strong)NSString * worksOrsave;
+@property(nonatomic,strong)NSString * selfOrOther;
+
 @property(nonatomic,strong)NSString* uid;
 @property(nonatomic,strong)NSString* _hidden;
 -(void)selectImage:(NSInteger)_index;

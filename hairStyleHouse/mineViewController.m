@@ -192,7 +192,7 @@
     }
     else if ([appDele.type isEqualToString:@"2"])
     {
-        return   self.view.frame.size.height+120;
+        return   self.view.frame.size.height+40;
 
     }
     else

@@ -222,6 +222,7 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     scanView.uid = appDele.uid;
     scanView.worksOrsave = @"works";
+    scanView.selfOrOther = @"self";
     scanView._hidden = @"yes";
     [fatherController needAppdelegatePushToViewController:scanView];
 }
@@ -254,6 +255,8 @@
 {
     myShowView = nil;
     myShowView = [[myShowViewController alloc] init];
+    myShowView._hidden = @"yes";
+
     [ fatherController needAppdelegatePushToViewController:myShowView];
 }
 - (IBAction)mySetButtonClick:(id)sender

@@ -62,18 +62,25 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-//    if (appDele.uid)
-//    {
-//        [self.navigationController popViewControllerAnimated:NO];
-//    }
-//    else
-//    {
-//        
-//        [self cLoginView];
-//        
-//    }
-//    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if (appDele.uid)
+    {
+        if ([_hidden isEqualToString:@"yes"]) {
+            self.navigationController.navigationBar.hidden=YES;
+            
+        }
+        else
+        {
+            self.navigationController.navigationBar.hidden=NO;
+            
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        
+    }
+    
 }
 -(void)refreashNavLab
 {

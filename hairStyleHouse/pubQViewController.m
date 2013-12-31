@@ -17,7 +17,7 @@
 @end
 
 @implementation pubQViewController
-
+@synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,6 +49,14 @@
 }
 -(void)leftButtonClick
 {
+    if ([_hidden isEqualToString:@"yes"]) {
+    self.navigationController.navigationBar.hidden = YES;
+}
+else
+{
+    self.navigationController.navigationBar.hidden = NO;
+    
+}
     [self.navigationController popViewControllerAnimated:NO];
     
 }
@@ -92,7 +100,7 @@
     
     CGFloat keyboardTop = keyboardRect.origin.y;
     CGRect newTextViewFrame = self.view.bounds;
-    newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
+    newTextViewFrame.size.height = keyboardTop - myTableView.bounds.origin.y;
     
     // Get the duration of the animation.
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
@@ -143,7 +151,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return   self.view.frame.size.height;
+    return   myTableView.frame.size.height-60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,7 +170,7 @@
 - (void)updateBackView
 {
     backView=nil;
-    backView = [[UIView alloc] initWithFrame:myTableView.frame];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(myTableView.frame.origin.x, myTableView.frame.origin.y, myTableView.frame.size.width, myTableView.frame.size.height-60)];
     backView.backgroundColor =[UIColor lightGrayColor];
      headImage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 20, 200, 200)];
     headImage.image = [UIImage imageNamed:@"添加图片.png"];

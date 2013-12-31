@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "pubQViewController.h"
 #import "myAnwserCenterViewController.h"
+#import "loginViewController.h"
 @interface anwserCenterViewController : UIViewController
 {
     UIButton * questionButton;
     UIButton * anwserButton;
     pubQViewController * pubQ;
     myAnwserCenterViewController * myAnwserView;
+    loginViewController* loginView;
+
 }
 @property(nonatomic,strong)NSString * _hidden;
 @end

@@ -31,21 +31,64 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    workScroll=[[UIScrollView alloc] init];
-    workScroll.delegate=self;
-    workScroll.frame = CGRectMake(0, _worksLable.frame.origin.y+_worksLable.frame.size.height,320,_secondBackView.frame.size.height-_worksLable.frame.size.height-_worksLable.frame.origin.y);
-    [_secondBackView addSubview:workScroll];
+   
+    _firstBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _firstBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _firstBackView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstBackView.layer.masksToBounds = YES;//设为NO去试试
     
+    
+    _clearPerson.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _clearPerson.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _clearPerson.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _myMessage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myMessage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myMessage.layer.masksToBounds = YES;//设为NO去试试
+    
+    _myBeaspeak.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myBeaspeak.layer.masksToBounds = YES;//设为NO去试试
+    
+    _myWorks.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myWorks.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myWorks.layer.masksToBounds = YES;//设为NO去试试
+    
+    _setPrice.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _setPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _setPrice.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _setPrice.layer.masksToBounds = YES;//设为NO去试试
+    
+    _shalong.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _shalong.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _shalong.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _shalong.layer.masksToBounds = YES;//设为NO去试试
+    
+    _toolBox.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _toolBox.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _toolBox.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    
+    _mySet.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _mySet.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _mySet.layer.masksToBounds = YES;//设为NO去试试
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
-    NSString* cityStr = [infoDic objectForKey:@"city"];
     NSString* fansStr = [infoDic objectForKey:@"fans_num"];
     NSString* fouceStr = [infoDic objectForKey:@"attention_num"];
-    NSString* workStr = [infoDic objectForKey:@"works_num"];
+//    NSString* workStr = [infoDic objectForKey:@"works_num"];
     NSMutableArray * workArr ;
     if ([[infoDic objectForKey:@"portfolio"] isKindOfClass:[NSArray class]])
     {
@@ -55,52 +98,19 @@
     {
     
     }
-    NSString* messageStr = [infoDic objectForKey:@"newpm"];
-    NSString* beaspeakStr = [infoDic objectForKey:@"reserve_num"];
+//    NSString* messageStr = [infoDic objectForKey:@"newpm"];
+//    NSString* beaspeakStr = [infoDic objectForKey:@"reserve_num"];
     NSString* saveStr = [infoDic objectForKey:@"collect_num"];
-    NSString* inforStr = [infoDic objectForKey:@"signature"];
+    NSString* evaluateStr = [infoDic objectForKey:@"assess_num"];
     
     [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
     _nameLable.text = nameStr;
-    _addressLable.text = cityStr;
-    [_fansButton setTitle:[NSString stringWithFormat:@"我的粉丝%@",fansStr] forState:UIControlStateNormal];
-    [_fouceButton setTitle:[NSString stringWithFormat:@"我的关注%@",fouceStr] forState:UIControlStateNormal];
-    _worksLable.text = [NSString stringWithFormat:@"作品集(共%@张)",workStr];
-    _messageLable.text = [NSString stringWithFormat:@"%@",messageStr];
-    _beaspeakLable.text = [NSString stringWithFormat:@"%@",beaspeakStr];
-    _saveLable.text = [NSString stringWithFormat:@"%@",saveStr];
-    _personInforText.text = inforStr;
+    _fansLable.text  = fansStr;
+    _fouceLable.text = fouceStr;
+    _introduceLable.text = evaluateStr;
+    _saveLable.text = saveStr;
     
-    for (UIView* _sub in workScroll.subviews)
-    {
-        //        if ([_sub isKindOfClass:[AllAroundPullView class]]) {
-        //            continue;
-        //        }
-        [_sub removeFromSuperview];
-    }
     
-    if (workArr.count>0)
-    {
-        [workScroll setContentSize:CGSizeMake(workArr.count*(60+10), 60)];
-        if (workScroll.contentSize.width<workScroll.frame.size.width)
-        {
-            [workScroll setContentSize:CGSizeMake(workScroll.frame.size.width+1, workScroll.frame.size.height)];
-        }
-        CGRect rect=CGRectZero;
-        for (int i=0; i<workArr.count; i++)
-        {
-            rect=CGRectMake(60*i+10*(i+1), 10, 60, 60);
-            UIImageView * workImage = [[UIImageView alloc] initWithFrame:rect];
-            [workImage setImageWithURL:[[workArr objectAtIndex:i] objectForKey:@"work_image"]];
-            UIButton *newvideobutton=[UIButton buttonWithType:UIButtonTypeCustom];
-            newvideobutton.backgroundColor=[UIColor clearColor];
-            newvideobutton.tag=i;
-            [newvideobutton addTarget:self  action:@selector(selectImage:) forControlEvents:UIControlEventTouchUpInside];
-            [newvideobutton setFrame:rect];
-            [workScroll addSubview:workImage];
-            [workScroll addSubview:newvideobutton];
-        }
-    }
 }
 
 -(void)selectImage:(UIButton*)button
@@ -123,6 +133,7 @@
 {
     personInfor = nil;
     personInfor =[[personInforViewController alloc] init];
+    personInfor._hidden =@"yes";
     [fatherController needAppdelegatePushToViewController:personInfor];
 }
 
@@ -143,27 +154,16 @@
     [fatherController needAppdelegatePushToViewController:fansAndfouceAndMassege];
     
 }
-
-- (IBAction)messageButtonClick:(id)sender
+- (IBAction)evaluateButtonClick:(id)sender
 {
-    fansAndfouceAndMassege = nil;
-    fansAndfouceAndMassege =[[fansAndFouceAndmassegeViewController alloc] init];
-    fansAndfouceAndMassege.fansOrFouceOrMessage=@"massege";
-    [fatherController needAppdelegatePushToViewController:fansAndfouceAndMassege];
-    
-    
+    lookEvaluate=nil;
+    lookEvaluate = [[lookEvaluateViewController alloc] init];
+    lookEvaluate.uid = [infoDic objectForKey:@"uid"];
+    lookEvaluate._hidden = @"yes";
+
+    [fatherController  needAppdelegatePushToViewController:lookEvaluate];
 }
 
-- (IBAction)myStoreButtonClick:(id)sender
-{
-
-}
-- (IBAction)beaspeakButtonClick:(id)sender
-{
-    beaspeakView = nil;
-    beaspeakView = [[beaspeakViewController alloc] init];
-    [fatherController needAppdelegatePushToViewController:beaspeakView];
-}
 
 - (IBAction)saveButtonClick:(id)sender
 {
@@ -175,12 +175,78 @@
     [fatherController needAppdelegatePushToViewController:scanView];
 }
 
+
 - (IBAction)checkInforButtonClick:(id)sender
 {
 
 }
-- (IBAction)evaluateButtonClick:(id)sender
+
+- (IBAction)clearPersonButtonClick:(id)sender
 {
+    sameCityView = nil;
+    sameCityView= [[sameCityViewController alloc] init];
+    sameCityView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:sameCityView];
+}
+- (IBAction)messageButtonClick:(id)sender
+{
+    fansAndfouceAndMassege = nil;
+    fansAndfouceAndMassege =[[fansAndFouceAndmassegeViewController alloc] init];
+    fansAndfouceAndMassege.fansOrFouceOrMessage=@"massege";
+    [fatherController needAppdelegatePushToViewController:fansAndfouceAndMassege];
+}
+
+
+- (IBAction)beaspeakButtonClick:(id)sender
+{
+    beaspeakView = nil;
+    beaspeakView = [[beaspeakViewController alloc] init];
+    [fatherController needAppdelegatePushToViewController:beaspeakView];
+}
+
+- (IBAction)myWorksButtonClick:(id)sender
+{
+    scanView=nil;
+    scanView = [[scanImageViewController alloc] init];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    scanView.uid = appDele.uid;
+    scanView.worksOrsave = @"works";
+    scanView.selfOrOther = @"self";
+    scanView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:scanView];
+}
+
+- (IBAction)setPriceButtonClick:(id)sender//会做发型
+{
+    scanView=nil;
+    scanView = [[scanImageViewController alloc] init];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    scanView.uid = appDele.uid;
+    scanView.worksOrsave = @"works";
+    scanView.selfOrOther = @"other";
+    scanView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:scanView];
+}
+
+- (IBAction)shalongButtonClick:(id)sender
+{
+    
+}
+- (IBAction)toolBoxButtonClick:(id)sender
+{
+    toolBoxView = nil;
+    toolBoxView = [[toolBoxViewController alloc] init];
+    toolBoxView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:toolBoxView];
 
 }
+- (IBAction)mySetButtonClick:(id)sender
+{
+    mySetView = nil;
+    mySetView = [[mySetViewController alloc] init];
+    mySetView._hidden = @"yes";
+    [ fatherController needAppdelegatePushToViewController:mySetView];
+}
+
+
 @end

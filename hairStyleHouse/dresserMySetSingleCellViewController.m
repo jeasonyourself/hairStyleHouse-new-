@@ -1,22 +1,22 @@
 //
-//  mySetSingleCellViewController.m
+//  dresserMySetSingleCellViewController.m
 //  hairStyleHouse
 //
-//  Created by jeason on 13-12-30.
+//  Created by jeason on 13-12-31.
 //  Copyright (c) 2013年 jeason. All rights reserved.
 //
 
-#import "mySetSingleCellViewController.h"
+#import "dresserMySetSingleCellViewController.h"
 #import "mySetViewController.h"
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-@interface mySetSingleCellViewController ()
+@interface dresserMySetSingleCellViewController ()
 
 @end
 
-@implementation mySetSingleCellViewController
+@implementation dresserMySetSingleCellViewController
 @synthesize fatherController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +36,10 @@
     _changeInforView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _changeInforView.layer.masksToBounds = YES;//设为NO去试试
     
+    _beaspeakSetView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _beaspeakSetView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _beaspeakSetView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _beaspeakSetView.layer.masksToBounds = YES;//设为NO去试试
     
     _messageView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _messageView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -113,28 +117,28 @@
 }
 -(void)freashView
 {
-    if ([inforDic objectForKey:@"qq_keyid"])
-    {
-        _tencentLable.text=@"已绑定";
-        _tencentButton.enabled= NO;
-    }
-    else
-    {
-        _tencentLable.text=@"未绑定";
-        _tencentButton.enabled= YES;
-    }
-    
-    if ([inforDic objectForKey:@"sina_keyid"])
-    {
-        _sinaLable.text=@"已绑定";
-        _sinaButton.enabled= NO;
-        
-    }
-    else
-    {
-        _sinaLable.text=@"未绑定";
-        _sinaButton.enabled= YES;
-    }
+//    if ([inforDic objectForKey:@"qq_keyid"])
+//    {
+//        _tencentLable.text=@"已绑定";
+//        _tencentButton.enabled= NO;
+//    }
+//    else
+//    {
+//        _tencentLable.text=@"未绑定";
+//        _tencentButton.enabled= YES;
+//    }
+//    
+//    if ([inforDic objectForKey:@"sina_keyid"])
+//    {
+//        _sinaLable.text=@"已绑定";
+//        _sinaButton.enabled= NO;
+//        
+//    }
+//    else
+//    {
+//        _sinaLable.text=@"未绑定";
+//        _sinaButton.enabled= YES;
+//    }
     
 }
 - (void)didReceiveMemoryWarning
@@ -148,6 +152,9 @@
     personInfor =[[personInforViewController alloc] init];
     personInfor._hidden =@"no";
     [fatherController pushToViewController:personInfor];
+}
+
+- (IBAction)beaspeakButtonClick:(id)sender {
 }
 
 - (IBAction)messageButtonClick:(id)sender
@@ -177,6 +184,12 @@
 - (IBAction)updateLevelButtonClick:(id)sender {
 }
 
-- (IBAction)sinoutButtonClick:(id)sender {
+- (IBAction)sinoutButtonClick:(id)sender
+{
+
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    appDele.uid = nil;
+    [fatherController leftButtonClick];
+    
 }
 @end

@@ -290,6 +290,11 @@
             Lab.text = @"品牌沙龙";
             
         }
+        else if ([self.style  isEqualToString:@"3"]) {
+            Lab.text = @"行业情报";
+            
+        }
+
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];

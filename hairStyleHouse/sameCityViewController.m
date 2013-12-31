@@ -287,9 +287,10 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSMutableArray * arr;
     
     if (request.tag==1) {
+        NSMutableArray * arr;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -325,6 +326,8 @@
     }
     
     else if (request.tag==2) {
+        NSMutableArray * arr;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -340,7 +343,6 @@
         }
         else if ([[dic objectForKey:@"list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"list"];
             arr= [dic objectForKey:@"list"];
             if ([keyField.text isEqualToString:@""]) {
                 [dresserArray1 addObjectsFromArray:arr];
@@ -444,6 +446,7 @@
         
         if ([keyField.text isEqualToString:@""])//未搜索
         {
+            
             [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
 
         }
@@ -607,9 +610,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     [keyField resignFirstResponder];
-    
     return YES;
 }
 - (void)didReceiveMemoryWarning

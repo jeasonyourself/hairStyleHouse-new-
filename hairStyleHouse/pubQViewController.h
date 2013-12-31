@@ -20,6 +20,7 @@
     UIButton * sendButton;
     BOOL ifChangeImage;
 }
+@property(nonatomic,strong)NSString * _hidden;
 
 
 

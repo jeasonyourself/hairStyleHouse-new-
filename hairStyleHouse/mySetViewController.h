@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "mySetSingleCellViewController.h"
+#import "dresserMySetSingleCellViewController.h"
 @interface mySetViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
     
         UITableView * myTableView;
     mySetSingleCellViewController * backView;
+    dresserMySetSingleCellViewController * backView1;
 }
 @property(nonatomic,retain) NSString * _hidden;
 -(void)pushToViewController:(id)_sen;
+-(void)leftButtonClick;
 @end
 

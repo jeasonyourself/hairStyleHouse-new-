@@ -7,7 +7,7 @@
 //
 
 #import "mySetViewController.h"
-
+#import "AppDelegate.h"
 @interface mySetViewController ()
 
 @end
@@ -107,19 +107,38 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     [self updateBackView];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+    if ([appDele.type isEqualToString:@"1"]) {
+        [cell.contentView addSubview:backView.view];
+
+    }
+    else
+    {
+        [cell.contentView addSubview:backView1.view];
+
+    }
     //    backView.view.backgroundColor =[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-    [cell.contentView addSubview:backView.view];
     
     return cell;
 }
 
 - (void)updateBackView
 {
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        backView=nil;
+        backView=[[mySetSingleCellViewController alloc] init];
+        backView.fatherController=self;
+    }
+    else
+    {
     
-    backView=nil;
-    backView=[[mySetSingleCellViewController alloc] init];
-    backView.fatherController=self;
+    backView1=nil;
+    backView1=[[dresserMySetSingleCellViewController alloc] init];
+    backView1.fatherController=self;
     //        backView.infoDic =inforDic;
+    }
     
     
 }

@@ -17,5 +17,6 @@
 
 }
 @property(strong,nonatomic)    NSString * uid;
+@property(strong,nonatomic)    NSString * _hidden;
 
 @end

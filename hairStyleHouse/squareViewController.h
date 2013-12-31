@@ -22,6 +22,7 @@
     saleBeaspeaskViewController * saleView;
     sameCityViewController * sameCityView;
     hotTalkViewController * hotView;
+    
     wayInforViewController * wayView;
     anwserCenterViewController * anwserCenter;
     inviteViewController * inviteView;

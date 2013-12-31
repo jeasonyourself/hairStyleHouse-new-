@@ -13,6 +13,7 @@
 
 {
     wayInforViewController * wayView;
+    
 }
 @property (nonatomic,strong)toolBoxViewController *fatherController;
 @property (strong, nonatomic) IBOutlet UIView *fashionView;

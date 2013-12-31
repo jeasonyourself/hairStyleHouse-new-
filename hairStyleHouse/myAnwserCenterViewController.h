@@ -20,5 +20,6 @@
     NSString * sign;
     questionDetailViewController * questionDetailView;
 }
+@property(nonatomic,strong)NSString * _hidden;
 -(void)selectCell:(NSInteger)_index;
 @end

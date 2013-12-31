@@ -40,23 +40,32 @@
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-    [topImage setImage:[UIImage imageNamed:@"每日聚焦.png"]];
+    [topImage setBackgroundColor:[UIColor whiteColor]];
     
-    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     oneButton.backgroundColor = [UIColor clearColor];
+    [oneButton setTitle:@"每日聚焦" forState:UIControlStateNormal];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     twoButton.backgroundColor = [UIColor clearColor];
+    [twoButton setTitle:@"热点话题" forState:UIControlStateNormal];
+
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
     thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
     thirdButton.backgroundColor = [UIColor clearColor];
+    [thirdButton setTitle:@"我的话题" forState:UIControlStateNormal];
+
     [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     
     [self.view addSubview:topImage];
     [self.view addSubview:oneButton];
@@ -67,6 +76,14 @@
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
+    dresserArray1 =[[NSMutableArray alloc] init];
+    page1 =[[NSString alloc] init];
+    page1=@"1";
+    pageCount1=[[NSString alloc] init];
+    dresserArray2 =[[NSMutableArray alloc] init];
+    page2 =[[NSString alloc] init];
+    page2=@"1";
+    pageCount2=[[NSString alloc] init];
     sign =[[NSString alloc] init];
     sign = @"";
     
@@ -78,86 +95,166 @@
     myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
-    bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
-        NSLog(@"loadMore");
-        [self pullLoadMore];
-    }];
-    bottomRefreshView.hidden=NO;
-    [myTableView addSubview:bottomRefreshView];
+//    bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+//        NSLog(@"loadMore");
+//        [self pullLoadMore];
+//    }];
+//    bottomRefreshView.hidden=NO;
+//    [myTableView addSubview:bottomRefreshView];
     
     
     [self getData];
+    [self getData1];
+    [self getData2];
+
+
 }
 -(void)pullLoadMore
 {
-    NSInteger _pageCount= [pageCount integerValue];
-    
-    NSInteger _page = [page integerValue];
-    
-    NSLog(@"page:%@",page);
-    NSLog(@"pageCount:%@",pageCount);
-    
-    if (_page<_pageCount) {
-        _page++;
-        page = [NSString stringWithFormat:@"%d",_page];
+    if ([sign isEqualToString:@""]) {
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
         NSLog(@"page:%@",page);
-        [self getData];
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
+
     }
-    else
-    {
-        [bottomRefreshView performSelector:@selector(finishedLoading)];
+    else if([sign isEqualToString:@"hot"]) {
+        NSInteger _pageCount= [pageCount1 integerValue];
+        
+        NSInteger _page = [page1 integerValue];
+        
+        NSLog(@"page:%@",page1);
+        NSLog(@"pageCount:%@",pageCount1);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page1 = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page1);
+            [self getData1];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
         
     }
+    else if([sign isEqualToString:@"my"]) {
+        NSInteger _pageCount= [pageCount2 integerValue];
+        
+        NSInteger _page = [page2 integerValue];
+        
+        NSLog(@"page:%@",page2);
+        NSLog(@"pageCount:%@",pageCount2);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page2 = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page2);
+            [self getData2];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
+        
+    }
+    
+
+    
 }
+
 
 -(void)oneButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"每日聚焦.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+[thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+[myTableView reloadData];
+
     
 }
 -(void)twoButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"热点话题.png"]];
-    //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"hot";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+    [myTableView reloadData];
+
 }
 -(void)thirdButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"我的话题.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
     sign =@"my";
-    page=@"1";
-    [dresserArray removeAllObjects];
-    [self getData];
+   [myTableView reloadData];
     
 }
 -(void)getData
 {
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
     request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist"]]];
-    if ([sign isEqualToString:@"my"])
-    {
-        [request setPostValue:appDele.uid forKey:@"uid"];
+   
+        [request setPostValue:@"" forKey:@"condition"];
 
-    }
-
-    if (![sign isEqualToString:@""]) {
-        [request setPostValue:sign forKey:@"condition"];
-
-    }
+    
     
     request.delegate=self;
     request.tag=1;
     [request startAsynchronous];
 }
+-(void)getData1
+{
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist"]]];
+    
+    
+        [request setPostValue:@"hot" forKey:@"condition"];
+        
+    
+    
+    request.delegate=self;
+    request.tag=2;
+    [request startAsynchronous];
+}
+
+-(void)getData2
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist"]]];
+     [request setPostValue:appDele.uid forKey:@"uid"];
+        
+ 
+    
+  
+        [request setPostValue:@"my" forKey:@"condition"];
+
+    
+    request.delegate=self;
+    request.tag=3;
+    [request startAsynchronous];
+}
+
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     NSMutableArray * arr;
@@ -185,6 +282,53 @@
         }
         [self freashView];
     }
+    else if (request.tag==2) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@话题dic:%@",sign,dic);
+        
+        pageCount1 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"skill_list"];
+            [dresserArray1 addObjectsFromArray:arr];
+            NSLog(@"dresser.count:%d",dresserArray1.count);
+            
+        }
+        [self freashView];
+    }
+    else if (request.tag==2) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@话题dic:%@",sign,dic);
+        
+        pageCount2 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"skill_list"];
+            [dresserArray2 addObjectsFromArray:arr];
+            NSLog(@"dresser.count:%d",dresserArray2.count);
+            
+        }
+        [self freashView];
+    }
+
 }
 
 -(void)freashView
@@ -203,7 +347,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dresserArray.count;
+    if ([sign isEqualToString:@""]) {
+        return dresserArray.count;
+
+    }
+    else if([sign isEqualToString:@"hot"]) {
+        return dresserArray1.count;
+
+    }
+    else if([sign isEqualToString:@"my"]) {
+        return dresserArray2.count;
+
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,8 +383,18 @@
 
     //    NSUInteger row3 = [indexPath row]*3+2;
     //    NSLog(@"row3:%d",row3);
-    
-    [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+    if ([sign isEqualToString:@""]) {
+        [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+
+    }
+    else if([sign isEqualToString:@"hot"]) {
+        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+
+    }
+    else if([sign isEqualToString:@"my"]) {
+        [cell setCell:[dresserArray2 objectAtIndex:row] andIndex:row];
+
+    }
 
 
     //    if (row3<dresserArray.count)//防止可能越界
@@ -300,7 +469,7 @@
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
     
     
-    Lab.text = @"技术话题";
+    Lab.text = @"专业话题";
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];

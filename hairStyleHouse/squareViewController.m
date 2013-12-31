@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-        Lab.text = @"发型广场";
+        Lab.text = @"问答中心";
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
         Lab.textColor = [UIColor blackColor];
@@ -37,38 +37,38 @@
     UIImageView* myStyleMyShow=[[UIImageView alloc] init];
     myStyleMyShow.frame=CGRectMake(10, 90, 300, 130);
     myStyleMyShow.image=[UIImage imageNamed:@"我型我秀.png"];
-    [self.view addSubview:myStyleMyShow];
+//    [self.view addSubview:myStyleMyShow];
     
     UIImageView* hotTalk=[[UIImageView alloc] init];
     hotTalk.frame=CGRectMake(10, 240, 145, 70);
     hotTalk.image=[UIImage imageNamed:@"热门话题.png"];
-    [self.view addSubview:hotTalk];
+//    [self.view addSubview:hotTalk];
     
     
     UIImageView* information=[[UIImageView alloc] init];
     information.frame=CGRectMake(165, 240, 145, 70);
     information.image=[UIImage imageNamed:@"行业情报.png"];
-    [self.view addSubview:information];
+//    [self.view addSubview:information];
     
     UIImageView* saleBeaspeak=[[UIImageView alloc] init];
     saleBeaspeak.frame=CGRectMake(10, 320, 145, 70);
     saleBeaspeak.image=[UIImage imageNamed:@"特惠预约.png"];
-    [self.view addSubview:saleBeaspeak];
+//    [self.view addSubview:saleBeaspeak];
     
     UIImageView* anwser=[[UIImageView alloc] init];
     anwser.frame=CGRectMake(165, 320, 145, 70);
     anwser.image=[UIImage imageNamed:@"问答中心.png"];
-    [self.view addSubview:anwser];
+//    [self.view addSubview:anwser];
     
     UIImageView* sameCity=[[UIImageView alloc] init];
     sameCity.frame=CGRectMake(10, 400, 145, 70);
     sameCity.image=[UIImage imageNamed:@"同城.png"];
-    [self.view addSubview:sameCity];
+//    [self.view addSubview:sameCity];
     
     UIImageView* inviteInfor=[[UIImageView alloc] init];
     inviteInfor.frame=CGRectMake(165, 400, 145, 70);
     inviteInfor.image=[UIImage imageNamed:@"招聘信息.png"];
-    [self.view addSubview:inviteInfor];
+//    [self.view addSubview:inviteInfor];
     
     
     //kechu shijian  Tag
@@ -110,6 +110,14 @@
     UITapGestureRecognizer* tapSix=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapView:)];
     [inviteInfor addGestureRecognizer:tapSix];
 	// Do any additional setup after loading the view.
+    
+    
+    //新版
+    anwserCenter = nil;
+    anwserCenter= [[anwserCenterViewController alloc] init];
+    anwserCenter._hidden = @"yes";
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    [self.navigationController pushViewController:anwserCenter animated:YES];
 }
 -(void)tapView:(UITapGestureRecognizer* )tap
 {

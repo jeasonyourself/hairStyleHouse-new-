@@ -50,6 +50,8 @@
     pubImageViewController * pubImage;
 }
 @property(nonatomic,strong)        NSString* style;
+@property(nonatomic,strong)        NSString* _hidden;
+
 -(void)selectImage:(NSInteger)_index;
 
 

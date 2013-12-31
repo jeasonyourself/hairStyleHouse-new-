@@ -49,7 +49,10 @@
     //计算实际frame大小，并将label的frame变成实际大小
     CGSize labelsize = [contentStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     contentLable.frame = CGRectMake(20, 10, 280, labelsize.height);
-    
+    if (labelsize.width<280) {
+        contentLable.textAlignment = NSTextAlignmentCenter;
+
+    }
     NSString* nameStr = [_dic  objectForKey:@"add_time"];
     nameLable.text=nameStr;
     nameLable.font = [UIFont systemFontOfSize:12];
@@ -74,6 +77,10 @@
     CGSize size = CGSizeMake(280,400);
     //计算实际frame大小，并将label的frame变成实际大小
     CGSize labelsize = [contentStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    if (labelsize.width<280) {
+        contentLable.textAlignment = NSTextAlignmentCenter;
+        
+    }
     contentLable.frame = CGRectMake(20, 220, 280, labelsize.height);
     
     nameLable.frame = CGRectMake(0, 0, 0, 0);

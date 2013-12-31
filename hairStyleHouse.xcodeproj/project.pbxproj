@@ -270,6 +270,10 @@
 		7ADDE7DE1857037500D48208 /* pubQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7DD1857037500D48208 /* pubQViewController.m */; };
 		7ADDE7E118571F2700D48208 /* questionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7E018571F2700D48208 /* questionDetailViewController.m */; };
 		7ADDE7E418571F8600D48208 /* questionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDE7E318571F8600D48208 /* questionDetailCell.m */; };
+		7ADE367618729268009670E7 /* dresserToolBoxSingleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADE367418729268009670E7 /* dresserToolBoxSingleCellViewController.m */; };
+		7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADE367518729268009670E7 /* dresserToolBoxSingleCellViewController.xib */; };
+		7ADE36801872A789009670E7 /* dresserMySetSingleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */; };
+		7ADE36811872A789009670E7 /* dresserMySetSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */; };
 		7AE03D2A184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE03D29184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */; };
 		7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D2D184589A400E14EDC /* singleTableCellBackgroundViewController.xib */; };
@@ -693,6 +697,12 @@
 		7ADDE7E018571F2700D48208 /* questionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionDetailViewController.m; sourceTree = "<group>"; };
 		7ADDE7E218571F8600D48208 /* questionDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionDetailCell.h; sourceTree = "<group>"; };
 		7ADDE7E318571F8600D48208 /* questionDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionDetailCell.m; sourceTree = "<group>"; };
+		7ADE367318729268009670E7 /* dresserToolBoxSingleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dresserToolBoxSingleCellViewController.h; sourceTree = "<group>"; };
+		7ADE367418729268009670E7 /* dresserToolBoxSingleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dresserToolBoxSingleCellViewController.m; sourceTree = "<group>"; };
+		7ADE367518729268009670E7 /* dresserToolBoxSingleCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dresserToolBoxSingleCellViewController.xib; sourceTree = "<group>"; };
+		7ADE367D1872A789009670E7 /* dresserMySetSingleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dresserMySetSingleCellViewController.h; sourceTree = "<group>"; };
+		7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dresserMySetSingleCellViewController.m; sourceTree = "<group>"; };
+		7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dresserMySetSingleCellViewController.xib; sourceTree = "<group>"; };
 		7AE03D29184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TencentOpenApi_IOS_Bundle.bundle; path = "../公司/发型屋/TencentOpenApi_IOS_Bundle.bundle"; sourceTree = "<group>"; };
 		7AE03D2B184589A400E14EDC /* singleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = singleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
@@ -1040,11 +1050,17 @@
 				7A4BEC9F1871459D005E896C /* toolBoxSingleCellViewController.h */,
 				7A4BECA01871459D005E896C /* toolBoxSingleCellViewController.m */,
 				7A4BECA11871459D005E896C /* toolBoxSingleCellViewController.xib */,
+				7ADE367318729268009670E7 /* dresserToolBoxSingleCellViewController.h */,
+				7ADE367418729268009670E7 /* dresserToolBoxSingleCellViewController.m */,
+				7ADE367518729268009670E7 /* dresserToolBoxSingleCellViewController.xib */,
 				7A4BECA4187171F3005E896C /* mySetViewController.h */,
 				7A4BECA5187171F3005E896C /* mySetViewController.m */,
 				7A4BECA71871720F005E896C /* mySetSingleCellViewController.h */,
 				7A4BECA81871720F005E896C /* mySetSingleCellViewController.m */,
 				7A4BECA91871720F005E896C /* mySetSingleCellViewController.xib */,
+				7ADE367D1872A789009670E7 /* dresserMySetSingleCellViewController.h */,
+				7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */,
+				7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */,
 				7AE03D6D18461C0200E14EDC /* DemoViewController.h */,
 				7AE03D6E18461C0200E14EDC /* DemoViewController.m */,
 				7AE03D6B18461C0200E14EDC /* SlideImageView.h */,
@@ -1631,6 +1647,7 @@
 				7A5D5C6D186C289400F96949 /* fenxiang.png in Resources */,
 				7A5D5CA4186C289400F96949 /* 短发.png in Resources */,
 				7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */,
+				7ADE36811872A789009670E7 /* dresserMySetSingleCellViewController.xib in Resources */,
 				7A5D5C68186C289400F96949 /* 2个人用户.png in Resources */,
 				7A4BECA31871459D005E896C /* toolBoxSingleCellViewController.xib in Resources */,
 				7A4379C218693CE0007F64DB /* hairtype_4_7.png in Resources */,
@@ -1693,6 +1710,7 @@
 				7A5D5CA8186C289400F96949 /* 评论.png in Resources */,
 				7A5D5C79186C289400F96949 /* x3.png in Resources */,
 				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
+				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7A4379B118693CE0007F64DB /* hairtype_2_3.png in Resources */,
 				7A5D5C84186C289400F96949 /* 发型师.png in Resources */,
 				7A4379C318693CE0007F64DB /* hairtype_4_8.png in Resources */,
@@ -1772,6 +1790,7 @@
 				7AE03D61184617A800E14EDC /* talkViewController.m in Sources */,
 				7A37D7111844CA2700D9C4D9 /* PullingRefreshTableView.m in Sources */,
 				7AE09DE61857F94D007CA28D /* wayInforCell.m in Sources */,
+				7ADE36801872A789009670E7 /* dresserMySetSingleCellViewController.m in Sources */,
 				7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */,
 				7A37D71B1844CA2700D9C4D9 /* SBJsonTokeniser.m in Sources */,
 				7A37D70C1844CA2700D9C4D9 /* ASIFormDataRequest.m in Sources */,
@@ -1822,6 +1841,7 @@
 				7AD54603184F2B08009A6B79 /* SDWebImageDownloaderOperation.m in Sources */,
 				7AD54602184F2B08009A6B79 /* SDWebImageDownloader.m in Sources */,
 				7A37D6911844C9E100D9C4D9 /* main.m in Sources */,
+				7ADE367618729268009670E7 /* dresserToolBoxSingleCellViewController.m in Sources */,
 				7ADDE7E418571F8600D48208 /* questionDetailCell.m in Sources */,
 				7AE0700F18519FBE00ED1EDE /* userDetailViewController.m in Sources */,
 				7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */,
