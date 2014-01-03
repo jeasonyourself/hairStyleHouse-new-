@@ -61,17 +61,7 @@
     [questionButton.layer setBorderWidth:1.0];
     [questionButton setBackgroundColor:[UIColor colorWithRed:88.0/256.0 green:193.0/256.0 blue:189.0/256.0 alpha:1.0]];
     [questionButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if ([appDele.type isEqualToString:@"1"]) {
-        [questionButton setTitle:@"我要提问" forState:UIControlStateNormal];
-
-    }
-    else
-    {
-        [questionButton setTitle:@"同城问题" forState:UIControlStateNormal];
-
-    }
-    [questionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+       [questionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [questionButton addTarget:self action:@selector(questionButtonClick) forControlEvents:UIControlEventTouchUpInside];
     questionButton.frame = CGRectMake(5, 200, 310, 40);
@@ -84,15 +74,7 @@
     [anwserButton.layer setBorderWidth:1.0];
     [anwserButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [anwserButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    if ([appDele.type isEqualToString:@"1"]) {
-        [anwserButton setTitle:@"我的问题" forState:UIControlStateNormal];
-
-    }
-    else
-    {
-        [anwserButton setTitle:@"我的回答" forState:UIControlStateNormal];
-
-    }
+   
     [anwserButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [anwserButton addTarget:self action:@selector(anwserButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -102,6 +84,28 @@
     [self.view addSubview:questionButton];
     [self.view addSubview:anwserButton];
 	// Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        [questionButton setTitle:@"我要提问" forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [questionButton setTitle:@"同城问题" forState:UIControlStateNormal];
+        
+    }
+    if ([appDele.type isEqualToString:@"1"]) {
+        [anwserButton setTitle:@"我的问题" forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [anwserButton setTitle:@"我的回答" forState:UIControlStateNormal];
+        
+    }
 }
 
 -(void)questionButtonClick

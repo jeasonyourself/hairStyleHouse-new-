@@ -58,6 +58,9 @@
     NSString * _backsign;
     
     mustCompleteViewController * completeView;
+    
+    NSMutableDictionary * userInfor;
+    NSMutableArray * userInforArr;
 }
 -(void)getBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 @property(nonatomic,retain) TencentOAuth* tentenOAuth;

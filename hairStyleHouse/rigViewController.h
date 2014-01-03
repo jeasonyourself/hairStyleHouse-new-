@@ -52,6 +52,8 @@
     
     dresserViewController * dresserFatherController;
     NSString * _backsign;
+    NSMutableArray * userInforArr;
+    NSMutableDictionary * userInfor;
 }
 -(void)getBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 @property(nonatomic,retain) TencentOAuth* tentenOAuth;

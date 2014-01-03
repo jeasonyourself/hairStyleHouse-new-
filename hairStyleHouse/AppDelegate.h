@@ -50,6 +50,8 @@
     SEL sucfun;
     SEL errfun;
 
+    NSMutableDictionary * userInfor;
+
 }
 @property (strong, retain) NSString* wbtoken;
 @property (strong, nonatomic) UIWindow *window;

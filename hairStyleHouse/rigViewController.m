@@ -44,7 +44,8 @@
     {
         [self refreashNav];
     }
-    
+    userInforArr = [[NSMutableArray alloc] init];
+    userInfor= [[NSMutableDictionary alloc] init];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -426,20 +427,38 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
         NSLog(@"是否绑定成功:%@",dic);
-        if ([[dic objectForKey:@"code"] isEqualToString:@"201"])
-        {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该账号已被其他用户绑定，请重新绑定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-        }
-        else
-        {
+//        if ([[dic objectForKey:@"code"] isEqualToString:@"201"])
+//        {
+//            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该账号已被其他用户绑定，请重新绑定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//            [alert show];
+//        }
+//        else
+//        {
         //NSuserDefaults
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [ud setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [ud setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
-        }
         
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path=[paths objectAtIndex:0];
+        NSLog(@"path = %@",path);
+        NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+        NSString *filename=[path stringByAppendingPathComponent:plistString];
+        NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+        
+        userInforArr = [NSMutableArray arrayWithArray:dataArray];
+        userInfor =[dataArray objectAtIndex:0];
+        
+        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+//        }
+        [userInforArr addObject:userInfor];
+        [userInforArr writeToFile:filename atomically:YES];
+        
+        NSLog(@"tencentOAuth_accesstoken:%@", [[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_accesstoken"]);
+        NSLog(@"tencentOAuth_accesstoken:%@", [[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_openId"]);
+
+        NSLog(@"tencentOAuth_accesstoken:%@", [[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_expirationDate"]);
+
         }
     else if(request.tag==2)
     {
@@ -449,19 +468,36 @@
         
         NSLog(@"是否绑定成功:%@",dic);
 
-        if ([[dic objectForKey:@"code"] isEqualToString:@"201"])
-        {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该账号已被其他用户绑定，请重新绑定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-        }
-        else
-        {
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+//        if ([[dic objectForKey:@"code"] isEqualToString:@"201"])
+//        {
+//            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该账号已被其他用户绑定，请重新绑定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//            [alert show];
+//        }
+//        else
+//        {
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path=[paths objectAtIndex:0];
+        NSLog(@"path = %@",path);
+        NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+        NSString *filename=[path stringByAppendingPathComponent:plistString];
+        NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+        userInforArr = [NSMutableArray arrayWithArray:dataArray];
+        userInfor =[dataArray objectAtIndex:0];
         
-        [ud setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
-        [ud setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
-        [ud setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
-        }
+        //        }
+        
+        [userInfor setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
+        [userInfor setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
+        [userInfor setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
+        
+        [userInforArr addObject:userInfor];
+        [userInforArr writeToFile:filename atomically:YES];
+        NSLog(@"sina_accesstoken:%@", [[dataArray objectAtIndex:0] objectForKey:@"sina_accesstoken"]);
+        NSLog(@"sina_userId:%@", [[dataArray objectAtIndex:0] objectForKey:@"sina_userId"]);
+        
+        NSLog(@"sina_expirationDate:%@", [[dataArray objectAtIndex:0] objectForKey:@"sina_expirationDate"]);
+//        }
         
     }
     

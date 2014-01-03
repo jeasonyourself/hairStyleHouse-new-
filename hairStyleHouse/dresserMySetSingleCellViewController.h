@@ -17,7 +17,8 @@
     NSMutableDictionary * inforDic;
     personInforViewController* personInfor ;
     fansAndFouceAndmassegeViewController * fansAndfouceAndMassege;
-    
+    NSMutableArray * userInforArr;
+    NSMutableDictionary * userInfor;
 }
 @property (nonatomic,strong)mySetViewController  *fatherController;
 @property (strong, nonatomic) IBOutlet UIView *changeInforView;

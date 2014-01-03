@@ -89,6 +89,8 @@
     
     
     [self getData];
+    userInforArr = [[NSMutableArray alloc] init];
+    userInfor = [[NSMutableDictionary alloc] init];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -154,7 +156,9 @@
     [fatherController pushToViewController:personInfor];
 }
 
-- (IBAction)beaspeakButtonClick:(id)sender {
+- (IBAction)beaspeakButtonClick:(id)sender
+{
+    
 }
 
 - (IBAction)messageButtonClick:(id)sender
@@ -172,23 +176,48 @@
     
 }
 
-- (IBAction)suggestButtonClick:(id)sender {
+- (IBAction)suggestButtonClick:(id)sender
+{
+    
 }
 
-- (IBAction)userHelpButtonClick:(id)sender {
+- (IBAction)userHelpButtonClick:(id)sender
+{
+    
 }
 
-- (IBAction)clearAllButtonClick:(id)sender {
+- (IBAction)clearAllButtonClick:(id)sender
+{
+    
 }
 
-- (IBAction)updateLevelButtonClick:(id)sender {
+- (IBAction)updateLevelButtonClick:(id)sender
+{
+    
 }
 
 - (IBAction)sinoutButtonClick:(id)sender
 {
-
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     appDele.uid = nil;
+    
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSLog(@"path = %@",path);
+    NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+    NSString *filename=[path stringByAppendingPathComponent:plistString];
+    NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+    
+    userInforArr = [NSMutableArray arrayWithArray:dataArray];
+    userInfor =[dataArray objectAtIndex:0];
+    [userInfor removeObjectForKey:@"type"];
+    [userInforArr addObject:userInfor];
+    [userInforArr writeToFile:filename atomically:YES];
+    
+    //    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+    //    //    [ud removeObjectForKey:@"uid"];
+    //    [ud removeObjectForKey:@"type"];
+    
     [fatherController leftButtonClick];
     
 }

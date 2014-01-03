@@ -316,9 +316,25 @@
         {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         appDele.type=type;
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:appDele.uid forKey:@"uid"];
-        [ud setObject:type forKey:@"type"];
+            
+            NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+            NSString *path=[paths objectAtIndex:0];
+            NSLog(@"path = %@",path);
+            NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+            NSString *filename=[path stringByAppendingPathComponent:plistString];
+            NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+//            if (!dataArray)
+//            {
+//                //1. 创建一个plist文件
+//                NSFileManager* fm = [NSFileManager defaultManager];
+//                [fm createFileAtPath:filename contents:nil attributes:nil];
+//            }
+            
+            //        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+            
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        [[dataArray objectAtIndex:0] setObject:appDele.uid forKey:@"uid"];
+        [[dataArray objectAtIndex:0] setObject:type forKey:@"type"];
             
             if ([whictButton isEqualToString:@"first"])
             {
@@ -331,10 +347,6 @@
                 [self postData1];
             }
         }
-        
-        
-      
-        
     }
     else if (request.tag==4)
     {

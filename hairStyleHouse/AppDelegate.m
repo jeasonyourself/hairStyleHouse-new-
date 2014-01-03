@@ -21,29 +21,60 @@
 @synthesize latitude;
 @synthesize touxiangImage;
 @synthesize city;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
     self.sinaweibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
+    tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
     
-    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-    if ([ud objectForKey:@"uid"]&&[ud objectForKey:@"type"])
+    userInfor = [[NSMutableDictionary alloc] init];
+    
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSLog(@"path = %@",path);
+    NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+    NSString *filename=[path stringByAppendingPathComponent:plistString];
+    NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+    if (!dataArray)
     {
-        self.uid =[ud objectForKey:@"uid"];
-        self.type = [ud objectForKey:@"type"];
-        self.loginType = [ud objectForKey:@"loginType"];
+        //1. 创建一个plist文件
+        NSFileManager* fm = [NSFileManager defaultManager];
+        [fm createFileAtPath:filename contents:nil attributes:nil];
+    }
+    
+    
+    
+//    NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+    
+//    NSLog(@"ud:%@",ud);
+    if ([[dataArray objectAtIndex:0] objectForKey:@"uid"]&&[[dataArray objectAtIndex:0] objectForKey:@"type"])
+    {
+        self.uid =[[dataArray objectAtIndex:0] objectForKey:@"uid"];
+        self.type = [[dataArray objectAtIndex:0] objectForKey:@"type"];
+        self.loginType = [[dataArray objectAtIndex:0] objectForKey:@"loginType"];
         
-            tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
         
-            [self.tententOAuth setAccessToken:[ud objectForKey:@"tencentOAuth_accesstoken"]] ;
-            [self.tententOAuth setOpenId:[ud objectForKey:@"tencentOAuth_openId"]] ;
-            [self.tententOAuth setExpirationDate:[ud objectForKey:@"tencentOAuth_expirationDate"]] ;
+        
+            [self.tententOAuth setAccessToken:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_accesstoken"]] ;
+            [self.tententOAuth setOpenId:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_openId"]] ;
+            [self.tententOAuth setExpirationDate:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_expirationDate"]] ;
 
-            [self.sinaweibo setAccessToken:[ud objectForKey:@"sina_accesstoken"]] ;
-            [self.sinaweibo setUserID:[ud objectForKey:@"sina_userId"]] ;
-            [self.sinaweibo setExpirationDate:[ud objectForKey:@"sina_expirationDate"]] ;
+            [self.sinaweibo setAccessToken:[[dataArray objectAtIndex:0] objectForKey:@"sina_accesstoken"]] ;
+            [self.sinaweibo setUserID:[[dataArray objectAtIndex:0] objectForKey:@"sina_userId"]] ;
+            [self.sinaweibo setExpirationDate:[[dataArray objectAtIndex:0] objectForKey:@"sina_expirationDate"]] ;
+        
+        NSLog(@"tencentOAuth_accesstoken:%@",tententOAuth.accessToken);
+        NSLog(@"tencentOAuth_openId:%@",tententOAuth.openId);
+
+        NSLog(@"tencentOAuth_expirationDate:%@",tententOAuth.expirationDate);
+
+        NSLog(@"sina_accesstoken:%@",sinaweibo.accessToken);
+        NSLog(@"sina_userId:%@",sinaweibo.userID);
+        
+        NSLog(@"sina_expirationDate:%@",sinaweibo.expirationDate);
 
      }
 

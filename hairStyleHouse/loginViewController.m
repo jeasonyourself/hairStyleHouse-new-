@@ -43,6 +43,8 @@
     {
        [self refreashNav];
     }
+    userInfor = [[NSMutableDictionary alloc] init];
+    userInforArr = [[NSMutableArray alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -500,14 +502,36 @@
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.uid=[dic objectForKey:@"uid"];
         
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:@"qq" forKey:@"loginType"];
-        [ud setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [ud setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [ud setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
         
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path=[paths objectAtIndex:0];
+        NSLog(@"path = %@",path);
+        NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+        NSString *filename=[path stringByAppendingPathComponent:plistString];
+        NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+        if (!dataArray)
+        {
+            //1. 创建一个plist文件
+            NSFileManager* fm = [NSFileManager defaultManager];
+            [fm createFileAtPath:filename contents:nil attributes:nil];
+        }
+        else
+        {
+        userInfor=[dataArray objectAtIndex:0];
+        }
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        [userInfor setObject:@"qq" forKey:@"loginType"];
+        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+        
+//        [userInforArr addObject:userInfor];
+//        [userInforArr writeToFile:filename atomically:YES];
+//        
         if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
         {
+            [userInforArr addObject:userInfor];
+            [userInforArr writeToFile:filename atomically:YES];
             if ([_leftButtonhidden isEqualToString:@"yes"])
             {
                 completeView = nil;
@@ -526,21 +550,34 @@
 
             }
         }
-        else
+        else//已有type
         {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.type=[dic objectForKey:@"type"];
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
 
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
-        [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
-        [ud setObject:@"qq" forKey:@"loginType"];
-        [ud setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [ud setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [ud setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
-
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
+            {
+                [userInfor removeObjectForKey:@"sina_accesstoken"];
+                [userInfor removeObjectForKey:@"sina_userId"];
+                [userInfor removeObjectForKey:@"sina_expirationDate"];
+            }
+            else
+            {
+                [appDele.sinaweibo setAccessToken:[userInfor objectForKey:@"sina_accesstoken"]] ;
+                [appDele.sinaweibo setUserID:[userInfor objectForKey:@"sina_userId"]] ;
+                [appDele.sinaweibo setExpirationDate:[userInfor objectForKey:@"sina_expirationDate"]] ;
+            }
+        [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
+        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
+        [userInfor setObject:@"qq" forKey:@"loginType"];
+        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+            [userInforArr addObject:userInfor];
+            [userInforArr writeToFile:filename atomically:YES];
             
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=coordinates"]]];
         request.delegate=self;
@@ -572,15 +609,29 @@
         
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.uid=[dic objectForKey:@"uid"];
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path=[paths objectAtIndex:0];
+        NSLog(@"path = %@",path);
+        NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+        NSString *filename=[path stringByAppendingPathComponent:plistString];
+        NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+        if (!dataArray)
+        {
+            //1. 创建一个plist文件
+            NSFileManager* fm = [NSFileManager defaultManager];
+            [fm createFileAtPath:filename contents:nil attributes:nil];
+        }
         
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:@"sina" forKey:@"loginType"];
+        [userInfor setObject:@"sina" forKey:@"loginType"];
         
-        [ud setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
-        [ud setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
-        [ud setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
+        [userInfor setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
+        [userInfor setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
+        [userInfor setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
         if ([[dic objectForKey:@"type"] isEqualToString:@"0"])
         {
+            [userInforArr addObject:userInfor];
+            [userInforArr writeToFile:filename atomically:YES];
             if ([_leftButtonhidden isEqualToString:@"yes"])
             {
                 completeView = nil;
@@ -606,15 +657,31 @@
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
         
-        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-        [ud setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
-        [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
-        [ud setObject:@"sina" forKey:@"loginType"];
+//        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
+            
+            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
+            {
+                [userInfor removeObjectForKey:@"tencentOAuth_accesstoken"];
+                [userInfor removeObjectForKey:@"tencentOAuth_openId"];
+                [userInfor removeObjectForKey:@"tencentOAuth_expirationDate"];
+            }
+       else
+       {
+           [appDele.tententOAuth setAccessToken:[userInfor objectForKey:@"tencentOAuth_accesstoken"]] ;
+           [appDele.tententOAuth setOpenId:[userInfor objectForKey:@"tencentOAuth_openId"]] ;
+           [appDele.tententOAuth setExpirationDate:[userInfor objectForKey:@"tencentOAuth_expirationDate"]] ;
+           
+           
+       }
+        [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
+        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
+        [userInfor setObject:@"sina" forKey:@"loginType"];
         
-        [ud setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
-        [ud setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
-        [ud setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
-        
+        [userInfor setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];
+        [userInfor setObject:[_sinaweibo userID]  forKey:@"sina_userId"];
+        [userInfor setObject:[_sinaweibo expirationDate] forKey:@"sina_expirationDate"];
+            [userInforArr addObject:userInfor];
+            [userInforArr writeToFile:filename atomically:YES];
         
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=coordinates"]]];
         request.delegate=self;
