@@ -46,15 +46,17 @@
 }
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index
 {
-    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+//    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
     if (index%3==0)
     {
-        NSString * headStr= [dic objectForKey:@"work_image"];
-        NSLog(@"headStr11111:%@",headStr);
+//        NSString * headStr= [dic objectForKey:@"work_image"];
+//        NSLog(@"headStr11111:%@",headStr);
         
         // 下载图片
-        [firstImage setImageURLStr:headStr placeholder:placeholder];
+//        [firstImage setImageURLStr:headStr placeholder:placeholder];
         
+        
+        firstImage.image=[dic objectForKey:@"image"];
         // 事件监听
         firstImage.tag = index;
         firstImage.userInteractionEnabled = YES;
@@ -63,17 +65,18 @@
         // 内容模式
         firstImage.clipsToBounds = YES;
         firstImage.contentMode = UIViewContentModeScaleAspectFill;
-        firstImage.frame =CGRectMake(12, 20, 90, 120);
+ 
+        firstImage.frame =CGRectMake(2, 2, self.frame.size.width/3-2, 148);
         secondImage.frame =CGRectMake(0, 0, 0, 0);
         thirdImage.frame =CGRectMake(0, 0, 0, 0);
     }
     else if (index%3==1)
     {
-        NSString * headStr= [dic objectForKey:@"work_image"];
-        NSLog(@"headStr22222:%@",headStr);
-        // 下载图片
-        [secondImage setImageURLStr:headStr placeholder:placeholder];
-        
+//        NSString * headStr= [dic objectForKey:@"work_image"];
+//        NSLog(@"headStr22222:%@",headStr);
+//        // 下载图片
+//        [secondImage setImageURLStr:headStr placeholder:placeholder];
+        secondImage.image=[dic objectForKey:@"image"];
         // 事件监听
         secondImage.tag = index;
         secondImage.userInteractionEnabled = YES;
@@ -82,17 +85,20 @@
         // 内容模式
         secondImage.clipsToBounds = YES;
         secondImage.contentMode = UIViewContentModeScaleAspectFill;
-        secondImage.frame =CGRectMake(114, 20, 90, 120);
+        secondImage.frame =CGRectMake(4+self.frame.size.width/3-2, 2, self.frame.size.width/3-2, 148);
         thirdImage.frame =CGRectMake(0, 0, 0, 0);
+        
+
 
     }
     else if (index%3==2)
     {
-        NSString * headStr= [dic objectForKey:@"work_image"];
-        NSLog(@"headStr33333:%@",headStr);
+//        NSString * headStr= [dic objectForKey:@"work_image"];
+//        NSLog(@"headStr33333:%@",headStr);
+//        
+//        [thirdImage setImageURLStr:headStr placeholder:placeholder];
         
-        [thirdImage setImageURLStr:headStr placeholder:placeholder];
-        
+        thirdImage.image=[dic objectForKey:@"image"];
         // 事件监听
         thirdImage.tag = index;
         thirdImage.userInteractionEnabled = YES;
@@ -101,7 +107,7 @@
         // 内容模式
         thirdImage.clipsToBounds = YES;
         thirdImage.contentMode = UIViewContentModeScaleAspectFill;
-        thirdImage.frame =CGRectMake(216, 20, 90, 120);
+        thirdImage.frame =CGRectMake(6+(self.frame.size.width/3-2)*2, 2, self.frame.size.width/3-2, 148);
     }
     
 }

@@ -21,9 +21,18 @@
 @synthesize latitude;
 @synthesize touxiangImage;
 @synthesize city;
-
+@synthesize hostReach;
+@synthesize isReachable;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //开启网络状况的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    self.hostReach = [Reachability reachabilityWithHostName:@"www.baidu.com"] ;
+    //开始监听，会启动一个run loop
+    [self.hostReach startNotifier];
+    
     
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
@@ -462,4 +471,30 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+-(void)reachabilityChanged:(NSNotification *)note
+{
+    Reachability *currReach = [note object];
+    NSParameterAssert([currReach isKindOfClass:[Reachability class]]);
+    
+    //对连接改变做出响应处理动作
+    NetworkStatus status = [currReach currentReachabilityStatus];
+    //如果没有连接到网络就弹出提醒实况
+    self.isReachable = YES;
+    if (status==kReachableViaWiFi||status==kReachableViaWWAN) {
+        
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络连接信息" message:@"网络连接正常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        //        [alert show];
+        self.isReachable = YES;
+    }
+
+   else if(status == NotReachable)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络连接异常" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        self.isReachable = NO;
+        return;
+    }
+   }
 @end

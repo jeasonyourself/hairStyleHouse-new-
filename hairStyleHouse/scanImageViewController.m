@@ -15,6 +15,9 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
+#import "FMDatabase.h"
+#import "FMResultSet.h"
+#import "FMDatabaseAdditions.h"
 @interface scanImageViewController ()
 
 @end
@@ -39,27 +42,48 @@
     [self refreashNavLab];
     [self refreashNav];
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
-    dresserArray =[[NSMutableArray alloc] init];
-    cleandresserArray =[[NSMutableArray alloc] init];
+//    dresserArray =[[NSMutableArray alloc] init];
+//    cleandresserArray =[[NSMutableArray alloc] init];
 
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
     
+    localData = YES;
+    //数据库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,selfOrOther,worksOrsave]];
+    db = [FMDatabase databaseWithPath:dbPath] ;
+    
+    if (![db open]) {
+        
+        NSLog(@"Could not open db.");
+        
+    }
+    
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
+    
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
         NSLog(@"loadMore");
         [self pullLoadMore];
     }];
-    bottomRefreshView.hidden=NO;
+    bottomRefreshView.hidden=YES;
     [myTableView addSubview:bottomRefreshView];
+    
+    NSLog(@"self.view1:%@",NSStringFromCGRect(self.view.frame));
 
-
+    NSLog(@"mytable.frame1:%@",NSStringFromCGRect(myTableView.frame));
+    
     [self getData];
 }
 
@@ -67,6 +91,12 @@
 {
     NSInteger _pageCount= [pageCount integerValue];
     
+    FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+    while ([rs next]) {
+        page  = [rs stringForColumn:@"Page"];
+    }
+    
+    [rs close];
     NSInteger _page = [page integerValue];
     
     NSLog(@"page:%@",page);
@@ -76,13 +106,20 @@
         _page++;
         page = [NSString stringWithFormat:@"%d",_page];
         NSLog(@"page:%@",page);
+        localData = NO;
         [self getData];
     }
     else
     {
+        [bottomRefreshView removeFromSuperview];
         [bottomRefreshView performSelector:@selector(finishedLoading)];
-        
+        bottomRefreshView= nil;
     }
+    
+    NSLog(@"self.view2:%@",NSStringFromCGRect(self.view.frame));
+
+    NSLog(@"mytable.frame2:%@",NSStringFromCGRect(myTableView.frame));
+
 }
     -(void)refreashNav
     {
@@ -166,7 +203,15 @@
         }
         
             request.delegate=self;
+        if (localData==YES) {
             request.tag=1;
+            
+        }
+        else
+        {
+            request.tag=11;
+            
+        }
        
             [request setPostValue:self.uid forKey:@"uid"];
             [request startAsynchronous];
@@ -175,55 +220,277 @@
     
 -(void)requestFinished:(ASIHTTPRequest *)request
     {
-        NSMutableArray * arr;
-     
-
-        if (request.tag==1) {
+        if (request.tag==1)//左列表
+        {
+            NSMutableArray * arr;
+            NSMutableArray * cleanarr;
+            
             NSLog(@"%@",request.responseString);
             NSData*jsondata = [request responseData];
             NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
-            NSLog(@"粉丝列表dic:%@",dic);
             
             pageCount = [dic objectForKey:@"page_count"];
-            if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])
+            if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
             {
                 
             }
-            else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])
+            else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
             {
                 arr= [dic objectForKey:@"works_info"];
-                [dresserArray addObjectsFromArray:arr];
-                NSLog(@"dresser.count:%d",dresserArray.count);
+                //            [dresserArray addObjectsFromArray:arr];
+                //            NSLog(@"dresser.count:%d",dresserArray.count);
                 
+                //            NSString  *str = [NSString stringWithFormat:@"CREATE TABLE %@%@%@ (Name text, id text, Photo blob)",bcid,scid,sign ]; FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+                
+                
+                
+                NSString *IdString = [db stringForQuery:@"SELECT Id FROM PersonList WHERE Name = ?",@"0"];
+                if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+                {
+                    
+                    
+                }
+                else//否则更新本地数据库
+                {
+                    
+                    
+                    
+                    NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
+                    if (![db executeUpdate:sqlstr])//删除原有数据库
+                    {
+                        NSLog(@"Delete table error!");
+                        
+                    }
+                    [db executeUpdate:@"CREATE TABLE PersonList (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+                    page=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
+                    for (int i = 0; i<arr.count; i++)//重新写入数据库
+                    {
+                        
+                        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
+                        BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],page,data];//插入所在数组位置，id，图片
+                        if (res == NO)
+                        {
+                            NSLog(@"插入失败");
+                        }
+                        else
+                        {
+                            NSLog(@"插入成功");
+                        }
+                    }
+                }
             }
-            if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])
+            
+            if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
             {
                 
             }
             else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
             {
-                arr= [dic objectForKey:@"image_list"];
-                [cleandresserArray addObjectsFromArray:arr];
+                cleanarr= [dic objectForKey:@"image_list"];
+                //            [cleandresserArray addObjectsFromArray:cleanarr];
+                //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
+                
+                
+                NSString *IdString = [db stringForQuery:@"SELECT Id FROM PersonList1 WHERE Name = ?",@"0"];
+                if ([IdString isEqualToString:[[cleanarr objectAtIndex:0] objectForKey:@"work_id"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+                {
+                    
+                    
+                }
+                else//否则更新本地数据库
+                {
+                    
+                    NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList1"];
+                    if (![db executeUpdate:sqlstr])//删除原有数据库
+                    {
+                        NSLog(@"Delete table error!");
+                        
+                    }
+                    
+                    [db executeUpdate:@"CREATE TABLE PersonList1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+                    page=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
+                    for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
+                    {
+                        
+                        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
+                        BOOL res =[db executeUpdate:@"INSERT INTO PersonList1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page,data];//插入所在数组位置，id，图片
+                        if (res == NO)
+                        {
+                            NSLog(@"插入失败");
+                        }
+                        else
+                        {
+                            NSLog(@"插入成功");
+                        }
+                    }
+                }
                 
             }
+            
+            
+            //        [self freashView];
+        }
+        
+        
+        else if (request.tag==11)//刷新左列表
+        {
+            NSMutableArray * arr;
+            NSMutableArray * cleanarr;
+            
+            NSLog(@"%@",request.responseString);
+            NSData*jsondata = [request responseData];
+            NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            
+            SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+            NSDictionary* dic=[jsonP objectWithString:jsonString];
+            
+            pageCount = [dic objectForKey:@"page_count"];
+            if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
+            {
+                
+            }
+            else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
+            {
+                arr= [dic objectForKey:@"works_info"];
+                //            [dresserArray addObjectsFromArray:arr];
+                //            NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
+                //            if (![db executeUpdate:sqlstr])//删除原有数据库
+                //            {
+                //                NSLog(@"Delete table error!");
+                //
+                //            }
+                [db executeUpdate:@"CREATE TABLE PersonList (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+                //            page=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
+                for (int i = 0; i<arr.count; i++)//重新写入数据库
+                {
+                    
+                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
+                    BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],page,data];//插入所在数组位置，id，图片
+                    if (res == NO)
+                    {
+                        NSLog(@"插入失败");
+                    }
+                    else
+                    {
+                        NSLog(@"插入成功");
+                    }
+                }
+                NSLog(@"localDresserArray.count:%d",localDresserArray.count);
+            }
+            
+            if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
+            {
+                
+            }
+            else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+            {
+                cleanarr= [dic objectForKey:@"image_list"];
+                //            [cleandresserArray addObjectsFromArray:cleanarr];
+                //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
+                [db executeUpdate:@"CREATE TABLE PersonList1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+                for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
+                {
+                    
+                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
+                    BOOL res =[db executeUpdate:@"INSERT INTO PersonList1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page,data];//插入所在数组位置，id，图片
+                    if (res == NO)
+                    {
+                        NSLog(@"插入失败");
+                    }
+                    else
+                    {
+                        NSLog(@"插入成功");
+                    }
+                }
+            }
+            
+            //        [self freashView];
+        }
             [self freashView];
         
-        }
+        
     }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
-    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"请求超时" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+     [self freashView];
 }
+
     -(void)freashView
     {
-        [myTableView reloadData];
+        
         [bottomRefreshView performSelector:@selector(finishedLoading)];
+        //1--本地简略图
+        FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+        localDresserArray=nil;
+        localDresserArray=[[NSMutableArray alloc] init];
+        
+        while ([rs next]) {
+            NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+            NSString *name = [rs stringForColumn:@"Name"];
+            
+            NSString *workId  = [rs stringForColumn:@"Id"];
+            NSString *imageUrl = [rs stringForColumn:@"Url"];
+            
+            
+            NSData * imageData = [rs dataForColumn:@"Photo"];
+            
+            UIImage *aimage =[UIImage imageWithData: imageData];
+            
+            [dic setObject:name forKey:@"name"];
+            [dic setObject:workId forKey:@"work_id"];
+            [dic setObject:imageUrl forKey:@"work_image"];
+            
+            [dic setObject:aimage forKey:@"image"];
+            NSLog(@"dic:%@",dic);
+            
+            [localDresserArray addObject:dic];
+        }
+        
+        [rs close];
+        NSLog(@"localDresserArray.count:%d",localDresserArray.count);
+        
+        //1--本地高清图
+        FMResultSet *rs1 = [db executeQuery:@"select * from PersonList1"];
+        
+        
+        //    NSLog(@"[rs next]:%hhd",[rs next]);
+        localcleanDresserArray=nil;
+        localcleanDresserArray=[[NSMutableArray alloc] init];
+        
+        while ([rs1 next]) {
+            NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
+            NSString *name = [rs1 stringForColumn:@"Name"];
+            
+            NSString *workId  = [rs1 stringForColumn:@"Id"];
+            NSString *imageUrl = [rs1 stringForColumn:@"Url"];
+            
+            
+            NSData * imageData = [rs1 dataForColumn:@"Photo"];
+            
+            UIImage *aimage =[UIImage imageWithData: imageData];
+            
+            [dic1 setObject:name forKey:@"name"];
+            [dic1 setObject:workId forKey:@"work_id"];
+            [dic1 setObject:imageUrl forKey:@"work_image"];
+            
+            [dic1 setObject:aimage forKey:@"image"];
+            NSLog(@"dic:%@",dic1);
+            
+            [localcleanDresserArray addObject:dic1];
+        }
+        
+        [rs1 close];
+        NSLog(@"localDresserArray.count:%d",localcleanDresserArray.count);
+        [myTableView reloadData];
 
     }
+
+
+
     - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
     {
         return 1;
@@ -232,19 +499,19 @@
     - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
     {
         
-        if (dresserArray.count%3==0)
+        if (localDresserArray.count%3==0)
         {
-            return dresserArray.count/3;
+            return localDresserArray.count/3;
         }
         else
         {
-            return dresserArray.count/3+1;
+            return localDresserArray.count/3+1;
         }
     }
     
     - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        return   160;
+        return   150;
     }
     
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,15 +528,19 @@
         NSLog(@"row2:%d",row2);
         NSUInteger row3 = [indexPath row]*3+2;
         NSLog(@"row3:%d",row3);
-        [cell setCell:[dresserArray objectAtIndex:row1] andIndex:row1];
-        if (row2<dresserArray.count)//防止可能越界
+        if (row1<localDresserArray.count)//防止可能越界
         {
-          [cell setCell:[dresserArray objectAtIndex:row2] andIndex:row2];
+            [cell setCell:[localDresserArray objectAtIndex:row1] andIndex:row1];
         }
-        if (row3<dresserArray.count)//防止可能越界
+        if (row2<localDresserArray.count)//防止可能越界
         {
-            [cell setCell:[dresserArray objectAtIndex:row3] andIndex:row3];
+            [cell setCell:[localDresserArray objectAtIndex:row2] andIndex:row2];
         }
+        if (row3<localDresserArray.count)//防止可能越界
+        {
+            [cell setCell:[localDresserArray objectAtIndex:row3] andIndex:row3];
+        }
+
     return cell;
     }
 
@@ -277,14 +548,14 @@
 
 -(void)selectImage:(NSInteger)_index
 {
-    int count = cleandresserArray.count;
+    int count = localcleanDresserArray.count;
     // 1.封装图片数据
     NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
     for (int i = 0; i<count; i++) {
         // 替换为中等尺寸图片
-        NSString *url = [[cleandresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        NSString *url = [[localcleanDresserArray[i] objectForKey:@"work_image"] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
         MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.work_id =[cleandresserArray[i] objectForKey:@"work_id"];
+        photo.work_id =[localcleanDresserArray[i] objectForKey:@"work_id"];
         photo.url = [NSURL URLWithString:url]; // 图片路径
         //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
         [photos addObject:photo];
@@ -294,11 +565,11 @@
     browser=nil;
     browser = [[MJPhotoBrowser alloc] init];
     NSInteger reallIndex;
-    NSString * str = [dresserArray[_index] objectForKey:@"work_id"];
+    NSString * str = [localDresserArray[_index] objectForKey:@"work_id"];
     for (int i = 0; i<count; i++)//获得真实位置
     {
         // 替换为中等尺寸图片
-        NSString *string1 = [cleandresserArray[i] objectForKey:@"work_id"];
+        NSString *string1 = [localcleanDresserArray[i] objectForKey:@"work_id"];
         if ([string1 isEqualToString:str])
         {
             reallIndex =i;

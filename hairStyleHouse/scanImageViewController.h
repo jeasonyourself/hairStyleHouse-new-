@@ -10,12 +10,17 @@
 #import "scanCell.h"
 #import "DemoViewController.h"
 #import "MJPhotoBrowser.h"
+#import "FMDatabase.h"
 @class AllAroundPullView;
 @interface scanImageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
 UITableView *myTableView;
-NSMutableArray * dresserArray;
-    NSMutableArray * cleandresserArray;
+    
+    NSMutableArray * localDresserArray;
+    NSMutableArray * localcleanDresserArray;
+    
+//NSMutableArray * dresserArray;
+//    NSMutableArray * cleandresserArray;
 
      NSString * pageCount;
     NSString * page;
@@ -28,6 +33,10 @@ NSMutableArray * dresserArray;
     
     NSString * worksOrsave;
     NSString* uid;
+    
+    BOOL localData;
+    FMDatabase *db;
+
 }
 @property(nonatomic,strong)NSString * worksOrsave;
 @property(nonatomic,strong)NSString * selfOrOther;

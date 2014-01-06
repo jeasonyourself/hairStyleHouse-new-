@@ -15,6 +15,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WeiboSDK.h"
 #import "SinaWeibo.h"
+#import "Reachability.h"
 #define kAppKey             @"276585644"
 #define kAppSecret          @"a71b4382aeda47dfbdd5925b4b407648"
 #define kAppRedirectURI     @"http://www.faxingw.cn"
@@ -46,6 +47,8 @@
 //    loginViewController* loginView;
     NSString* wbtoken;
     
+  Reachability*  hostReach;
+    
     id interface;
     SEL sucfun;
     SEL errfun;
@@ -66,6 +69,8 @@
 @property (nonatomic,strong) NSString* touxiangImage;
 @property (nonatomic,strong) NSString* city;
 @property (nonatomic,strong) NSString* userName;//用到
+@property (nonatomic) BOOL isReachable;
+@property (strong, nonatomic) Reachability*  hostReach;
 -(void)pushToViewController:(id)_sen;
     -(void)getSinaLoginBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 @end

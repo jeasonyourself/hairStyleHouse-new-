@@ -34,14 +34,15 @@
 }
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index
 {
-    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+//    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
     if (index%3==0)
     {
         NSString * headStr= [dic objectForKey:@"work_image"];
         NSLog(@"headStr11111:%@",headStr);
         
         // 下载图片
-        [firstImage setImageURLStr:headStr placeholder:placeholder];
+        firstImage.image=[dic objectForKey:@"image"];
+//        [firstImage setImageURLStr:headStr placeholder:placeholder];
         
         // 事件监听
         firstImage.tag = index;
@@ -60,7 +61,9 @@
         NSString * headStr= [dic objectForKey:@"work_image"];
         NSLog(@"headStr22222:%@",headStr);
         // 下载图片
-        [secondImage setImageURLStr:headStr placeholder:placeholder];
+        secondImage.image=[dic objectForKey:@"image"];
+
+//        [secondImage setImageURLStr:headStr placeholder:placeholder];
         
         // 事件监听
         secondImage.tag = index;
@@ -77,8 +80,9 @@
     {
         NSString * headStr= [dic objectForKey:@"work_image"];
         NSLog(@"headStr33333:%@",headStr);
-        
-        [thirdImage setImageURLStr:headStr placeholder:placeholder];
+        thirdImage.image=[dic objectForKey:@"image"];
+
+//        [thirdImage setImageURLStr:headStr placeholder:placeholder];
         
         // 事件监听
         thirdImage.tag = index;

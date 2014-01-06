@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "hairStyleCategoryScanImageCell.h"
 #import "MJPhotoBrowser.h"
+#import "FMDatabase.h"
 @class AllAroundPullView;
 @interface findStyleDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
@@ -18,11 +19,17 @@
     UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
 
-    NSMutableArray * dresserArray;
-    NSMutableArray * cleandresserArray;
+//    NSMutableArray * dresserArray;
+    NSMutableArray * localDresserArray;
 
-    NSMutableArray * dresserArray1;
-    NSMutableArray * cleandresserArray1;
+//    NSMutableArray * cleandresserArray;
+    NSMutableArray * localcleanDresserArray;
+
+    NSMutableArray * localDresserArray1;
+    NSMutableArray * localcleanDresserArray1;
+    
+//    NSMutableArray * dresserArray1;
+//    NSMutableArray * cleandresserArray1;
 
     NSString * page;
     NSString * page1;
@@ -33,6 +40,12 @@
     NSString* style;
     
     MJPhotoBrowser *browser;
+    
+    FMDatabase *db;
+    FMDatabase *dbTwo;
+
+    BOOL localData;
+
 }
 @property(nonatomic,strong)        NSString* style;
 @property(nonatomic,strong)        NSString* bcid;
