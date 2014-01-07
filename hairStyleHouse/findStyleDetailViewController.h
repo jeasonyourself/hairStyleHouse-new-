@@ -17,6 +17,7 @@
     UIButton * oneButton;
     UIButton * twoButton;
     UITableView *myTableView;
+    UIActivityIndicatorView * _activityIndicatorView ;
     AllAroundPullView *bottomRefreshView;
 
 //    NSMutableArray * dresserArray;

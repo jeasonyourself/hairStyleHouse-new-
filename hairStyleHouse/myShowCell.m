@@ -88,7 +88,7 @@
         NSLog(@"headStr11111:%@",headStr);
         
         // 下载图片
-        [firstImage setImageURLStr:headStr placeholder:placeholder];
+        firstImage.image=[dic objectForKey:@"image"];
         
         // 事件监听
         firstImage.tag = index;
@@ -133,7 +133,7 @@
         NSString * commentStr = [dic objectForKey:@"comment_num"];
         NSLog(@"headStr22222:%@",headStr);
         // 下载图片
-        [secondImage setImageURLStr:headStr placeholder:placeholder];
+        secondImage.image=[dic objectForKey:@"image"];
         
         // 事件监听
         secondImage.tag = index;

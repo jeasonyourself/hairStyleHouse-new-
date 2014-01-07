@@ -15,7 +15,8 @@
 @interface scanImageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
 UITableView *myTableView;
-    
+    UIActivityIndicatorView * _activityIndicatorView ;
+
     NSMutableArray * localDresserArray;
     NSMutableArray * localcleanDresserArray;
     

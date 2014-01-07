@@ -144,6 +144,21 @@
     
     [self getData];
     [self getData1];
+    
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
+
+    [_activityIndicatorView startAnimating];
+    //开始动画
 }
 -(void)pullLoadMore
 {
@@ -265,7 +280,7 @@
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Forhair&a=newCate&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Forhair&a=newCate&page=%@",page1]]];
     
     [request setPostValue:self.bcid forKey:@"bcid"];
     [request setPostValue:self.scid forKey:@"scid"];
@@ -623,6 +638,7 @@
        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
        {
            arr= [dic objectForKey:@"works_info"];
+           
            //            [dresserArray addObjectsFromArray:arr];
            //            NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
            //            if (![db executeUpdate:sqlstr])//删除原有数据库
@@ -658,12 +674,13 @@
            cleanarr= [dic objectForKey:@"image_list"];
            //            [cleandresserArray addObjectsFromArray:cleanarr];
            //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
-           [dbTwo executeUpdate:@"CREATE TABLE PersonListtwo1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+//            [dbTwo executeUpdate:@"CREATE TABLE PersonListtwo1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
            for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
            {
                
+              
                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
-               BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListwo1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page1,data];//插入所在数组位置，id，图片
+               BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListtwo1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page1,data];//插入所在数组位置，id，图片
                if (res == NO)
                {
                    NSLog(@"插入失败");
@@ -677,6 +694,10 @@
        
        //        [self freashView];
    }
+    
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+
         [self freashView];
 
 }
@@ -684,6 +705,9 @@
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
 //    canSelect = NO;
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+
     [self freashView];
 }
 -(void)freashView
@@ -817,7 +841,8 @@
     }
     
     [rstwo1 close];
-    
+    NSLog(@"localcleanDresserArray1.count:%d",localcleanDresserArray1.count);
+
     [myTableView reloadData];
     
 }

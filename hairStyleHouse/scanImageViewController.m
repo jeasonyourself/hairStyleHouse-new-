@@ -85,6 +85,20 @@
     NSLog(@"mytable.frame1:%@",NSStringFromCGRect(myTableView.frame));
     
     [self getData];
+    
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
+    
+    [_activityIndicatorView startAnimating];
 }
 
 -(void)pullLoadMore
@@ -409,6 +423,10 @@
             
             //        [self freashView];
         }
+        
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+
             [self freashView];
         
         
@@ -416,6 +434,9 @@
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+
      [self freashView];
 }
 

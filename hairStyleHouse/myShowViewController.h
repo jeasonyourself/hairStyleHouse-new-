@@ -11,34 +11,43 @@
 #import "MJPhotoBrowser.h"
 #import "loginViewController.h"
 #import "pubImageViewController.h"
-
+#import "FMDatabase.h"
 @class AllAroundPullView;
 
 @interface myShowViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView * topImage;
     UITableView *myTableView;
+    UIActivityIndicatorView * _activityIndicatorView ;
+
     AllAroundPullView *bottomRefreshView;
     
     UIButton * oneButton;
     UIButton * twoButton;
     UIButton * thirdButton;
     
-    NSMutableArray * dresserArray;
-    NSMutableArray * cleandresserArray;
+//    NSMutableArray * dresserArray;
+//    NSMutableArray * cleandresserArray;
 
     NSString * page;
     NSString * pageCount;
-    NSMutableArray * dresserArray1;
-    NSMutableArray * cleandresserArray1;
+//    NSMutableArray * dresserArray1;
+//    NSMutableArray * cleandresserArray1;
 
     NSString * page1;
     NSString * pageCount1;
-    NSMutableArray * dresserArray2;
-    NSMutableArray * cleandresserArray2;
+//    NSMutableArray * dresserArray2;
+//    NSMutableArray * cleandresserArray2;
 
     NSString * page2;
     NSString * pageCount2;
+    
+    NSMutableArray * localDresserArray;
+    NSMutableArray * localcleanDresserArray;
+    NSMutableArray * localDresserArray1;
+    NSMutableArray * localcleanDresserArray1;
+    NSMutableArray * localDresserArray2;
+    NSMutableArray * localcleanDresserArray2;
     
     NSString * sign;
     
@@ -48,6 +57,17 @@
     
     loginViewController* loginView;
     pubImageViewController * pubImage;
+    
+    
+    FMDatabase *db;
+    FMDatabase *dbTwo;
+    FMDatabase *dbThree;
+    BOOL localData;
+    BOOL needRefeashCleanPic;
+    BOOL needRefeashCleanPic1;
+    BOOL needRefeashCleanPic2;
+
+
 }
 @property(nonatomic,strong)        NSString* style;
 @property(nonatomic,strong)        NSString* _hidden;
