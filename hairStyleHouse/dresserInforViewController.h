@@ -20,7 +20,7 @@
     dresserDetailViewController * backView;
 
 }
--(void)refreashNav:(NSString *)str;
+-(void)refreashNav;
 @property(strong,nonatomic)    NSString * uid;
 @property(nonatomic,retain) NSString * _hidden;
 -(void)pushToViewController:(id)_sen;

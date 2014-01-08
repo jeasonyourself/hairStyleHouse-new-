@@ -15,6 +15,8 @@
     UIImageView * headImage;
     UILabel * nameLable;
     UILabel * assessLable;
+    UILabel * assessNumLable;
+
     UILabel * cityLable;
     UILabel *timeLable;
     UILabel *priceLable;

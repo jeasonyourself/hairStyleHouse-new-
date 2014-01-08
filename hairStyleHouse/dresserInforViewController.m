@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     inforDic = [[NSDictionary alloc] init];
+    [self refreashNav];
     
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
@@ -42,7 +43,7 @@
     -(void)getData
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=other_info"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=visitInfo"]];
         request.delegate=self;
         request.tag=1;
         [request setPostValue:self.uid forKey:@"uid"];
@@ -50,7 +51,8 @@
         [request setPostValue:@"2" forKey:@"type"];
         [request startAsynchronous];
     }
-    
+
+
     -(void)requestFinished:(ASIHTTPRequest *)request
     {
         if (request.tag==1)
@@ -61,9 +63,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"发型师信息dic:%@",dic);
-        inforDic = [dic objectForKey:@"user_info"];
+//        inforDic = [dic objectForKey:@"user_info"];
+            inforDic = dic;
         
-        [self refreashNav:@"1"];//改变关注状态
         [self freashView];
         }
         //    AppDelegate *appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;//调用appdel
@@ -75,7 +77,7 @@
         [alert show];
     }
     
--(void)refreashNav:(NSString *)str
+-(void)refreashNav
     {
         UIButton * leftButton=[[UIButton alloc] init];
         leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -93,31 +95,31 @@
         UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
         self.navigationItem.leftBarButtonItem=leftButtonItem;
         
-        rightButton=[[UIButton alloc] init];
-        rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rightButton.layer setMasksToBounds:YES];
-        [rightButton.layer setCornerRadius:3.0];
-        [rightButton.layer setBorderWidth:1.0];
-        [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-        if ([str isEqualToString:@"1"])
-        {
-            [rightButton setTitle:@"取消关注" forState:UIControlStateNormal];
-            rightButton.tag=1;
-        }
-        else
-        {
-            [rightButton setTitle:@"关注" forState:UIControlStateNormal];
-            rightButton.tag=0;
-
-        }
-        rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
-        [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        rightButton.frame = CGRectMake(12,20, 60, 25);
-        UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
-        self.navigationItem.rightBarButtonItem=rightButtonItem;
+//        rightButton=[[UIButton alloc] init];
+//        rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [rightButton.layer setMasksToBounds:YES];
+//        [rightButton.layer setCornerRadius:3.0];
+//        [rightButton.layer setBorderWidth:1.0];
+//        [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+//        if ([str isEqualToString:@"1"])
+//        {
+//            [rightButton setTitle:@"取消关注" forState:UIControlStateNormal];
+//            rightButton.tag=1;
+//        }
+//        else
+//        {
+//            [rightButton setTitle:@"关注" forState:UIControlStateNormal];
+//            rightButton.tag=0;
+//
+//        }
+//        rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+//        [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+//        [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//        [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//        rightButton.frame = CGRectMake(12,20, 60, 25);
+//        UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
+//        self.navigationItem.rightBarButtonItem=rightButtonItem;
 }
 
 -(void)leftButtonClick

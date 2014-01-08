@@ -23,16 +23,23 @@
         
         nameLable = [[UILabel alloc] init];
         nameLable.font=[UIFont systemFontOfSize:12];
+        [nameLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         
         assessLable = [[UILabel alloc] init];
         assessLable.font=[UIFont systemFontOfSize:12];
+        [assessLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
+        assessNumLable = [[UILabel alloc] init];
+        assessNumLable.font=[UIFont systemFontOfSize:12];
+        [assessNumLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         
         cityLable = [[UILabel alloc] init];
         cityLable.font=[UIFont systemFontOfSize:12];
+        [cityLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         
         
         timeLable = [[UILabel alloc] init];
         timeLable.font=[UIFont systemFontOfSize:12];
+        [timeLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         
         priceLable = [[UILabel alloc] init];
         priceLable.font=[UIFont systemFontOfSize:12];
@@ -81,6 +88,7 @@
         [self addSubview:headImage];
         [self addSubview:nameLable];
         [self addSubview:assessLable];
+        [self addSubview:assessNumLable];
         [self addSubview:cityLable];
         [self addSubview:timeLable];
         [self addSubview:addressLable];
@@ -114,7 +122,8 @@
     
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     nameLable.text=nameStr;
-    assessLable.text =[NSString stringWithFormat:@"用户评价（%@）",assessStr];
+    assessLable.text =[NSString stringWithFormat:@"用户评价（    ）"];
+    assessNumLable.text =assessStr;
 
     cityLable.text =[NSString stringWithFormat:@"共有%@张作品",cityStr];
     timeLable.text = timeStr;
@@ -146,6 +155,8 @@
     headImage.frame = CGRectMake(10, 10, 60, 60);
     nameLable.frame = CGRectMake(80, 15, 200, 15);
     assessLable.frame = CGRectMake(80, 35, 200, 15);
+    assessNumLable.frame = CGRectMake(143, 35, 30, 15);
+
 //    cityLable.frame = CGRectMake(80, 35, 200, 15);
     timeLable.frame = CGRectMake(80, 55, 200, 15);
     
@@ -230,6 +241,12 @@
         {
             rect=CGRectMake(60*i+5*(i+1), 10, 60, 80);
             UIImageView * workImage = [[UIImageView alloc] initWithFrame:rect];
+            
+            workImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
+            workImage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.masksToBounds = YES;//设为NO去试试
+            
             [workImage setImageWithURL:[[workArr objectAtIndex:i] objectForKey:@"work_image"]];
             UIButton *newvideobutton=[UIButton buttonWithType:UIButtonTypeCustom];
             newvideobutton.backgroundColor=[UIColor clearColor];
