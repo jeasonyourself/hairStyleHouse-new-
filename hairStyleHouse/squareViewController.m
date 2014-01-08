@@ -117,7 +117,11 @@
     anwserCenter= [[anwserCenterViewController alloc] init];
     anwserCenter._hidden = @"yes";
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    [self.navigationController pushViewController:anwserCenter animated:YES];
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+[self.navigationController pushViewController:anwserCenter animated:NO];
 }
 -(void)tapView:(UITapGestureRecognizer* )tap
 {

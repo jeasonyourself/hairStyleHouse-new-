@@ -10,6 +10,8 @@
 #import "findStyleViewController.h"
 #import "dresserViewController.h"
 #import "squareViewController.h"
+#import "anwserCenterViewController.h"
+
 #import "mineViewController.h"
 #import <TencentOpenAPI/TencentOAuthObject.h>
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -33,7 +35,10 @@
     dresserViewController * dresserController;
     UINavigationController * secondNav;
     
-    squareViewController * squareController;
+    squareViewController * squareController;//老版本
+    
+    anwserCenterViewController * anwserCenter;//新版本
+    
     UINavigationController * thirdNav;
     
     mineViewController * mineController;

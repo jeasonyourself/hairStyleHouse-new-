@@ -127,7 +127,7 @@
     scanView = [[scanImageViewController alloc] init];
     scanView.uid=[infoDic objectForKey:@"uid"];
     scanView._hidden = @"no";
-    scanView.worksOrsave = @"works";
+    scanView.worksOrsaveorCan = @"works";
     [fatherController pushToViewController:scanView];
 }
 

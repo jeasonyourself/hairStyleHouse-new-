@@ -9,20 +9,27 @@
 #import <UIKit/UIKit.h>
 @class dresserViewController;
 
-@interface dresserCell : UITableViewCell
+@interface dresserCell : UITableViewCell<UIScrollViewDelegate>
 {
     
     UIImageView * headImage;
     UILabel * nameLable;
+    UILabel * assessLable;
     UILabel * cityLable;
     UILabel *timeLable;
+    UILabel *priceLable;
+    UILabel *distanceLable;
+
      UILabel *addressLable;
     
     UIButton * cellButton;
     UIButton * fouceButton;
+    
+    UIScrollView* workScroll;
+    
     dresserViewController * fatherController;
 }
 @property(nonatomic,strong) dresserViewController * fatherController;
--(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index;
+-(void)setCell:(NSMutableArray *)arr andIndex:(NSInteger)index andSign:(NSString * )_sign;
 
 @end

@@ -107,7 +107,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
     if (dresserFatherController) {
-         [dresserFatherController fromFouceCancelBack:_backsign];
+//         [dresserFatherController fromFouceCancelBack:_backsign];
     }
    
 

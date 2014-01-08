@@ -50,7 +50,7 @@
     [super viewDidLoad];
 //    [self refreashNavLab];
     [self refreashNav];
-  
+    self.view.backgroundColor= [UIColor colorWithRed:220.0/256.0 green:220.0/256.0 blue:220.0/256.0 alpha:1.0];
     // 1.创建UIScrollView
     [self createScrollView];
     
@@ -100,6 +100,7 @@
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];
     self.navigationItem.titleView =Lab;
+//    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 }
 
 #pragma mark - 私有方法
@@ -107,7 +108,7 @@
 - (void)createToolbar
 {
     
-    CGFloat barHeight = 124;
+    CGFloat barHeight = 100;
     CGFloat barY = self.view.frame.size.height - barHeight;
     _toolbar = [[MJPhotoToolbar alloc] init];
     _toolbar.fatherView =self;
@@ -123,11 +124,22 @@
 #pragma mark 创建UIScrollView
 - (void)createScrollView
 {
-    CGRect frame = self.view.frame;
+    CGRect frame;
     frame.origin.x -= kPadding;
     frame.size.width += (2 * kPadding);
     NSLog(@"frame:%@",NSStringFromCGRect(frame));
     
+    
+    if (_currentPhotoIndex==0)
+    {
+        frame = self.view.frame;
+        
+    }
+    else//特地为第一次加载图片点击不是第一张图片向下位移设计
+    {
+        frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-60, self.view.frame.size.width, self.view.frame.size.height);
+       sign = [[NSString alloc] initWithFormat:@"do"];
+    }
 	_photoScrollView = [[UIScrollView alloc] initWithFrame:frame];
 	_photoScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_photoScrollView.pagingEnabled = YES;
@@ -139,6 +151,7 @@
 	[self.view addSubview:_photoScrollView];
     _photoScrollView.contentOffset = CGPointMake(_currentPhotoIndex * frame.size.width, 0);
     
+    firstContentOffSet=CGPointMake(_currentPhotoIndex * frame.size.width, 0);
 }
 
 - (void)setPhotos:(NSArray *)photos
@@ -277,6 +290,9 @@
 
 #pragma mark index这页是否正在显示
 - (BOOL)isShowingPhotoViewAtIndex:(NSUInteger)index {
+    
+    
+    
 	for (MJPhotoView *photoView in _visiblePhotoViews) {
 		if (kPhotoViewIndex(photoView) == index) {
            return YES;
@@ -314,8 +330,21 @@
     [self updateTollbarState];
 //     [_toolbar getData];
 }
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView //滚动结束处理
 {
+    CGPoint nowOffSet = _photoScrollView.contentOffset;
+    if ([sign isEqualToString:@"do"])//特地为第一次加载图片点击不是第一张图片向下位移设计
+    {
+        if(nowOffSet.x-firstContentOffSet.x==320||_photoScrollView.contentOffset.x-firstContentOffSet.x==-320)
+        {
+        _photoScrollView.frame = self.view.frame;
+        sign=@"donot";
+        }
+    }
  [_toolbar getData];
 }
 

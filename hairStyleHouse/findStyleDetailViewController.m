@@ -42,19 +42,23 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 70)];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
     topImage.backgroundColor = [UIColor whiteColor];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
 //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
     
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/2, 50);
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
     oneButton.backgroundColor = [UIColor clearColor];
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
      twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(320/2,self.navigationController.navigationBar.frame.size.height+20, 320/2, 50);
+    twoButton.frame = CGRectMake(320/2,self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
     twoButton.backgroundColor = [UIColor clearColor];
     
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
@@ -132,6 +136,7 @@
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor whiteColor];
+    [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){

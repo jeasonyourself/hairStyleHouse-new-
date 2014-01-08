@@ -25,6 +25,7 @@
     
     wayInforViewController * wayView;
     anwserCenterViewController * anwserCenter;
+    
     inviteViewController * inviteView;
 }
 @end

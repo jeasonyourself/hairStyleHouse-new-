@@ -12,11 +12,19 @@
 #import "LoginView.h"
 #import "loginViewController.h"
 #import "ASIFormDataRequest.h"
+#import "TSLocateView.h"
+#import "scanImageViewController.h"
 @class AllAroundPullView;
-@interface dresserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface dresserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
 {
     UIImageView * topImage;
+    UIButton * rightButton;
+    TSLocateView *locateView;
+    UIButton * oneButton;
+    UIButton * twoButton;
+    UIButton * thirdButton;
+    UIButton * forthButton;
     UITableView *myTableView;
      AllAroundPullView *bottomRefreshView;
     NSMutableArray * dresserArray;
@@ -39,10 +47,16 @@
     loginViewController* loginView;
 ASIFormDataRequest* requestMain;
     NSString* fromFouceLoginCancel;//标记取消登陆后调用哪个借口
+    NSString * cityStr;
+    NSString * lonStr;
+    NSString * latStr;
+    
+    scanImageViewController * scanView;
 }
 @property(nonatomic,strong)        NSString* fromFouceLoginCancel;
--(void)fromFouceCancelBack:(NSString *)_str;
+//-(void)fromFouceCancelBack:(NSString *)_str;
 -(void)selectCell:(NSInteger)_index;
 -(void)didFouce:(NSInteger)_index;
+-(void)selectImage:(NSInteger)_index;
 
 @end

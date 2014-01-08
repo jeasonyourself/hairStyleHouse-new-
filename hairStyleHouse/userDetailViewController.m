@@ -163,7 +163,7 @@
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
     scanView.uid=[infoDic objectForKey:@"uid"];
-    scanView.worksOrsave = @"works";
+    scanView.worksOrsaveorCan = @"works";
     [fatherController pushToViewController:scanView];
 }
 
@@ -172,7 +172,7 @@
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
     scanView.uid=[infoDic objectForKey:@"uid"];
-    scanView.worksOrsave = @"works";
+    scanView.worksOrsaveorCan = @"save";
     [fatherController pushToViewController:scanView];
 }
 

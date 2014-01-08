@@ -23,8 +23,8 @@
 @end
 
 @implementation scanImageViewController
-@synthesize worksOrsave;
-@synthesize selfOrOther;
+@synthesize worksOrsaveorCan;
+//@synthesize selfOrOther;
 @synthesize uid;
 @synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,7 +55,17 @@
     
     NSString *documentDirectory = [paths objectAtIndex:0];
     
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,selfOrOther,worksOrsave]];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    NSString *dbPath;
+    if ([self.uid isEqualToString:appDele.uid])
+    {
+         dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,@"self",worksOrsaveorCan]];
+    }
+   else
+   {
+       dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,@"other",worksOrsaveorCan]];
+
+   }
     db = [FMDatabase databaseWithPath:dbPath] ;
     
     if (![db open]) {
@@ -71,6 +81,7 @@
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor whiteColor];
+    [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
@@ -171,23 +182,33 @@
 
 -(void)refreashNavLab
     {
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        
         UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-        if ([worksOrsave isEqualToString:@"works"])
+        if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
         {
-            if ([selfOrOther isEqualToString:@"self"]) {
+            if ([self.uid isEqualToString:appDele.uid]) {
                 Lab.text = @"我的作品";
-                
             }
             else
             {
-                Lab.text = @"会做作品";
+                Lab.text = @"他的作品";
             }
+            
         }
-        else
+        else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
         {
-            Lab.text = @"我的收藏";
-
+            Lab.text = @"会做作品";
         }
+        
+            else//收藏作品
+            {
+                Lab.text = @"收藏作品";
+            }
+            
+
+        
         
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
@@ -200,9 +221,11 @@
     {
        
         ASIFormDataRequest* request;
-        if ([worksOrsave isEqualToString:@"works"])
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+        if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
         {
-            if ([selfOrOther isEqualToString:@"self"]) {
+            if ([self.uid isEqualToString:appDele.uid]) {
                 request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoList&page=%@",page]]];
             }
             else
@@ -211,7 +234,14 @@
             }
             
         }
-        else
+        else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
+        {
+            
+                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoList&page=%@",page]]];
+            
+            
+        }
+        else//收藏作品
         {
         request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=collectlist&page=%@",page]]];
         }

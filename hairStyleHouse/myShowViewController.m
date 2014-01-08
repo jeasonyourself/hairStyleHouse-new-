@@ -41,7 +41,7 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -49,14 +49,14 @@
     topImage.layer.masksToBounds = YES;//设为NO去试试
     
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
     oneButton.backgroundColor = [UIColor clearColor];
     [oneButton setTitle:@"最新榜" forState:UIControlStateNormal];
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
+    twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
     twoButton.backgroundColor = [UIColor clearColor];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitle:@"评论榜" forState:UIControlStateNormal];
@@ -64,7 +64,7 @@
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
+    thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
     thirdButton.backgroundColor = [UIColor clearColor];
     [thirdButton setTitle:@"排行榜" forState:UIControlStateNormal];
      [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
@@ -145,6 +145,7 @@
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor whiteColor];
+    [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
@@ -957,6 +958,8 @@
 
     [self freashView];
 }
+
+//效率更好，可能要分开三个freashView
 -(void)freashView
 {
     [bottomRefreshView performSelector:@selector(finishedLoading)];

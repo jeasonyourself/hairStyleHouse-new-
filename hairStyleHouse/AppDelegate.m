@@ -37,7 +37,6 @@
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
     self.sinaweibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
-    tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
     
     userInfor = [[NSMutableDictionary alloc] init];
     
@@ -66,7 +65,8 @@
         self.loginType = [[dataArray objectAtIndex:0] objectForKey:@"loginType"];
         
         
-        
+        tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+
             [self.tententOAuth setAccessToken:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_accesstoken"]] ;
             [self.tententOAuth setOpenId:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_openId"]] ;
             [self.tententOAuth setExpirationDate:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_expirationDate"]] ;
@@ -91,14 +91,17 @@
     
     findStyleController=[[findStyleViewController alloc] init];
     dresserController=[[dresserViewController alloc] init];
-    squareController=[[squareViewController alloc] init];
+    squareController=[[squareViewController alloc] init];//老版本
+   
+    anwserCenter= [[anwserCenterViewController alloc] init];//新版本
+    
     mineController=[[mineViewController alloc] init];
     
 //    signStr = [[NSString alloc] init];
     
     firstNav = [[UINavigationController alloc] initWithRootViewController:findStyleController];
     secondNav = [[UINavigationController alloc] initWithRootViewController:dresserController];
-    thirdNav = [[UINavigationController alloc] initWithRootViewController:squareController];
+    thirdNav = [[UINavigationController alloc] initWithRootViewController:anwserCenter];
     forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
 //[firstNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 //    [secondNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];

@@ -32,15 +32,15 @@ UITableView *myTableView;
     
     DemoViewController * demoView;
     
-    NSString * worksOrsave;
+//    NSString * worksOrsaveorCan;
     NSString* uid;
     
     BOOL localData;
     FMDatabase *db;
 
 }
-@property(nonatomic,strong)NSString * worksOrsave;
-@property(nonatomic,strong)NSString * selfOrOther;
+@property(nonatomic,strong)NSString * worksOrsaveorCan;
+//@property(nonatomic,strong)NSString * selfOrOther;
 
 @property(nonatomic,strong)NSString* uid;
 @property(nonatomic,strong)NSString* _hidden;

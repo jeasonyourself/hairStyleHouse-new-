@@ -333,6 +333,17 @@
 		7AF4996A1876B9970066C894 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF499631876B9970066C894 /* FMDatabasePool.m */; };
 		7AF4996B1876B9970066C894 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF499651876B9970066C894 /* FMDatabaseQueue.m */; };
 		7AF4996C1876B9970066C894 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF499671876B9970066C894 /* FMResultSet.m */; };
+		7AF54A2F187D264200C93092 /* bg_023@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A22187D264200C93092 /* bg_023@2x.png */; };
+		7AF54A30187D264200C93092 /* btn_020.disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A23187D264200C93092 /* btn_020.disable@2x.png */; };
+		7AF54A31187D264200C93092 /* btn_020.press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A24187D264200C93092 /* btn_020.press@2x.png */; };
+		7AF54A32187D264200C93092 /* btn_020@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A25187D264200C93092 /* btn_020@2x.png */; };
+		7AF54A33187D264200C93092 /* btn_021.disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A26187D264200C93092 /* btn_021.disable@2x.png */; };
+		7AF54A34187D264200C93092 /* btn_021.press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A27187D264200C93092 /* btn_021.press@2x.png */; };
+		7AF54A35187D264200C93092 /* btn_021@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A28187D264200C93092 /* btn_021@2x.png */; };
+		7AF54A36187D264200C93092 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A29187D264200C93092 /* ProvincesAndCities.plist */; };
+		7AF54A37187D264200C93092 /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF54A2B187D264200C93092 /* TSLocateView.m */; };
+		7AF54A38187D264200C93092 /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A2C187D264200C93092 /* TSLocateView.xib */; };
+		7AF54A39187D264200C93092 /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF54A2E187D264200C93092 /* TSLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -810,6 +821,19 @@
 		7AF499651876B9970066C894 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		7AF499661876B9970066C894 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		7AF499671876B9970066C894 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		7AF54A22187D264200C93092 /* bg_023@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_023@2x.png"; sourceTree = "<group>"; };
+		7AF54A23187D264200C93092 /* btn_020.disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_020.disable@2x.png"; sourceTree = "<group>"; };
+		7AF54A24187D264200C93092 /* btn_020.press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_020.press@2x.png"; sourceTree = "<group>"; };
+		7AF54A25187D264200C93092 /* btn_020@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_020@2x.png"; sourceTree = "<group>"; };
+		7AF54A26187D264200C93092 /* btn_021.disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_021.disable@2x.png"; sourceTree = "<group>"; };
+		7AF54A27187D264200C93092 /* btn_021.press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_021.press@2x.png"; sourceTree = "<group>"; };
+		7AF54A28187D264200C93092 /* btn_021@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_021@2x.png"; sourceTree = "<group>"; };
+		7AF54A29187D264200C93092 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		7AF54A2A187D264200C93092 /* TSLocateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocateView.h; sourceTree = "<group>"; };
+		7AF54A2B187D264200C93092 /* TSLocateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocateView.m; sourceTree = "<group>"; };
+		7AF54A2C187D264200C93092 /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
+		7AF54A2D187D264200C93092 /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
+		7AF54A2E187D264200C93092 /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -899,6 +923,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7AF54A20187D264200C93092 /* Sources */,
 				7AF4995D1876B9970066C894 /* FMDB */,
 				7A4BEC7B18710616005E896C /* 新版个人中心 */,
 				7A5D5C1F186C289400F96949 /* 11-20 */,
@@ -1521,6 +1546,34 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		7AF54A20187D264200C93092 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7AF54A21187D264200C93092 /* img */,
+				7AF54A29187D264200C93092 /* ProvincesAndCities.plist */,
+				7AF54A2A187D264200C93092 /* TSLocateView.h */,
+				7AF54A2B187D264200C93092 /* TSLocateView.m */,
+				7AF54A2C187D264200C93092 /* TSLocateView.xib */,
+				7AF54A2D187D264200C93092 /* TSLocation.h */,
+				7AF54A2E187D264200C93092 /* TSLocation.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7AF54A21187D264200C93092 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				7AF54A22187D264200C93092 /* bg_023@2x.png */,
+				7AF54A23187D264200C93092 /* btn_020.disable@2x.png */,
+				7AF54A24187D264200C93092 /* btn_020.press@2x.png */,
+				7AF54A25187D264200C93092 /* btn_020@2x.png */,
+				7AF54A26187D264200C93092 /* btn_021.disable@2x.png */,
+				7AF54A27187D264200C93092 /* btn_021.press@2x.png */,
+				7AF54A28187D264200C93092 /* btn_021@2x.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1609,6 +1662,7 @@
 				7A4379CA18693CE0007F64DB /* icon_color1.png in Resources */,
 				7A5D5C71186C289400F96949 /* renzhengfaxingshi.png in Resources */,
 				7A5D5CA3186C289400F96949 /* 盘发.png in Resources */,
+				7AF54A32187D264200C93092 /* btn_020@2x.png in Resources */,
 				7A5D5C83186C289400F96949 /* 历史预约.png in Resources */,
 				7A06F10F18613482007624D3 /* other_focused.png in Resources */,
 				7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */,
@@ -1619,6 +1673,7 @@
 				7A4379B818693CE0007F64DB /* hairtype_3_1.png in Resources */,
 				7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */,
 				7A4379B218693CE0007F64DB /* hairtype_2_4.png in Resources */,
+				7AF54A36187D264200C93092 /* ProvincesAndCities.plist in Resources */,
 				7A5D5C80186C289400F96949 /* 全部.png in Resources */,
 				7A4379B318693CE0007F64DB /* hairtype_2_5.png in Resources */,
 				7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */,
@@ -1646,6 +1701,7 @@
 				7A4BEC8A18710616005E896C /* mycenter_gongjuxiang.png in Resources */,
 				7A5D5CA6186C289400F96949 /* 粉丝.png in Resources */,
 				7A4379AC18693CE0007F64DB /* hairtype_1_8.png in Resources */,
+				7AF54A31187D264200C93092 /* btn_020.press@2x.png in Resources */,
 				7AE03D451845D41C00E14EDC /* city.plist in Resources */,
 				7A5D5C91186C289400F96949 /* 推荐.png in Resources */,
 				7A37D69D1844C9E100D9C4D9 /* Images.xcassets in Resources */,
@@ -1668,6 +1724,7 @@
 				7A5D5C86186C289400F96949 /* 同城1.png in Resources */,
 				7A5D5C81186C289400F96949 /* 关注.png in Resources */,
 				7A5D5C94186C289400F96949 /* 最新发型.png in Resources */,
+				7AF54A2F187D264200C93092 /* bg_023@2x.png in Resources */,
 				7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */,
 				7ADC1A15184D6E22004C61BC /* beaspeakDresserViewController.xib in Resources */,
 				7A5D5C8A186C289400F96949 /* 店铺.png in Resources */,
@@ -1697,6 +1754,7 @@
 				7A4379D418693CE0007F64DB /* icon_women1.png in Resources */,
 				7A4379C918693CE0007F64DB /* icon_color.png in Resources */,
 				7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */,
+				7AF54A33187D264200C93092 /* btn_021.disable@2x.png in Resources */,
 				7A4379B418693CE0007F64DB /* hairtype_2_6.png in Resources */,
 				7A5D5C9E186C289400F96949 /* 热点话题.png in Resources */,
 				7A5D5C7D186C289400F96949 /* xunzhang.png in Resources */,
@@ -1719,6 +1777,7 @@
 				7A4BEC9118710616005E896C /* Thumbs.db in Resources */,
 				7A5D5C9D186C289400F96949 /* 烫发.png in Resources */,
 				7A5D5C93186C289400F96949 /* 星级.png in Resources */,
+				7AF54A34187D264200C93092 /* btn_021.press@2x.png in Resources */,
 				7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */,
 				7A4379D618693CE0007F64DB /* 三角.png in Resources */,
 				7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */,
@@ -1743,6 +1802,7 @@
 				7A5D5CA8186C289400F96949 /* 评论.png in Resources */,
 				7A5D5C79186C289400F96949 /* x3.png in Resources */,
 				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
+				7AF54A35187D264200C93092 /* btn_021@2x.png in Resources */,
 				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7A4379B118693CE0007F64DB /* hairtype_2_3.png in Resources */,
 				7A5D5C84186C289400F96949 /* 发型师.png in Resources */,
@@ -1761,6 +1821,7 @@
 				7A4BEC8E18710616005E896C /* mycenter_shezhi.png in Resources */,
 				7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */,
 				7A4379B518693CE0007F64DB /* hairtype_2_7.png in Resources */,
+				7AF54A38187D264200C93092 /* TSLocateView.xib in Resources */,
 				7A5D5C96186C289400F96949 /* 未选中.png in Resources */,
 				7A0191FB18602CC600AFD637 /* SinaWeibo.bundle in Resources */,
 				7A4379AF18693CE0007F64DB /* hairtype_2_10.png in Resources */,
@@ -1769,6 +1830,7 @@
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
 				7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,
+				7AF54A30187D264200C93092 /* btn_020.disable@2x.png in Resources */,
 				7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */,
 				7A5D5C6E186C289400F96949 /* jifen.png in Resources */,
 				7A4379C518693CE0007F64DB /* hairtype_5_1.png in Resources */,
@@ -1799,6 +1861,7 @@
 				7AD7CB12186D5D1E005D1698 /* mustCompleteViewController.m in Sources */,
 				7AD545FB184F2B08009A6B79 /* MJPhotoToolbar.m in Sources */,
 				7A0191FE18602CC600AFD637 /* SinaWeiboRequest.m in Sources */,
+				7AF54A39187D264200C93092 /* TSLocation.m in Sources */,
 				7A37D7181844CA2700D9C4D9 /* SBJsonStreamWriter.m in Sources */,
 				7ADC1A1D184DBDC7004C61BC /* loginViewController.m in Sources */,
 				7AE09DF21858106B007CA28D /* anwserCenterViewController.m in Sources */,
@@ -1904,6 +1967,7 @@
 				7ADDE7B71856E4A900D48208 /* hotTalkCell.m in Sources */,
 				7A0191FD18602CC600AFD637 /* SinaWeiboAuthorizeView.m in Sources */,
 				7AE1B302184C2E2C00F51BB2 /* commentCell.m in Sources */,
+				7AF54A37187D264200C93092 /* TSLocateView.m in Sources */,
 				7AE09DEF1857FFA1007CA28D /* wayDetailCell.m in Sources */,
 				7ADC1A1A184D8C05004C61BC /* dresserCell.m in Sources */,
 				7AE3615A18475580008A107C /* scanCell.m in Sources */,

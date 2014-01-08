@@ -11,6 +11,9 @@
 {
     loginViewController* loginView;
     NSString * first ;
+    
+    CGPoint  firstContentOffSet;
+    NSString * sign;
 }
 // 代理
 @property (nonatomic, weak) id<MJPhotoBrowserDelegate> delegate;

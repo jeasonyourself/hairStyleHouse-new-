@@ -69,7 +69,12 @@
         dic = [[NSDictionary alloc] init];
         sign= [[NSString alloc] init];
         
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor clearColor];
+        UIView * alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+        alphaView.backgroundColor =[UIColor blackColor];
+        alphaView.alpha = 0.6;
+        [self addSubview:alphaView];
+        
         headBack = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
         headBack.backgroundColor = [UIColor whiteColor];
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
@@ -86,25 +91,25 @@
         [self addSubview:cityLable];
         
         
-        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 80, 30, 25)];
+        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 60, 30, 25)];
         messageImage.image = [UIImage imageNamed:@"sixin.png"];
         messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [messageButton addTarget:self action:@selector(messageButtonClick) forControlEvents:UIControlEventTouchUpInside];
         messageButton.frame = messageImage.frame;
         
-        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 80, 30, 25)];
+        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 60, 30, 25)];
         commentImage.image = [UIImage imageNamed:@"comment.png"];
         commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [commentButton addTarget:self action:@selector(commentButtonClick) forControlEvents:UIControlEventTouchUpInside];
         commentButton.frame = commentImage.frame;
         
-        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 80, 30, 25)];
+        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 60, 30, 25)];
         likeImage.image = [UIImage imageNamed:@"like.png"];
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton addTarget:self action:@selector(likeButtonClick) forControlEvents:UIControlEventTouchUpInside];
         likeButton.frame = likeImage.frame;
         
-        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 80, 30, 25)];
+        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 60, 30, 25)];
         shareImage.image = [UIImage imageNamed:@"fenxiang.png"];
         shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];

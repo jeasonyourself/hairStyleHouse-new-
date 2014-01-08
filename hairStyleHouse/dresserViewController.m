@@ -36,29 +36,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-    [topImage setImage:[UIImage imageNamed:@"全部.png"]];
+//    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
+//    [topImage setImage:[UIImage imageNamed:@"全部.png"]];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
+    topImage.backgroundColor = [UIColor whiteColor];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
     
-    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+    oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 80, 40);
     oneButton.backgroundColor = [UIColor clearColor];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(80,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+    twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoButton.frame = CGRectMake(80,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
     twoButton.backgroundColor = [UIColor clearColor];
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+    thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    thirdButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
     thirdButton.backgroundColor = [UIColor clearColor];
     [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * forthButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    forthButton.frame = CGRectMake(240,self.navigationController.navigationBar.frame.size.height+20, 80, 50);
+    forthButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    forthButton.frame = CGRectMake(240,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
     forthButton.backgroundColor = [UIColor clearColor];
     [forthButton addTarget:self action:@selector(forthButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    
+    [oneButton setTitle:@"洗剪吹" forState:UIControlStateNormal];
+    [twoButton setTitle:@"烫发" forState:UIControlStateNormal];
+    [thirdButton setTitle:@"染发" forState:UIControlStateNormal];
+    [forthButton setTitle:@"护理" forState:UIControlStateNormal];
+
     [self.view addSubview:topImage];
     [self.view addSubview:oneButton];
     [self.view addSubview:twoButton];
@@ -87,8 +107,9 @@
     sign = @"all";
     fromFouceLoginCancel=@"all";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -103,26 +124,26 @@
     [myTableView addSubview:bottomRefreshView];
     
     
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if (appDele.uid)
-    {
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    if (appDele.uid)
+//    {
     [self getData];
-    [self getData1];
-    [self getData2];
-    [self getData3];
-    }
-    else
-    {
-        [self getData];
-        [self getData1];
-        [self getData2];
-    }
+//    [self getData1];
+//    [self getData2];
+//    [self getData3];
+//    }
+//    else
+//    {
+//        [self getData];
+//        [self getData1];
+//        [self getData2];
+//    }
 }
 
 -(void)pullLoadMore
 {
-        if ([sign isEqualToString:@"all"])
-        {
+//        if ([sign isEqualToString:@"all"])
+//        {
             NSInteger _pageCount= [pageCount integerValue];
 
            NSInteger _page = [page integerValue];
@@ -138,72 +159,154 @@
                 
             }
 
-        }
-        else if([sign isEqualToString:@"sameCity"])
-        {
-            NSInteger _pageCount1= [pageCount1 integerValue];
-
-            NSInteger _page = [page1 integerValue];
-            if (_page<_pageCount1) {
-                _page++;
-                page1 = [NSString stringWithFormat:@"%d",_page];
-                NSLog(@"page1:%@",page1);
-                [self getData1];
-            }
-            else
-            {
-                [bottomRefreshView performSelector:@selector(finishedLoading)];
-                
-            }
-
-
-        }
-        else if([sign isEqualToString:@"introduce"])
-        {
-            NSInteger _pageCount2= [pageCount2 integerValue];
-
-            NSInteger _page = [page2 integerValue];
-            if (_page<_pageCount2) {
-                _page++;
-                page2 = [NSString stringWithFormat:@"%d",_page];
-                NSLog(@"page:%@",page2);
-                [self getData2];
-            }
-            else
-            {
-                [bottomRefreshView performSelector:@selector(finishedLoading)];
-                
-            }
-
-        }
-        else if([sign isEqualToString:@"fouce"])
-        {
-            NSInteger _pageCount3= [pageCount3 integerValue];
-
-            NSInteger _page = [page3 integerValue];
-            if (_page<_pageCount3) {
-                _page++;
-                page3 = [NSString stringWithFormat:@"%d",_page];
-                NSLog(@"page:%@",page3);
-                [self getData3];
-            }
-            else
-            {
-                [bottomRefreshView performSelector:@selector(finishedLoading)];
-                
-            }
-
-        }
+//        }
+//        else if([sign isEqualToString:@"sameCity"])
+//        {
+//            NSInteger _pageCount1= [pageCount1 integerValue];
+//
+//            NSInteger _page = [page1 integerValue];
+//            if (_page<_pageCount1) {
+//                _page++;
+//                page1 = [NSString stringWithFormat:@"%d",_page];
+//                NSLog(@"page1:%@",page1);
+//                [self getData1];
+//            }
+//            else
+//            {
+//                [bottomRefreshView performSelector:@selector(finishedLoading)];
+//                
+//            }
+//
+//
+//        }
+//        else if([sign isEqualToString:@"introduce"])
+//        {
+//            NSInteger _pageCount2= [pageCount2 integerValue];
+//
+//            NSInteger _page = [page2 integerValue];
+//            if (_page<_pageCount2) {
+//                _page++;
+//                page2 = [NSString stringWithFormat:@"%d",_page];
+//                NSLog(@"page:%@",page2);
+//                [self getData2];
+//            }
+//            else
+//            {
+//                [bottomRefreshView performSelector:@selector(finishedLoading)];
+//                
+//            }
+//
+//        }
+//        else if([sign isEqualToString:@"fouce"])
+//        {
+//            NSInteger _pageCount3= [pageCount3 integerValue];
+//
+//            NSInteger _page = [page3 integerValue];
+//            if (_page<_pageCount3) {
+//                _page++;
+//                page3 = [NSString stringWithFormat:@"%d",_page];
+//                NSLog(@"page:%@",page3);
+//                [self getData3];
+//            }
+//            else
+//            {
+//                [bottomRefreshView performSelector:@selector(finishedLoading)];
+//                
+//            }
+//
+//        }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
   
 }
+-(void)refreashNav
+{
+    rightButton=[[UIButton alloc] init];
+    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton.layer setMasksToBounds:YES];
+    [rightButton.layer setCornerRadius:3.0];
+    [rightButton.layer setBorderWidth:1.0];
+    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    cityStr = [[NSString alloc] init];
+    lonStr = [[NSString alloc] init];
+    latStr = [[NSString alloc] init];
+
+    if (appDele.city) {
+        [rightButton setTitle:appDele.city forState:UIControlStateNormal];
+        cityStr=appDele.city;
+        lonStr=[NSString stringWithFormat:@"%f",appDele.longitude];
+
+        latStr=[NSString stringWithFormat:@"%f",appDele.latitude];
+
+    }
+    else
+    {
+    [rightButton setTitle:@"选择城市" forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"定位失败，请通过右上方按钮自定义城市" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    rightButton.frame = CGRectMake(12,20, 60, 25);
+    UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem=rightButtonItem;
+}
+
+-(void)rightButtonClick
+{
+    rightButton.enabled=NO;
+    oneButton.enabled=NO;
+    twoButton.enabled=NO;
+    thirdButton.enabled=NO;
+    forthButton.enabled=NO;
+
+    locateView = [[TSLocateView alloc] initWithTitle:@"选择城市" delegate:self];
+    [locateView showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    rightButton.enabled=YES;
+    oneButton.enabled=YES;
+    twoButton.enabled=YES;
+    thirdButton.enabled=YES;
+    forthButton.enabled=YES;
+    
+    locateView = (TSLocateView *)actionSheet;
+    TSLocation *location = locateView.locate;
+    NSLog(@"city:%@ lat:%f lon:%f", location.city, location.latitude, location.longitude);
+    //You can uses location to your application.
+    if(buttonIndex == 0) {
+        NSLog(@"Cancel");
+    }else {
+        cityStr =[NSString stringWithFormat:@"%@市",location.city] ;
+        lonStr=[NSString stringWithFormat:@"%f",location.longitude];
+        
+        latStr=[NSString stringWithFormat:@"%f",location.latitude];
+        [rightButton setTitle:cityStr forState:UIControlStateNormal];
+        
+            if (dresserArray!=nil) {
+                [dresserArray removeAllObjects];
+            }
+        page=@"1";
+        [self getData];
+        NSLog(@"Select");
+    }
+}
 
 -(void)oneButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"全部.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 //    [requestMain clearDelegatesAndCancel];
     sign =@"all";
     fromFouceLoginCancel=@"all";
@@ -215,7 +318,10 @@
 }
 -(void)twoButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"同城1.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 //    [requestMain clearDelegatesAndCancel];
 
     sign =@"sameCity";
@@ -228,7 +334,13 @@
 }
 -(void)thirdButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"推荐.png"]];
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]forState:UIControlStateNormal];
+    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
+//    [topImage setImage:[UIImage imageNamed:@"推荐.png"]];
 //    [requestMain clearDelegatesAndCancel];
 
     sign =@"introduce";
@@ -242,53 +354,56 @@
 }
 -(void)forthButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"4关注.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [forthButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 //    [requestMain clearDelegatesAndCancel];
 
     sign =@"fouce";
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-
-    if (appDele.uid)
-    {
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//
+//    if (appDele.uid)
+//    {
         [myTableView reloadData];
 
-    }
-    else
-    {
-        loginView=nil;
-        loginView=[[loginViewController alloc] init];
-        loginView._hidden=@"yes";
-        loginView.dresserFatherController =self;
-        loginView._backsign = fromFouceLoginCancel;
-        loginView.view.frame=self.view.bounds;
-        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
-        //        loginView.userInteractionEnabled=YES;
-        //        [self.view addSubview:loginView];
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        
-        [appDele pushToViewController:loginView ];
-        
-    }
+//    }
+//    else
+//    {
+//        loginView=nil;
+//        loginView=[[loginViewController alloc] init];
+//        loginView._hidden=@"yes";
+//        loginView.dresserFatherController =self;
+//        loginView._backsign = fromFouceLoginCancel;
+//        loginView.view.frame=self.view.bounds;
+//        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
+//        //        loginView.userInteractionEnabled=YES;
+//        //        [self.view addSubview:loginView];
+//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//        
+//        [appDele pushToViewController:loginView ];
+//        
+//    }
 
 //    page3=@"1";
 ////    [dresserArray3 removeAllObjects];
 //    [self getData3];
     
 }
--(void)fromFouceCancelBack:(NSString *)_str
-{
-    
-    if ([fromFouceLoginCancel isEqualToString:@"all"]) {
-        [self oneButtonClick];
-    }
-    else if ([fromFouceLoginCancel isEqualToString:@"sameCity"])
-    {
-        [self twoButtonClick];
-    }
-    else if ([fromFouceLoginCancel isEqualToString:@"introduce"])
-    {
-        [self thirdButtonClick];
-    }
+//-(void)fromFouceCancelBack:(NSString *)_str
+//{
+//    
+//    if ([fromFouceLoginCancel isEqualToString:@"all"]) {
+//        [self oneButtonClick];
+//    }
+//    else if ([fromFouceLoginCancel isEqualToString:@"sameCity"])
+//    {
+//        [self twoButtonClick];
+//    }
+//    else if ([fromFouceLoginCancel isEqualToString:@"introduce"])
+//    {
+//        [self thirdButtonClick];
+//    }
 //    NSLog(@"fromFouceLoginCancel:%@",fromFouceLoginCancel);
 //    sign=_str;
 //    page=@"1";
@@ -311,143 +426,139 @@
 //    }
     
    
-}
+//}
 
--(void)getDataback
-{
-    [dresserArray removeAllObjects];
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    //    if (appDele.uid) {
-    
-    if ([fromFouceLoginCancel isEqualToString:@"all"])
-    {
-        //            page=@"2";
-        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=allstylists&page=%@",page]]];
-    }
-    else if([fromFouceLoginCancel isEqualToString:@"sameCity"])
-    {
-        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=citystylists&page=%@",page]]];
-        [requestMain setPostValue:appDele.city forKey:@"city"];
-        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ]forKey:@"lng"];
-        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
-    }
-    else if([fromFouceLoginCancel isEqualToString:@"introduce"])
-    {
-        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=recomstylists&page=%@",page]]];
-    }
-    requestMain.delegate=self;
-    requestMain.tag=1;
-    
-    if (appDele.uid) {
-        [requestMain setPostValue:appDele.uid forKey:@"uid"];
-    }
-    else
-    {
-        
-    }
-    [requestMain startAsynchronous];
-    //    }
-    
-}
-
--(void)getDataback2
-{
-    [self getData3];
-//    page=@"1";
+//-(void)getDataback
+//{
 //    [dresserArray removeAllObjects];
-//    page1=@"1";
-//    [dresserArray1 removeAllObjects];
-//    page2=@"1";
-//    [dresserArray2 removeAllObjects];
-//    page3=@"1";
-//    [dresserArray3 removeAllObjects];
-//    [self getData];
-}
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    //    if (appDele.uid) {
+//    
+//    if ([fromFouceLoginCancel isEqualToString:@"all"])
+//    {
+//        //            page=@"2";
+//        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=allstylists&page=%@",page]]];
+//    }
+//    else if([fromFouceLoginCancel isEqualToString:@"sameCity"])
+//    {
+//        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=citystylists&page=%@",page]]];
+//        [requestMain setPostValue:appDele.city forKey:@"city"];
+//        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ]forKey:@"lng"];
+//        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
+//    }
+//    else if([fromFouceLoginCancel isEqualToString:@"introduce"])
+//    {
+//        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=recomstylists&page=%@",page]]];
+//    }
+//    requestMain.delegate=self;
+//    requestMain.tag=1;
+//    
+//    if (appDele.uid) {
+//        [requestMain setPostValue:appDele.uid forKey:@"uid"];
+//    }
+//    else
+//    {
+//        
+//    }
+//    [requestMain startAsynchronous];
+//    //    }
+//    
+//}
+
+//-(void)getDataback2
+//{
+//    [self getData3];
+////    page=@"1";
+////    [dresserArray removeAllObjects];
+////    page1=@"1";
+////    [dresserArray1 removeAllObjects];
+////    page2=@"1";
+////    [dresserArray2 removeAllObjects];
+////    page3=@"1";
+////    [dresserArray3 removeAllObjects];
+////    [self getData];
+//}
 
 -(void)getData
 {
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=allstylists&page=%@",page]]];
+        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Reserve&a=check_prices&page=%@",page]]];
         requestMain.delegate=self;
         requestMain.tag=100;
-        
-        if (appDele.uid) {
-            [requestMain setPostValue:appDele.uid forKey:@"uid"];
-        }
-        else
-        {
-            
-        }
+    
+        [requestMain setPostValue:cityStr forKey:@"city"];
+        [requestMain setPostValue:lonStr forKey:@"lng"];
+        [requestMain setPostValue:latStr forKey:@"lat"];
         [requestMain startAsynchronous];
   
 }
 
--(void)getData1
-{
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    //    if (appDele.uid) {
-            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=citystylists&page=%@",page1]]];
-        [requestMain setPostValue:appDele.city forKey:@"city"];
-        NSLog(@"city:%@",appDele.city);
-        
-        NSLog(@"%f",appDele.longitude);
-        NSLog(@"%f",appDele.latitude);
-        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ]forKey:@"lng"];
-        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
-        requestMain.delegate=self;
-        requestMain.tag=101;
-        
-        if (appDele.uid) {
-            [requestMain setPostValue:appDele.uid forKey:@"uid"];
-        }
-        else
-        {
-            
-        }
-        [requestMain startAsynchronous];
-    
-}
+//-(void)getData1
+//{
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    //    if (appDele.uid) {
+//            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=citystylists&page=%@",page1]]];
+//        [requestMain setPostValue:appDele.city forKey:@"city"];
+//        NSLog(@"city:%@",appDele.city);
+//        
+//        NSLog(@"%f",appDele.longitude);
+//        NSLog(@"%f",appDele.latitude);
+//        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ]forKey:@"lng"];
+//        [requestMain setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
+//        requestMain.delegate=self;
+//        requestMain.tag=101;
+//        
+//        if (appDele.uid) {
+//            [requestMain setPostValue:appDele.uid forKey:@"uid"];
+//        }
+//        else
+//        {
+//            
+//        }
+//        [requestMain startAsynchronous];
+//    
+//}
 
--(void)getData2
-{
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=recomstylists&page=%@",page2]]];
-        requestMain.delegate=self;
-        requestMain.tag=102;
-        
-        if (appDele.uid) {
-            [requestMain setPostValue:appDele.uid forKey:@"uid"];
-        }
-        else
-        {
-            
-        }
-        [requestMain startAsynchronous];
-    
-}
+//-(void)getData2
+//{
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=recomstylists&page=%@",page2]]];
+//        requestMain.delegate=self;
+//        requestMain.tag=102;
+//        
+//        if (appDele.uid) {
+//            [requestMain setPostValue:appDele.uid forKey:@"uid"];
+//        }
+//        else
+//        {
+//            
+//        }
+//        [requestMain startAsynchronous];
+//    
+//}
 
--(void)getData3
-{
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-   
-        NSLog(@"appDele.uid:%@",appDele.uid);
-        
-      
-            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=followstylists&page=%@",page3]]];
-            requestMain.delegate=self;
-            requestMain.tag=103;
-            
-            if (appDele.uid)
-            {
-                [requestMain setPostValue:appDele.uid forKey:@"uid"];
-            }
-            else
-            {
-                
-            }
-            [requestMain startAsynchronous];
-}
+//-(void)getData3
+//{
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//   
+//        NSLog(@"appDele.uid:%@",appDele.uid);
+//        
+//      
+//            requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Hairstylist&a=followstylists&page=%@",page3]]];
+//            requestMain.delegate=self;
+//            requestMain.tag=103;
+//            
+//            if (appDele.uid)
+//            {
+//                [requestMain setPostValue:appDele.uid forKey:@"uid"];
+//            }
+//            else
+//            {
+//                
+//            }
+//            [requestMain startAsynchronous];
+//}
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
@@ -465,122 +576,132 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"发型师dic:%@",dic);
         
+        
         pageCount = [dic objectForKey:@"page_count"];
         
-            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
+            if ([[dic objectForKey:@"price_list"] isKindOfClass:[NSString class]])
             {
                 
             }
-            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
+            else if ([[dic objectForKey:@"price_list"] isKindOfClass:[NSArray class]])
             {
-                arr= [dic objectForKey:@"user_info"];
+                arr= [dic objectForKey:@"price_list"];
                 [dresserArray addObjectsFromArray:arr];
                 NSLog(@"dresser.count:%d",dresserArray.count);
+                
+               /* if ([[[dresserArray objectAtIndex:0] objectForKey:@"works_list"] isKindOfClass:[NSString class]])
+                {
+                    
+                }
+                else if ([[[dresserArray objectAtIndex:0] objectForKey:@"works_list"] isKindOfClass:[NSArray class]])
+                {
+                    
+                }*/
             
             }
         [self freashView];
 
         }
-    else if (request.tag==101)
-    {
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-        
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"发型师dic:%@",dic);
-        
-        pageCount1 = [dic objectForKey:@"page_count"];
-        
-            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
-            {
-                
-            }
-            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
-            {
-                arr= [dic objectForKey:@"user_info"];
-                [dresserArray1 addObjectsFromArray:arr];
-                NSLog(@"dresser.count:%d",dresserArray1.count);
-                
-            }
-[self freashView];
-        
-    }
-    else if (request.tag==102)
-    {
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-        
-        NSLog(@"%@",jsonString);
-
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"发型师dic:%@",dic);
-        
-        pageCount2 = [dic objectForKey:@"page_count"];
-    
-            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
-            {
-                
-            }
-            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
-            {
-                arr= [dic objectForKey:@"user_info"];
-                [dresserArray2 addObjectsFromArray:arr];
-                NSLog(@"dresser.count:%d",dresserArray2.count);
-                
-            }
-[self freashView];
-    }
-    else if (request.tag==103)
-    {
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-        
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"发型师dic:%@",dic);
-        
-        pageCount3 = [dic objectForKey:@"page_count"];
-        
-            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
-            {
-                
-            }
-            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
-            {
-                arr= [dic objectForKey:@"user_info"];
-                [dresserArray3 addObjectsFromArray:arr];
-                NSLog(@"dresser.count:%d",dresserArray3.count);
-                
-            }
-        [self freashView];
-
-    }
-    if (request.tag==2) {
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"是否关注成功dic:%@",dic);
-        
-        [myTableView reloadData];
-        //            if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
-        //            {
-        //
-        //            }
-        //            else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
-        //            {
-        //                dresserArray = [dic objectForKey:@"message_list"];
-        //
-        //            }
-        
-//        [self getData];
-    }
+//    else if (request.tag==101)
+//    {
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//        
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"发型师dic:%@",dic);
+//        
+//        pageCount1 = [dic objectForKey:@"page_count"];
+//        
+//            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
+//            {
+//                
+//            }
+//            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
+//            {
+//                arr= [dic objectForKey:@"user_info"];
+//                [dresserArray1 addObjectsFromArray:arr];
+//                NSLog(@"dresser.count:%d",dresserArray1.count);
+//                
+//            }
+//[self freashView];
+//        
+//    }
+//    else if (request.tag==102)
+//    {
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//        
+//        NSLog(@"%@",jsonString);
+//
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"发型师dic:%@",dic);
+//        
+//        pageCount2 = [dic objectForKey:@"page_count"];
+//    
+//            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
+//            {
+//                
+//            }
+//            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
+//            {
+//                arr= [dic objectForKey:@"user_info"];
+//                [dresserArray2 addObjectsFromArray:arr];
+//                NSLog(@"dresser.count:%d",dresserArray2.count);
+//                
+//            }
+//[self freashView];
+//    }
+//    else if (request.tag==103)
+//    {
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//        
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"发型师dic:%@",dic);
+//        
+//        pageCount3 = [dic objectForKey:@"page_count"];
+//        
+//            if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
+//            {
+//                
+//            }
+//            else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
+//            {
+//                arr= [dic objectForKey:@"user_info"];
+//                [dresserArray3 addObjectsFromArray:arr];
+//                NSLog(@"dresser.count:%d",dresserArray3.count);
+//                
+//            }
+//        [self freashView];
+//
+//    }
+//    if (request.tag==2) {
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"是否关注成功dic:%@",dic);
+//        
+//        [myTableView reloadData];
+//        //            if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
+//        //            {
+//        //
+//        //            }
+//        //            else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
+//        //            {
+//        //                dresserArray = [dic objectForKey:@"message_list"];
+//        //
+//        //            }
+//        
+////        [self getData];
+//    }
     
 }
 -(void)freashView
@@ -595,26 +716,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([sign isEqualToString:@"all"])
-    {
-        return dresserArray.count;
-
-    }
-    else if([sign isEqualToString:@"sameCity"])
-    {
-        return dresserArray1.count;
-
-    }
-    else if([sign isEqualToString:@"introduce"])
-    {
-        return dresserArray2.count;
-
-    }
-    else if([sign isEqualToString:@"fouce"])
-    {
-        return dresserArray3.count;
-
-    }
+//    if ([sign isEqualToString:@"all"])
+//    {
+//        return dresserArray.count;
+//
+//    }
+//    else if([sign isEqualToString:@"sameCity"])
+//    {
+//        return dresserArray1.count;
+//
+//    }
+//    else if([sign isEqualToString:@"introduce"])
+//    {
+//        return dresserArray2.count;
+//
+//    }
+//    else if([sign isEqualToString:@"fouce"])
+//    {
+//        return dresserArray3.count;
+//
+//    }
     return dresserArray.count;
 
 }
@@ -622,38 +743,31 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *_content;
-    if ([sign isEqualToString:@"all"])
-    {
+   
         _content =[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
         
-    }
-    else if([sign isEqualToString:@"sameCity"])
-    {
-        _content =[[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
-        
-    }
-    else if([sign isEqualToString:@"introduce"])
-    {
-        _content =[[dresserArray2 objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
-        
-    }
-    else if([sign isEqualToString:@"fouce"])
-    {
-        _content =[[dresserArray3 objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
-        
-    }
-
+   
     UIFont *font = [UIFont systemFontOfSize:12.0];
     //设置一个行高上限
     CGSize size = CGSizeMake(260,200);
     //计算实际frame大小，并将label的frame变成实际大小
     CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-    if ([_content isEqualToString:@""]) {
-        return   80;
+    
+    if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSString class]])
+    {
+        return   100;
+    }
+    else if (![_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSString class]])
+    {
+        return 100+labelsize.height;
+    }
+    else if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSArray class]])
+    {
+        return 80+120;
     }
     else
     {
-        return 80+labelsize.height;
+    return 80+labelsize.height+120;
     }
     
 }
@@ -668,26 +782,26 @@
     }
     
     NSInteger row =[indexPath row];
-    if ([sign isEqualToString:@"all"])
-    {
-        [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+//    if ([sign isEqualToString:@"all"])
+//    {
+        [cell setCell:dresserArray  andIndex:row andSign:sign];
         
-    }
-    else if([sign isEqualToString:@"sameCity"])
-    {
-        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
-        
-    }
-    else if([sign isEqualToString:@"introduce"])
-    {
-        [cell setCell:[dresserArray2 objectAtIndex:row] andIndex:row];
-        
-    }
-    else if([sign isEqualToString:@"fouce"])
-    {
-        [cell setCell:[dresserArray3 objectAtIndex:row] andIndex:row];
-        
-    }
+//    }
+//    else if([sign isEqualToString:@"sameCity"])
+//    {
+//        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+//        
+//    }
+//    else if([sign isEqualToString:@"introduce"])
+//    {
+//        [cell setCell:[dresserArray2 objectAtIndex:row] andIndex:row];
+//        
+//    }
+//    else if([sign isEqualToString:@"fouce"])
+//    {
+//        [cell setCell:[dresserArray3 objectAtIndex:row] andIndex:row];
+//        
+//    }
     
     return cell;
 }
@@ -702,6 +816,14 @@
 
 -(void)selectCell:(NSInteger)_index
 {
+    
+    rightButton.enabled=YES;
+    oneButton.enabled=YES;
+    twoButton.enabled=YES;
+    thirdButton.enabled=YES;
+    forthButton.enabled=YES;
+    [locateView removeFromSuperview];
+
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (!appDele.uid)
     {
@@ -711,7 +833,7 @@
         loginView._backsign = fromFouceLoginCancel;
         loginView._hidden=@"yes";
         loginView.view.frame=self.view.bounds;
-        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
+//        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
         //        loginView.userInteractionEnabled=YES;
         //        [self.view addSubview:loginView];
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -724,22 +846,22 @@
         dreserView =nil;
         dreserView =[[dresserInforViewController alloc] init];
         dreserView._hidden=@"yes";
-        if ([sign isEqualToString:@"all"])
-        {
+//        if ([sign isEqualToString:@"all"])
+//        {
             dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"uid"];
-        }
-        else if([sign isEqualToString:@"sameCity"])
-        {
-            dreserView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"uid"];
-        }
-        else if([sign isEqualToString:@"introduce"])
-        {
-            dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"uid"];
-        }
-        else if([sign isEqualToString:@"fouce"])
-        {
-            dreserView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"];
-        }
+//        }
+//        else if([sign isEqualToString:@"sameCity"])
+//        {
+//            dreserView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"uid"];
+//        }
+//        else if([sign isEqualToString:@"introduce"])
+//        {
+//            dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"uid"];
+//        }
+//        else if([sign isEqualToString:@"fouce"])
+//        {
+//            dreserView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"];
+//        }
         NSLog(@"%@", dreserView.uid);
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         
@@ -759,7 +881,7 @@
         loginView.dresserFatherController =self;
         loginView._backsign = fromFouceLoginCancel;
         loginView.view.frame=self.view.bounds;
-        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
+//        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
         //        loginView.userInteractionEnabled=YES;
         //        [self.view addSubview:loginView];
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -769,151 +891,166 @@
     }
     else
     {
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]]];
-        request.delegate=self;
-        request.tag=2;
+        //新版跳转到预约发型师界面
+        
+//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]]];
+//        request.delegate=self;
+//        request.tag=2;
        
         
-        if ([sign isEqualToString:@"all"])
-        {
-            [request setPostValue:appDele.uid forKey:@"uid"];
-            [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
-            [request setPostValue:appDele.type forKey:@"type"];
-            [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
-            if ([[[dresserArray objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
-                [request setPostValue:@"0" forKey:@"status"];
-            }
-            else
-            {
-                [request setPostValue:@"1" forKey:@"status"];
-            }
-            
-            if ([[[dresserArray objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
-            {
-                if ([[dresserArray objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray objectAtIndex:_index ]];
-                    [dict setObject:@"0" forKey:@"isconcerns"];
-                    [dresserArray replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-            else
-            {
-                if ([[dresserArray objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray objectAtIndex:_index ]];
-                    [dict setObject:@"1" forKey:@"isconcerns"];
-                    [dresserArray replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-            
-        }
-        else if([sign isEqualToString:@"sameCity"])
-        {
-            [request setPostValue:appDele.uid forKey:@"uid"];
-            [request setPostValue:[[dresserArray1 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
-            [request setPostValue:appDele.type forKey:@"type"];
-            [request setPostValue:[[dresserArray1 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
-            if ([[[dresserArray1 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
-                [request setPostValue:@"0" forKey:@"status"];
-            }
-            else
-            {
-                [request setPostValue:@"1" forKey:@"status"];
-            }
-
-            if ([[[dresserArray1 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
-            {
-                if ([[dresserArray1 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray1 objectAtIndex:_index ]];
-                    [dict setObject:@"0" forKey:@"isconcerns"];
-                    [dresserArray1 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-            else
-            {
-                if ([[dresserArray1 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray1 objectAtIndex:_index ]];
-                    [dict setObject:@"1" forKey:@"isconcerns"];
-                    [dresserArray1 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-
-        }
-        else if([sign isEqualToString:@"introduce"])
-        {
-            [request setPostValue:appDele.uid forKey:@"uid"];
-            [request setPostValue:[[dresserArray2 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
-            [request setPostValue:appDele.type forKey:@"type"];
-            [request setPostValue:[[dresserArray2 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
-            if ([[[dresserArray2 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
-                [request setPostValue:@"0" forKey:@"status"];
-            }
-            else
-            {
-                [request setPostValue:@"1" forKey:@"status"];
-            }
-
-            if ([[[dresserArray2 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
-            {
-                if ([[dresserArray2 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray2 objectAtIndex:_index ]];
-                    [dict setObject:@"0" forKey:@"isconcerns"];
-                    [dresserArray2 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-            else
-            {
-                if ([[dresserArray2 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray2 objectAtIndex:_index ]];
-                    [dict setObject:@"1" forKey:@"isconcerns"];
-                    [dresserArray2 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-
-        }
-        else if([sign isEqualToString:@"fouce"])
-        {
-            [request setPostValue:appDele.uid forKey:@"uid"];
-            [request setPostValue:[[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
-            [request setPostValue:appDele.type forKey:@"type"];
-            [request setPostValue:[[dresserArray3 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
-            if ([[[dresserArray3 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
-                [request setPostValue:@"0" forKey:@"status"];
-            }
-            else
-            {
-                [request setPostValue:@"1" forKey:@"status"];
-            }
-
-            if ([[[dresserArray3 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
-            {
-                if ([[dresserArray3 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray3 objectAtIndex:_index ]];
-                    [dict setObject:@"0" forKey:@"isconcerns"];
-                    [dresserArray3 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-            else
-            {
-                if ([[dresserArray3 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
-                {
-                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray3 objectAtIndex:_index ]];
-                    [dict setObject:@"1" forKey:@"isconcerns"];
-                    [dresserArray3 replaceObjectAtIndex:_index withObject:dict];
-                }
-            }
-
-        }
-        
-        [request startAsynchronous];
+//        if ([sign isEqualToString:@"all"])
+//        {
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
+//            [request setPostValue:appDele.type forKey:@"type"];
+//            [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
+//            if ([[[dresserArray objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
+//                [request setPostValue:@"0" forKey:@"status"];
+//            }
+//            else
+//            {
+//                [request setPostValue:@"1" forKey:@"status"];
+//            }
+//            
+//            if ([[[dresserArray objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
+//            {
+//                if ([[dresserArray objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray objectAtIndex:_index ]];
+//                    [dict setObject:@"0" forKey:@"isconcerns"];
+//                    [dresserArray replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//            else
+//            {
+//                if ([[dresserArray objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray objectAtIndex:_index ]];
+//                    [dict setObject:@"1" forKey:@"isconcerns"];
+//                    [dresserArray replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//            
+//        }
+//        else if([sign isEqualToString:@"sameCity"])
+//        {
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:[[dresserArray1 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
+//            [request setPostValue:appDele.type forKey:@"type"];
+//            [request setPostValue:[[dresserArray1 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
+//            if ([[[dresserArray1 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
+//                [request setPostValue:@"0" forKey:@"status"];
+//            }
+//            else
+//            {
+//                [request setPostValue:@"1" forKey:@"status"];
+//            }
+//
+//            if ([[[dresserArray1 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
+//            {
+//                if ([[dresserArray1 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray1 objectAtIndex:_index ]];
+//                    [dict setObject:@"0" forKey:@"isconcerns"];
+//                    [dresserArray1 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//            else
+//            {
+//                if ([[dresserArray1 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray1 objectAtIndex:_index ]];
+//                    [dict setObject:@"1" forKey:@"isconcerns"];
+//                    [dresserArray1 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//
+//        }
+//        else if([sign isEqualToString:@"introduce"])
+//        {
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:[[dresserArray2 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
+//            [request setPostValue:appDele.type forKey:@"type"];
+//            [request setPostValue:[[dresserArray2 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
+//            if ([[[dresserArray2 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
+//                [request setPostValue:@"0" forKey:@"status"];
+//            }
+//            else
+//            {
+//                [request setPostValue:@"1" forKey:@"status"];
+//            }
+//
+//            if ([[[dresserArray2 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
+//            {
+//                if ([[dresserArray2 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray2 objectAtIndex:_index ]];
+//                    [dict setObject:@"0" forKey:@"isconcerns"];
+//                    [dresserArray2 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//            else
+//            {
+//                if ([[dresserArray2 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray2 objectAtIndex:_index ]];
+//                    [dict setObject:@"1" forKey:@"isconcerns"];
+//                    [dresserArray2 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//
+//        }
+//        else if([sign isEqualToString:@"fouce"])
+//        {
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:[[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
+//            [request setPostValue:appDele.type forKey:@"type"];
+//            [request setPostValue:[[dresserArray3 objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
+//            if ([[[dresserArray3 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {
+//                [request setPostValue:@"0" forKey:@"status"];
+//            }
+//            else
+//            {
+//                [request setPostValue:@"1" forKey:@"status"];
+//            }
+//
+//            if ([[[dresserArray3 objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"])
+//            {
+//                if ([[dresserArray3 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray3 objectAtIndex:_index ]];
+//                    [dict setObject:@"0" forKey:@"isconcerns"];
+//                    [dresserArray3 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//            else
+//            {
+//                if ([[dresserArray3 objectAtIndex:_index ]isKindOfClass:[NSDictionary class]])
+//                {
+//                    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[dresserArray3 objectAtIndex:_index ]];
+//                    [dict setObject:@"1" forKey:@"isconcerns"];
+//                    [dresserArray3 replaceObjectAtIndex:_index withObject:dict];
+//                }
+//            }
+//
+//        }
+//        
+//        [request startAsynchronous];
     }
+}
+
+-(void)selectImage:(NSInteger)_index
+{
+    scanView=nil;
+    scanView = [[scanImageViewController alloc] init];
+    scanView.uid=[[dresserArray objectAtIndex:_index] objectForKey:@"uid"];
+    scanView._hidden = @"yes";
+
+    scanView.worksOrsaveorCan = @"works";
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    [appDele pushToViewController:scanView ];
 }
 - (void)didReceiveMemoryWarning
 {

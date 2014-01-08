@@ -221,8 +221,8 @@
     scanView = [[scanImageViewController alloc] init];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     scanView.uid = appDele.uid;
-    scanView.worksOrsave = @"works";
-    scanView.selfOrOther = @"self";
+    scanView.worksOrsaveorCan = @"works";
+//    scanView.selfOrOther = @"self";
     scanView._hidden = @"yes";
     [fatherController needAppdelegatePushToViewController:scanView];
 }
@@ -231,10 +231,10 @@
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView._hidden = @"yes";
+//    scanView._hidden = @"yes";
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     scanView.uid = appDele.uid;
-    scanView.worksOrsave = @"save";
+    scanView.worksOrsaveorCan = @"save";
 //    [fatherController needAppdelegatePushToViewController:scanView];
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     

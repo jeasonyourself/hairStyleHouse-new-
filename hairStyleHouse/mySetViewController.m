@@ -29,7 +29,7 @@
     
     
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-    Lab.text = @"发型工具箱";
+    Lab.text = @"设置";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];
