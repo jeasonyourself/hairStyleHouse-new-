@@ -33,6 +33,7 @@
 
     CLLocationManager *locationManager;
     findStyleDetailViewController * findStyleDetail;
+    BOOL showLocalSuccess;
 }
 
 @property(nonatomic,strong)IBOutlet UIButton * firstButton;

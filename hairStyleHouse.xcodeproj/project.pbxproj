@@ -257,6 +257,8 @@
 		7AD87DFC185024A60016A329 /* hairStyleCategoryScanImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */; };
 		7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0018502CA10016A329 /* timeline_image_loading.png */; };
 		7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD87E0118502CA10016A329 /* timeline_image_loading@2x.png */; };
+		7AD88C27187E3FB000FBC04E /* addBeaspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD88C25187E3FB000FBC04E /* addBeaspeakViewController.m */; };
+		7AD88C28187E3FB000FBC04E /* addBeaspeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AD88C26187E3FB000FBC04E /* addBeaspeakViewController.xib */; };
 		7ADC1A14184D6E22004C61BC /* beaspeakDresserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */; };
 		7ADC1A15184D6E22004C61BC /* beaspeakDresserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */; };
 		7ADC1A1A184D8C05004C61BC /* dresserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC1A19184D8C05004C61BC /* dresserCell.m */; };
@@ -688,6 +690,9 @@
 		7AD87DFB185024A60016A329 /* hairStyleCategoryScanImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hairStyleCategoryScanImageCell.m; sourceTree = "<group>"; };
 		7AD87E0018502CA10016A329 /* timeline_image_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_image_loading.png; sourceTree = "<group>"; };
 		7AD87E0118502CA10016A329 /* timeline_image_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline_image_loading@2x.png"; sourceTree = "<group>"; };
+		7AD88C24187E3FB000FBC04E /* addBeaspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addBeaspeakViewController.h; sourceTree = "<group>"; };
+		7AD88C25187E3FB000FBC04E /* addBeaspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addBeaspeakViewController.m; sourceTree = "<group>"; };
+		7AD88C26187E3FB000FBC04E /* addBeaspeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addBeaspeakViewController.xib; sourceTree = "<group>"; };
 		7ADC1A11184D6E22004C61BC /* beaspeakDresserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = beaspeakDresserViewController.h; sourceTree = "<group>"; };
 		7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = beaspeakDresserViewController.m; sourceTree = "<group>"; };
 		7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = beaspeakDresserViewController.xib; sourceTree = "<group>"; };
@@ -997,6 +1002,9 @@
 				7A37D72E1844CA6200D9C4D9 /* dresserViewController.m */,
 				7ADC1A18184D8C05004C61BC /* dresserCell.h */,
 				7ADC1A19184D8C05004C61BC /* dresserCell.m */,
+				7AD88C24187E3FB000FBC04E /* addBeaspeakViewController.h */,
+				7AD88C25187E3FB000FBC04E /* addBeaspeakViewController.m */,
+				7AD88C26187E3FB000FBC04E /* addBeaspeakViewController.xib */,
 				7A37D7301844CA7300D9C4D9 /* squareViewController.h */,
 				7A37D7311844CA7300D9C4D9 /* squareViewController.m */,
 				7AE7F531185589F800CAB2C6 /* myShowViewController.h */,
@@ -1658,6 +1666,7 @@
 				7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */,
 				7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */,
 				7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */,
+				7AD88C28187E3FB000FBC04E /* addBeaspeakViewController.xib in Resources */,
 				7A4BEC93187132B1005E896C /* zhaofaxing1.png in Resources */,
 				7A4379CA18693CE0007F64DB /* icon_color1.png in Resources */,
 				7A5D5C71186C289400F96949 /* renzhengfaxingshi.png in Resources */,
@@ -1911,6 +1920,7 @@
 				7AD5460A184F2B08009A6B79 /* UIImage+WebP.m in Sources */,
 				7ADDE7B11856B2D500D48208 /* sameCityViewController.m in Sources */,
 				7AE03D481845D41C00E14EDC /* HZLocation.m in Sources */,
+				7AD88C27187E3FB000FBC04E /* addBeaspeakViewController.m in Sources */,
 				7AE03D6F18461C0200E14EDC /* SlideImageView.m in Sources */,
 				7AD54606184F2B08009A6B79 /* SDWebImagePrefetcher.m in Sources */,
 				7AF4996B1876B9970066C894 /* FMDatabaseQueue.m in Sources */,

@@ -33,6 +33,7 @@
     
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
+    [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];

@@ -892,6 +892,14 @@
     else
     {
         //新版跳转到预约发型师界面
+        addBeaspeakView = nil;
+        addBeaspeakView = [[addBeaspeakViewController alloc] init];
+        addBeaspeakView._hidden=@"yes";
+        addBeaspeakView.inforDic=[dresserArray objectAtIndex:_index];
+
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        
+        [appDele pushToViewController:addBeaspeakView ];
         
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]]];

@@ -11,7 +11,7 @@
 #import "dresserInforViewController.h"
 #import "userInforViewController.h"
 #import "talkViewController.h"
-
+#import "talkViewController.h"
 @interface fansAndFouceAndmassegeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
@@ -26,6 +26,8 @@
     
     dresserInforViewController * dreserView;
     userInforViewController * userView;
+    talkViewController * talkView;
+
 }
 @property (strong,nonatomic)    NSString * fansOrFouceOrMessage;
 @property (strong,nonatomic)    NSString * fansOrFouce;

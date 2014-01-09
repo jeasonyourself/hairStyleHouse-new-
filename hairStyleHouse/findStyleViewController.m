@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
    
-
+    showLocalSuccess=YES;
     self.view.backgroundColor = [UIColor whiteColor];
 
     if (![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
@@ -535,8 +535,12 @@
              [ud setObject:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
              [ud setObject:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"long"];
              [ud setObject:appDele.city forKey:@"city"];
+                if (showLocalSuccess==YES)
+                {
              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:citystring delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
              [alert show];
+                    showLocalSuccess=NO;
+                }
              
              NSLog(@"name:%@\n country:%@\n postalCode:%@\n ISOcountryCode:%@\n ocean:%@\n inlandWater:%@\n locality:%@\n subLocality:%@\n administrativeArea:%@\n subAdministrativeArea:%@\n thoroughfare:%@\n subThoroughfare:%@\n",placemark.name,placemark.country,placemark.postalCode,placemark.ISOcountryCode,placemark.ocean,placemark.inlandWater,placemark.administrativeArea,placemark.subAdministrativeArea,placemark.locality,placemark.subLocality,placemark.thoroughfare,placemark.subThoroughfare);
              
@@ -586,8 +590,12 @@
                 appDele.latitude = [[ud objectForKey:@"lat"] doubleValue];
                 appDele.longitude = [[ud objectForKey:@"long"] doubleValue];
             }
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    if (showLocalSuccess==YES) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        showLocalSuccess=NO;
+    }
+   
     NSLog(@"获取经纬度失败，失败原因：%@", [error description]);
 }
 

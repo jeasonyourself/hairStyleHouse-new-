@@ -14,6 +14,7 @@
 #import "ASIFormDataRequest.h"
 #import "TSLocateView.h"
 #import "scanImageViewController.h"
+#import "addBeaspeakViewController.h"
 @class AllAroundPullView;
 @interface dresserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
@@ -52,6 +53,8 @@ ASIFormDataRequest* requestMain;
     NSString * latStr;
     
     scanImageViewController * scanView;
+    
+    addBeaspeakViewController * addBeaspeakView;
 }
 @property(nonatomic,strong)        NSString* fromFouceLoginCancel;
 //-(void)fromFouceCancelBack:(NSString *)_str;

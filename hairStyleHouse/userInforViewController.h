@@ -21,7 +21,7 @@
 }
 @property(strong,nonatomic)    NSString * uid;
 @property(nonatomic,retain) NSString * _hidden;
--(void)refreashNav:(NSString *)str;
+-(void)refreashNav;
 -(void)pushToViewController:(id)_sen;
 -(void)needAppdelegatePushToViewController:(id)_sen;
 

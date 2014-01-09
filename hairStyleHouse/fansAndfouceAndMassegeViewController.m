@@ -187,6 +187,7 @@
         else
         {
             [request setPostValue:@"1" forKey:@"type"];
+            
         }
         [request startAsynchronous];
     }
@@ -223,7 +224,7 @@
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"粉丝列表dic:%@",dic);
+        NSLog(@"消息表dic:%@",dic);
         if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
         {
             
@@ -284,6 +285,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([fansOrFouceOrMessage isEqualToString:@"massege"]) {
+
+        talkView=nil;
+        talkView = [[talkViewController alloc] init];
+        talkView.uid = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"uid"];
+        [self.navigationController pushViewController:talkView animated:NO];
         
     }
     else

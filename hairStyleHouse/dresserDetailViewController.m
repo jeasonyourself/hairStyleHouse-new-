@@ -205,6 +205,16 @@
         }
     }
 
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    if ([[infoDic objectForKey:@"uid"] isEqualToString:appDele.uid]) {
+        _askButton.enabled=NO;
+    }
+    else
+    {
+        _askButton.enabled=YES;
+
+    }
     
     if ([concerStr isEqualToString:@"1"])
     {
