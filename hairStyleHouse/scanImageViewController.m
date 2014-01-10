@@ -55,17 +55,13 @@
     
     NSString *documentDirectory = [paths objectAtIndex:0];
     
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSString *dbPath;
-    if ([self.uid isEqualToString:appDele.uid])
-    {
-         dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,@"self",worksOrsaveorCan]];
-    }
-   else
-   {
-       dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@MyDatabase.db",uid,@"other",worksOrsaveorCan]];
+   
+       dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@MyDatabase.db",uid,worksOrsaveorCan]];
+        
+        
 
-   }
     db = [FMDatabase databaseWithPath:dbPath] ;
     
     if (![db open]) {
@@ -221,17 +217,13 @@
     {
        
         ASIFormDataRequest* request;
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
-        if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
+        if ([worksOrsaveorCan isEqualToString:@"works"])//原创作品
         {
-            if ([self.uid isEqualToString:appDele.uid]) {
-                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoList&page=%@",page]]];
-            }
-            else
-            {
+            
                 request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=workslist&page=%@",page]]];
-            }
+            
             
         }
         else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
@@ -277,6 +269,11 @@
             NSDictionary* dic=[jsonP objectWithString:jsonString];
             
             pageCount = [dic objectForKey:@"page_count"];
+            if ([worksOrsaveorCan isEqualToString:@"works"]||[worksOrsaveorCan isEqualToString:@"save"])//作品或者收藏返回列表
+            
+            {
+                
+            
             if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
             {
                 
@@ -324,6 +321,61 @@
                             NSLog(@"插入成功");
                         }
                     }
+                }
+              }
+            }
+        
+            else//会做列表返回
+            {
+                    if ([[dic objectForKey:@"willdo_info"] isKindOfClass:[NSString class]])//返回为空
+                    {
+                        
+                    }
+                    else if ([[dic objectForKey:@"willdo_info"] isKindOfClass:[NSArray class]])//有返回
+                    {
+                        arr= [dic objectForKey:@"willdo_info"];
+                        //            [dresserArray addObjectsFromArray:arr];
+                        //            NSLog(@"dresser.count:%d",dresserArray.count);
+                        
+                        //            NSString  *str = [NSString stringWithFormat:@"CREATE TABLE %@%@%@ (Name text, id text, Photo blob)",bcid,scid,sign ]; FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+                        
+                        
+                        
+                        NSString *IdString = [db stringForQuery:@"SELECT Id FROM PersonList WHERE Name = ?",@"0"];
+                        if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+                        {
+                            
+                            
+                        }
+                        else//否则更新本地数据库
+                        {
+                            
+                            
+                            
+                            NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
+                            if (![db executeUpdate:sqlstr])//删除原有数据库
+                            {
+                                NSLog(@"Delete table error!");
+                                
+                            }
+                            [db executeUpdate:@"CREATE TABLE PersonList (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+                            page=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
+                            for (int i = 0; i<arr.count; i++)//重新写入数据库
+                            {
+                                
+                                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
+                                BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],page,data];//插入所在数组位置，id，图片
+                                if (res == NO)
+                                {
+                                    NSLog(@"插入失败");
+                                }
+                                else
+                                {
+                                    NSLog(@"插入成功");
+                                }
+                            }
+                        }
+                    
                 }
             }
             
@@ -457,10 +509,10 @@
         [_activityIndicatorView stopAnimating];
         _activityIndicatorView.hidesWhenStopped = YES;
 
-            [self freashView];
+        [self freashView];
         
         
-    }
+}
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {

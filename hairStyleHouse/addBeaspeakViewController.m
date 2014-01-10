@@ -9,6 +9,7 @@
 #import "addBeaspeakViewController.h"
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
+#import "SBJson.h"
 @interface addBeaspeakViewController ()
 
 @end
@@ -36,9 +37,13 @@
     styleString = [[NSString alloc] init];
     styleString = @"洗剪吹";
     oldPriceString = [[NSString alloc] init];
+    saleString = [[NSString alloc] init];
     newPriceString = [[NSString alloc] init];
     dateString = [[NSString alloc] init];
+    dateString1 = [[NSString alloc] init];
+
     timeString = [[NSString alloc] init];
+    timeDataString= [[NSString alloc] init];
     
     fourButtonArr = [[NSMutableArray alloc ] initWithObjects:_styleOneButton,_styleTwoButton,_styleThirdButton,_styleFourButton, nil];
     
@@ -118,6 +123,7 @@
             _dayOneLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
             _timeOneLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
+             dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
         }
     else if (i==2)
     {
@@ -161,11 +167,15 @@
     NSInteger oldInt= [[array objectAtIndex:0] integerValue];
     float saleInt= [[array objectAtIndex:4] floatValue];
     NSInteger nowInt = oldInt*saleInt/10;
-    _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@)",nowInt,[array objectAtIndex:4]];
+    _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:4]];
     
+    oldPriceString = [array objectAtIndex:0];
+    saleString = [array objectAtIndex:4];
     
     timeString = @"9:00";
     _timeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
+    
+    timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
 //    }
 //    else if([_sign isEqualToString:@"sameCity"])
 //    {
@@ -345,8 +355,10 @@
         NSInteger oldInt= [[array objectAtIndex:0] integerValue];
         float saleInt= [[array objectAtIndex:4] floatValue];
         NSInteger nowInt = oldInt*saleInt/10;
-        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@)",nowInt,[array objectAtIndex:4]];
+        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:4]];
         styleString = @"洗剪吹";
+        oldPriceString = [array objectAtIndex:0];
+        saleString = [array objectAtIndex:4];
     }
     else if (btn.tag==2)
     {
@@ -356,8 +368,10 @@
         NSInteger oldInt= [[array objectAtIndex:1] integerValue];
         float saleInt= [[array objectAtIndex:5] floatValue];
         NSInteger nowInt = oldInt*saleInt/10;
-        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@)",nowInt,[array objectAtIndex:5]];
+        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:5]];
         styleString = @"烫发";
+        oldPriceString = [array objectAtIndex:1];
+        saleString = [array objectAtIndex:5];
         
     }
 
@@ -369,9 +383,11 @@
         NSInteger oldInt= [[array objectAtIndex:2] integerValue];
         float saleInt= [[array objectAtIndex:6] floatValue];
         NSInteger nowInt = oldInt*saleInt/10;
-        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@)",nowInt,[array objectAtIndex:6]];
+        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:6]];
         
         styleString = @"染发";
+        oldPriceString = [array objectAtIndex:2];
+        saleString = [array objectAtIndex:6];
     }
     else if (btn.tag==4)
     {
@@ -381,8 +397,10 @@
         NSInteger oldInt= [[array objectAtIndex:3] integerValue];
         float saleInt= [[array objectAtIndex:7] floatValue];
         NSInteger nowInt = oldInt*saleInt/10;
-        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@)",nowInt,[array objectAtIndex:7]];
+        _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:7]];
         styleString = @"护理";
+        oldPriceString = [array objectAtIndex:3];
+        saleString = [array objectAtIndex:7];
     }
 }
 
@@ -435,30 +453,38 @@
     switch (btn.tag) {
     case 1:
            dateString = [NSString stringWithFormat:@"%@月%@日%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
+             dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
         break;
     case 2:
         dateString = [NSString stringWithFormat:@"%@月%@日%@",[array2 objectAtIndex:0],[array2 objectAtIndex:1],[array2 objectAtIndex:2]];//哪一天
+            dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array2 objectAtIndex:0],[array2 objectAtIndex:1],[array2 objectAtIndex:2]];//哪一天
         break;
     case 3:
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array3 objectAtIndex:0],[array3 objectAtIndex:1],[array3 objectAtIndex:2]];//哪一天
+            dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array3 objectAtIndex:0],[array3 objectAtIndex:1],[array3 objectAtIndex:2]];//哪一天
         break;
     case 4:
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array4 objectAtIndex:0],[array4 objectAtIndex:1],[array4 objectAtIndex:2]];//哪一天
+            dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array4 objectAtIndex:0],[array4 objectAtIndex:1],[array4 objectAtIndex:2]];//哪一天
         break;
     case 5:
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array5 objectAtIndex:0],[array5 objectAtIndex:1],[array5 objectAtIndex:2]];//哪一天
+              dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array5 objectAtIndex:0],[array5 objectAtIndex:1],[array5 objectAtIndex:2]];//哪一天
         break;
     case 6:
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array6 objectAtIndex:0],[array6 objectAtIndex:1],[array6 objectAtIndex:2]];//哪一天
+            dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array6 objectAtIndex:0],[array6 objectAtIndex:1],[array6 objectAtIndex:2]];//哪一天
         break;
        
         case 7:
             dateString = [NSString stringWithFormat:@"%@月%@日%@",[array7 objectAtIndex:0],[array7 objectAtIndex:1],[array7 objectAtIndex:2]];//哪一天
+            dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array7 objectAtIndex:0],[array7 objectAtIndex:1],[array7 objectAtIndex:2]];//哪一天
             break;
     default:
         break;
     }
      _timeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
+    timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
 }
 
 - (IBAction)timeClockButtonClick:(id)sender
@@ -525,6 +551,7 @@
             break;
     }
     _timeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
+    timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
 }
 
 - (IBAction)sureButtonClick:(id)sender
@@ -556,9 +583,67 @@
     }
     else
     {
+        ASIFormDataRequest* request;
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reservation"]]];
         
+        [request setPostValue:@"1"forKey:@"order_type"];//预约发型为2
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        [request setPostValue:appDele.uid forKey:@"my_uid"];
+        [request setPostValue:[self.inforDic objectForKey:@"uid"]forKey:@"to_uid"];
+        
+        
+        [request setPostValue:dateString1 forKey:@"reserve_time"];
+        [request setPostValue:timeString forKey:@"reserve_hour"];
+        
+        [request setPostValue:oldPriceString forKey:@"price"];
+        [request setPostValue:saleString forKey:@"rebate"];
+        [request setPostValue:[_nameField text] forKey:@"my_name"];
+        [request setPostValue:[_mobileField text] forKey:@"my_tel"];
+        [request setPostValue:styleString forKey:@"reserve_type"];//预约发型没有这一项
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"M-d HH:mm"];
+        NSDate* date = [formatter dateFromString:timeDataString];
+         NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[date timeIntervalSince1970]];
+        NSLog(@"timeDataString:%@",timeDataString);
+        NSLog(@"timeSp:%@",timeSp);
+        
+        [request setPostValue:timeSp forKey:@"expire_time"];
+        request.delegate=self;
+        [request startAsynchronous];
+       
         
     }
+}
+
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+      
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+    
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"预约是否成功dic:%@",dic);
+    if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"预约成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+        [self leftButtonClick];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+}
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 

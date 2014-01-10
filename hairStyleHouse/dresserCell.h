@@ -26,6 +26,8 @@
     
     UIButton * cellButton;
     UIButton * fouceButton;
+    UIButton * fouceButton1;
+
     
     UIScrollView* workScroll;
     

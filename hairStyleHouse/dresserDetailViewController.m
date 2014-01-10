@@ -198,7 +198,7 @@
             UIButton *newvideobutton=[UIButton buttonWithType:UIButtonTypeCustom];
             newvideobutton.backgroundColor=[UIColor clearColor];
             newvideobutton.tag=i;
-            [newvideobutton addTarget:self  action:@selector(selectImage:) forControlEvents:UIControlEventTouchUpInside];
+            [newvideobutton addTarget:self  action:@selector(selectImage1:) forControlEvents:UIControlEventTouchUpInside];
             [newvideobutton setFrame:rect];
             [canScroll addSubview:workImage];
             [canScroll addSubview:newvideobutton];
@@ -238,13 +238,22 @@
 {
    
 }
--(void)selectImage:(UIButton*)button
+-(void)selectImage:(UIButton*)button//原创
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
     scanView.uid=[infoDic objectForKey:@"uid"];
     scanView._hidden = @"no";
     scanView.worksOrsaveorCan = @"works";
+    [fatherController pushToViewController:scanView];
+}
+-(void)selectImage1:(UIButton*)button//会做
+{
+    scanView=nil;
+    scanView = [[scanImageViewController alloc] init];
+    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView._hidden = @"no";
+    scanView.worksOrsaveorCan = @"can";
     [fatherController pushToViewController:scanView];
 }
 

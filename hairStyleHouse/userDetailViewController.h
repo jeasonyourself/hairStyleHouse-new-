@@ -21,6 +21,7 @@
     scanImageViewController * scanView;
     talkViewController * talkView;
     
+    
 
 }
 @property(nonatomic,strong)userInforViewController * fatherController;

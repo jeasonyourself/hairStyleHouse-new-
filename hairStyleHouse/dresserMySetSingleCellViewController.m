@@ -119,28 +119,28 @@
 }
 -(void)freashView
 {
-//    if ([inforDic objectForKey:@"qq_keyid"])
-//    {
-//        _tencentLable.text=@"已绑定";
-//        _tencentButton.enabled= NO;
-//    }
-//    else
-//    {
-//        _tencentLable.text=@"未绑定";
-//        _tencentButton.enabled= YES;
-//    }
-//    
-//    if ([inforDic objectForKey:@"sina_keyid"])
-//    {
-//        _sinaLable.text=@"已绑定";
-//        _sinaButton.enabled= NO;
-//        
-//    }
-//    else
-//    {
-//        _sinaLable.text=@"未绑定";
-//        _sinaButton.enabled= YES;
-//    }
+    if ([inforDic objectForKey:@"qq_keyid"])
+    {
+        _tencentLable.text=@"已绑定";
+        _tencentButton.enabled= NO;
+    }
+    else
+    {
+        _tencentLable.text=@"未绑定";
+        _tencentButton.enabled= YES;
+    }
+    
+    if ([inforDic objectForKey:@"sina_keyid"])
+    {
+        _sinaLable.text=@"已绑定";
+        _sinaButton.enabled= NO;
+        
+    }
+    else
+    {
+        _sinaLable.text=@"未绑定";
+        _sinaButton.enabled= YES;
+    }
     
 }
 - (void)didReceiveMemoryWarning

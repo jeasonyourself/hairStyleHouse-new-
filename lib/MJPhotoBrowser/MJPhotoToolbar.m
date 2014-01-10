@@ -49,6 +49,8 @@
     UIImageView * shareImage;
     UIButton * shareButton;
     
+    UIButton * addButton;
+    
     commentViewController * commentController;
 }
 @property (strong,nonatomic)NSMutableArray * imageArr;
@@ -77,43 +79,65 @@
         
         headBack = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
         headBack.backgroundColor = [UIColor whiteColor];
+        headBack.layer.cornerRadius = 3;//设置那个圆角的有多圆
+        headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.masksToBounds = YES;//设为NO去试试
+        
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
+        
+        headImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
+        headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.masksToBounds = YES;//设为NO去试试
         [headBack addSubview: headImage];
+        
         [self addSubview:headBack];
         
         nameLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 200, 20)];
-        nameLable.textColor =[UIColor blackColor];
+        nameLable.textColor =[UIColor whiteColor];
         nameLable.font = [UIFont systemFontOfSize:12.0];
         [self addSubview:nameLable];
         cityLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 40, 200, 20)];
-        cityLable.textColor =[UIColor blackColor];
+        cityLable.textColor =[UIColor whiteColor];
         cityLable.font = [UIFont systemFontOfSize:12.0];
         [self addSubview:cityLable];
         
         
-        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 60, 30, 25)];
+        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 65, 30, 25)];
         messageImage.image = [UIImage imageNamed:@"sixin.png"];
         messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [messageButton addTarget:self action:@selector(messageButtonClick) forControlEvents:UIControlEventTouchUpInside];
         messageButton.frame = messageImage.frame;
         
-        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 60, 30, 25)];
+        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 65, 30, 25)];
         commentImage.image = [UIImage imageNamed:@"comment.png"];
         commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [commentButton addTarget:self action:@selector(commentButtonClick) forControlEvents:UIControlEventTouchUpInside];
         commentButton.frame = commentImage.frame;
         
-        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 60, 30, 25)];
+        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 65, 30, 25)];
         likeImage.image = [UIImage imageNamed:@"like.png"];
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton addTarget:self action:@selector(likeButtonClick) forControlEvents:UIControlEventTouchUpInside];
         likeButton.frame = likeImage.frame;
         
-        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 60, 30, 25)];
+        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 65, 30, 25)];
         shareImage.image = [UIImage imageNamed:@"fenxiang.png"];
         shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
         shareButton.frame = shareImage.frame;
+        
+        addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        addButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [addButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+        [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        addButton.layer.cornerRadius = 3;//设置那个圆角的有多圆
+        addButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+        addButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        addButton.layer.masksToBounds = YES;//设为NO去试试
         
         
         [self addSubview:messageImage];
@@ -124,10 +148,69 @@
         [self addSubview:commentButton];
         [self addSubview:likeButton];
         [self addSubview:shareButton];
+        [self addSubview:addButton];
+
         
         // Initialization code
     }
     return self;
+}
+-(void)setNewButtonTitle
+{
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    NSLog(@"appdele.type:%@",appDele.type);
+    if (appDele.uid&&[appDele.type isEqualToString:@"2"])
+    {
+        
+        if ([[diction objectForKey:@"type"] isEqualToString:@"2"])//查看图片来自发型师
+        {
+            if ([[diction objectForKey:@"uid"] isEqualToString:appDele.uid])//是否是自己的原创发型
+            {
+                
+            }
+            else
+            {
+            
+                if ([[diction objectForKey:@"isWillDo"] isEqualToString:@"1"])//已经加入过我会做
+                {
+                    
+                }
+                else
+                {
+                    addButton.tag=2;
+                    [addButton setTitle:@"我会做" forState:UIControlStateNormal];
+                    addButton.frame =  CGRectMake(250, 25, 60, 30);
+                }
+            }
+        }
+        else//查看图片来自个人
+        {
+            
+        }
+        
+    }
+    else if (appDele.uid&&[appDele.type isEqualToString:@"1"])//个人
+    {
+        if ([[diction objectForKey:@"type"] isEqualToString:@"2"])//查看图片来自发型师
+        {
+            addButton.tag=1;
+            [addButton setTitle:@"预约" forState:UIControlStateNormal];
+            addButton.frame =  CGRectMake(250, 25, 60, 30);
+        }
+        else//查看图片来自个人
+        {
+        
+        }
+        
+    }
+    else//未登录
+    {
+       
+        
+        
+    }
+   
 }
 -(void)getData
 {
@@ -158,7 +241,8 @@
         NSLog(@"图片详情：dic:%@",dic);
         
         diction =[dic objectForKey:@"works_info"];
-        
+        [self setNewButtonTitle];
+
     }
     else if (request.tag==2) {
         NSLog(@"%@",request.responseString);
@@ -203,7 +287,10 @@
 
 -(void)messageButtonClick
 {
-    
+    talkView=nil;
+    talkView = [[talkViewController alloc] init];
+    talkView.uid = [dic objectForKey:@"uid"];
+    [fatherView pushViewController:talkView];
 }
 -(void)commentButtonClick
 {
@@ -263,6 +350,14 @@
         [actionSheet showInView:self];
     }
 }
+
+
+-(void)addButtonClick
+{
+    [fatherView addAlphaView];
+
+}
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
     {

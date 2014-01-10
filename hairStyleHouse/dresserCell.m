@@ -72,7 +72,11 @@
         fouceButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
         fouceButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         fouceButton.layer.masksToBounds = YES;//设为NO去试试
-        [fouceButton addTarget:self action:@selector(fouceButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        fouceButton.enabled=NO;
+        
+        fouceButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        fouceButton1.backgroundColor = [UIColor clearColor];
+        [fouceButton1 addTarget:self action:@selector(fouceButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
         workScroll=[[UIScrollView alloc] init];
@@ -96,6 +100,8 @@
         [self addSubview:distanceLable];
 
         [cellButton addSubview:fouceButton];
+        [cellButton addSubview:fouceButton1];
+
         [cellButton addSubview:workScroll];
         [self addSubview:cellButton];
         
@@ -165,6 +171,7 @@
     priceLable.frame = CGRectMake(210, 5,100, 25);
 
     fouceButton.frame = CGRectMake(260, 30, 50, 25);
+    fouceButton1.frame = CGRectMake(250, 0, 70, 80);
     distanceLable.frame = CGRectMake(210, 55,100, 25);
 //    if ([concernsStr isEqualToString:@"0"]) {
 //        [fouceButton setTitle:@"+ 关注" forState:UIControlStateNormal];
@@ -174,7 +181,7 @@
 //    [fouceButton setTitle:@"取消关注" forState:UIControlStateNormal];
 //    }
     
-    fouceButton.tag =index;
+    fouceButton1.tag =index;
     
     UIFont *font = [UIFont systemFontOfSize:12.0];
     //设置一个行高上限

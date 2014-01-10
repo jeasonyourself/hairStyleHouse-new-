@@ -13,10 +13,16 @@
 {
     NSString * styleString;
     NSString * oldPriceString;
+    NSString * saleString;
+
     NSString * newPriceString;
     NSString * dateString;
+    NSString * dateString1;
+
     NSString * timeString;
     
+    NSString * timeDataString;
+
     NSMutableArray * fourButtonArr;
     NSMutableArray * sevenButtonArr;
     NSMutableArray * twelveButtonArr;

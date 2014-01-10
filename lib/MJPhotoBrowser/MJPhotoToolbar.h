@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SinaWeibo.h"
 #import "rigViewController.h"
+#import "talkViewController.h"
+
 @class MJPhotoBrowser;
 @interface MJPhotoToolbar : UIView<UIActionSheetDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,UIAlertViewDelegate>
 {
     rigViewController * rigView;
     NSString * sign ;
+    talkViewController * talkView;
+    
 }
 // 所有的图片对象
 @property (nonatomic, strong) NSArray *photos;

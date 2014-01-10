@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "SBJson.h"
 #import "SDWebImageManager+MJ.h"
 #import "MJPhotoView.h"
 #import "MJPhotoToolbar.h"
@@ -51,6 +52,161 @@
 //    [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor= [UIColor colorWithRed:220.0/256.0 green:220.0/256.0 blue:220.0/256.0 alpha:1.0];
+    subView = [[UIControl alloc] initWithFrame:self.view.frame];
+    [subView addTarget:self action:@selector(touchDown) forControlEvents:UIControlEventTouchDown];
+    subView.backgroundColor =[UIColor clearColor];
+    
+    alphaView = [[UIControl alloc] initWithFrame:CGRectMake(self.view.center.x-130, self.view.center.y-180, 260, 340)];
+    [alphaView addTarget:self action:@selector(touchDown) forControlEvents:UIControlEventTouchDown];
+    alphaView.backgroundColor =[UIColor blackColor];
+    alphaView.alpha =0.5;
+    [subView addSubview:alphaView];
+    
+    UILabel * titleLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y-170, 240, 30)];
+    titleLable.font = [UIFont systemFontOfSize:15.0];
+    titleLable.textColor = [UIColor whiteColor];
+    titleLable.text = @"请填写你对此款发型的时长和价格";
+    [subView addSubview:titleLable];
+    
+    UILabel * secondTitleLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y-145, 240, 30)];
+    secondTitleLable.font = [UIFont systemFontOfSize:15.0];
+    secondTitleLable.textColor = [UIColor whiteColor];
+    secondTitleLable.text = @"（仅供参考）";
+    [subView addSubview:secondTitleLable];
+    
+    UILabel * severTimeLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y-90, 200, 30)];
+    severTimeLable.font = [UIFont systemFontOfSize:15.0];
+    severTimeLable.textColor = [UIColor whiteColor];
+    severTimeLable.text = @"服务时间：               小时";
+    [subView addSubview:severTimeLable];
+    
+    severTime = [[UITextField alloc] initWithFrame:CGRectMake(self.view.center.x-40, self.view.center.y-86, 50, 22)];
+    severTime.delegate = self;
+    severTime.keyboardType = UIKeyboardTypeNumberPad;
+
+    severTime.backgroundColor=[UIColor whiteColor];
+    severTime.borderStyle = UITextBorderStyleRoundedRect;
+    severTime.font = [UIFont systemFontOfSize:15.0];
+    severTime.textAlignment = NSTextAlignmentCenter;
+
+    severTime.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    severTime.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    severTime.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severTime.layer.masksToBounds = YES;//设为NO去试试
+    [subView addSubview:severTime];
+    
+    UILabel * severPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y-50, 200, 30)];
+    severPriceLable.font = [UIFont systemFontOfSize:15.0];
+    severPriceLable.textColor = [UIColor whiteColor];
+    severPriceLable.text = @"服务价格：               元";
+    [subView addSubview:severPriceLable];
+    
+    severPrice = [[UITextField alloc] initWithFrame:CGRectMake(self.view.center.x-40, self.view.center.y-46, 50, 22)];
+    severPrice.delegate=self;
+    severPrice.keyboardType = UIKeyboardTypeNumberPad;
+    severPrice.textAlignment = NSTextAlignmentCenter;
+    severPrice.backgroundColor=[UIColor whiteColor];
+    severPrice.font = [UIFont systemFontOfSize:15.0];
+    severPrice.borderStyle = UITextBorderStyleRoundedRect;
+    severPrice.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    severPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    severPrice.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severPrice.layer.masksToBounds = YES;//设为NO去试试
+    [subView addSubview:severPrice];
+    
+    
+    UILabel * saleLable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y-10, 200, 30)];
+    saleLable1.font = [UIFont systemFontOfSize:15.0];
+    saleLable1.textColor = [UIColor whiteColor];
+    saleLable1.text = @"优惠折扣：               折";
+    [subView addSubview:saleLable1];
+    
+    saleLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-40, self.view.center.y-6, 50, 22)];
+    saleLable.backgroundColor=[UIColor whiteColor];
+    saleLable.font = [UIFont systemFontOfSize:15.0];
+    saleLable.text =@"9.5";
+    saleLable.textAlignment = NSTextAlignmentCenter;
+    saleLable.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    saleLable.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    saleLable.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    saleLable.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    saleButton=[[UIButton alloc] init];
+    saleButton.tag =1;
+    saleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [saleButton.layer setMasksToBounds:YES];
+    [saleButton.layer setCornerRadius:5.0];
+    
+    [saleButton setBackgroundColor:[UIColor clearColor]];
+    
+    [saleButton addTarget:self action:@selector(saleButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    saleButton.frame = saleLable.frame;
+    
+    [subView addSubview:saleButton];
+    [subView addSubview:saleLable];
+    
+    UILabel * reallLable1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-120, self.view.center.y+30, 240, 30)];
+    reallLable1.font = [UIFont systemFontOfSize:15.0];
+    reallLable1.textColor = [UIColor whiteColor];
+    reallLable1.text = @"实际价格：";
+    [subView addSubview:reallLable1];
+    
+    reallPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x-40, self.view.center.y+30, 200, 30)];
+    reallPriceLable.font = [UIFont systemFontOfSize:15.0];
+    reallPriceLable.textColor = [UIColor whiteColor];
+    reallPriceLable.text = @"  --  元";
+    [subView addSubview:reallPriceLable];
+    
+    saleArr = [[NSMutableArray alloc] initWithObjects:@"9.5",@"9",@"8.5",@"8",@"7.5",@"7",@"6.5",@"6",@"5.5",@"5",@"4.5",@"4",@"3.5",@"3",@"2.5",@"2",@"1.5",@"1",@"0.5", nil];
+    
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(saleButton.frame.origin.x, saleButton.frame.origin.y+saleButton.frame.size.height, saleButton.frame.size.width, saleButton.frame.size.height*2+10) style:UITableViewStylePlain];
+    [myTableView setSeparatorInset:UIEdgeInsetsZero];
+    myTableView.dataSource=self;
+    myTableView.delegate=self;
+    myTableView.hidden = YES;
+    myTableView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    myTableView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    myTableView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    myTableView.layer.masksToBounds = YES;//设为NO去试试
+    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    [subView addSubview:myTableView];
+    
+    
+    
+   
+    
+    
+    sureButton=[[UIButton alloc] init];
+    sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sureButton.layer setMasksToBounds:YES];
+    [sureButton.layer setCornerRadius:5.0];
+    [sureButton.layer setBorderWidth:1.0];
+    [sureButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sureButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    sureButton.frame = CGRectMake(self.view.center.x-120, self.view.center.y+90, 100, 30);
+    
+    
+    cancelButton=[[UIButton alloc] init];
+    cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton.layer setMasksToBounds:YES];
+    [cancelButton.layer setCornerRadius:5.0];
+    [cancelButton.layer setBorderWidth:1.0];
+    [cancelButton setBackgroundColor:[UIColor colorWithRed:172.0/256.0 green:172.0/256.0 blue:172.0/256.0 alpha:1.0]];
+    [cancelButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [cancelButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    cancelButton.frame = CGRectMake(self.view.center.x+20, self.view.center.y+90, 100, 30);
+    
+    [subView addSubview:sureButton];
+    [subView addSubview:cancelButton];
+
     // 1.创建UIScrollView
     [self createScrollView];
     
@@ -58,6 +214,175 @@
     first = [[NSString alloc] init];
     first  = @"first";
     [self createToolbar];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+}
+-(IBAction)textFiledReturnEditing:(id)sender {
+    
+    
+}
+- (void)touchDown
+{
+    [severPrice resignFirstResponder];
+    [severTime resignFirstResponder];
+}
+
+#pragma mark -textField 代理
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    saleButton.tag=1;
+    myTableView.hidden=YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+
+    if(textField == severPrice)
+    {
+        NSString *tmpStr = @"" ;
+        tmpStr = textField.text ;
+        tmpStr = [tmpStr stringByReplacingCharactersInRange:range withString:string];
+        
+        NSInteger oldInt= [tmpStr integerValue];
+        float saleInt= [saleLable.text floatValue]/10;
+        float nowInt = oldInt*saleInt;
+        reallPriceLable.text = [NSString stringWithFormat:@"%.1lf 元",nowInt];
+        return YES;
+        
+    }
+    //其他的类型不需要检测，直接写入
+    return YES;
+}
+
+
+-(void)sureButtonClick
+{
+    
+    if([severTime.text isEqualToString:@""]||[severPrice.text isEqualToString:@""]||[saleLable.text isEqualToString:@""])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写完整信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=addWillDo"]]];
+    
+    [request setPostValue:@"1"forKey:@"order_type"];//预约发型为2
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+        
+        MJPhoto *photo = _photos[_currentPhotoIndex];
+    [request setPostValue:photo.work_id forKey:@"work_id"];
+        
+        
+        
+    
+    [request setPostValue:severTime.text forKey:@"long_service"];
+    [request setPostValue:severPrice forKey:@"price"];
+    
+    [request setPostValue:saleLable.text forKey:@"rebate"];
+    request.delegate=self;
+    [request startAsynchronous];
+    }
+}
+
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+    
+    NSLog(@"%@",request.responseString);
+    NSData*jsondata = [request responseData];
+    NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+    
+    SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+    NSDictionary* dic=[jsonP objectWithString:jsonString];
+    NSLog(@"预约添加会做是否成功dic:%@",dic);
+    
+    if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该作品已添加至您的会做作品" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已添加过该作品" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    [self cancelButtonClick];
+
+}
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)cancelButtonClick
+{
+    [subView removeFromSuperview];
+}
+
+-(void)saleButtonClick
+{
+    [self touchDown];
+    
+    if (saleButton.tag==1) {
+        myTableView.hidden =NO;
+        saleButton.tag=2;
+    }
+    else
+    {
+        myTableView.hidden =YES;
+        saleButton.tag=1;
+
+    }
+    
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return saleArr.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return   myTableView.frame.size.height/2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID=@"cell";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell==nil) {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.backgroundColor =[UIColor whiteColor];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.font = [UIFont systemFontOfSize:12.0];
+    cell.textLabel.text = [saleArr objectAtIndex:[indexPath row]];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    saleButton.tag=1;
+    saleLable.text=[saleArr objectAtIndex:[indexPath row]];
+    myTableView.hidden=YES;
+    
+    NSInteger oldInt= [severPrice.text integerValue];
+    float saleInt= [saleLable.text floatValue]/10;
+    float nowInt = oldInt*saleInt;
+    reallPriceLable.text = [NSString stringWithFormat:@"%.1lf 元",nowInt];
 }
 
 - (void)show
@@ -84,7 +409,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -110,6 +435,7 @@
     
     CGFloat barHeight = 100;
     CGFloat barY = self.view.frame.size.height - barHeight;
+    _toolbar=nil;
     _toolbar = [[MJPhotoToolbar alloc] init];
     _toolbar.fatherView =self;
     _toolbar.frame = CGRectMake(0, barY, self.view.frame.size.width, barHeight);
@@ -368,6 +694,34 @@
     }
     
 }
+-(void)addAlphaView
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if (appDele.uid)
+    {
+        [self.view addSubview:subView];
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        if ([appDele.type isEqualToString:@"2"])
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        loginView=nil;
+        loginView=[[loginViewController alloc] init];
+        loginView._hidden=@"no";
+        loginView.view.frame=self.view.bounds;
+        [loginView getBack:self andSuc:@selector(getData) andErr:nil];
+        [appDele pushToViewController:loginView ];
+    }
+
+}
+
 -(void)getData
 {
     [_toolbar getData];
