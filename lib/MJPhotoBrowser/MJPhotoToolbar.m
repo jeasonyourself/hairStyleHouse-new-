@@ -354,7 +354,7 @@
 
 -(void)addButtonClick
 {
-    [fatherView addAlphaView];
+    [fatherView addAlphaView:dic];
 
 }
 

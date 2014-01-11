@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 #import "loginViewController.h"
+#import "addBeaspeakHairStyleViewController.h"
 @protocol MJPhotoBrowserDelegate;
 @interface MJPhotoBrowser : UIViewController <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
@@ -27,6 +28,8 @@
     UIButton * cancelButton;
     UITableView * myTableView;
     NSMutableArray* saleArr;
+    
+    addBeaspeakHairStyleViewController * beaspeakHairStyle;
 }
 // 代理
 @property (nonatomic, weak) id<MJPhotoBrowserDelegate> delegate;
@@ -39,7 +42,7 @@
 - (void)show;
 -(void)refreashNavLab:(NSInteger)currentIndex and:(NSInteger)allCount;
 -(void)pushViewController:(id)Sen;
--(void)addAlphaView;
+-(void)addAlphaView:(NSDictionary*)Dic;
 @end
 
 @protocol MJPhotoBrowserDelegate <NSObject>

@@ -330,6 +330,8 @@
 		7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F52D1855542400CAB2C6 /* arrow@2x.png */; };
 		7AE7F533185589F800CAB2C6 /* myShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F532185589F800CAB2C6 /* myShowViewController.m */; };
 		7AE7F53618558A7400CAB2C6 /* myShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F53518558A7400CAB2C6 /* myShowCell.m */; };
+		7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */; };
+		7AEB52C61880CFEC00538279 /* addbeaspeakHairStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */; };
 		7AF499681876B9970066C894 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF4995F1876B9970066C894 /* FMDatabase.m */; };
 		7AF499691876B9970066C894 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF499611876B9970066C894 /* FMDatabaseAdditions.m */; };
 		7AF4996A1876B9970066C894 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF499631876B9970066C894 /* FMDatabasePool.m */; };
@@ -816,6 +818,10 @@
 		7AE7F532185589F800CAB2C6 /* myShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowViewController.m; sourceTree = "<group>"; };
 		7AE7F53418558A7400CAB2C6 /* myShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myShowCell.h; sourceTree = "<group>"; };
 		7AE7F53518558A7400CAB2C6 /* myShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowCell.m; sourceTree = "<group>"; };
+		7AEB52C11880CFD000538279 /* addBeaspeakHairStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addBeaspeakHairStyleViewController.h; sourceTree = "<group>"; };
+		7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
+		7AEB52C41880CFEC00538279 /* addbeaspeakHairStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addbeaspeakHairStyleCell.h; sourceTree = "<group>"; };
+		7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addbeaspeakHairStyleCell.m; sourceTree = "<group>"; };
 		7AF4995E1876B9970066C894 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		7AF4995F1876B9970066C894 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		7AF499601876B9970066C894 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1005,6 +1011,10 @@
 				7AD88C24187E3FB000FBC04E /* addBeaspeakViewController.h */,
 				7AD88C25187E3FB000FBC04E /* addBeaspeakViewController.m */,
 				7AD88C26187E3FB000FBC04E /* addBeaspeakViewController.xib */,
+				7AEB52C11880CFD000538279 /* addBeaspeakHairStyleViewController.h */,
+				7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */,
+				7AEB52C41880CFEC00538279 /* addbeaspeakHairStyleCell.h */,
+				7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */,
 				7A37D7301844CA7300D9C4D9 /* squareViewController.h */,
 				7A37D7311844CA7300D9C4D9 /* squareViewController.m */,
 				7AE7F531185589F800CAB2C6 /* myShowViewController.h */,
@@ -1881,6 +1891,7 @@
 				7AD545F5184F2B08009A6B79 /* MBProgressHUD.m in Sources */,
 				7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */,
 				7AE03D51184615F500E14EDC /* fansAndfoceAndMassegeCell.m in Sources */,
+				7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */,
 				7A06F11818613493007624D3 /* HRChatCell.m in Sources */,
 				7AE09DF518581324007CA28D /* myAnwserCenterViewController.m in Sources */,
 				7A37D7131844CA2700D9C4D9 /* SBJsonParser.m in Sources */,
@@ -1976,6 +1987,7 @@
 				7A37D7101844CA2700D9C4D9 /* Reachability.m in Sources */,
 				7ADDE7B71856E4A900D48208 /* hotTalkCell.m in Sources */,
 				7A0191FD18602CC600AFD637 /* SinaWeiboAuthorizeView.m in Sources */,
+				7AEB52C61880CFEC00538279 /* addbeaspeakHairStyleCell.m in Sources */,
 				7AE1B302184C2E2C00F51BB2 /* commentCell.m in Sources */,
 				7AF54A37187D264200C93092 /* TSLocateView.m in Sources */,
 				7AE09DEF1857FFA1007CA28D /* wayDetailCell.m in Sources */,

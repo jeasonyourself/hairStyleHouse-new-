@@ -694,20 +694,23 @@
     }
     
 }
--(void)addAlphaView
+-(void)addAlphaView:(NSDictionary*)Dic
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (appDele.uid)
     {
-        [self.view addSubview:subView];
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         if ([appDele.type isEqualToString:@"2"])
         {
-            
+            [self.view addSubview:subView];
+
         }
         else
         {
-            
+            beaspeakHairStyle=nil;
+            beaspeakHairStyle=[[addBeaspeakHairStyleViewController alloc] init];
+            beaspeakHairStyle.inforDic=Dic;
+            [appDele pushToViewController:beaspeakHairStyle ];
         }
     }
     else
