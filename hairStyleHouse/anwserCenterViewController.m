@@ -127,7 +127,8 @@
     else
     {
 
-    if ([appDele.type isEqualToString:@"1"]) {
+    if ([appDele.type isEqualToString:@"1"])
+    {
         pubQ = nil;
         pubQ = [[pubQViewController alloc] init];
         pubQ._hidden  =@"yes";

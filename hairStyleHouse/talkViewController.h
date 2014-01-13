@@ -29,5 +29,6 @@
     
 }
 @property(strong,nonatomic)    NSString * uid;
-
+@property(strong,nonatomic)    NSString * talkOrQuestion;
+@property(strong,nonatomic)    NSString * _hidden;
 @end

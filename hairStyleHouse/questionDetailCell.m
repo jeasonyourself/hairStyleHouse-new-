@@ -96,7 +96,7 @@
         howMuchLable.font = [UIFont systemFontOfSize:12];
     }
     
-    howMuchLable.frame = CGRectMake(10, 330, 200, 20);
+    howMuchLable.frame = CGRectMake(10, contentLable.frame.size.height+contentLable.frame.origin.y+10, 200, 20);
     
 }
 -(void)setOtherCell:(NSMutableArray *)_arr and:(NSInteger)_index

@@ -12,8 +12,10 @@
 @interface pubQViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITextViewDelegate>
 {
     UITableView *myTableView;
-
+    UIActivityIndicatorView * _activityIndicatorView ;
+    
     UIView * backView;
+    
     UIImageView * headImage;
     UIButton * headButton;
     UITextView * describeText;

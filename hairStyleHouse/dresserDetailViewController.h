@@ -22,6 +22,7 @@
     lookEvaluateViewController * lookEvaluate;
     scanImageViewController * scanView;
     talkViewController * talkView;
+    
 }
 
 @property(nonatomic,strong)dresserInforViewController * fatherController;

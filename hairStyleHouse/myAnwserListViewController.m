@@ -1,11 +1,12 @@
 //
-//  myAnwserCenterViewController.m
+//  myAnwserListViewController.m
 //  hairStyleHouse
 //
-//  Created by jeason on 13-12-11.
-//  Copyright (c) 2013年 jeason. All rights reserved.
+//  Created by jeason on 14-1-13.
+//  Copyright (c) 2014年 jeason. All rights reserved.
 //
 
+#import "myAnwserListViewController.h"
 #import "myAnwserCenterViewController.h"
 #import "myShowViewController.h"
 #import "findStyleDetailViewController.h"
@@ -17,11 +18,12 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-@interface myAnwserCenterViewController ()
+@interface myAnwserListViewController ()
 
 @end
 
-@implementation myAnwserCenterViewController
+@implementation myAnwserListViewController
+@synthesize questionId;
 @synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -90,8 +92,8 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
     
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Problem&a=myquestion&page=%@",page]]];
-    
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Problem&a=answerlist&page=%@",page]]];
+    [request setPostValue:questionId forKey:@"pid"];
     [request setPostValue:appDele.uid forKey:@"uid"];
     
     request.delegate=self;
@@ -109,17 +111,17 @@
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"我的问题dic:%@",dic);
+        NSLog(@"我的问题的回答dic:%@",dic);
         
         pageCount = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"problem_list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSString class]])
         {
             return;
-            //可在此处提示没有自己的问题
+            //可在此处提示没有人回答过
         }
-        else if ([[dic objectForKey:@"problem_list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"problem_list"];
+            arr= [dic objectForKey:@"answer_list"];
             [dresserArray addObjectsFromArray:arr];
             NSLog(@"dresser.count:%d",dresserArray.count);
             
@@ -155,7 +157,7 @@
     {
         
         
-     return dresserArray.count;
+        return dresserArray.count;
         
         
     }
@@ -170,9 +172,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID=@"cell";
-    myAnwserCenterCell *cell=(myAnwserCenterCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+    myAnwserListCell *cell=(myAnwserListCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell==nil) {
-        cell=[[myAnwserCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell=[[myAnwserListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.fatherView =self;
     }
     NSUInteger row = [indexPath row];
@@ -200,7 +202,7 @@
     else
     {
         self.navigationController.navigationBar.hidden = NO;
-
+        
     }
     [self.navigationController popViewControllerAnimated:NO];
 }
@@ -222,7 +224,7 @@
     leftButton.frame = CGRectMake(12,20, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
-   
+    
 }
 
 -(void)refreashNavLab
@@ -230,7 +232,7 @@
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
     
     
-    Lab.text = @"我的提问";
+    Lab.text = @"回答列表";
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -240,10 +242,11 @@
 
 -(void)selectCell:(NSInteger)_index
 {
-    myAnwserList = nil;
-    myAnwserList= [[myAnwserListViewController alloc] init];
-    myAnwserList.questionId = [[dresserArray  objectAtIndex:_index] objectForKey:@"id"];
-    [self.navigationController pushViewController:myAnwserList animated:NO];
+    talkView=nil;
+    talkView = [[talkViewController alloc] init];
+    talkView.talkOrQuestion=@"question";
+    talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"id"];
+    [self.navigationController pushViewController:talkView animated:NO];
 }
 - (void)didReceiveMemoryWarning
 {

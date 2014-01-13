@@ -42,9 +42,7 @@
     myTableView.allowsSelection=NO;
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [self.view addSubview:myTableView];
-    
-    
-    
+
     [self getData];
     
 }
@@ -86,7 +84,7 @@
 -(void)refreashNavLab
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-    Lab.text = [NSString stringWithFormat:@"预约发型"];
+    Lab.text = [NSString stringWithFormat:@"预约"];
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];
@@ -220,11 +218,11 @@
         CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
         
         if (labelsize.height<20) {
-            return 60;
+            return 100;
         }
         else
         {
-            return   48+labelsize.height;
+            return   88+labelsize.height;
         }
     }
 }
@@ -235,6 +233,7 @@
     addbeaspeakHairStyleCell *cell=(addbeaspeakHairStyleCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell==nil) {
         cell=[[addbeaspeakHairStyleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.fatherController=self;
         cell.layer.cornerRadius =10;//设置那个圆角的有多圆
         cell.layer.borderWidth =1;//设置边框的宽度，当然可以不要
         cell.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
@@ -274,6 +273,39 @@
         return NO;
     }
     return YES;
+}
+
+-(void)askButtonClick:(NSInteger)_index
+{
+    talkView=nil;
+    talkView = [[talkViewController alloc] init];
+    if (_index==-1)
+    {
+        talkView.uid = [workInforDic objectForKey:@"uid"];
+    }
+    else
+    {
+        talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"uid"];
+    }
+    
+    [self.navigationController  pushViewController:talkView animated:NO];
+}
+-(void)beaspeakButtonClick:(NSInteger)_index andImage:(UIImageView *)Img;
+{
+    beaspeakHairStyleView=nil;
+    beaspeakHairStyleView = [[sendBeaspeakHairStyleViewController alloc] init];
+    beaspeakHairStyleView._hidden=NO;
+       beaspeakHairStyleView.headImg=Img.image;;
+    if (_index==-1)
+    {
+        beaspeakHairStyleView.inforDic = workInforDic;
+    }
+    else
+    {
+        beaspeakHairStyleView.inforDic = [dresserArray objectAtIndex:_index];
+    }
+    
+    [self.navigationController  pushViewController:beaspeakHairStyleView animated:NO];
 }
 - (void)didReceiveMemoryWarning
 {

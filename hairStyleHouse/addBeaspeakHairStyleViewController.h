@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "addbeaspeakHairStyleCell.h"
+#import "sendBeaspeakHairStyleViewController.h"
+#import "talkViewController.h"
+
 @interface addBeaspeakHairStyleViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;
@@ -21,6 +24,12 @@
     UITextView * contentView;
     UIButton * sendButton;
     
+    talkViewController * talkView;
+    sendBeaspeakHairStyleViewController * beaspeakHairStyleView;
 }
 @property (nonatomic,strong)NSDictionary * inforDic;
+-(void)askButtonClick:(NSInteger)_index;
+-(void)beaspeakButtonClick:(NSInteger)_index andImage:(UIImageView *)Img;;
+
+
 @end

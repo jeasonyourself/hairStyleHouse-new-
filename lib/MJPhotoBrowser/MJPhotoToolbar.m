@@ -167,14 +167,15 @@
         {
             if ([[diction objectForKey:@"uid"] isEqualToString:appDele.uid])//是否是自己的原创发型
             {
-                
+                addButton.frame =  CGRectMake(0, 0, 0, 0);
             }
             else
             {
             
                 if ([[diction objectForKey:@"isWillDo"] isEqualToString:@"1"])//已经加入过我会做
                 {
-                    
+                    addButton.frame =  CGRectMake(0, 0, 0, 0);
+
                 }
                 else
                 {
@@ -186,7 +187,8 @@
         }
         else//查看图片来自个人
         {
-            
+            addButton.frame =  CGRectMake(0, 0, 0, 0);
+
         }
         
     }
@@ -200,13 +202,15 @@
         }
         else//查看图片来自个人
         {
-        
+            addButton.frame =  CGRectMake(0, 0, 0, 0);
+
         }
         
     }
     else//未登录
     {
-       
+        addButton.frame =  CGRectMake(0, 0, 0, 0);
+
         
         
     }

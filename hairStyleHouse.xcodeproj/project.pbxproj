@@ -323,6 +323,10 @@
 		7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615318473C26008A107C /* lookEvaluateCell.m */; };
 		7AE361571847556D008A107C /* scanImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE361561847556D008A107C /* scanImageViewController.m */; };
 		7AE3615A18475580008A107C /* scanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615918475580008A107C /* scanCell.m */; };
+		7AE48286188372CF009E88CB /* sendBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */; };
+		7AE48287188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */; };
+		7AE4828A1883CEEC009E88CB /* myAnwserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE482891883CEEC009E88CB /* myAnwserListViewController.m */; };
+		7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */; };
 		7AE5AC2E1853017900C1970E /* renewSingleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */; };
 		7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */; };
 		7AE7F52E1855542400CAB2C6 /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F52B1855542400CAB2C6 /* AllAroundPullView.m */; };
@@ -807,6 +811,13 @@
 		7AE361561847556D008A107C /* scanImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanImageViewController.m; sourceTree = "<group>"; };
 		7AE3615818475580008A107C /* scanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanCell.h; sourceTree = "<group>"; };
 		7AE3615918475580008A107C /* scanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanCell.m; sourceTree = "<group>"; };
+		7AE48283188372CF009E88CB /* sendBeaspeakHairStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendBeaspeakHairStyleViewController.h; sourceTree = "<group>"; };
+		7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
+		7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendBeaspeakHairStyleViewController.xib; sourceTree = "<group>"; };
+		7AE482881883CEEC009E88CB /* myAnwserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnwserListViewController.h; sourceTree = "<group>"; };
+		7AE482891883CEEC009E88CB /* myAnwserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnwserListViewController.m; sourceTree = "<group>"; };
+		7AE4828B1883CF0A009E88CB /* myAnwserListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnwserListCell.h; sourceTree = "<group>"; };
+		7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnwserListCell.m; sourceTree = "<group>"; };
 		7AE5AC2B1853017900C1970E /* renewSingleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renewSingleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = renewSingleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
 		7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = renewSingleTableCellBackgroundViewController.xib; sourceTree = "<group>"; };
@@ -1015,6 +1026,9 @@
 				7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */,
 				7AEB52C41880CFEC00538279 /* addbeaspeakHairStyleCell.h */,
 				7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */,
+				7AE48283188372CF009E88CB /* sendBeaspeakHairStyleViewController.h */,
+				7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */,
+				7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */,
 				7A37D7301844CA7300D9C4D9 /* squareViewController.h */,
 				7A37D7311844CA7300D9C4D9 /* squareViewController.m */,
 				7AE7F531185589F800CAB2C6 /* myShowViewController.h */,
@@ -1045,6 +1059,10 @@
 				7AE09DF418581324007CA28D /* myAnwserCenterViewController.m */,
 				7AE09DF61858142E007CA28D /* myAnwserCenterCell.h */,
 				7AE09DF71858142E007CA28D /* myAnwserCenterCell.m */,
+				7AE482881883CEEC009E88CB /* myAnwserListViewController.h */,
+				7AE482891883CEEC009E88CB /* myAnwserListViewController.m */,
+				7AE4828B1883CF0A009E88CB /* myAnwserListCell.h */,
+				7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */,
 				7ADDE7A818569C7500D48208 /* saleBeaspeaskViewController.h */,
 				7ADDE7A918569C7500D48208 /* saleBeaspeaskViewController.m */,
 				7ADDE7AB18569C8A00D48208 /* saleBeaspeakCell.h */,
@@ -1802,6 +1820,7 @@
 				7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */,
 				7A5D5C9C186C289400F96949 /* 潮流学堂.png in Resources */,
 				7A4379BE18693CE0007F64DB /* hairtype_4_3.png in Resources */,
+				7AE48287188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib in Resources */,
 				7AE03D341845B9F300E14EDC /* changeInforViewController.xib in Resources */,
 				7A5D5CA7186C289400F96949 /* 行业情报.png in Resources */,
 				7AE214601859AFA00030E5D3 /* pubInviteMessage.xib in Resources */,
@@ -1949,13 +1968,16 @@
 				7AD545FE184F2B08009A6B79 /* NSData+GIF.m in Sources */,
 				7AE03D461845D41C00E14EDC /* HZAreaPickerView.m in Sources */,
 				7AE03D671846183400E14EDC /* beaspeakViewController.m in Sources */,
+				7AE4828A1883CEEC009E88CB /* myAnwserListViewController.m in Sources */,
 				7AD545F6184F2B08009A6B79 /* MJPhoto.m in Sources */,
 				7ADDE7B41856B2E900D48208 /* sameCityCell.m in Sources */,
 				7AE09E001858353C007CA28D /* inviteCell.m in Sources */,
 				7AE03D5A1846175B00E14EDC /* dresserDetailViewController.m in Sources */,
+				7AE48286188372CF009E88CB /* sendBeaspeakHairStyleViewController.m in Sources */,
 				7A37D70E1844CA2700D9C4D9 /* ASIInputStream.m in Sources */,
 				7A4379D918696CB7007F64DB /* hairStyleIconCell.m in Sources */,
 				7AE03D5E1846178E00E14EDC /* lookEvaluateViewController.m in Sources */,
+				7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */,
 				7A0191FC18602CC600AFD637 /* SinaWeibo.m in Sources */,
 				7AD545F9184F2B08009A6B79 /* MJPhotoLoadingView.m in Sources */,
 				7AE03D7018461C0200E14EDC /* DemoViewController.m in Sources */,

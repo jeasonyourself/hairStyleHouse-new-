@@ -216,8 +216,6 @@
    
         [request setPostValue:@"" forKey:@"condition"];
 
-    
-    
     request.delegate=self;
     request.tag=1;
     [request startAsynchronous];

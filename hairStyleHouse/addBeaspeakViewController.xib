@@ -147,7 +147,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
-                                        <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEnd" id="1Wb-US-eMJ"/>
+                                        <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="x1u-Yb-ush"/>
                                     </connections>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yic-J1-tSI">
@@ -156,7 +156,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
-                                        <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEnd" id="7Lb-AK-Seu"/>
+                                        <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="aGW-Fd-XU9"/>
                                     </connections>
                                 </textField>
                             </subviews>

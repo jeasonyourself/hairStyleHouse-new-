@@ -1,19 +1,20 @@
 //
-//  myAnwserCenterCell.m
+//  myAnwserListCell.m
 //  hairStyleHouse
 //
-//  Created by jeason on 13-12-11.
-//  Copyright (c) 2013年 jeason. All rights reserved.
+//  Created by jeason on 14-1-13.
+//  Copyright (c) 2014年 jeason. All rights reserved.
 //
 
-#import "myAnwserCenterCell.h"
+#import "myAnwserListCell.h"
 #import "hotTalkViewController.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+MJWebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "myAnwserCenterViewController.h"
-@implementation myAnwserCenterCell
+
+@implementation myAnwserListCell
 @synthesize fatherView;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -23,6 +24,8 @@
         headImage = [[UIImageView alloc] init];
         nameLable = [[UILabel alloc] init];
         nameLable.font=[UIFont systemFontOfSize:12];
+        contentLable = [[UILabel alloc] init];
+        contentLable.font=[UIFont systemFontOfSize:12];
         timeLable = [[UILabel alloc] init];
         timeLable.font=[UIFont systemFontOfSize:12];
         
@@ -31,6 +34,7 @@
         
         [self addSubview:headImage];
         [self addSubview:nameLable];
+        [self addSubview:contentLable];
         [self addSubview:timeLable];
         [self addSubview:cellButton];
         // Initialization code
@@ -39,14 +43,17 @@
 }
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index
 {
-    NSString * headStr= [dic objectForKey:@"pic"];
-    NSString * nameStr = [dic objectForKey:@"content"];
+    NSString * headStr= [dic objectForKey:@"head_photo"];
+    NSString * nameStr = [dic objectForKey:@"ta_name"];
+    NSString * contentStr = [dic objectForKey:@"content"];
     NSString * timeStr = [dic objectForKey:@"add_time"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     nameLable.text=nameStr;
+    contentLable.text =contentStr;
     timeLable.text = timeStr;
     headImage.frame = CGRectMake(10, 10, 60, 60);
-    nameLable.frame = CGRectMake(80, 10, 200, 40);
+    nameLable.frame = CGRectMake(80, 10, 200, 15);
+    contentLable.frame = CGRectMake(80, 35, 200, 15);
     timeLable.frame = CGRectMake(80, 55, 200, 15);
     cellButton.frame = CGRectMake(0, 0, 320, 80);
     cellButton.tag=index;

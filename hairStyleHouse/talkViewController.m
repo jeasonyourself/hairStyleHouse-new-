@@ -20,6 +20,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
 @implementation talkViewController
 @synthesize uid;
+@synthesize talkOrQuestion;
+@synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,9 +53,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSString * plistString = [NSString stringWithFormat:@"%@and%@",appDele.uid,self.uid];
     NSString *filename=[path stringByAppendingPathComponent:plistString];
     
-//    //读文件
-   
-  
+    //读文件
 
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];

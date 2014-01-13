@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface addbeaspeakHairStyleCell : UITableViewCell<UIScrollViewDelegate>
+@class addBeaspeakHairStyleViewController;@interface addbeaspeakHairStyleCell : UITableViewCell<UIScrollViewDelegate>
 {
     UIView * picBackView;
     UIImageView * picImage;
@@ -27,7 +27,9 @@
     UIScrollView * likeScroll;
     UILabel* howMuchLable;
     UILabel * timeLable;
+    
 }
+@property(nonatomic,strong)addBeaspeakHairStyleViewController *fatherController;
 -(void)setFirstCell:(NSDictionary * )_dic andArr:(NSMutableArray *)_arr;
 -(void)setOtherCell:(NSMutableArray *)_arr and:(NSInteger)_index;
 

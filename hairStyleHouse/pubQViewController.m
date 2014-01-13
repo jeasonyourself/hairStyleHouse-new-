@@ -111,7 +111,7 @@ else
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:animationDuration];
     
-    myTableView.frame = newTextViewFrame;
+    myTableView.frame = CGRectMake(0, -200,newTextViewFrame.size.width,newTextViewFrame.size.height+200);
     [UIView commitAnimations];
 }
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -167,32 +167,59 @@ else
     return cell;
 }
 
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [describeText resignFirstResponder];
+}
 - (void)updateBackView
 {
     backView=nil;
-    backView = [[UIView alloc] initWithFrame:CGRectMake(myTableView.frame.origin.x, myTableView.frame.origin.y, myTableView.frame.size.width, myTableView.frame.size.height-60)];
-    backView.backgroundColor =[UIColor lightGrayColor];
-     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 20, 200, 200)];
+    backView = [[UIControl alloc] initWithFrame:CGRectMake(myTableView.frame.origin.x, myTableView.frame.origin.y, myTableView.frame.size.width, myTableView.frame.size.height-60)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [backView addGestureRecognizer:tapGestureRecognizer];
+
+
+
+
+    backView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+
+    headImage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 20, 200, 200)];
     headImage.image = [UIImage imageNamed:@"添加图片.png"];
+    headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    headImage.layer.masksToBounds = YES;//设为NO去试试
     
     headButton = [UIButton buttonWithType:UIButtonTypeCustom];
     headButton.frame = headImage.frame;
     headButton.backgroundColor = [UIColor clearColor];
     [headButton addTarget:self action:@selector(headButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    describeText = [[UITextView alloc] initWithFrame:CGRectMake(20, 240, 280, 120)];
+    describeText = [[UITextView alloc] initWithFrame:CGRectMake(60, 240, 200, 120)];
     describeText.backgroundColor = [UIColor whiteColor];
     
     describeText.textColor = [UIColor blackColor];//设置textview里面的字体颜色
     describeText.font = [UIFont systemFontOfSize:12.0];//设置字体名字和字体大小
     describeText.delegate = self;
+    describeText.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    describeText.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    describeText.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    describeText.layer.masksToBounds = YES;//设为NO去试试
     
     
     sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    sendButton.frame = CGRectMake(10, 400, 300, 30);
-    [sendButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    sendButton.frame = CGRectMake(60, 400, 200, 30);
+//    [_firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+
+    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [sendButton setTitle:@"发布" forState:UIControlStateNormal];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    sendButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    sendButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    sendButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    sendButton.layer.masksToBounds = YES;//设为NO去试试
     
     [backView addSubview:headImage];
     [backView addSubview:headButton];
@@ -218,7 +245,7 @@ else
 
 - (void)headButtonClick
     {
-        
+        [describeText resignFirstResponder];
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"请选择方式"
                                       delegate:self
@@ -314,6 +341,22 @@ else
 
 - (void)sendButtonClick
 {
+    [describeText resignFirstResponder];
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
+    
+    [_activityIndicatorView startAnimating];
+    //开始动画
+    
+   
     if (ifChangeImage==NO)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择一张配图" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
@@ -340,13 +383,15 @@ else
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=1;
+        [request startAsynchronous];
+
     }
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     
-    if (request.tag==1) {
+   
         
         if (request.tag==1)
         {
@@ -371,18 +416,22 @@ else
             
             [request startAsynchronous];
         }
-
-        else if (request.tag==2)
-        {
-            NSLog(@"%@",request.responseString);
-            NSData*jsondata = [request responseData];
-            NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-            SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-            NSDictionary* dic=[jsonP objectWithString:jsonString];
-            NSLog(@"是否发布成功dic:%@",dic);
-            [self.navigationController popViewControllerAnimated:NO];
-        }
+    
+    
+    
+    else if (request.tag==2)
+    {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"是否发布成功dic:%@",dic);
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        [self.navigationController popViewControllerAnimated:NO];
     }
+
 }
 	// Do any additional setup after loading the view.
 
