@@ -245,7 +245,8 @@
     talkView=nil;
     talkView = [[talkViewController alloc] init];
     talkView.talkOrQuestion=@"question";
-    talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"id"];
+    talkView.questionId= [[dresserArray objectAtIndex:_index] objectForKey:@"pid"];
+    talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"ta_id"];
     [self.navigationController pushViewController:talkView animated:NO];
 }
 - (void)didReceiveMemoryWarning

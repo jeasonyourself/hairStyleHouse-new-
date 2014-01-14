@@ -21,6 +21,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 @implementation talkViewController
 @synthesize uid;
 @synthesize talkOrQuestion;
+@synthesize questionId;
+@synthesize sameCityQuestion;
 @synthesize _hidden;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,26 +52,44 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSString *path=[paths objectAtIndex:0];
     NSLog(@"path = %@",path);
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSString * plistString = [NSString stringWithFormat:@"%@and%@",appDele.uid,self.uid];
+    NSString * plistString;
+    if ([talkOrQuestion isEqualToString:@"question"])
+    {
+        plistString = [NSString stringWithFormat:@"%@and%@question",appDele.uid,self.uid];
+    }
+    else
+    {
+        plistString = [NSString stringWithFormat:@"%@and%@talk",appDele.uid,self.uid];
+    }
     NSString *filename=[path stringByAppendingPathComponent:plistString];
     
     //读文件
 
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
 //    UINib *chatNib = [UINib nibWithNibName:@"HRChatCell" bundle:[NSBundle bundleForClass:[HRChatCell class]]];
 //    [myTableView registerNib:chatNib forCellReuseIdentifier:RCellIdentifier];
+    
     [self.view addSubview:myTableView];
     
     lastView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-60, self.view.bounds.size.width, 60)];
+    lastView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    lastView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    lastView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    lastView.layer.masksToBounds = YES;//设为NO去试试
     lastView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:lastView];
     
-    contentView = [[UITextView alloc] initWithFrame:CGRectMake(60,10, 170, 40)];
+    contentView = [[UITextView alloc] initWithFrame:CGRectMake(60,10, 185, 40)];
     contentView.font =[UIFont systemFontOfSize:12.0];
+    contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    contentView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    contentView.layer.masksToBounds = YES;//设为NO去试试
     contentView.delegate =self;
     [lastView addSubview:contentView];
     
@@ -120,7 +140,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     }
     
     
-    [self getData];
+//    [self getData];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -128,7 +148,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [contentView resignFirstResponder];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getData) userInfo:nil repeats:YES];
+    timer =  [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(getData) userInfo:nil repeats:YES];
     [timer setFireDate:[NSDate distantPast]];
 }
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -300,22 +320,47 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
       if (ifchangeHeadImage==NO)
       {
+          NSURL * urlString;
+          if ([talkOrQuestion isEqualToString:@"question"])
+          {
+              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Problem&a=answeradd"];
+              
+          }
+          else
+          {
+              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=publish"];
+              
+          }
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=publish"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
         request.delegate=self;
         request.tag=4;
-        [request setPostValue:appDele.uid forKey:@"uid"];
-        [request setPostValue:self.uid forKey:@"to_id"];
-        [request setPostValue:contentView.text forKey:@"content"];
-          [request setPostValue:imageString forKey:@"pic"];
+          if ([talkOrQuestion isEqualToString:@"question"])
+          {
+              [request setPostValue:appDele.uid forKey:@"from_id"];
+              [request setPostValue:self.uid forKey:@"to_id"];
+              [request setPostValue:questionId forKey:@"pid"];
+              [request setPostValue:contentView.text forKey:@"content"];
+              [request setPostValue:imageString forKey:@"pic"];
+          }
+          else
+          {
+              [request setPostValue:appDele.uid forKey:@"uid"];
+              [request setPostValue:self.uid forKey:@"to_id"];
+              [request setPostValue:contentView.text forKey:@"content"];
+              [request setPostValue:imageString forKey:@"pic"];
+
+          }
           
         
         [request startAsynchronous];
       }
-       else
+       else//有图片
       {
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
-        
+        ASIFormDataRequest* request;
+        request =[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+ 
+
         NSData *imageData = UIImageJPEGRepresentation(sendImage.image, 1.0);
         NSUInteger dataLength = [imageData length];
         
@@ -370,8 +415,17 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 }
 -(void)getData
 {
-    
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=talk"];
+    NSURL * urlString;
+    if ([talkOrQuestion isEqualToString:@"question"])
+    {
+        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Problem&a=topicview"];
+        
+    }
+    else
+    {
+        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=talk"];
+
+    }
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=1;
@@ -381,9 +435,22 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSInteger selfid = [self.uid integerValue];
     NSInteger ftid = appid+selfid;
     NSString * ftString = [NSString stringWithFormat:@"%d",ftid];
-    [request setPostValue:ftString forKey:@"ftid"];
+    
 
+    if ([talkOrQuestion isEqualToString:@"question"])
+    {
+        [request setPostValue:questionId forKey:@"pid"];
+        [request setPostValue:self.uid forKey:@"to_id"];
+    }
+    else
+    {
+        [request setPostValue:ftString forKey:@"ftid"];
+    }
+     NSLog(@"uid:%@",self.uid);
+    NSLog(@"app.uid:%@",appDele.uid);
+    NSLog(@"ftid:%d",ftid);
 
+    NSLog(@"urlString:%@",urlString);
 //    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
 //    NSString *path=[paths objectAtIndex:0];
 //    NSLog(@"path = %@",path);
@@ -398,7 +465,14 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         //1. 创建一个plist文件
 //        NSFileManager* fm = [NSFileManager defaultManager];
 //        [fm createFileAtPath:filename contents:nil attributes:nil];
+        if([sameCityQuestion isEqualToString:@"samecity"])
+        {
+        [request setPostValue:@"-1" forKey:@"max_id"];
+        }
+        else
+        {
         [request setPostValue:@"0" forKey:@"max_id"];
+        }
 
     }
     else
@@ -424,30 +498,72 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"聊天列表dic:%@",dic);
         
-        if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
+        
+        if ([talkOrQuestion isEqualToString:@"question"])
         {
-            [myTableView reloadData];
+            if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSString class]])
+            {
+                [myTableView reloadData];
+            }
+            else if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSArray class]])
+            {
+                arr= [dic objectForKey:@"answer_list"];
+                [oldArray removeObject:[oldArray lastObject]];
+                [oldArray addObjectsFromArray:arr];
+                NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                NSString *path=[paths objectAtIndex:0];
+                NSLog(@"path = %@",path);
+                NSString * plistString;
+                
+                plistString = [NSString stringWithFormat:@"%@and%@question",appDele.uid,self.uid];
+                
+                
+                NSString *filename=[path stringByAppendingPathComponent:plistString];
+                
+                
+                headImageDiction = [NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"my_head_photo"],@"my_head_photo", [dic objectForKey:@"ta_head_photo"],@"ta_head_photo",[dic objectForKey:@"ta_id"],@"ta_id",[dic objectForKey:@"ta_name"],@"ta_name",[dic objectForKey:@"ta_type"],@"ta_type",nil];
+                [oldArray addObject:headImageDiction];
+                [oldArray writeToFile:filename atomically:YES];
+                
+                
+                [self freashView];
+                
+            }
+            
         }
-        else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
+        else
         {
-            arr= [dic objectForKey:@"message_list"];
-            [oldArray removeObject:[oldArray lastObject]];
-            [oldArray addObjectsFromArray:arr];
-            NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-            NSString *path=[paths objectAtIndex:0];
-            NSLog(@"path = %@",path);
-            NSString * plistString = [NSString stringWithFormat:@"%@and%@",appDele.uid,self.uid];
-            NSString *filename=[path stringByAppendingPathComponent:plistString];
             
-            
-            headImageDiction = [NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"my_head_photo"],@"my_head_photo", [dic objectForKey:@"ta_head_photo"],@"ta_head_photo",[dic objectForKey:@"ta_id"],@"ta_id",[dic objectForKey:@"ta_name"],@"ta_name",[dic objectForKey:@"ta_type"],@"ta_type",nil];
-            [oldArray addObject:headImageDiction];
-            [oldArray writeToFile:filename atomically:YES];
-
-            
-            [self freashView];
-
+            if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
+            {
+                [myTableView reloadData];
+            }
+            else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
+            {
+                arr= [dic objectForKey:@"message_list"];
+                [oldArray removeObject:[oldArray lastObject]];
+                [oldArray addObjectsFromArray:arr];
+                NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                NSString *path=[paths objectAtIndex:0];
+                NSLog(@"path = %@",path);
+                NSString * plistString;
+                
+                plistString = [NSString stringWithFormat:@"%@and%@talk",appDele.uid,self.uid];
+                
+                
+                NSString *filename=[path stringByAppendingPathComponent:plistString];
+                
+                
+                headImageDiction = [NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"my_head_photo"],@"my_head_photo", [dic objectForKey:@"ta_head_photo"],@"ta_head_photo",[dic objectForKey:@"ta_id"],@"ta_id",[dic objectForKey:@"ta_name"],@"ta_name",[dic objectForKey:@"ta_type"],@"ta_type",nil];
+                [oldArray addObject:headImageDiction];
+                [oldArray writeToFile:filename atomically:YES];
+                
+                
+                [self freashView];
+                
+            }
         }
+       
     }
     
     else if (request.tag==4)
@@ -487,10 +603,22 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=publish"]];
         request.delegate=self;
         request.tag=4;
-        [request setPostValue:appDele.uid forKey:@"uid"];
-        [request setPostValue:self.uid forKey:@"to_id"];
-        [request setPostValue:contentView.text forKey:@"content"];
-        [request setPostValue:imageString forKey:@"pic"];
+        if ([talkOrQuestion isEqualToString:@"question"])
+        {
+            [request setPostValue:appDele.uid forKey:@"from_id"];
+            [request setPostValue:self.uid forKey:@"to_id"];
+            [request setPostValue:questionId forKey:@"pid"];
+            [request setPostValue:contentView.text forKey:@"content"];
+            [request setPostValue:imageString forKey:@"pic"];
+        }
+        else
+        {
+            [request setPostValue:appDele.uid forKey:@"uid"];
+            [request setPostValue:self.uid forKey:@"to_id"];
+            [request setPostValue:contentView.text forKey:@"content"];
+            [request setPostValue:imageString forKey:@"pic"];
+            
+        }
         
         
         [request startAsynchronous];
@@ -506,7 +634,16 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSString *path=[paths objectAtIndex:0];
     NSLog(@"path = %@",path);
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSString * plistString = [NSString stringWithFormat:@"%@and%@",appDele.uid,self.uid];
+    NSString * plistString;
+    if ([talkOrQuestion isEqualToString:@"question"])
+    {
+        plistString = [NSString stringWithFormat:@"%@and%@question",appDele.uid,self.uid];
+        
+    }
+    else
+    {
+        plistString = [NSString stringWithFormat:@"%@and%@talk",appDele.uid,self.uid];
+    }
     NSString *filename=[path stringByAppendingPathComponent:plistString];
     //读文件
     NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];

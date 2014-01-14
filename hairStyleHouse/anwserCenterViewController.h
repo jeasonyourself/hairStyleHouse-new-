@@ -10,13 +10,18 @@
 #import "pubQViewController.h"
 #import "myAnwserCenterViewController.h"
 #import "loginViewController.h"
+#import "myAnwserListViewController.h"
+#import "talkViewController.h"
 @interface anwserCenterViewController : UIViewController
 {
+    NSDictionary* dic;
     UIButton * questionButton;
     UIButton * anwserButton;
     pubQViewController * pubQ;
     myAnwserCenterViewController * myAnwserView;
     loginViewController* loginView;
+    myAnwserListViewController * myAnwserList;
+    talkViewController * talkView;
 
 }
 @property(nonatomic,strong)NSString * _hidden;

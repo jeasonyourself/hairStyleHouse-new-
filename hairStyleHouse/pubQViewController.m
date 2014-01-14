@@ -410,6 +410,8 @@ else
             request.tag=2;
             [request setPostValue:appDele.uid forKey:@"uid"];
             [request setPostValue:appDele.city forKey:@"city"];
+            [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"lng"];
+            [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
             [request setPostValue:headString forKey:@"image"];
             [request setPostValue:describeText.text forKey:@"content"];
             

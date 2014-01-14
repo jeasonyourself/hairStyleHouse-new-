@@ -8,6 +8,9 @@
 
 #import "anwserCenterViewController.h"
 #import "AppDelegate.h"
+#import "ASIFormDataRequest.h"
+#import "SBJson.h"
+#import "UIImageView+WebCache.h"
 @interface anwserCenterViewController ()
 
 @end
@@ -29,6 +32,7 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
+    dic=[[NSDictionary alloc] init];
 //    questionButton=[[UIButton alloc] init];
 //    questionButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [questionButton.layer setMasksToBounds:YES];
@@ -108,6 +112,56 @@
     }
 }
 
+-(void)getSmameCityQuestion
+{
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    NSURL * urlString= [NSURL URLWithString:@"hhttp://wap.faxingw.cn/index.php?m=Problem&a=findissue"];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
+    request.delegate=self;
+    request.tag=1;
+    [request setPostValue:appDele.city forKey:@"city"];
+    [request startAsynchronous];
+    
+}
+
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+    if (request.tag==1) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        dic=[jsonP objectWithString:jsonString];
+        NSLog(@"获取同城问题dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
+
+            talkView=nil;
+            talkView = [[talkViewController alloc] init];
+            talkView._hidden =@"yes";
+            talkView.talkOrQuestion=@"question";
+            talkView.sameCityQuestion=@"samecity";
+            talkView.questionId= [dic objectForKey:@"pid"];
+            talkView.uid = [dic objectForKey:@"uid"];
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            
+            [appDele pushToViewController:talkView ];
+        }
+        else
+        {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"定位失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        
+    }
+    
+}
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"获取同城问题出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+}
+
 -(void)questionButtonClick
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -134,11 +188,11 @@
         pubQ._hidden  =@"yes";
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         
-        [appDele pushToViewController:pubQ  ];
+        [appDele pushToViewController:pubQ];
     }
     else//发型师的同城提问
     {
-        
+        [self getSmameCityQuestion];
     }
     }
     
@@ -176,7 +230,13 @@
     }
      else//发型师的回答
     {
-    
+        myAnwserList = nil;
+        myAnwserList= [[myAnwserListViewController alloc] init];
+        myAnwserList._hidden = @"yes";
+//        myAnwserList.questionId = [[dresserArray  objectAtIndex:_index] objectForKey:@"id"];
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        
+        [appDele pushToViewController:myAnwserList  ];
     }
         
     }

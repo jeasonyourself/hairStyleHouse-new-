@@ -30,5 +30,7 @@
 }
 @property(strong,nonatomic)    NSString * uid;
 @property(strong,nonatomic)    NSString * talkOrQuestion;
+@property(strong,nonatomic)    NSString * questionId;
+@property(strong,nonatomic)    NSString * sameCityQuestion;
 @property(strong,nonatomic)    NSString * _hidden;
 @end
