@@ -201,6 +201,7 @@
 {
     beaspeakView = nil;
     beaspeakView = [[beaspeakViewController alloc] init];
+    beaspeakView.dresserOrCommen=@"dresser";
     [fatherController needAppdelegatePushToViewController:beaspeakView];
 }
 

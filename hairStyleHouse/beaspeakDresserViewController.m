@@ -64,6 +64,7 @@
     Lab.textColor = [UIColor blackColor];
     self.navigationItem.titleView =Lab;
 }
+
 -(void)leftButtonClick
 {
     [self.navigationController popViewControllerAnimated:NO];
@@ -92,8 +93,13 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"预约发型师详情dic:%@",dic);
+        if ([[dic objectForKey:@"order_info"] isKindOfClass:[NSString class]]) {
+            
+        }
+        else
+        {
         orderInfor = [dic objectForKey:@"order_info"];
-        
+        }
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
         request.delegate=self;
         request.tag=2;

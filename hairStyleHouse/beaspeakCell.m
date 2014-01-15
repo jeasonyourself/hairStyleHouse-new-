@@ -60,7 +60,7 @@
     typeLable.text = [NSString stringWithFormat:@"预约类型:%@",typeStr];
     timeLable.text =[NSString stringWithFormat:@"%@%@",timeStr,hourStr];
     if ([statusStr isEqualToString:@"0"]) {
-        statusLable.text = @"您已取消";
+        statusLable.text = @"用户取消";
 
     }
     else if ([statusStr isEqualToString:@"1"]) {
@@ -68,7 +68,7 @@
         
     }
     else if ([statusStr isEqualToString:@"2"]) {
-        statusLable.text = @"未评价";
+        statusLable.text = @"已完成，未评价";
         
     }
     else if ([statusStr isEqualToString:@"3"]) {
@@ -76,7 +76,7 @@
         
     }
     else if ([statusStr isEqualToString:@"4"]) {
-        statusLable.text = @"已完成";
+        statusLable.text = @"已完成，已评价";
         
     }
     
@@ -86,7 +86,8 @@
     mobileLable.frame = CGRectMake(80, 35, 200, 15);
     typeLable.frame = CGRectMake(80, 55, 200, 15);
     timeLable.frame = CGRectMake(10, 75, 200, 20);
-    statusLable.frame = CGRectMake(280,75, 60, 20);
+    statusLable.textAlignment =NSTextAlignmentCenter;
+    statusLable.frame = CGRectMake(220,75, 100, 20);
 
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

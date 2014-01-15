@@ -41,6 +41,10 @@
     [self refreashNav];
     
     
+    _deacribeText.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _deacribeText.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _deacribeText.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _deacribeText.layer.masksToBounds = YES;//设为NO去试试
 //    subView = [[UIControl alloc] initWithFrame:CGRectMake(0,+170, 320, 190)];
 //    [subView addTarget:self action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
 //    subView.backgroundColor =[UIColor redColor];
@@ -326,6 +330,63 @@
 
 -(void)sureButtonClick
 {
+    
+    
+    if ([_deacribeText.text isEqualToString:@""])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未描述作品" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if (ifselectImage==NO)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未选择任何图片" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([severTime.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务时长" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([severPrice.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
+    {
+        
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务价格" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([saleLable.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
+    {
+        
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务折扣" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+        
+        
+        
+        for (UIImageView  * imageview in imageArr)
+        {
+            NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            NSUInteger dataLength = [imageData length];
+            
+            if(dataLength > MAX_IMAGEDATA_LEN) {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+            } else {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            }
+            
+            [request appendPostData:imageData];
+            request.delegate=self;
+            request.tag=1;
+            [request startAsynchronous];
+            
+        }
+    }
+    
+
 }
 
 
@@ -338,7 +399,7 @@
 
 -(void)cancelButtonClick
 {
-    
+    [self leftButtonClick];
 }
 
 -(void)saleButtonClick
@@ -537,25 +598,37 @@
         if ([sign1 isEqualToString:@"1"])
         {
             _firstImage.image = image;
-            [imageArr removeObjectAtIndex:0];
+//            if ([imageArr objectAtIndex:0]) {
+//                [imageArr removeObjectAtIndex:0];
+//            }
+            
             [imageArr addObject:_firstImage];
         }
         else if([sign1 isEqualToString:@"2"])
         {
             _secondImage.image = image;
-            [imageArr removeObjectAtIndex:1];
+//            if ([imageArr objectAtIndex:1]) {
+//                [imageArr removeObjectAtIndex:1];
+//            }
+            
             [imageArr addObject:_secondImage];
         }
         else if([sign1 isEqualToString:@"3"])
         {
             _thirdImage.image = image;
-            [imageArr removeObjectAtIndex:2];
+//            if ([imageArr objectAtIndex:2]) {
+//                [imageArr removeObjectAtIndex:2];
+//            }
+//            
             [imageArr addObject:_thirdImage];
         }
         else if([sign1 isEqualToString:@"4"])
         {
             _forthImage.image = image;
-            [imageArr removeObjectAtIndex:3];
+//            if ([imageArr objectAtIndex:3]) {
+//                [imageArr removeObjectAtIndex:3];
+//            }
+            
             [imageArr addObject:_forthImage];
         }
         ifselectImage =YES;
@@ -676,52 +749,8 @@
 
 - (IBAction)pubButtonClick:(id)sender
 {
-    if ([_deacribeText.text isEqualToString:@""])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未描述作品" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if (ifselectImage==NO)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未选择任何图片" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if ([severTime.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务时长" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if ([severPrice.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务价格" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if ([saleLable.text isEqualToString:@""]&&[dresserOrComment isEqualToString:@"dresser"])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未填写服务折扣" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else
-    {
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
-    for (UIImageView  * imageview in imageArr)
-    {
-        NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-        NSUInteger dataLength = [imageData length];
-        
-        if(dataLength > MAX_IMAGEDATA_LEN) {
-            imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-        } else {
-            imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-        }
-        
-        [request appendPostData:imageData];
-        request.delegate=self;
-        request.tag=1;
-    }
-    }
     
-}
+  }
 
 
 -(void)requestFinished:(ASIHTTPRequest *)request
@@ -734,6 +763,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"上传图片是否成功dic:%@",dic);
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+        [self leftButtonClick];
     }
     else if (request.tag==1)
         {
@@ -780,8 +812,8 @@
                 [request setPostValue:appDele.type forKey:@"type"];
                 [request setPostValue:_deacribeText.text forKey:@"content"];
                 [request setPostValue:headString forKey:@"work_image"];
-                [request setPostValue:sexString forKey:@"sex"];
-                [request setPostValue:hairStyle forKey:@"hair_type"];
+//                [request setPostValue:sexString forKey:@"sex"];
+//                [request setPostValue:hairStyle forKey:@"hair_type"];
             }
             
             

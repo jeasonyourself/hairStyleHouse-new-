@@ -516,6 +516,7 @@
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
+    
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
 

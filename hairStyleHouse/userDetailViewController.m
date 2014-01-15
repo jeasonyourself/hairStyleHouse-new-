@@ -274,7 +274,7 @@
     [request setPostValue:appDele.uid forKey:@"uid"];
     [request setPostValue:[infoDic objectForKey:@"uid"] forKey:@"touid"];
     [request setPostValue:appDele.type forKey:@"type"];
-    [request setPostValue:@"2" forKey:@"totype"];
+    [request setPostValue:@"1" forKey:@"totype"];
     
     if ( _fouceButton.tag==1)//取消关注
     {

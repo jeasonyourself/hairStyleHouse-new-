@@ -43,23 +43,44 @@
     }
     else
     {
-        topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-        [topImage setImage:[UIImage imageNamed:@"1发型师.png"]];
+        topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
+        topImage.backgroundColor = [UIColor whiteColor];
+        topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        topImage.layer.masksToBounds = YES;//设为NO去试试
+        //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
         
-        UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 160, 50);
+        oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
         oneButton.backgroundColor = [UIColor clearColor];
+        [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+        
         [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        twoButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+20, 160, 50);
+        twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        twoButton.frame = CGRectMake(320/2,self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
         twoButton.backgroundColor = [UIColor clearColor];
+        
+        [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
         [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+       
+            [oneButton setTitle:@"发型师" forState:UIControlStateNormal];
+            [twoButton setTitle:@"个人用户" forState:UIControlStateNormal];
+      
+        
+        
+        
+        
         [self.view addSubview:topImage];
         [self.view addSubview:oneButton];
         [self.view addSubview:twoButton];
         
-         myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-50) style:UITableViewStylePlain];
+        sign = [[NSString alloc] init];
+        
+        myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
+//        [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
     }
 
@@ -68,12 +89,12 @@
     dresserOrperson =YES;
     dresserArray =[[NSMutableArray alloc] init];
     
-   
+   dresserArray1 =[[NSMutableArray alloc] init];
 //    myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     [self getData];
@@ -86,17 +107,27 @@
 
 -(void)oneButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"1发型师.png"]];
-    dresserOrperson =YES;
-    [self getData];
-
+    //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    dresserOrperson=YES;
+    [myTableView reloadData];
+    
 }
 -(void)twoButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"2个人用户.png"]];
-    dresserOrperson =NO;
-    [self getData];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    //    [topImage setImage:[UIImage imageNamed:@"同城发型.png"]];
+    //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+    dresserOrperson=NO;
+
+    [myTableView reloadData];
+    
 }
+
 
 -(void)leftButtonClick
 {
@@ -179,27 +210,57 @@
         request.delegate=self;
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
-        if (dresserOrperson==YES)
-        {
+        
             [request setPostValue:@"2" forKey:@"type"];
+            
+       
+        [request startAsynchronous];
+        
+        
+        NSURL * urlString1;
+        if ([fansOrFouce isEqualToString:@"fans"])
+        {
+            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=fanlist"];
             
         }
         else
         {
-            [request setPostValue:@"1" forKey:@"type"];
-            
+            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=watchlist"];
         }
-        [request startAsynchronous];
+        ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:urlString];
+        request1.delegate=self;
+        request1.tag=11;
+        [request1 setPostValue:appDele.uid forKey:@"uid"];
+        
+        [request1 setPostValue:@"1" forKey:@"type"];
+        
+        
+        [request1 startAsynchronous];
+        
     }
 
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
     
+    [_activityIndicatorView startAnimating];
+    
+    
+   
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (dresserArray!=nil) {
-        [dresserArray removeAllObjects];
-    }
+//    if (dresserArray!=nil) {
+//        [dresserArray removeAllObjects];
+//    }
     if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -218,7 +279,26 @@
         }
         [self freashView];
     }
-    if (request.tag==2) {
+     if (request.tag==11) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"粉丝列表dic:%@",dic);
+        if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSArray class]])
+        {
+            dresserArray1 = [dic objectForKey:@"user_info"];
+            
+        }
+        [self freashView];
+    }
+    
+     if (request.tag==2) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -236,7 +316,8 @@
         }
         [self freashView];
     }
-    
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
@@ -255,8 +336,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dresserArray.count;
+    
+    if ([fansOrFouceOrMessage isEqualToString:@"massege"])
+    {
+        return dresserArray.count;
+        
+    }
+    else
+    {
+        if (dresserOrperson==YES)
+       {
+        //查看发型师
+        return dresserArray.count;
+
+      }
+     else
+      {
+        //查看个人
+        return dresserArray1.count;
+
+      }
 }
+}
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -277,7 +380,15 @@
     }
     else
     {
-    [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+        if (dresserOrperson==YES)
+        {
+            [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+        }
+        else
+        {
+            [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+        }
+    
     }
     return cell;
 }
@@ -288,7 +399,7 @@
 
         talkView=nil;
         talkView = [[talkViewController alloc] init];
-        talkView.uid = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"uid"];
+        talkView.uid = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"ta_id"];
         [self.navigationController pushViewController:talkView animated:NO];
         
     }
@@ -309,7 +420,7 @@
             
             userView =nil;
             userView =[[userInforViewController alloc] init];
-            userView.uid = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"uid"];
+            userView.uid = [[dresserArray1 objectAtIndex:[indexPath row] ] objectForKey:@"uid"];
             userView._hidden=@"no";
             [self.navigationController pushViewController:userView animated:NO];
         }

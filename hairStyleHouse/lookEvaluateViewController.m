@@ -39,11 +39,12 @@
     dresserArray =[[NSMutableArray alloc] init];
     
     
-    //    myTableView.allowsSelection=NO;
+    myTableView.allowsSelection=NO;
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     [self getData];
@@ -153,7 +154,7 @@
         NSString *_content =[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"info"];
         UIFont *font = [UIFont systemFontOfSize:12.0];
         //设置一个行高上限
-        CGSize size = CGSizeMake(300,200);
+        CGSize size = CGSizeMake(180,2000);
         //计算实际frame大小，并将label的frame变成实际大小
         CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
 
@@ -162,7 +163,7 @@
         }
         else
         {
-        return   10+labelsize.height;
+        return   85+labelsize.height;
         }
     }
     
@@ -172,6 +173,7 @@
         lookEvaluateCell *cell=(lookEvaluateCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
         if (cell==nil) {
             cell=[[lookEvaluateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            
         }
         NSInteger row =[indexPath row];
         [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];

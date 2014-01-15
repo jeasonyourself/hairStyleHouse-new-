@@ -16,7 +16,7 @@
 @end
 
 @implementation beaspeakViewController
-
+@synthesize dresserOrCommen;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,31 +33,60 @@
     [self refreashNav];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
-    [topImage setImage:[UIImage imageNamed:@"当前预约.png"]];
     
-    UIButton * oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 160, 50);
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    }
+    else
+    {
+    
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
+    topImage.backgroundColor = [UIColor whiteColor];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
+    //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
+    
+    oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
     oneButton.backgroundColor = [UIColor clearColor];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+20, 160, 50);
+    twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoButton.frame = CGRectMake(320/2,self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
     twoButton.backgroundColor = [UIColor clearColor];
+    
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [oneButton setTitle:@"当前预约" forState:UIControlStateNormal];
+    [twoButton setTitle:@"历史预约" forState:UIControlStateNormal];
+    
+    
+    
+    
+    
     [self.view addSubview:topImage];
     [self.view addSubview:oneButton];
     [self.view addSubview:twoButton];
+
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-50) style:UITableViewStylePlain];
+     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
+    }
     dresserArray =[[NSMutableArray alloc] init];
+    dresserArray1 =[[NSMutableArray alloc] init];
+
     nowOrhistory = YES;
     
     //    myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     [self getData];
@@ -65,18 +94,21 @@
 
 -(void)oneButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"当前预约.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     nowOrhistory = YES;
-
-    [self getData];
+    [myTableView reloadData];
+   
     
 }
 -(void)twoButtonClick
 {
-    [topImage setImage:[UIImage imageNamed:@"历史预约.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     nowOrhistory = NO;
+    [myTableView reloadData];
 
-    [self getData];
+    
 }
 
 -(void)leftButtonClick
@@ -107,7 +139,7 @@
 -(void)refreashNavLab
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-    Lab.text = @"预约记录";
+    Lab.text = @"预约列表";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];
@@ -119,24 +151,38 @@
 {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
-    if (nowOrhistory==YES)
-    {
-//        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=history"]];
-    }
-    else
-    {
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=history"]];
-    }
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reserve_run"]];
         request.delegate=self;
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
-        [request startAsynchronous];   
+        [request startAsynchronous];
+    }
+    else
+    {
+    
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=current"]];
+        request.delegate=self;
+        request.tag=11;
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request startAsynchronous];
+
+        
+         ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=history"]];
+        request1.delegate=self;
+        request1.tag=1;
+        [request1 setPostValue:appDele.uid forKey:@"uid"];
+        [request1 startAsynchronous];
+    }
+    
 }
+
+
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (dresserArray!=nil) {
-        [dresserArray removeAllObjects];
-    }
+//    if (dresserArray!=nil) {
+//        [dresserArray removeAllObjects];
+//    }
     if (request.tag==1)
     {
         NSLog(@"%@",request.responseString);
@@ -145,6 +191,7 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"预约列表dic:%@",dic);
+        
         if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSString class]])
         {
             
@@ -156,7 +203,29 @@
         }
         [self freashView];
     }
+    
+    if (request.tag==11)
+    {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"预约列表dic:%@",dic);
+        
+        if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSArray class]])
+        {
+            dresserArray1 = [dic objectForKey:@"order_list"];
+            
+        }
+        [self freashView];
+    }
 }
+
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"请求超时" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -174,7 +243,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dresserArray.count;
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        return dresserArray.count;
+    }
+    else
+    {
+        if (nowOrhistory==YES)//当前预约
+        {
+            return 1;
+        }
+        else
+            
+        {
+        return dresserArray.count;
+        }
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,17 +274,53 @@
         cell=[[beaspeakCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     NSInteger row =[indexPath row];
-    [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+    }
+    else
+    {
+        if (nowOrhistory==YES)
+        {
+//            [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+        }
+        else
+            
+        {
+            [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+        }
+    }
+    
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    deaspeakDresser =nil;
-    deaspeakDresser =[[beaspeakDresserViewController alloc] init];
-    deaspeakDresser.orderId = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"id"];
-    [self.navigationController pushViewController:deaspeakDresser animated:NO];
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        deaspeakDresser =nil;
+        deaspeakDresser =[[beaspeakDresserViewController alloc] init];
+        deaspeakDresser.orderId = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"id"];
+        NSLog(@"orderId:%@",deaspeakDresser.orderId);
+        
+        [self.navigationController pushViewController:deaspeakDresser animated:NO];
+    }
+    else
+    {
+        if (nowOrhistory==YES)//当前预约
+        {
+            
+        }
+        else
+            
+        {
+            deaspeakDresser =nil;
+            deaspeakDresser =[[beaspeakDresserViewController alloc] init];
+            deaspeakDresser.orderId = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"id"];
+            [self.navigationController pushViewController:deaspeakDresser animated:NO];
+        }
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

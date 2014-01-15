@@ -18,16 +18,21 @@
     UIImageView * topImage;
     UITableView *myTableView;
     NSMutableArray * dresserArray;
+    NSMutableArray * dresserArray1;
+
     BOOL dresserOrperson;//yes是发型师。no是个人用户
     
-    
+    UIButton * oneButton;
+    UIButton * twoButton;
     NSString * fansOrFouceOrMessage;
     NSString * fansOrFouce;
     
     dresserInforViewController * dreserView;
     userInforViewController * userView;
     talkViewController * talkView;
-
+    NSString * sign;
+    UIActivityIndicatorView * _activityIndicatorView ;
+    
 }
 @property (strong,nonatomic)    NSString * fansOrFouceOrMessage;
 @property (strong,nonatomic)    NSString * fansOrFouce;

@@ -22,6 +22,9 @@
 //    UIImageView * headImage;
     
     BOOL ifchangeHeadImage;
+    
+    UIActivityIndicatorView * _activityIndicatorView ;
+    
 }
 @property(nonatomic,strong)NSString* _hidden;
 
@@ -56,5 +59,5 @@
 
 -(IBAction)textFiledReturnEditing:(id)sender;
 - (IBAction)touchDown:(id)sender;
-
+-(IBAction)rightButtonClick:(id)sender;
 @end

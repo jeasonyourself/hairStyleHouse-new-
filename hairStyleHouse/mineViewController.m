@@ -63,6 +63,13 @@
     pubImage = [[pubImageViewController alloc] init];
     pubImage._hidden=@"yes";
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"2"]) {
+        pubImage.dresserOrComment = @"dresser";
+    }
+    else
+    {
+    pubImage.dresserOrComment = @"comment";
+    }
     [appDele pushToViewController:pubImage];
 
 }

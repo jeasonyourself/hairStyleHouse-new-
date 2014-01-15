@@ -78,6 +78,8 @@
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    
     inforDic = [[NSDictionary alloc] init];
 //    headImage = [[UIImageView alloc] init];
     verifyString = [[NSString alloc] init];
@@ -109,7 +111,7 @@
     [self.navigationController popViewControllerAnimated:NO];
     
 }
--(void)rightButtonClick
+-(IBAction)rightButtonClick:(id)sender
 {
     if([_nameField.text isEqualToString:@""]||[_QQfield.text isEqualToString:@""]||[areaText.text isEqualToString:@""]||[_personSignText.text isEqualToString:@""])
     {
@@ -118,9 +120,25 @@
         return;
     }
     
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:_mobileField.text];
+    
+    if (!isMatch)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    else
+    {
+    
     if (ifchangeHeadImage==NO)
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
         request.delegate=self;
         request.tag=4;
@@ -128,8 +146,9 @@
         [request setPostValue:_nameField.text forKey:@"username"];
         [request setPostValue:sexString forKey:@"sex"];
         [request setPostValue:areaText.text forKey:@"city"];
+        [request setPostValue:_QQfield.text forKey:@"qq"];
         [request setPostValue:_personSignText.text forKey:@"signature"];
-        
+        [request setPostValue:_mobileField.text forKey:@"mobile"];
         [request startAsynchronous];
     }
     else
@@ -151,7 +170,20 @@
         [request startAsynchronous];
 
     }
-    
+        
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+        _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+        //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+        _activityIndicatorView.color = [UIColor grayColor];
+        //设置活动指示器的颜色
+        _activityIndicatorView.hidesWhenStopped = NO;
+        //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+        [self.view addSubview:_activityIndicatorView];
+        //将对象加入到view
+        
+        [_activityIndicatorView startAnimating];
+    }
 }
 -(void)refreashNav
 {
@@ -171,21 +203,21 @@
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
-    UIButton * rightButton=[[UIButton alloc] init];
-    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton.layer setMasksToBounds:YES];
-    [rightButton.layer setCornerRadius:3.0];
-    [rightButton.layer setBorderWidth:1.0];
-    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [rightButton setTitle:@"保存" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    rightButton.frame = CGRectMake(12,20, 60, 25);
-    UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem=rightButtonItem;
+//    UIButton * rightButton=[[UIButton alloc] init];
+//    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightButton.layer setMasksToBounds:YES];
+//    [rightButton.layer setCornerRadius:3.0];
+//    [rightButton.layer setBorderWidth:1.0];
+//    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+//    [rightButton setTitle:@"保存" forState:UIControlStateNormal];
+//    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+//    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+//    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    rightButton.frame = CGRectMake(12,20, 60, 25);
+//    UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
+//    self.navigationItem.rightBarButtonItem=rightButtonItem;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -295,16 +327,20 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否绑定成功dic:%@",dic);
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"绑定成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
-        _mobileField.text=@"";
+        
+        
         _checkField.text=@"";
-        _mobileField.hidden= YES;
+        _mobileLable.hidden= YES;
         _checkSignLable.hidden =YES;
         _checkField.hidden = YES;
         _getCheckButton.hidden =YES;
-        _sureButton.hidden = YES;
+//        _sureButton.hidden = YES;
         _cancelButton.hidden = YES;
+        
+        
+       
     }
     else if (request.tag==4)
     {
@@ -315,8 +351,24 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否修改资料成功dic:%@",dic);
         
+        
+        
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
         self.navigationController.navigationBar.hidden = YES;
         [self.navigationController popViewControllerAnimated:NO];
+//            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=success"]];
+//            request.delegate=self;
+//            request.tag=3;
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:mobileString forKey:@"mobile"];
+//            
+//            [request startAsynchronous];
+        
+
         
     }
 else if (request.tag==5)
@@ -331,6 +383,7 @@ else if (request.tag==5)
 
     
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
     request.delegate=self;
     request.tag=4;
@@ -338,9 +391,11 @@ else if (request.tag==5)
     [request setPostValue:headString forKey:@"head_photo"];
     [request setPostValue:_nameField.text forKey:@"username"];
     [request setPostValue:sexString forKey:@"sex"];
+    [request setPostValue:_QQfield.text forKey:@"qq"];
     [request setPostValue:areaText.text forKey:@"city"];
     [request setPostValue:_personSignText.text forKey:@"signature"];
-    
+    [request setPostValue:_mobileField.text forKey:@"mobile"];
+
     [request startAsynchronous];
 }
 
@@ -401,16 +456,22 @@ else if (request.tag==5)
         [_maleButton setImage:[UIImage imageNamed:@"未选中png"] forState:UIControlStateNormal];
         [_femaleButton setImage:[UIImage imageNamed:@"选中png"] forState:UIControlStateNormal];
     }
+    _sureButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _sureButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _sureButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _sureButton.layer.masksToBounds = YES;//设为NO去试试
+    
     _QQfield.text = qqStr;
     areaText.text=cityStr;
     _personSignText.text = signStr;
-    _mobileLable.text =mobileStr;
+    _mobileField.text =mobileStr;
     
-    _mobileField.hidden= YES;
+    _checkButton.hidden=YES;
+    _mobileLable.hidden= YES;
     _checkSignLable.hidden =YES;
     _checkField.hidden = YES;
     _getCheckButton.hidden =YES;
-    _sureButton.hidden = YES;
+//    _sureButton.hidden = YES;
     _cancelButton.hidden = YES;
     
 }
@@ -580,7 +641,7 @@ else if (request.tag==5)
     _checkSignLable.hidden =NO;
     _checkField.hidden = NO;
     _getCheckButton.hidden =NO;
-    _sureButton.hidden = NO;
+//    _sureButton.hidden = NO;
     _cancelButton.hidden = NO;
 }
 
@@ -631,6 +692,7 @@ else if (request.tag==5)
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机验证码输入有误" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
     }
+    
     else
     {
          AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -650,7 +712,7 @@ else if (request.tag==5)
     _checkSignLable.hidden =YES;
     _checkField.hidden = YES;
     _getCheckButton.hidden =YES;
-    _sureButton.hidden = YES;
+//    _sureButton.hidden = YES;
     _cancelButton.hidden = YES;
 }
 

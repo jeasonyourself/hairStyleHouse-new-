@@ -11,6 +11,8 @@
 @interface lookEvaluateCell : UITableViewCell
 
 {
+    UIView * backView;
+    
     UIImageView * headImage;
     UILabel * nameLable;
     UILabel * timeLable;
@@ -26,6 +28,8 @@
 
     UILabel * contentLable;
     UILabel * reaLable;
+    
+    
 }
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index;
 
