@@ -16,7 +16,7 @@
 #import "sameCityViewController.h"
 #import "toolBoxViewController.h"
 #import "mySetViewController.h"
-
+#import "sureStoreViewController.h"
 @interface renewSingleTableCellBackgroundViewController : UIViewController<UIScrollViewDelegate>
 {
     NSDictionary * infoDic;
@@ -30,7 +30,7 @@
     sameCityViewController * sameCityView;
     toolBoxViewController * toolBoxView;
     mySetViewController * mySetView;
-    
+    sureStoreViewController * sureView;
 }
 
 @property(nonatomic,strong)NSDictionary * infoDic;

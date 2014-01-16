@@ -231,7 +231,10 @@
 
 - (IBAction)shalongButtonClick:(id)sender
 {
-    
+    sureView = nil;
+    sureView = [[sureStoreViewController alloc] init];
+    sureView._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:sureView];
 }
 - (IBAction)toolBoxButtonClick:(id)sender
 {

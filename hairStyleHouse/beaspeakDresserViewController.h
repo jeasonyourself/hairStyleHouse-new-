@@ -17,6 +17,8 @@
     dresserInforViewController * dreserView;
 
 }
+@property (strong, nonatomic)   NSString * dresserOrCommen;
+
 @property (strong, nonatomic)   NSString * orderId;
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UIButton *headButton;
@@ -36,6 +38,22 @@
 @property (strong, nonatomic) IBOutlet UILabel *forthLable;
 
 @property (strong, nonatomic) IBOutlet UILabel *fifthLable;
+
+
+@property (strong, nonatomic) IBOutlet UIView *secondView;
+
+@property (strong, nonatomic) IBOutlet UILabel *otherNameLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *otherMobileLable;
+@property (strong, nonatomic) IBOutlet UIView *introView;
+
+@property (strong, nonatomic) IBOutlet UILabel *otherTimeLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *otherTypeLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *otherMoneyLable;
+
+@property (strong, nonatomic) IBOutlet UIImageView *picImage;
 
 - (IBAction)headButtonClick:(id)sender;
 

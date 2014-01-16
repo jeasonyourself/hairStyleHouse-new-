@@ -15,7 +15,7 @@
     UIImageView * topImage;
     UITableView *myTableView;
     NSMutableArray * dresserArray;
-    NSMutableArray * dresserArray1;
+    NSMutableDictionary * inforDic;
     BOOL nowOrhistory;//yes是当前预约，no是历史预约
     
     beaspeakDresserViewController * deaspeakDresser;

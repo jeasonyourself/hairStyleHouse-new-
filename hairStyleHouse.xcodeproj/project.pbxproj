@@ -353,6 +353,8 @@
 		7AF54A37187D264200C93092 /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF54A2B187D264200C93092 /* TSLocateView.m */; };
 		7AF54A38187D264200C93092 /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF54A2C187D264200C93092 /* TSLocateView.xib */; };
 		7AF54A39187D264200C93092 /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF54A2E187D264200C93092 /* TSLocation.m */; };
+		7AFA2F8C1887D66E008FE966 /* sureStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFA2F8A1887D66E008FE966 /* sureStoreViewController.m */; };
+		7AFA2F8D1887D66E008FE966 /* sureStoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AFA2F8B1887D66E008FE966 /* sureStoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -858,6 +860,9 @@
 		7AF54A2C187D264200C93092 /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
 		7AF54A2D187D264200C93092 /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
 		7AF54A2E187D264200C93092 /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		7AFA2F891887D66E008FE966 /* sureStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureStoreViewController.h; sourceTree = "<group>"; };
+		7AFA2F8A1887D66E008FE966 /* sureStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureStoreViewController.m; sourceTree = "<group>"; };
+		7AFA2F8B1887D66E008FE966 /* sureStoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureStoreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1124,6 +1129,9 @@
 				7AE361561847556D008A107C /* scanImageViewController.m */,
 				7AE3615818475580008A107C /* scanCell.h */,
 				7AE3615918475580008A107C /* scanCell.m */,
+				7AFA2F891887D66E008FE966 /* sureStoreViewController.h */,
+				7AFA2F8A1887D66E008FE966 /* sureStoreViewController.m */,
+				7AFA2F8B1887D66E008FE966 /* sureStoreViewController.xib */,
 				7A4BEC94187141CA005E896C /* toolBoxViewController.h */,
 				7A4BEC95187141CA005E896C /* toolBoxViewController.m */,
 				7A4BEC9F1871459D005E896C /* toolBoxSingleCellViewController.h */,
@@ -1712,6 +1720,7 @@
 				7A5D5C7E186C289400F96949 /* 个人用户.png in Resources */,
 				7A4379B818693CE0007F64DB /* hairtype_3_1.png in Resources */,
 				7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */,
+				7AFA2F8D1887D66E008FE966 /* sureStoreViewController.xib in Resources */,
 				7A4379B218693CE0007F64DB /* hairtype_2_4.png in Resources */,
 				7AF54A36187D264200C93092 /* ProvincesAndCities.plist in Resources */,
 				7A5D5C80186C289400F96949 /* 全部.png in Resources */,
@@ -1979,6 +1988,7 @@
 				7AE03D5A1846175B00E14EDC /* dresserDetailViewController.m in Sources */,
 				7AE48286188372CF009E88CB /* sendBeaspeakHairStyleViewController.m in Sources */,
 				7A37D70E1844CA2700D9C4D9 /* ASIInputStream.m in Sources */,
+				7AFA2F8C1887D66E008FE966 /* sureStoreViewController.m in Sources */,
 				7A4379D918696CB7007F64DB /* hairStyleIconCell.m in Sources */,
 				7AE03D5E1846178E00E14EDC /* lookEvaluateViewController.m in Sources */,
 				7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */,

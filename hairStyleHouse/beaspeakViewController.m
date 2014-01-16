@@ -78,7 +78,7 @@
      myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
     }
     dresserArray =[[NSMutableArray alloc] init];
-    dresserArray1 =[[NSMutableArray alloc] init];
+    inforDic =[[NSMutableDictionary alloc] init];
 
     nowOrhistory = YES;
     
@@ -165,6 +165,8 @@
         request.delegate=self;
         request.tag=11;
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:@"-1" forKey:@"order_id"];
+
         [request startAsynchronous];
 
         
@@ -211,18 +213,24 @@
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"预约列表dic:%@",dic);
+        NSLog(@"当前预约dic:%@",dic);
         
-        if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"order_info"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSArray class]])
+        else
         {
-            dresserArray1 = [dic objectForKey:@"order_list"];
+            inforDic = [dic objectForKey:@"order_info"];
+            if ([[inforDic objectForKey:@"order_type"]isEqualToString:@"1"]) {
+                
+            }
             
         }
+        
+        
         [self freashView];
+
     }
 }
 
@@ -244,17 +252,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        myTableView.allowsSelection=YES;
+
         return dresserArray.count;
     }
     else
     {
         if (nowOrhistory==YES)//当前预约
         {
+            myTableView.allowsSelection=NO;
             return 1;
         }
         else
             
         {
+            myTableView.allowsSelection=YES;
+
         return dresserArray.count;
         }
     }
@@ -263,7 +276,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return   100;
+    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        return 100;
+    }
+    else
+    {
+        if (nowOrhistory==YES)//当前预约
+        {
+            return myTableView.frame.size.height;
+        }
+        else
+            
+        {
+            return 100;
+        }
+    }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -281,7 +309,9 @@
     {
         if (nowOrhistory==YES)
         {
-//            [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+            
+           
+            [cell setCell1:inforDic andIndex:row];
         }
         else
             
@@ -299,6 +329,7 @@
     if ([dresserOrCommen isEqualToString:@"dresser"]) {
         deaspeakDresser =nil;
         deaspeakDresser =[[beaspeakDresserViewController alloc] init];
+        deaspeakDresser.dresserOrCommen = @"dresser";
         deaspeakDresser.orderId = [[dresserArray objectAtIndex:[indexPath row] ] objectForKey:@"id"];
         NSLog(@"orderId:%@",deaspeakDresser.orderId);
         
@@ -311,7 +342,6 @@
             
         }
         else
-            
         {
             deaspeakDresser =nil;
             deaspeakDresser =[[beaspeakDresserViewController alloc] init];

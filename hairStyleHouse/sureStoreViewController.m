@@ -1,0 +1,128 @@
+//
+//  sureStoreViewController.m
+//  hairStyleHouse
+//
+//  Created by jeason on 14-1-16.
+//  Copyright (c) 2014年 jeason. All rights reserved.
+//
+
+#import "sureStoreViewController.h"
+
+@interface sureStoreViewController ()
+
+@end
+
+@implementation sureStoreViewController
+@synthesize _hidden;
+@synthesize infordic;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self refreashNavLab];
+    [self refreashNav];
+    _addressText.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _addressText.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _addressText.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _addressText.layer.masksToBounds = YES;//设为NO去试试
+    
+    _sureButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _sureButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _sureButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _sureButton.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _nameField.text=[infordic objectForKey:@"store_name"];
+    _mobileField.text=[infordic objectForKey:@"mobile"];
+    _addressText.text=[infordic objectForKey:@"city"];
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+-(void)refreashNav
+{
+    UIButton * leftButton=[[UIButton alloc] init];
+    leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton.layer setMasksToBounds:YES];
+    [leftButton.layer setCornerRadius:3.0];
+    [leftButton.layer setBorderWidth:1.0];
+    [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    leftButton.frame = CGRectMake(12,20, 60, 25);
+    UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem=leftButtonItem;
+}
+
+-(void)refreashNavLab
+{
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    Lab.text = @"认证沙龙";
+    Lab.textAlignment = NSTextAlignmentCenter;
+    Lab.font = [UIFont systemFontOfSize:16];
+    Lab.textColor = [UIColor blackColor];
+    self.navigationItem.titleView =Lab;
+}
+
+-(void)leftButtonClick
+{
+    if ([_hidden isEqualToString:@"yes"]) {
+        self.navigationController.navigationBar.hidden=YES;
+        
+    }
+    else
+    {
+        self.navigationController.navigationBar.hidden=NO;
+        
+    }
+    
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)sureButtonClick:(id)sender
+{
+   
+}
+
+-(IBAction)textFiledReturnEditing:(id)sender
+{
+    [_nameField resignFirstResponder];
+    [_mobileField resignFirstResponder];
+
+}
+- (IBAction)touchDown:(id)sender
+{
+    [_addressText resignFirstResponder];
+    [self textFiledReturnEditing:_nameField];
+    [self textFiledReturnEditing:_mobileField];
+
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end
