@@ -323,7 +323,7 @@
     talkView.uid = [diction objectForKey:@"uid"];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (![appDele.uid isEqualToString:talkView.uid]) {
-        [fatherView pushViewController:dreserView];
+        [fatherView pushViewController:talkView];
         
     }
 }

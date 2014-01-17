@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
+#import "dresserInforViewController.h"
 @interface commentViewController ()
 
 @end
@@ -201,7 +202,9 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"inforDic:%@",inforDic);
         NSLog(@"评论列表dic:%@",dic);
+        
         
         if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSString class]])
         {
@@ -283,6 +286,7 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
     commentCell *cell=(commentCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell==nil) {
         cell=[[commentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.fatherController=self;
     }
     NSInteger row =[indexPath row];
     if (row==0) {
@@ -319,6 +323,108 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
         return NO;
     }
     return YES;
+}
+
+-(void)headButtonClick
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    if ([[[inforDic objectForKey:@"works_info"] objectForKey:@"uid" ] isEqualToString:appDele.uid])
+    {
+        
+    }
+    else
+    {
+        if ([[[inforDic objectForKey:@"works_info"] objectForKey:@"type" ] isEqualToString:@"2"])
+        {
+            dreserView =nil;
+            dreserView =[[dresserInforViewController alloc] init];
+            dreserView._hidden=@"no";
+            dreserView.uid = [[inforDic objectForKey:@"works_info"] objectForKey:@"uid" ];
+            [self.navigationController pushViewController:dreserView animated:NO ];
+            
+        }
+        else
+        {
+            
+            userView =nil;
+            userView =[[userInforViewController alloc] init];
+            userView._hidden=@"no";
+            userView.uid = [[inforDic objectForKey:@"works_info"] objectForKey:@"uid" ];
+            [self.navigationController pushViewController:userView animated:NO ];
+            
+        }
+    }
+
+}
+-(void)headButtonClick1:(NSInteger)_index
+{
+    
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([[[dresserArray objectAtIndex:_index] objectForKey:@"from_uid"] isEqualToString:appDele.uid])
+    {
+        
+    }
+    else
+    {
+//        if (_index==-1)
+//        {
+//            [self headButtonClick];
+//        }
+//        else
+//        {
+            if ([[[dresserArray objectAtIndex:_index] objectForKey:@"type"] isEqualToString:@"2"])
+            {
+                dreserView =nil;
+                dreserView =[[dresserInforViewController alloc] init];
+                dreserView._hidden=@"no";
+                dreserView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"from_uid"];
+                [self.navigationController pushViewController:dreserView animated:NO ];
+                
+            }
+            else
+            {
+                
+                userView =nil;
+                userView =[[userInforViewController alloc] init];
+                userView._hidden=@"no";
+                userView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"from_uid"];
+                [self.navigationController pushViewController:userView animated:NO ];
+                
+            }
+//        }
+    }
+}
+-(void)smallButtonClick1:(NSInteger)_index
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([[[[inforDic objectForKey:@"like_list"] objectAtIndex:_index] objectForKey:@"uid"] isEqualToString:appDele.uid])
+    {
+        
+    }
+    else
+    {
+        if ([[[[inforDic objectForKey:@"like_list"] objectAtIndex:_index] objectForKey:@"type"] isEqualToString:@"2"])
+        {
+            dreserView =nil;
+            dreserView =[[dresserInforViewController alloc] init];
+            dreserView._hidden=@"no";
+            dreserView.uid = [[[inforDic objectForKey:@"like_list"] objectAtIndex:_index] objectForKey:@"uid"];
+            [self.navigationController pushViewController:dreserView animated:NO ];
+            
+        }
+        else
+        {
+            
+            userView =nil;
+            userView =[[userInforViewController alloc] init];
+            userView._hidden=@"no";
+            userView.uid = [[[inforDic objectForKey:@"like_list"] objectAtIndex:_index] objectForKey:@"uid"];
+            [self.navigationController pushViewController:userView animated:NO ];
+            
+        }
+    }
 }
 - (void)didReceiveMemoryWarning
 {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class commentViewController;
 @interface commentCell : UITableViewCell<UIScrollViewDelegate>
 {
     UIImageView * picImage;
@@ -20,6 +20,7 @@
     UILabel* howMuchLable;
     UILabel * timeLable;
 }
+@property(strong,nonatomic)commentViewController * fatherController;
 -(void)setFirstCell:(NSDictionary * )_dic andArr:(NSMutableArray *)_arr;
 -(void)setOtherCell:(NSMutableArray *)_arr and:(NSInteger)_index;
 @end

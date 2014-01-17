@@ -11,7 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "AppDelegate.h"
 @implementation commentCell
-
+@synthesize fatherController;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -38,6 +38,8 @@
         
         
         headButton = [[UIButton alloc] init];
+        
+        
         nameLable= [[UILabel alloc] init];
         contentLable= [[UILabel alloc] init];
         likeScroll= [[UIScrollView alloc] init];
@@ -69,19 +71,23 @@
     NSString* headStr = [[_dic objectForKey:@"works_info"] objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     headImage.frame = CGRectMake(10, 290, 50, 50);
-    headButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    
+//    headButton=[UIButton buttonWithType:UIButtonTypeCustom];
     headButton.backgroundColor=[UIColor clearColor];
-    headButton.frame=headImage.frame;
     [headButton addTarget:self  action:@selector(selectHeadImage) forControlEvents:UIControlEventTouchUpInside];
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if ([[[_dic objectForKey:@"works_info"] objectForKey:@"uid"] isEqualToString:appDele.uid])
-    {
-        headButton.userInteractionEnabled=NO;
-    }
-    else
-    {
-        headButton.userInteractionEnabled=YES;
-    }
+    headButton.frame=headImage.frame;
+    headButton.tag=-1;
+    
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    if ([[[_dic objectForKey:@"works_info"] objectForKey:@"uid"] isEqualToString:appDele.uid])
+//    {
+//        headButton.userInteractionEnabled=NO;
+//    }
+//    else
+//    {
+//        headButton.userInteractionEnabled=YES;
+//    }
     
     NSString* nameStr = [[_dic objectForKey:@"works_info"] objectForKey:@"username"];
     nameLable.text=nameStr;
@@ -166,20 +172,22 @@
     NSString* headStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     headImage.frame = CGRectMake(5, 5, 50, 50);
-    headButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    headButton.backgroundColor=[UIColor clearColor];
-    headButton.frame=headImage.frame;
     
+//    headButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    headButton.backgroundColor=[UIColor clearColor];
     [headButton addTarget:self  action:@selector(selectHeadImage1:) forControlEvents:UIControlEventTouchUpInside];
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if ([[[_arr objectAtIndex:_index-1]objectForKey:@"uid"] isEqualToString:appDele.uid])
-    {
-        headButton.userInteractionEnabled=NO;
-    }
-    else
-    {
-        headButton.userInteractionEnabled=YES;
-    }
+    headButton.frame=headImage.frame;
+    headButton.tag  = _index-1;
+//    [headButton addTarget:self  action:@selector(selectHeadImage1:) forControlEvents:UIControlEventTouchUpInside];
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    if ([[[_arr objectAtIndex:_index-1]objectForKey:@"uid"] isEqualToString:appDele.uid])
+//    {
+//        headButton.userInteractionEnabled=NO;
+//    }
+//    else
+//    {
+//        headButton.userInteractionEnabled=YES;
+//    }
     NSString* nameStr = [[_arr objectAtIndex:_index-1] objectForKey:@"from_name"];
     nameLable.text=nameStr;
     nameLable.font = [UIFont systemFontOfSize:12];
@@ -204,16 +212,25 @@
 }
 -(void)selectHeadImage
 {
-
+    [fatherController headButtonClick];
+    
 }
+
 -(void)selectImage:(UIButton *)_btn
 {
-
+    [fatherController smallButtonClick1:_btn.tag];
+    
+    
+    
 }
+
 -(void)selectHeadImage1:(UIButton *)_btn
 {
-
+[fatherController headButtonClick1:_btn.tag];
+    
+    
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

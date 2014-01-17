@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "commentCell.h"
+@class dresserInforViewController;
+@class userInforViewController;
 @interface commentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;
@@ -20,6 +22,13 @@
     UITextView * contentView;
     UIButton * sendButton;
     
+    dresserInforViewController *dreserView;
+    userInforViewController * userView;
 }
 @property (nonatomic,strong)NSDictionary * inforDic;
+-(void)headButtonClick;
+-(void)headButtonClick1:(NSInteger)_index;
+-(void)smallButtonClick1:(NSInteger)_index;
+
+
 @end
