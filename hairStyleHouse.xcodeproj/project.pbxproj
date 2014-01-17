@@ -323,6 +323,7 @@
 		7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615318473C26008A107C /* lookEvaluateCell.m */; };
 		7AE361571847556D008A107C /* scanImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE361561847556D008A107C /* scanImageViewController.m */; };
 		7AE3615A18475580008A107C /* scanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3615918475580008A107C /* scanCell.m */; };
+		7AE3AA531889266C00BCA8D3 /* beaspeakCellAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3AA521889266C00BCA8D3 /* beaspeakCellAgain.m */; };
 		7AE48286188372CF009E88CB /* sendBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */; };
 		7AE48287188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */; };
 		7AE4828A1883CEEC009E88CB /* myAnwserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE482891883CEEC009E88CB /* myAnwserListViewController.m */; };
@@ -814,6 +815,8 @@
 		7AE361561847556D008A107C /* scanImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanImageViewController.m; sourceTree = "<group>"; };
 		7AE3615818475580008A107C /* scanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanCell.h; sourceTree = "<group>"; };
 		7AE3615918475580008A107C /* scanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanCell.m; sourceTree = "<group>"; };
+		7AE3AA511889266B00BCA8D3 /* beaspeakCellAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = beaspeakCellAgain.h; sourceTree = "<group>"; };
+		7AE3AA521889266C00BCA8D3 /* beaspeakCellAgain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = beaspeakCellAgain.m; sourceTree = "<group>"; };
 		7AE48283188372CF009E88CB /* sendBeaspeakHairStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendBeaspeakHairStyleViewController.h; sourceTree = "<group>"; };
 		7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
 		7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendBeaspeakHairStyleViewController.xib; sourceTree = "<group>"; };
@@ -1122,6 +1125,8 @@
 				7AE03D661846183400E14EDC /* beaspeakViewController.m */,
 				7AE03D681846187000E14EDC /* beaspeakCell.h */,
 				7AE03D691846187000E14EDC /* beaspeakCell.m */,
+				7AE3AA511889266B00BCA8D3 /* beaspeakCellAgain.h */,
+				7AE3AA521889266C00BCA8D3 /* beaspeakCellAgain.m */,
 				7ADC1A11184D6E22004C61BC /* beaspeakDresserViewController.h */,
 				7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */,
 				7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */,
@@ -1953,6 +1958,7 @@
 				7A37D7171844CA2700D9C4D9 /* SBJsonStreamParserState.m in Sources */,
 				7AE03D64184617DB00E14EDC /* talkCell.m in Sources */,
 				7AD545FC184F2B08009A6B79 /* MJPhotoView.m in Sources */,
+				7AE3AA531889266C00BCA8D3 /* beaspeakCellAgain.m in Sources */,
 				7A4BECAA1871720F005E896C /* mySetSingleCellViewController.m in Sources */,
 				7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */,
 				7A37D7141844CA2700D9C4D9 /* SBJsonStreamParser.m in Sources */,

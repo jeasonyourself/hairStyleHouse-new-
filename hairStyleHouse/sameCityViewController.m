@@ -36,23 +36,23 @@
     [self refreashNavLab];
     [self refreashNav];
 
-    self.view.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, self.navigationController.navigationBar.frame.size.height+20, 316, 50)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage.layer.masksToBounds = YES;//设为NO去试试
     
-    topImage1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+72, 265, 45)];
+    topImage1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.size.height+72, 250, 45)];
     [topImage1 setBackgroundColor:[UIColor whiteColor]];
     topImage1.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage1.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     topImage1.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage1.layer.masksToBounds = YES;//设为NO去试试
     
-    searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+72, 40, 40)];
+    searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.size.height+72, 40, 40)];
     [searchImage setImage:[UIImage imageNamed:@"zhaofaxing1.png"]];
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/2, 50);
@@ -73,7 +73,7 @@
     keyField = [[UITextField alloc] init];
     keyField.backgroundColor = [UIColor whiteColor];
     keyField.delegate =self;
-    keyField.frame= CGRectMake(40, topImage1.frame.origin.y+2, 220, 40);
+    keyField.frame= CGRectMake(45, topImage1.frame.origin.y+2, 200, 40);
     
     UIButton * searchButton=[[UIButton alloc] init];
     searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,7 +87,7 @@
     [searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [searchButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    searchButton.frame = CGRectMake(265,topImage1.frame.origin.y, 55, topImage1.frame.size.height);
+    searchButton.frame = CGRectMake(260,topImage1.frame.origin.y, 55, topImage1.frame.size.height);
     
     [self.view addSubview:topImage];
     [self.view addSubview:topImage1];
@@ -121,7 +121,7 @@
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
@@ -440,7 +440,7 @@
     }
     NSUInteger row = [indexPath row];
    
-    cell.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+    cell.backgroundColor = [UIColor whiteColor];
     
     if ([sign isEqualToString:@"person"]) {
         
@@ -471,7 +471,10 @@
         }
     }
     
-   
+    cell.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    cell.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    cell.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    cell.layer.masksToBounds = YES;//设为NO去试试
     return cell;
     
 }
@@ -540,6 +543,7 @@
 
 -(void)selectCell:(NSInteger)_index
 {
+    [keyField resignFirstResponder];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (!appDele.uid)
     {
@@ -559,7 +563,40 @@
         dreserView =nil;
         dreserView =[[dresserInforViewController alloc] init];
         dreserView._hidden=@"no";
-        dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"id"];
+        
+        
+        if ([sign isEqualToString:@"person"]) {
+            
+            if ([keyField.text isEqualToString:@""])//未搜索
+            {
+                
+                dreserView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"id"];
+
+                
+            }
+            else
+            {
+                dreserView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"id"];
+
+                
+            }
+            
+        }
+        else
+        {
+            if ([keyField.text isEqualToString:@""])//未搜索
+            {
+                dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"id"];
+
+                
+            }
+            else
+            {
+                dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"id"];
+            }
+        }
+        
+
         NSLog(@"%@", dreserView.uid);
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         

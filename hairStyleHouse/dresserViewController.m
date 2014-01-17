@@ -863,9 +863,13 @@
 //            dreserView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"];
 //        }
         NSLog(@"%@", dreserView.uid);
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        
-        [appDele pushToViewController:dreserView ];
+        if (![dreserView.uid isEqualToString:appDele.uid])
+        {
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            
+            [appDele pushToViewController:dreserView ];
+        }
+      
     }
 }
 
@@ -898,9 +902,10 @@
         addBeaspeakView.inforDic=[dresserArray objectAtIndex:_index];
 
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        
+        if (![[[dresserArray objectAtIndex:_index] objectForKey:@"uid"] isEqualToString:appDele.uid])
+        {
         [appDele pushToViewController:addBeaspeakView ];
-        
+        }
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]]];
 //        request.delegate=self;

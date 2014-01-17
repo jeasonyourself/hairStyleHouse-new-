@@ -18,8 +18,25 @@
     if (self) {
         
         picImage  = [[UIImageView alloc] init];
+        picImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        picImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        picImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        picImage.layer.masksToBounds = YES;//设为NO去试试
+        
         headBack = [[UIView alloc] init];
+        headBack.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.masksToBounds = YES;//设为NO去试试
+        
+        
         headImage = [[UIImageView alloc] init];
+        headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.masksToBounds = YES;//设为NO去试试
+        
+        
         headButton = [[UIButton alloc] init];
         nameLable= [[UILabel alloc] init];
         contentLable= [[UILabel alloc] init];
@@ -47,11 +64,11 @@
 {
     NSString* picStr = [[[_dic objectForKey:@"works_info"] objectForKey:@"works_pic"] objectAtIndex:0];
     [picImage setImageWithURL:[NSURL URLWithString:picStr]];
-    picImage.frame = CGRectMake(60, 10, 200, 220);
+    picImage.frame = CGRectMake(65, 10, 190, 270);
 
     NSString* headStr = [[_dic objectForKey:@"works_info"] objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
-    headImage.frame = CGRectMake(10, 240, 50, 50);
+    headImage.frame = CGRectMake(10, 290, 50, 50);
     headButton=[UIButton buttonWithType:UIButtonTypeCustom];
     headButton.backgroundColor=[UIColor clearColor];
     headButton.frame=headImage.frame;
@@ -69,14 +86,14 @@
     NSString* nameStr = [[_dic objectForKey:@"works_info"] objectForKey:@"username"];
     nameLable.text=nameStr;
     nameLable.font = [UIFont systemFontOfSize:12];
-    nameLable.frame = CGRectMake(70, 250, 200, 20);
+    nameLable.frame = CGRectMake(70, 300, 200, 20);
     
     
     
     NSString* contentStr = [[_dic objectForKey:@"works_info"] objectForKey:@"content"];
     contentLable.text=contentStr;
     contentLable.font = [UIFont systemFontOfSize:12];
-    contentLable.frame = CGRectMake(70, 270, 200, 20);
+    contentLable.frame = CGRectMake(70, 320, 200, 20);
     
     for (UIView* _sub in likeScroll.subviews)
     {
@@ -111,6 +128,11 @@
             rect=CGRectMake(30*i+10*(i+1), 0,30, 30);
             UIImageView * workImage = [[UIImageView alloc] initWithFrame:rect];
             [workImage setImageWithURL:[[likeArr objectAtIndex:i] objectForKey:@"head_photo"]];
+            workImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+            workImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.masksToBounds = YES;//设为NO去试试
+            
             UIButton *newvideobutton=[UIButton buttonWithType:UIButtonTypeCustom];
             newvideobutton.backgroundColor=[UIColor clearColor];
             newvideobutton.tag=i;
@@ -120,7 +142,7 @@
             [likeScroll addSubview:newvideobutton];
         }
     }
-    likeScroll.frame = CGRectMake(0, 295, 320, 30);
+    likeScroll.frame = CGRectMake(0, 345, 320, 30);
 
     if (_arr.count==0)
     {
@@ -133,7 +155,7 @@
         howMuchLable.font = [UIFont systemFontOfSize:12];
     }
     
-    howMuchLable.frame = CGRectMake(10, 330, 200, 20);
+    howMuchLable.frame = CGRectMake(10, 380, 200, 20);
     timeLable.frame = CGRectMake(0, 0, 0, 0);
 
 
@@ -147,6 +169,7 @@
     headButton=[UIButton buttonWithType:UIButtonTypeCustom];
     headButton.backgroundColor=[UIColor clearColor];
     headButton.frame=headImage.frame;
+    
     [headButton addTarget:self  action:@selector(selectHeadImage1:) forControlEvents:UIControlEventTouchUpInside];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if ([[[_arr objectAtIndex:_index-1]objectForKey:@"uid"] isEqualToString:appDele.uid])

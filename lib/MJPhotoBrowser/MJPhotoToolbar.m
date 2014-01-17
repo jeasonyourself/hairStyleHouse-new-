@@ -18,6 +18,7 @@
 #import "SBJson.h"
 #import "commentViewController.h"
 #import "AppDelegate.h"
+#import "dresserInforViewController.h"
 @interface MJPhotoToolbar()
 {
     // 显示页码
@@ -52,6 +53,8 @@
     UIButton * addButton;
     
     commentViewController * commentController;
+    
+    dresserInforViewController *dreserView;
 }
 @property (strong,nonatomic)NSMutableArray * imageArr;
 @property (strong,nonatomic)    NSString * getindex;
@@ -93,6 +96,14 @@
         [headBack addSubview: headImage];
         
         [self addSubview:headBack];
+        
+        headButton  = [[UIButton alloc] init];
+        headButton.frame=headBack.frame;
+        [headButton addTarget:self action:@selector(headButtonClick) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:headButton];
+        
+       
+
         
         nameLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 200, 20)];
         nameLable.textColor =[UIColor whiteColor];
@@ -289,12 +300,32 @@
     }
 }
 
+
+-(void)headButtonClick
+{
+    dreserView =nil;
+    dreserView =[[dresserInforViewController alloc] init];
+    dreserView._hidden=@"no";
+    
+    
+    dreserView.uid = [diction objectForKey:@"uid"];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if (![appDele.uid isEqualToString:dreserView.uid]) {
+        [fatherView pushViewController:dreserView];
+
+    }
+    
+}
 -(void)messageButtonClick
 {
     talkView=nil;
     talkView = [[talkViewController alloc] init];
-    talkView.uid = [dic objectForKey:@"uid"];
-    [fatherView pushViewController:talkView];
+    talkView.uid = [diction objectForKey:@"uid"];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if (![appDele.uid isEqualToString:talkView.uid]) {
+        [fatherView pushViewController:dreserView];
+        
+    }
 }
 -(void)commentButtonClick
 {

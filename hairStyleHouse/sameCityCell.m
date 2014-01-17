@@ -51,7 +51,7 @@
         [self addSubview:cityLable];
         [self addSubview:timeLable];
         [self addSubview:addressLable];
-        [cellButton addSubview:fouceButton];
+//        [cellButton addSubview:fouceButton];
         [self addSubview:cellButton];
         
         // Initialization code

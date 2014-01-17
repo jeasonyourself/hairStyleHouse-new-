@@ -42,15 +42,23 @@
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.allowsSelection=NO;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     lastView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-60, self.view.bounds.size.width, 60)];
-    lastView.backgroundColor = [UIColor lightGrayColor];
+    lastView.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:231.0/255.0  blue:231.0/255.0  alpha:1.0];
+    lastView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    lastView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    lastView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    lastView.layer.masksToBounds = YES;//设为NO去试试
     [self.view addSubview:lastView];
     
     contentView = [[UITextView alloc] initWithFrame:CGRectMake(10,10, 230, 40)];
     contentView.font =[UIFont systemFontOfSize:12.0];
+    contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    contentView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    contentView.layer.masksToBounds = YES;//设为NO去试试
     contentView.delegate =self;
     [lastView addSubview:contentView];
     

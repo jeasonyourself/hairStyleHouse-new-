@@ -16,6 +16,11 @@
     
     dresserInforViewController * dreserView;
 
+    UIButton * sureButton;
+    UIButton * cancelButton;
+    
+    UIButton * sureButton1;
+//    UIButton * cancelButton1;
 }
 @property (strong, nonatomic)   NSString * dresserOrCommen;
 
@@ -39,6 +44,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *fifthLable;
 
+@property (strong, nonatomic) IBOutlet UIImageView *firstPicImage;
+
+
 
 @property (strong, nonatomic) IBOutlet UIView *secondView;
 
@@ -52,6 +60,15 @@
 @property (strong, nonatomic) IBOutlet UILabel *otherTypeLable;
 
 @property (strong, nonatomic) IBOutlet UILabel *otherMoneyLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *afirstLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *asecondLable;
+@property (strong, nonatomic) IBOutlet UILabel *athirdLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *aforthLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *afifthLable;
 
 @property (strong, nonatomic) IBOutlet UIImageView *picImage;
 

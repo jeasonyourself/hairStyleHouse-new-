@@ -172,7 +172,7 @@
         
          ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=history"]];
         request1.delegate=self;
-        request1.tag=1;
+        request1.tag=1;//发型师查看列表历史页
         [request1 setPostValue:appDele.uid forKey:@"uid"];
         [request1 startAsynchronous];
     }
@@ -222,14 +222,10 @@
         else
         {
             inforDic = [dic objectForKey:@"order_info"];
-            if ([[inforDic objectForKey:@"order_type"]isEqualToString:@"1"]) {
-                
-            }
+            [self freashView];
             
         }
-        
-        
-        [self freashView];
+
 
     }
 }
@@ -261,13 +257,17 @@
         if (nowOrhistory==YES)//当前预约
         {
             myTableView.allowsSelection=NO;
+            
+            
+            
             return 1;
         }
         else
-            
         {
             myTableView.allowsSelection=YES;
 
+            
+            NSLog(@"dresserArray.count:%d",dresserArray.count);
         return dresserArray.count;
         }
     }
@@ -296,32 +296,53 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+     if ([dresserOrCommen isEqualToString:@"dresser"])
+     
+{
     static NSString *cellID=@"cell";
     beaspeakCell *cell=(beaspeakCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell==nil) {
+    if (cell==nil)
+    {
         cell=[[beaspeakCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     NSInteger row =[indexPath row];
-    if ([dresserOrCommen isEqualToString:@"dresser"]) {
+   
         [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
-    }
+      return cell;
+}
     else
+        
     {
+        static NSString *cellID=@"cell";
+        beaspeakCellAgain *cell=(beaspeakCellAgain *)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil)
+        {
+            cell=[[beaspeakCellAgain alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        }
+
         if (nowOrhistory==YES)
         {
             
-           
+            
+            NSInteger row =[indexPath row];
             [cell setCell1:inforDic andIndex:row];
+            
+            return cell;
         }
         else
             
         {
+            NSInteger row =[indexPath row];
             [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+            return cell;
+ 
         }
+        
     }
     
     
-    return cell;
+  
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

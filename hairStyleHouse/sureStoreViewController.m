@@ -7,7 +7,10 @@
 //
 
 #import "sureStoreViewController.h"
-
+#import "AppDelegate.h"
+#import "ASIFormDataRequest.h"
+#import "SBJson.h"
+#import "UIImageView+WebCache.h"
 @interface sureStoreViewController ()
 
 @end
@@ -44,8 +47,60 @@
     _mobileField.text=[infordic objectForKey:@"mobile"];
     _addressText.text=[infordic objectForKey:@"city"];
     
+    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
+
+-(void)getData
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=store_info"]];
+    request.delegate=self;
+    request.tag=1;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+//    [request setPostValue:self.orderId forKey:@"order_id"];
+    [request startAsynchronous];
+}
+
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+    if (request.tag==1) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"沙龙详情dic:%@",dic);
+        
+        if ([[dic objectForKey:@"store_info"] isKindOfClass:[NSString class]]) {
+            
+        }
+        else
+        {
+            _nameField.text =[[dic objectForKey:@"store_info"] objectForKey:@"store_name"];
+            _mobileField.text =[[dic objectForKey:@"store_info"] objectForKey:@"telephone"];
+            _addressText.text =[[dic objectForKey:@"store_info"] objectForKey:@"store_address"];
+            
+        }
+
+    }
+    if (request.tag==2)
+    {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"是否修改成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"认证成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            [self leftButtonClick];
+        }
+    }
+}
+
 
 -(void)refreashNav
 {
@@ -93,8 +148,46 @@
 
 - (IBAction)sureButtonClick:(id)sender
 {
-   
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:_mobileField.text];
+    
+    if (!isMatch)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+    
+     else if ([_mobileField.text isEqualToString:@""]||[_nameField.text isEqualToString:@""]||[_addressText.text isEqualToString:@""]) {
+        
+        UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写完整地认证信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    else
+    {
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=legalize"]];
+    request.delegate=self;
+    request.tag=2;
+        
+        NSLog(@"appDele.uid:%@",appDele.uid);
+        NSLog(@"city:%@",appDele.city);
+        
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.city forKey:@"city"];
+//        [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
+//        [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"lng"];
+//
+    [request setPostValue:_addressText.text forKey:@"store_name"];
+    [request setPostValue:_nameField.text forKey:@"address"];
+    [request setPostValue:_mobileField.text forKey:@"telephone"];
+    [request startAsynchronous];
+    }
 }
+
 
 -(IBAction)textFiledReturnEditing:(id)sender
 {

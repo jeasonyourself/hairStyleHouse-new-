@@ -19,8 +19,23 @@
     if (self) {
         
         picImage  = [[UIImageView alloc] init];
+        picImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        picImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        picImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        picImage.layer.masksToBounds = YES;//设为NO去试试
+        
         headBack = [[UIView alloc] init];
+        headBack.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.masksToBounds = YES;//设为NO去试试
+        
         headImage = [[UIImageView alloc] init];
+        headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.masksToBounds = YES;//设为NO去试试
+        
         headButton = [[UIButton alloc] init];
         nameLable= [[UILabel alloc] init];
         contentLable= [[UILabel alloc] init];

@@ -288,7 +288,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)commentButtonClick:(id)sender {
+- (IBAction)commentButtonClick:(id)sender
+{
+
+    lookEvaluate=nil;
+    lookEvaluate = [[lookEvaluateViewController alloc] init];
+    lookEvaluate.uid = [infoDic objectForKey:@"uid"];
+    lookEvaluate._hidden = @"no";
+    
+    [fatherController  pushToViewController:lookEvaluate];
 }
 
 - (IBAction)askButtonClick:(id)sender

@@ -11,6 +11,7 @@
 #import "lookEvaluateViewController.h"
 #import "scanImageViewController.h"
 #import "talkViewController.h"
+
 @interface dresserDetailViewController : UIViewController<UIScrollViewDelegate>
 {
     dresserInforViewController * fatherController;

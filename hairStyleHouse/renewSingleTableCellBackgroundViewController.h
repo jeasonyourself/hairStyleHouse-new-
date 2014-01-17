@@ -31,6 +31,8 @@
     toolBoxViewController * toolBoxView;
     mySetViewController * mySetView;
     sureStoreViewController * sureView;
+    
+    
 }
 
 @property(nonatomic,strong)NSDictionary * infoDic;

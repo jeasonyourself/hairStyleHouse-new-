@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "beaspeakCell.h"
 #import "beaspeakDresserViewController.h"
+#import "beaspeakCellAgain.h"
 @interface beaspeakViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
@@ -21,6 +22,9 @@
     beaspeakDresserViewController * deaspeakDresser;
     UIButton * oneButton;
     UIButton * twoButton;
+    
+    beaspeakCellAgain *beaspeakView;
+    
 }
 @property(strong,nonatomic)NSString * dresserOrCommen;
 @end

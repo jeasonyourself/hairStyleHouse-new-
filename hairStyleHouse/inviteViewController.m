@@ -360,6 +360,7 @@
 
 -(void)selectCell:(NSInteger)_index
 {
+    [self cancelLocatePicker];
     inviteDetail = nil;
     inviteDetail  = [[inviteDetailViewController alloc] init] ;
     inviteDetail.inforDic = [dresserArray objectAtIndex:_index];
