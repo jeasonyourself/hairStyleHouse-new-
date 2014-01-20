@@ -81,12 +81,14 @@
     _updateLevelView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _updateLevelView.layer.masksToBounds = YES;//设为NO去试试
     
+    _updateLevelView.hidden = YES;
+    
     
     _sigoutButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _sigoutButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _sigoutButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sigoutButton.layer.masksToBounds = YES;//设为NO去试试
-    
+   
     
     [self getData];
     userInforArr = [[NSMutableArray alloc] init];
@@ -158,7 +160,10 @@
 
 - (IBAction)beaspeakButtonClick:(id)sender
 {
-    
+    setBeaspeakView = nil;
+    setBeaspeakView =[[setBeaspeakViewController alloc] init];
+    setBeaspeakView._hidden =@"no";
+    [fatherController pushToViewController:setBeaspeakView];
 }
 
 - (IBAction)messageButtonClick:(id)sender
@@ -168,27 +173,42 @@
 
 - (IBAction)sinaButtonClick:(id)sender
 {
-    
+    rigView = nil;
+    rigView  = [[rigViewController alloc] init] ;
+    rigView._hidden = NO;
+    rigView._backsign = @"sina";
+    [fatherController pushToViewController:rigView];
 }
 
 - (IBAction)tencentButtonClick:(id)sender
 {
-    
+    rigView = nil;
+    rigView  = [[rigViewController alloc] init] ;
+    rigView._hidden = NO;
+    rigView._backsign = @"qq";
+    [fatherController pushToViewController:rigView];
 }
 
 - (IBAction)suggestButtonClick:(id)sender
 {
-    
+    adviceView = nil;
+    adviceView =[[adviceViewController alloc] init];
+    adviceView._hidden =@"no";
+    [fatherController pushToViewController:adviceView];
 }
 
 - (IBAction)userHelpButtonClick:(id)sender
 {
-    
+    helpView = nil;
+    helpView =[[helpViewController alloc] init];
+    helpView._hidden =@"no";
+    [fatherController pushToViewController:helpView];
 }
 
 - (IBAction)clearAllButtonClick:(id)sender
 {
-    
+    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"清除缓存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (IBAction)updateLevelButtonClick:(id)sender

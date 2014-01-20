@@ -276,6 +276,12 @@
 		7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADE367518729268009670E7 /* dresserToolBoxSingleCellViewController.xib */; };
 		7ADE36801872A789009670E7 /* dresserMySetSingleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */; };
 		7ADE36811872A789009670E7 /* dresserMySetSingleCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */; };
+		7ADF3170188CB29400DF58ED /* adviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF316E188CB29400DF58ED /* adviceViewController.m */; };
+		7ADF3171188CB29400DF58ED /* adviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF316F188CB29400DF58ED /* adviceViewController.xib */; };
+		7ADF3175188CB2A700DF58ED /* helpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF3173188CB2A700DF58ED /* helpViewController.m */; };
+		7ADF3176188CB2A700DF58ED /* helpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF3174188CB2A700DF58ED /* helpViewController.xib */; };
+		7ADF317A188CBE5C00DF58ED /* setBeaspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */; };
+		7ADF317B188CBE5C00DF58ED /* setBeaspeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */; };
 		7AE03D2A184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE03D29184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */; };
 		7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D2D184589A400E14EDC /* singleTableCellBackgroundViewController.xib */; };
@@ -734,6 +740,15 @@
 		7ADE367D1872A789009670E7 /* dresserMySetSingleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dresserMySetSingleCellViewController.h; sourceTree = "<group>"; };
 		7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dresserMySetSingleCellViewController.m; sourceTree = "<group>"; };
 		7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dresserMySetSingleCellViewController.xib; sourceTree = "<group>"; };
+		7ADF316D188CB29400DF58ED /* adviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adviceViewController.h; sourceTree = "<group>"; };
+		7ADF316E188CB29400DF58ED /* adviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adviceViewController.m; sourceTree = "<group>"; };
+		7ADF316F188CB29400DF58ED /* adviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = adviceViewController.xib; sourceTree = "<group>"; };
+		7ADF3172188CB2A700DF58ED /* helpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpViewController.h; sourceTree = "<group>"; };
+		7ADF3173188CB2A700DF58ED /* helpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpViewController.m; sourceTree = "<group>"; };
+		7ADF3174188CB2A700DF58ED /* helpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = helpViewController.xib; sourceTree = "<group>"; };
+		7ADF3177188CBE5C00DF58ED /* setBeaspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setBeaspeakViewController.h; sourceTree = "<group>"; };
+		7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setBeaspeakViewController.m; sourceTree = "<group>"; };
+		7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setBeaspeakViewController.xib; sourceTree = "<group>"; };
 		7AE03D29184581BC00E14EDC /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TencentOpenApi_IOS_Bundle.bundle; path = "../公司/发型屋/TencentOpenApi_IOS_Bundle.bundle"; sourceTree = "<group>"; };
 		7AE03D2B184589A400E14EDC /* singleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = singleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
@@ -1153,6 +1168,15 @@
 				7ADE367D1872A789009670E7 /* dresserMySetSingleCellViewController.h */,
 				7ADE367E1872A789009670E7 /* dresserMySetSingleCellViewController.m */,
 				7ADE367F1872A789009670E7 /* dresserMySetSingleCellViewController.xib */,
+				7ADF3177188CBE5C00DF58ED /* setBeaspeakViewController.h */,
+				7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */,
+				7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */,
+				7ADF316D188CB29400DF58ED /* adviceViewController.h */,
+				7ADF316E188CB29400DF58ED /* adviceViewController.m */,
+				7ADF316F188CB29400DF58ED /* adviceViewController.xib */,
+				7ADF3172188CB2A700DF58ED /* helpViewController.h */,
+				7ADF3173188CB2A700DF58ED /* helpViewController.m */,
+				7ADF3174188CB2A700DF58ED /* helpViewController.xib */,
 				7AE03D6D18461C0200E14EDC /* DemoViewController.h */,
 				7AE03D6E18461C0200E14EDC /* DemoViewController.m */,
 				7AE03D6B18461C0200E14EDC /* SlideImageView.h */,
@@ -1737,11 +1761,13 @@
 				7A4379CC18693CE0007F64DB /* icon_facetype1.png in Resources */,
 				7A4379C118693CE0007F64DB /* hairtype_4_6.png in Resources */,
 				7AD545F4184F2B08009A6B79 /* MBProgressHUD.bundle in Resources */,
+				7ADF3176188CB2A700DF58ED /* helpViewController.xib in Resources */,
 				7A4379AA18693CE0007F64DB /* hairtype_1_6.png in Resources */,
 				7A5D5CA2186C289400F96949 /* 皇冠.png in Resources */,
 				7A5D5C1C186C1C8B00F96949 /* 发型师02.png in Resources */,
 				7AE03D441845D41C00E14EDC /* area.plist in Resources */,
 				7A4379B918693CE0007F64DB /* hairtype_3_2.png in Resources */,
+				7ADF317B188CBE5C00DF58ED /* setBeaspeakViewController.xib in Resources */,
 				7A5D5C82186C289400F96949 /* 其他.png in Resources */,
 				7A5D5C1D186C1C8B00F96949 /* 问题03.png in Resources */,
 				7A4379CF18693CE0007F64DB /* icon_perm.png in Resources */,
@@ -1870,6 +1896,7 @@
 				7A4379BA18693CE0007F64DB /* hairtype_3_3.png in Resources */,
 				7AE09DFD18582FBB007CA28D /* inviteViewController.xib in Resources */,
 				7A4379D218693CE0007F64DB /* icon_recommend1.png in Resources */,
+				7ADF3171188CB29400DF58ED /* adviceViewController.xib in Resources */,
 				7A4379AE18693CE0007F64DB /* hairtype_2_1.png in Resources */,
 				7A4BEC8718710616005E896C /* mycenter_dongtai.png in Resources */,
 				7A4BEC8F18710616005E896C /* mycenter_woxingwoxiu.png in Resources */,
@@ -1943,6 +1970,7 @@
 				7ADC1A14184D6E22004C61BC /* beaspeakDresserViewController.m in Sources */,
 				7AE03D61184617A800E14EDC /* talkViewController.m in Sources */,
 				7A37D7111844CA2700D9C4D9 /* PullingRefreshTableView.m in Sources */,
+				7ADF3175188CB2A700DF58ED /* helpViewController.m in Sources */,
 				7AE09DE61857F94D007CA28D /* wayInforCell.m in Sources */,
 				7ADE36801872A789009670E7 /* dresserMySetSingleCellViewController.m in Sources */,
 				7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */,
@@ -1951,6 +1979,7 @@
 				7AE03D6A1846187000E14EDC /* beaspeakCell.m in Sources */,
 				7AE09DEC1857FE1B007CA28D /* wayDetailViewController.m in Sources */,
 				7AE3615118472232008A107C /* dresserInforViewController.m in Sources */,
+				7ADF3170188CB29400DF58ED /* adviceViewController.m in Sources */,
 				7AE09DE91857F962007CA28D /* wayInforViewController.m in Sources */,
 				7AD54601184F2B08009A6B79 /* SDWebImageDecoder.m in Sources */,
 				7AD7CB0D186D27F1005D1698 /* completeViewController.m in Sources */,
@@ -1959,6 +1988,7 @@
 				7AE03D64184617DB00E14EDC /* talkCell.m in Sources */,
 				7AD545FC184F2B08009A6B79 /* MJPhotoView.m in Sources */,
 				7AE3AA531889266C00BCA8D3 /* beaspeakCellAgain.m in Sources */,
+				7ADF317A188CBE5C00DF58ED /* setBeaspeakViewController.m in Sources */,
 				7A4BECAA1871720F005E896C /* mySetSingleCellViewController.m in Sources */,
 				7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */,
 				7A37D7141844CA2700D9C4D9 /* SBJsonStreamParser.m in Sources */,

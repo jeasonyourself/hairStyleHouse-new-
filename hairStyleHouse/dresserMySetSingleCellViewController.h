@@ -11,7 +11,10 @@
 #import "personInforViewController.h"
 #import "fansAndFouceAndmassegeViewController.h"
 @class mySetViewController;
-
+#import "adviceViewController.h"
+#import "helpViewController.h"
+#import "setBeaspeakViewController.h"
+#import "rigViewController.h"
 @interface dresserMySetSingleCellViewController : UIViewController
 {
     NSMutableDictionary * inforDic;
@@ -19,6 +22,11 @@
     fansAndFouceAndmassegeViewController * fansAndfouceAndMassege;
     NSMutableArray * userInforArr;
     NSMutableDictionary * userInfor;
+    adviceViewController * adviceView;
+    helpViewController * helpView;
+    setBeaspeakViewController * setBeaspeakView;
+    rigViewController * rigView;
+
 }
 @property (nonatomic,strong)mySetViewController  *fatherController;
 @property (strong, nonatomic) IBOutlet UIView *changeInforView;

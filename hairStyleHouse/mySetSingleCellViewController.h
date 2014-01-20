@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "personInforViewController.h"
 #import "fansAndFouceAndmassegeViewController.h"
+#import "adviceViewController.h"
+#import "helpViewController.h"
+#import "rigViewController.h"
 @class mySetViewController;
 
 @interface mySetSingleCellViewController : UIViewController
@@ -18,6 +21,11 @@
     fansAndFouceAndmassegeViewController * fansAndfouceAndMassege;
     NSMutableArray * userInforArr;
     NSMutableDictionary * userInfor;
+    
+    adviceViewController * adviceView;
+    helpViewController * helpView;
+    
+    rigViewController * rigView;
 }
 @property (nonatomic,strong)mySetViewController  *fatherController;
 @property (strong, nonatomic) IBOutlet UIView *changeInforView;

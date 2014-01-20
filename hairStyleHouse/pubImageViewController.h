@@ -37,6 +37,8 @@
 }
 @property(nonatomic,retain) NSString * _hidden;
 @property(nonatomic,retain) NSString * dresserOrComment;
+
+
 @property (strong, nonatomic) IBOutlet UIView *backView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *firstImage;
