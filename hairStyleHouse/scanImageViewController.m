@@ -70,6 +70,7 @@
         
     }
     
+//    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -84,7 +85,7 @@
         NSLog(@"loadMore");
         [self pullLoadMore];
     }];
-    bottomRefreshView.hidden=YES;
+    bottomRefreshView.hidden=NO;
     [myTableView addSubview:bottomRefreshView];
     
     NSLog(@"self.view1:%@",NSStringFromCGRect(self.view.frame));
@@ -615,7 +616,7 @@
     
     - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        return   150;
+        return   myTableView.frame.size.height/3;
     }
     
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

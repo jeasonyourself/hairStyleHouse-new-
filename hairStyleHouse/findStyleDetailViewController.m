@@ -143,7 +143,7 @@
         NSLog(@"loadMore");
         [self pullLoadMore];
     }];
-    bottomRefreshView.hidden=YES;
+    bottomRefreshView.hidden=NO;
     [myTableView addSubview:bottomRefreshView];
     
     

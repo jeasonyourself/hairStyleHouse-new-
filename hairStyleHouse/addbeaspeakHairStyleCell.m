@@ -161,7 +161,7 @@
         oldPriceLable.text=[NSString stringWithFormat:@"平时价格：%@元",oldPriceStr];
     }
     oldPriceLable.font = [UIFont systemFontOfSize:12];
-    oldPriceLable.frame = CGRectMake(85, 285, 100, 20);
+    oldPriceLable.frame = CGRectMake(85, 285, 120, 20);
     
     
     NSString* nowPriceStr = [_dic  objectForKey:@"reserve_price"];
@@ -173,7 +173,7 @@
         nowPriceLable.text=[NSString stringWithFormat:@"优惠价格：%@元（%@折扣）",nowPriceStr,[_dic  objectForKey:@"rebate"]];
     }
     nowPriceLable.font = [UIFont systemFontOfSize:12];
-    nowPriceLable.frame = CGRectMake(180, 285, 100, 20);
+    nowPriceLable.frame = CGRectMake(210, 285, 120, 20);
     
     NSString* addressStr = [_dic objectForKey:@"store_address"] ;
     UIFont *font = [UIFont systemFontOfSize:12.0];

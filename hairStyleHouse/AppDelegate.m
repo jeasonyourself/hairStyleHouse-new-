@@ -26,6 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
     //开启网络状况的监听
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     
@@ -442,6 +444,13 @@
         }
     
 
+    
+    if (request.tag==101)
+    {
+        
+            NSLog(@"request.responseString===%@",request.responseString);
+        
+    }
 }
 
 
@@ -520,4 +529,42 @@
  [_activityIndicatorView stopAnimating];
  _activityIndicatorView.hidesWhenStopped = YES;
  */
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"注册推送成功%@",deviceToken);
+    
+    
+//    self.viewController.toKenValueTextView.text = [NSString stringWithFormat:@"%@",deviceToken];
+//    self.viewController.pushStatusLabel.text = @"已经注册.";
+    NSString* token = [NSString stringWithFormat:@"%@",deviceToken];
+    NSLog(@"apns -> 生成的devToken:%@", token);
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=sitetoken"]];
+    [request addPostValue:token forKey:@"token"];
+    request.tag=101;
+    request.delegate=self;
+    [request startAsynchronous];
+}
+
+
+//远程通知注册失败委托
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+//    self.viewController.toKenValueTextView.text = [error description];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"远程通知");
+//    [self PMD_uesPushMessage:userInfo];
+}
+//-(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+//{
+    //这里处理应用程序如果没有启动,但是是通过通知消息打开的,此时可以获取到消息.
+//    if (launchOptions != nil) {
+//        NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+//        [self PMD_uesPushMessage:userInfo];
+//    }
+//    return YES;
+//}
 @end

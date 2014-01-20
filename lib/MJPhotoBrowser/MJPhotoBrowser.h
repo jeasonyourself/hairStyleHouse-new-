@@ -42,7 +42,7 @@
 - (void)show;
 -(void)refreashNavLab:(NSInteger)currentIndex and:(NSInteger)allCount;
 -(void)pushViewController:(id)Sen;
--(void)addAlphaView:(NSDictionary*)Dic;
+-(void)addAlphaView:(NSDictionary*)Dic andTag:(NSInteger)_tag;
 @end
 
 @protocol MJPhotoBrowserDelegate <NSObject>

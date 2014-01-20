@@ -185,13 +185,14 @@
             
                 if ([[diction objectForKey:@"isWillDo"] isEqualToString:@"1"])//已经加入过我会做
                 {
-                    addButton.frame =  CGRectMake(0, 0, 0, 0);
-
+                    addButton.tag=1;
+                    [addButton setTitle:@"查看报价" forState:UIControlStateNormal];
+                    addButton.frame =  CGRectMake(250, 25, 60, 30);
                 }
                 else
                 {
                     addButton.tag=2;
-                    [addButton setTitle:@"我会做" forState:UIControlStateNormal];
+                    [addButton setTitle:@"我要报价" forState:UIControlStateNormal];
                     addButton.frame =  CGRectMake(250, 25, 60, 30);
                 }
             }
@@ -389,7 +390,7 @@
 
 -(void)addButtonClick
 {
-    [fatherView addAlphaView:dic];
+    [fatherView addAlphaView:dic andTag:addButton.tag];
 
 }
 
