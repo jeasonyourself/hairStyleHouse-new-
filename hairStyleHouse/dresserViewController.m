@@ -876,6 +876,7 @@
 -(void)didFouce:(NSInteger)_index
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
     if (!appDele.uid)
     {
         loginView=nil;
@@ -896,6 +897,13 @@
     else
     {
         //新版跳转到预约发型师界面
+        if ([appDele.type isEqualToString:@"2"]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"发型师不可预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        else
+        {
         addBeaspeakView = nil;
         addBeaspeakView = [[addBeaspeakViewController alloc] init];
         addBeaspeakView._hidden=@"yes";
@@ -905,6 +913,8 @@
         if (![[[dresserArray objectAtIndex:_index] objectForKey:@"uid"] isEqualToString:appDele.uid])
         {
         [appDele pushToViewController:addBeaspeakView ];
+        }
+            
         }
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]]];

@@ -198,6 +198,13 @@
     [self.view addSubview:thirdLable];
     [self.view addSubview:forthLable];
     
+     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+    appDele.tententOAuth=_tencentOAuth;
+    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
+
+    
+    
     QQButton=[[UIButton alloc] init];
     QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [QQButton.layer setMasksToBounds:YES];
@@ -242,14 +249,16 @@
 
 -(void)QQButtonClick
 {
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
-    appDele.tententOAuth=_tencentOAuth;
     
-    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
+    
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+//    appDele.tententOAuth=_tencentOAuth;
+    
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [_tencentOAuth authorize:_permissions inSafari:NO];
     delegate.loginType=@"qq";
+    
 }
 
 -(void)sinaButtonClick
@@ -394,36 +403,41 @@
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController
 {
     NSLog(@"登录不成功 没有获取accesstoken") ;
+    
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled
 {
-    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"取消登陆" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"取消登陆" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
+    
 }
 
 - (void)tencentDidNotNetWork
 {
     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"网络链接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
+    
 }
 
 - (void)tencentDidLogin
 {
     
+    
     if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length])
     {
         // 记录登录用户的OpenID、Token以及过期时间
         NSLog(@"tencentOAuth.accessToken====%@",_tencentOAuth.accessToken);
+        //    NSLog(@"appid==%@",_tencentOAuth.appId);
+        [_tencentOAuth getListAlbum];
+        
+        [_tencentOAuth getUserInfo];//获取用户信息参数
     }
     else
     {
         NSLog(@"登录不成功 没有获取accesstoken") ;
     }
-    //    NSLog(@"appid==%@",_tencentOAuth.appId);
-    [_tencentOAuth getListAlbum];
-    
-    [_tencentOAuth getUserInfo];//获取用户信息参数
+   
     
 }
 
@@ -558,20 +572,20 @@
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
 
 //        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
-            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
-            {
-                [userInfor removeObjectForKey:@"sina_accesstoken"];
-                [userInfor removeObjectForKey:@"sina_userId"];
-                [userInfor removeObjectForKey:@"sina_expirationDate"];
-            }
-            else
-            {
-                [appDele.sinaweibo setAccessToken:[userInfor objectForKey:@"sina_accesstoken"]] ;
-                [appDele.sinaweibo setUserID:[userInfor objectForKey:@"sina_userId"]] ;
-                [appDele.sinaweibo setExpirationDate:[userInfor objectForKey:@"sina_expirationDate"]] ;
-            }
+//            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
+//            {
+//                [userInfor removeObjectForKey:@"sina_accesstoken"];
+//                [userInfor removeObjectForKey:@"sina_userId"];
+//                [userInfor removeObjectForKey:@"sina_expirationDate"];
+//            }
+//            else
+//            {
+//                [appDele.sinaweibo setAccessToken:[userInfor objectForKey:@"sina_accesstoken"]] ;
+//                [appDele.sinaweibo setUserID:[userInfor objectForKey:@"sina_userId"]] ;
+//                [appDele.sinaweibo setExpirationDate:[userInfor objectForKey:@"sina_expirationDate"]] ;
+//            }
         [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
-        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
+        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];
         [userInfor setObject:@"qq" forKey:@"loginType"];
         [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
         [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
@@ -659,22 +673,24 @@
         
 //        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
             
-            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
-            {
-                [userInfor removeObjectForKey:@"tencentOAuth_accesstoken"];
-                [userInfor removeObjectForKey:@"tencentOAuth_openId"];
-                [userInfor removeObjectForKey:@"tencentOAuth_expirationDate"];
-            }
-       else
-       {
-           [appDele.tententOAuth setAccessToken:[userInfor objectForKey:@"tencentOAuth_accesstoken"]] ;
-           [appDele.tententOAuth setOpenId:[userInfor objectForKey:@"tencentOAuth_openId"]] ;
-           [appDele.tententOAuth setExpirationDate:[userInfor objectForKey:@"tencentOAuth_expirationDate"]] ;
+//            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
+//            {
+//                [userInfor removeObjectForKey:@"tencentOAuth_accesstoken"];
+//                [userInfor removeObjectForKey:@"tencentOAuth_openId"];
+//                [userInfor removeObjectForKey:@"tencentOAuth_expirationDate"];
+//            }
+//       else
+//       {
+//           
+           
+//           [appDele.tententOAuth setAccessToken:[userInfor objectForKey:@"tencentOAuth_accesstoken"]] ;
+//           [appDele.tententOAuth setOpenId:[userInfor objectForKey:@"tencentOAuth_openId"]] ;
+//           [appDele.tententOAuth setExpirationDate:[userInfor objectForKey:@"tencentOAuth_expirationDate"]] ;
            
            
-       }
+//       }
         [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
-        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];//选择身份后保存
+        [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];
         [userInfor setObject:@"sina" forKey:@"loginType"];
         
         [userInfor setObject:[_sinaweibo accessToken]  forKey:@"sina_accesstoken"];

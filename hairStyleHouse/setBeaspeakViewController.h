@@ -10,7 +10,10 @@
 
 @interface setBeaspeakViewController : UIViewController
 
+{
+    NSMutableArray * dresserArray;
 
+}
 @property(nonatomic,strong) NSString * _hidden;
 
 @property (strong, nonatomic) IBOutlet UIView *backView;

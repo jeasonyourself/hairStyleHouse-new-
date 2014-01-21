@@ -35,6 +35,8 @@
     self.navigationItem.titleView =Lab;
     [self refreashNav];
     
+    dresserArray = [[NSMutableArray alloc] init];
+    
     _firstPrice.keyboardType=UIKeyboardTypeDecimalPad;
     _secondPrice.keyboardType=UIKeyboardTypeDecimalPad;
     _thirdPrice.keyboardType=UIKeyboardTypeDecimalPad;
@@ -50,7 +52,22 @@
     _sureButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _sureButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sureButton.layer.masksToBounds = YES;//设为NO去试试
+    
+    [self getData];
     // Do any additional setup after loading the view from its nib.
+}
+-(void)getData
+{
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
+    request.delegate=self;
+    request.tag=101;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request startAsynchronous];
+    
+
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -239,7 +256,7 @@
         }
 
     }
-    else
+    if(request.tag==2)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -258,6 +275,94 @@
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"设置失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
         }    }
+    
+    if (request.tag==101) {
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"预约提醒dic:%@",dic);
+        if ([[[dic objectForKey:@"notice_info"] objectForKey:@"info"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[[dic objectForKey:@"notice_info"] objectForKey:@"info"] isKindOfClass:[NSArray class]])
+        {
+            dresserArray = [[dic objectForKey:@"notice_info"] objectForKey:@"info"];
+            
+        }
+
+        if (dresserArray.count==1) {
+            _firstTextField.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0] ];
+            
+        }
+        else if (dresserArray.count==2) {
+            _firstTextField.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
+            _secondTextField.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
+            
+            
+        }
+        else if (dresserArray.count==3) {
+            _firstTextField.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
+            _secondTextField.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
+            _thirdTextField.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
+        }
+        else if (dresserArray.count==4) {
+            _firstTextField.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
+            _secondTextField.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
+            _thirdTextField.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
+            _forthTextField.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
+        }
+        else if (dresserArray.count==5) {
+            
+            _firstTextField.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
+            _secondTextField.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
+            _thirdTextField.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
+            _forthTextField.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
+            _fifithTextField.text= [NSString stringWithFormat:@"5、%@",[dresserArray objectAtIndex:4]];
+        }
+        else if (dresserArray.count==0)
+        {
+            
+        }
+        
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=priceinfo"]];
+        request.delegate=self;
+        request.tag=102;
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        
+        [request startAsynchronous];
+    }
+    
+    if (request.tag==102) {
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"价格详情dic:%@",dic);
+        NSString * priceStr = [dic objectForKey:@"price_info"];
+        NSArray *array = [priceStr componentsSeparatedByString:@"_"];
+        
+        
+        _firstPrice.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:0]];
+        _firstSale.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:4]];
+       
+        
+        _secondPrice.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:1]];
+        _secondSale.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:5]];
+        _thirdPrice.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
+        _thirdSale.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:6]];
+        _forthPrice.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:3]];
+        _forthSale.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:7]];
+       
+
+    }
        //    AppDelegate *appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;//调用appdel
 }
 

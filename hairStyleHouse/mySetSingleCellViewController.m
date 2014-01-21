@@ -203,6 +203,10 @@
     
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     appDele.uid = nil;
+    appDele.type = nil;
+    appDele.loginType = nil;
+    appDele.tententOAuth=nil;
+//    appDele.sinaweibo=nil;
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];

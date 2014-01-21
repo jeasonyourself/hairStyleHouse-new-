@@ -281,11 +281,26 @@
     talkView = [[talkViewController alloc] init];
     if (_index==-1)
     {
+         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        if ([[workInforDic objectForKey:@"uid"] isEqualToString:appDele.uid]) {
+            
+        }
+        else
+        {
         talkView.uid = [workInforDic objectForKey:@"uid"];
+        }
     }
     else
     {
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        if ([[[dresserArray objectAtIndex:_index] objectForKey:@"uid"] isEqualToString:appDele.uid]) {
+            
+        }
+        else
+        {
         talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"uid"];
+        }
     }
     
     [self.navigationController  pushViewController:talkView animated:NO];
@@ -305,7 +320,15 @@
         beaspeakHairStyleView.inforDic = [dresserArray objectAtIndex:_index];
     }
     
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"2"]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"发型师不可预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
     [self.navigationController  pushViewController:beaspeakHairStyleView animated:NO];
+    }
 }
 - (void)didReceiveMemoryWarning
 {

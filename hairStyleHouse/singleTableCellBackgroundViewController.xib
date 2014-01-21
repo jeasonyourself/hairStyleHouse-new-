@@ -331,7 +331,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5S-Jp-Xiq">
-                                    <rect key="frame" x="100" y="25" width="108" height="21"/>
+                                    <rect key="frame" x="95" y="16" width="108" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -360,10 +360,10 @@
                                         <action selector="myFouceButtonClick:" destination="-1" eventType="touchUpInside" id="CjJ-r5-jfz"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pv-Qa-ViJ">
-                                    <rect key="frame" x="93" y="53" width="60" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pv-Qa-ViJ">
+                                    <rect key="frame" x="95" y="48" width="70" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="编辑资料">
+                                    <state key="normal" image="编辑资料.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -432,5 +432,6 @@
         <image name="mycenter_shezhi.png" width="42" height="42"/>
         <image name="mycenter_woxingwoxiu.png" width="42" height="42"/>
         <image name="mycenter_yuyue.png" width="42" height="42"/>
+        <image name="编辑资料.png" width="90" height="30"/>
     </resources>
 </document>

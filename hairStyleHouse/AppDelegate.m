@@ -25,8 +25,10 @@
 @synthesize isReachable;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    
+    
     
     //开启网络状况的监听
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
@@ -67,7 +69,7 @@
         self.loginType = [[dataArray objectAtIndex:0] objectForKey:@"loginType"];
         
         
-        tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+//        tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
 
             [self.tententOAuth setAccessToken:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_accesstoken"]] ;
             [self.tententOAuth setOpenId:[[dataArray objectAtIndex:0] objectForKey:@"tencentOAuth_openId"]] ;
@@ -77,15 +79,16 @@
             [self.sinaweibo setUserID:[[dataArray objectAtIndex:0] objectForKey:@"sina_userId"]] ;
             [self.sinaweibo setExpirationDate:[[dataArray objectAtIndex:0] objectForKey:@"sina_expirationDate"]] ;
         
-        NSLog(@"tencentOAuth_accesstoken:%@",tententOAuth.accessToken);
-        NSLog(@"tencentOAuth_openId:%@",tententOAuth.openId);
+//        NSLog(@"tencentOAuth_accesstoken:%@",tententOAuth.accessToken);
+//        NSLog(@"tencentOAuth_openId:%@",tententOAuth.openId);
+//
+//        NSLog(@"tencentOAuth_expirationDate:%@",tententOAuth.expirationDate);
 
-        NSLog(@"tencentOAuth_expirationDate:%@",tententOAuth.expirationDate);
-
-        NSLog(@"sina_accesstoken:%@",sinaweibo.accessToken);
-        NSLog(@"sina_userId:%@",sinaweibo.userID);
+//        NSLog(@"sina_accesstoken:%@",sinaweibo.accessToken);
+//        NSLog(@"sina_userId:%@",sinaweibo.userID);
+//        
+//        NSLog(@"sina_expirationDate:%@",sinaweibo.expirationDate);
         
-        NSLog(@"sina_expirationDate:%@",sinaweibo.expirationDate);
 
      }
 
@@ -451,6 +454,50 @@
             NSLog(@"request.responseString===%@",request.responseString);
         
     }
+    
+    if (request.tag==1000)
+    {
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:request.responseString];
+        NSLog(@"%@",dic);
+        
+        if ([[dic objectForKey:@"status"] isEqualToString:@"1"])
+        {
+            // 创建一个本地推送
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            //设置10秒之后
+            NSDate *pushDate = [NSDate dateWithTimeIntervalSinceNow:5];
+            if (notification != nil) {
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"推送内容";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
+                
+            }
+            else if([[dic objectForKey:@"status"] isEqualToString:@"2"])//明天继续
+            {
+            
+            }
+            
+        }
+    }
+    
+    
+
 }
 
 
@@ -464,6 +511,22 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    
+    [[UIApplication sharedApplication]setKeepAliveTimeout:600//定时唤醒
+                                                  handler:^{
+                                                      
+                                                      ASIFormDataRequest* request;
+                                                      request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Message&a=push_andrews"]]];
+                                                      
+                                                      [request setPostValue:self.uid forKey:@"uid"];
+                                                      
+                                                      request.delegate=self;
+                                                      request.tag=1000;
+                                                      [request startAsynchronous];
+                                                      
+                                                                                                           //执行的代码
+                                                  }];
+    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -567,4 +630,12 @@
 //    }
 //    return YES;
 //}
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iWeibo" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    // 图标上的数字减1
+    application.applicationIconBadgeNumber -= 1;
+}
 @end
