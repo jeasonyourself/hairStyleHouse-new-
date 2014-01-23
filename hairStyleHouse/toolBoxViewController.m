@@ -8,6 +8,7 @@
 
 #import "toolBoxViewController.h"
 #import "AppDelegate.h"
+#import "BaiduMobStat.h"
 @interface toolBoxViewController ()
 
 @end
@@ -46,6 +47,22 @@
     [self.view addSubview:myTableView];
 	// Do any additional setup after loading the view.
 }
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];

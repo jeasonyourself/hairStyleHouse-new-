@@ -15,7 +15,7 @@
 #import "HZLocation.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "BaiduMobStat.h"
 
 @interface completeViewController ()<UITextFieldDelegate, HZAreaPickerDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
@@ -165,6 +165,21 @@
     [_saveButton2.layer setCornerRadius:5.0];
     [_saveButton2.layer setBorderWidth:0];
    	// Do any additional setup after loading the view.
+}
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"完善资料"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"完善资料"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (void)didReceiveMemoryWarning

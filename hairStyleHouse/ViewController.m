@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "BaiduMobStat.h"
 @interface ViewController ()
 
 @end
@@ -18,6 +18,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"0"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"0"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (void)didReceiveMemoryWarning

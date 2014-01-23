@@ -11,6 +11,7 @@
 #import "LoginView.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface mineViewController ()
 
 @end
@@ -53,6 +54,7 @@
    
 	// Do any additional setup after loading the view.
 }
+
 -(void)leftButtonClick
 {
     
@@ -76,6 +78,9 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
 //    [loginView.view removeFromSuperview];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSLog(@"appDele.uid:%@",appDele.uid);
@@ -89,6 +94,8 @@
         loginView.view.userInteractionEnabled=YES;
 //        [self.view addSubview:loginView.view];
         [self.navigationController pushViewController:loginView animated:YES];
+        
+        
     }
     else
     {
@@ -107,6 +114,12 @@
 //    {
 //        [self getData];
 //    }
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 

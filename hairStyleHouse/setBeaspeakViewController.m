@@ -9,6 +9,7 @@
 #import "setBeaspeakViewController.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface setBeaspeakViewController ()
 
 @end
@@ -71,8 +72,10 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    
-    
+
+    NSString* cName = [NSString stringWithFormat:@"预约设置"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -139,6 +142,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    NSString* cName = [NSString stringWithFormat:@"预约设置"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

@@ -9,6 +9,7 @@
 #import "squareViewController.h"
 #import "AppDelegate.h"
 #import "myShowViewController.h"
+#import "BaiduMobStat.h"
 @interface squareViewController ()
 
 @end
@@ -120,9 +121,25 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated
-{
+{NSString* cName = [NSString stringWithFormat:@"问答中心"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
 [self.navigationController pushViewController:anwserCenter animated:NO];
 }
+//#pragma mark - View lifecycle
+//
+//-(void) viewDidAppear:(BOOL)animated
+//{
+//    NSString* cName = [NSString stringWithFormat:@"%@",  self.tabBarItem.title, nil];
+//    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+//    
+//}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"问答中心"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)tapView:(UITapGestureRecognizer* )tap
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;

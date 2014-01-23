@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface userDetailViewController ()
 
 @end
@@ -173,11 +174,30 @@
     }
     // Do any additional setup after loading the view from its nib.
 }
--(void)viewDidAppear:(BOOL)animated
+
+
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
 {
+    NSString* cName = [NSString stringWithFormat:@"查看普通用户"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     
-    
-    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"查看普通用户"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//
+
+
 //    for (UIView* _sub in saveScroll.subviews)
 //    {
 //        //        if ([_sub isKindOfClass:[AllAroundPullView class]]) {
@@ -214,7 +234,7 @@
     
     
     
-}
+//}
 -(void)selectImage:(UIButton*)button
 {
     scanView=nil;
@@ -247,7 +267,23 @@
 
 - (IBAction)questionButtonClick:(id)sender
 {
-    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        
+    }
+    else
+    {
+
+        myAnwserView= nil;
+        myAnwserView = [[myAnwserCenterViewController alloc] init];
+        myAnwserView._hidden  =@"no";
+//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        
+        myAnwserView.uid = [infoDic objectForKey:@"uid"];
+        
+        myAnwserView.whoLookQuestion=@"other";
+        [fatherController pushToViewController:myAnwserView];
+    }
 }
 
 - (IBAction)saveButtonClick:(id)sender {

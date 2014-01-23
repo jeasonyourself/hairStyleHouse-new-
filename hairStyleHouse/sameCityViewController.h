@@ -12,6 +12,7 @@
 #import "sameCityCell.h"
 #import "loginViewController.h"
 #import "dresserInforViewController.h"
+#import "userInforViewController.h"
 @class AllAroundPullView;
 
 
@@ -43,7 +44,7 @@
     
     loginViewController* loginView;
     dresserInforViewController * dreserView;
-
+    userInforViewController * userView;
 
 }
 @property(nonatomic,strong)        NSString*_hidden;

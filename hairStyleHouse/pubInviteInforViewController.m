@@ -17,6 +17,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface pubInviteInforViewController () <UITextFieldDelegate, HZAreaPickerDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
@@ -155,6 +156,8 @@
     [self.view addSubview:myTableView];
 	// Do any additional setup after loading the view.
 }
+
+
 -(void)leftButtonClick
 {
     [self.navigationController popViewControllerAnimated:NO];
@@ -170,7 +173,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -181,8 +184,9 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
-    
+
+    NSString* cName = [NSString stringWithFormat:@"发布招聘"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -239,6 +243,9 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    
+    NSString* cName = [NSString stringWithFormat:@"发布招聘"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

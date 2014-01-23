@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "dresserInforViewController.h"
+#import "BaiduMobStat.h"
 @interface commentViewController ()
 
 @end
@@ -72,7 +73,7 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
     [sendButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
     sendButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -84,6 +85,9 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
 
 -(void)viewDidAppear:(BOOL)animated
 {
+
+    NSString* cName = [NSString stringWithFormat:@"查看评论"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -141,6 +145,9 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    
+    NSString* cName = [NSString stringWithFormat:@"查看评论"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -155,7 +162,7 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         [leftButton setTitle:@"返回" forState:UIControlStateNormal];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+        [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];

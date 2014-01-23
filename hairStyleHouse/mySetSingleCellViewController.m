@@ -12,6 +12,7 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
+#import "BaiduMobStat.h"
 @interface mySetSingleCellViewController ()
 
 @end
@@ -90,6 +91,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"设置"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"设置"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)getData
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -154,7 +170,10 @@
 
 - (IBAction)messageButtonClick:(id)sender
 {
-    
+    setOpenOrCloseView= nil;
+    setOpenOrCloseView =[[setOpenOrCloseViewController alloc] init];
+    setOpenOrCloseView._hidden =@"no";
+    [fatherController pushToViewController:setOpenOrCloseView];
 }
 
 - (IBAction)sinaButtonClick:(id)sender

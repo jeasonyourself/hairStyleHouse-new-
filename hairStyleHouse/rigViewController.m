@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "dresserViewController.h"
+#import "BaiduMobStat.h"
 @interface rigViewController ()
 
 @end
@@ -57,7 +58,10 @@
 //    {
 //        [self sinaButtonClick];
 //    }
-    
+
+    NSString* cName = [NSString stringWithFormat:@"绑定"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+
     self.view.backgroundColor = [UIColor whiteColor];
     QQButton=[[UIButton alloc] init];
     QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -96,6 +100,12 @@
         
     }
 }
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"绑定"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
 -(void)refreashNavLab
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
@@ -131,7 +141,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];

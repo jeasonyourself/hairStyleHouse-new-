@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "SBJson.h"
 #import "ASIFormDataRequest.h"
+
+#import "BaiduMobStat.h"
 @implementation AppDelegate
 @synthesize wbtoken;
 @synthesize sinaweibo;
@@ -25,6 +27,19 @@
 @synthesize isReachable;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
+    statTracker.channelId = @"ReplaceMeWithYourChannel";//设置您的app的发布渠道
+    statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略
+    statTracker.logSendInterval = 1;  //为1时表示发送日志的时间间隔为1小时
+    statTracker.logSendWifiOnly = YES; //是否仅在WIfi情况下发送日志数据
+    statTracker.sessionResumeInterval = 35;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s,测试时使用1S可以用来测试日志的发送。
+//    statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    statTracker.enableDebugOn = YES; //打开sdk调试接口，会有log打印
+    [statTracker startWithAppId:@"2f279376bb"];//设置您在mtj网站上添加的app的appkey
+    
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     
@@ -182,6 +197,11 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    int index = tabBarController.selectedIndex;
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    [statTracker logEvent:@"TabClick3" eventLabel:[NSString stringWithFormat: @"Tab%d", index]];
+    
     if (viewController == firstNav) {
 //        signStr=@"1";
         tabImageView.image=[UIImage imageNamed:@"找发型01.png"];
@@ -477,7 +497,7 @@
                 // 推送声音
                 notification.soundName = UILocalNotificationDefaultSoundName;
                 // 推送内容
-                notification.alertBody = @"推送内容";
+                notification.alertBody = @"你有一条新的评论信息";
                 //显示在icon上的红色圈中的数子
                 notification.applicationIconBadgeNumber = 1;
                 //设置userinfo 方便在之后需要撤销的时候使用
@@ -488,11 +508,111 @@
                 [app scheduleLocalNotification:notification];
                 
             }
-            else if([[dic objectForKey:@"status"] isEqualToString:@"2"])//明天继续
+            else if([[dic objectForKey:@"status"] isEqualToString:@"2"])
             {
-            
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"你有一个新的粉丝";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
             }
-            
+            else if([[dic objectForKey:@"status"] isEqualToString:@"3"])
+            {
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"你有一条新的预约通知";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
+            }
+            else if([[dic objectForKey:@"status"] isEqualToString:@"4"])
+            {
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"你有一条新的聊天信息";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
+            }
+            else if([[dic objectForKey:@"status"] isEqualToString:@"5"])
+            {
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"你有一条新的问题回答";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
+            }
+            else if([[dic objectForKey:@"status"] isEqualToString:@"6"])
+            {
+                // 设置推送时间
+                notification.fireDate = pushDate;
+                // 设置时区
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                // 设置重复间隔
+                notification.repeatInterval = kCFCalendarUnitDay;
+                // 推送声音
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                // 推送内容
+                notification.alertBody = @"你有一条新的问题提问";
+                //显示在icon上的红色圈中的数子
+                notification.applicationIconBadgeNumber = 1;
+                //设置userinfo 方便在之后需要撤销的时候使用
+                NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+                notification.userInfo = info;
+                //添加推送到UIApplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:notification];
+            }
         }
     }
     
@@ -512,17 +632,21 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     
+    
+    
     [[UIApplication sharedApplication]setKeepAliveTimeout:600//定时唤醒
                                                   handler:^{
                                                       
                                                       ASIFormDataRequest* request;
                                                       request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Message&a=push_andrews"]]];
-                                                      
-                                                      [request setPostValue:self.uid forKey:@"uid"];
-                                                      
-                                                      request.delegate=self;
-                                                      request.tag=1000;
-                                                      [request startAsynchronous];
+                                                      if (self.uid) {
+                                                          [request setPostValue:self.uid forKey:@"uid"];
+                                                          
+                                                          request.delegate=self;
+                                                          request.tag=1000;
+                                                          [request startAsynchronous];
+                                                      }
+                                                     
                                                       
                                                                                                            //执行的代码
                                                   }];
@@ -633,8 +757,8 @@
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iWeibo" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"消息通知" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
     // 图标上的数字减1
     application.applicationIconBadgeNumber -= 1;
 }

@@ -18,6 +18,7 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
+#import "BaiduMobStat.h"
 @interface scanImageViewController ()
 
 @end
@@ -41,7 +42,8 @@
     [super viewDidLoad];
     [self refreashNavLab];
     [self refreashNav];
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+//    self.view.backgroundColor = [UIColor blackColor];
+//    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
 //    dresserArray =[[NSMutableArray alloc] init];
 //    cleandresserArray =[[NSMutableArray alloc] init];
 
@@ -71,13 +73,13 @@
     }
     
 //    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) ];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor whiteColor];
+//    myTableView.backgroundColor=[UIColor redColor];
     [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
@@ -87,6 +89,7 @@
     }];
     bottomRefreshView.hidden=NO;
     [myTableView addSubview:bottomRefreshView];
+    
     
     NSLog(@"self.view1:%@",NSStringFromCGRect(self.view.frame));
 
@@ -107,6 +110,72 @@
     //将对象加入到view
     
     [_activityIndicatorView startAnimating];
+}
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName ;
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+    if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
+    {
+        if ([self.uid isEqualToString:appDele.uid]) {
+            cName = [NSString stringWithFormat:@"我的作品"];
+        }
+        else
+        {
+            cName = [NSString stringWithFormat:@"他的作品"];
+
+        }
+        
+    }
+    else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
+    {
+        cName = [NSString stringWithFormat:@"会做作品"];
+
+    }
+    
+    else//收藏作品
+    {
+        cName = [NSString stringWithFormat:@"收藏作品"];
+
+    }
+
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName ;
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+    if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
+    {
+        if ([self.uid isEqualToString:appDele.uid]) {
+            cName = [NSString stringWithFormat:@"我的作品"];
+        }
+        else
+        {
+            cName = [NSString stringWithFormat:@"他的作品"];
+            
+        }
+        
+    }
+    else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
+    {
+        cName = [NSString stringWithFormat:@"会做作品"];
+        
+    }
+    
+    else//收藏作品
+    {
+        cName = [NSString stringWithFormat:@"收藏作品"];
+        
+    }    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 -(void)pullLoadMore
@@ -133,9 +202,7 @@
     }
     else
     {
-        [bottomRefreshView removeFromSuperview];
         [bottomRefreshView performSelector:@selector(finishedLoading)];
-        bottomRefreshView= nil;
     }
     
     NSLog(@"self.view2:%@",NSStringFromCGRect(self.view.frame));
@@ -153,7 +220,7 @@
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         [leftButton setTitle:@"返回" forState:UIControlStateNormal];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+        [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -616,7 +683,7 @@
     
     - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        return   myTableView.frame.size.height/3;
+        return   165;
     }
     
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -633,6 +700,7 @@
         NSLog(@"row2:%d",row2);
         NSUInteger row3 = [indexPath row]*3+2;
         NSLog(@"row3:%d",row3);
+//        cell.backgroundColor = [UIColor blueColor];
         if (row1<localDresserArray.count)//防止可能越界
         {
             [cell setCell:[localDresserArray objectAtIndex:row1] andIndex:row1];

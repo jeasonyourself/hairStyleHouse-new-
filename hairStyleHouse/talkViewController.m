@@ -13,6 +13,7 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "BaiduMobStat.h"
 @interface talkViewController ()
 
 @end
@@ -103,7 +104,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [imageButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [imageButton setTitle:@"+" forState:UIControlStateNormal];
     imageButton.titleLabel.font = [UIFont systemFontOfSize:18.0];
-    [imageButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [imageButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [imageButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [imageButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [imageButton addTarget:self action:@selector(imageButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -117,7 +118,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [sendButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
     sendButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -144,7 +145,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+
+    NSString* cName = [NSString stringWithFormat:@"消息"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [contentView resignFirstResponder];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -205,6 +208,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    
+    NSString* cName = [NSString stringWithFormat:@"消息"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [timer setFireDate:[NSDate distantFuture]];
@@ -395,7 +401,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -407,7 +413,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 -(void)refreashNavLab
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-    Lab.text = @"聊天";
+    Lab.text = @"消息";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];

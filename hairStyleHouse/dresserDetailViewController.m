@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface dresserDetailViewController ()
 
 @end
@@ -234,10 +235,23 @@
 
     // Do any additional setup after loading the view from its nib.
 }
--(void)viewDidAppear:(BOOL)animated
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
 {
-   
+    NSString* cName = [NSString stringWithFormat:@"查看发型师"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
 }
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"查看发型师"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)selectImage:(UIButton*)button//原创
 {
     scanView=nil;

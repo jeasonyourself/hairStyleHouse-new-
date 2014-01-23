@@ -7,7 +7,7 @@
 //
 
 #import "mustCompleteViewController.h"
-
+#import "BaiduMobStat.h"
 @interface mustCompleteViewController ()
 
 @end
@@ -74,7 +74,9 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+
+    NSString* cName = [NSString stringWithFormat:@"完善资料"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -133,6 +135,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    NSString* cName = [NSString stringWithFormat:@"完善资料"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

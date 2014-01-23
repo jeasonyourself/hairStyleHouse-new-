@@ -8,6 +8,7 @@
 
 #import "mySetViewController.h"
 #import "AppDelegate.h"
+#import "BaiduMobStat.h"
 @interface mySetViewController ()
 
 @end
@@ -46,6 +47,22 @@
     [self.view addSubview:myTableView];
 	// Do any additional setup after loading the view.
 }
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"设置"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"设置"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];

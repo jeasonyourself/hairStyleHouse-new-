@@ -12,6 +12,7 @@
 #import "adviceViewController.h"
 #import "helpViewController.h"
 #import "rigViewController.h"
+#import "setOpenOrCloseViewController.h"
 @class mySetViewController;
 
 @interface mySetSingleCellViewController : UIViewController
@@ -22,10 +23,12 @@
     NSMutableArray * userInforArr;
     NSMutableDictionary * userInfor;
     
+    setOpenOrCloseViewController *setOpenOrCloseView;
     adviceViewController * adviceView;
     helpViewController * helpView;
     
     rigViewController * rigView;
+    
 }
 @property (nonatomic,strong)mySetViewController  *fatherController;
 @property (strong, nonatomic) IBOutlet UIView *changeInforView;

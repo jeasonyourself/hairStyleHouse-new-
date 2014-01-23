@@ -15,6 +15,8 @@
 #import "helpViewController.h"
 #import "setBeaspeakViewController.h"
 #import "rigViewController.h"
+#import "setOpenOrCloseViewController.h"
+
 @interface dresserMySetSingleCellViewController : UIViewController
 {
     NSMutableDictionary * inforDic;
@@ -26,6 +28,8 @@
     helpViewController * helpView;
     setBeaspeakViewController * setBeaspeakView;
     rigViewController * rigView;
+    setOpenOrCloseViewController *setOpenOrCloseView;
+    
 
 }
 @property (nonatomic,strong)mySetViewController  *fatherController;

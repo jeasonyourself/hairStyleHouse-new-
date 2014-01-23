@@ -224,6 +224,22 @@
 		7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C66186C289400F96949 /* 问答中心.png */; };
 		7A63A503185AF42800502E75 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A63A500185AF42800502E75 /* libWeiboSDK.a */; };
 		7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A63A501185AF42800502E75 /* WeiboSDK.bundle */; };
+		7AAFF1AF188F9DCE008EB929 /* setOpenOrCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */; };
+		7AAFF1B0188F9DCE008EB929 /* setOpenOrCloseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */; };
+		7AAFF1D3188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAFF1B4188FB1DA008EB929 /* libBaiduMobStat.a */; };
+		7AAFF1D4188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAFF1B7188FB1DA008EB929 /* libBaiduMobStat.a */; };
+		7AAFF1D5188FB1DA008EB929 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1BA188FB1DA008EB929 /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1D6188FB1DA008EB929 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1BD188FB1DA008EB929 /* CFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1D7188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1BF188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1D8188FB1DA008EB929 /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1C1188FB1DA008EB929 /* CJSONSerialization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1D9188FB1DA008EB929 /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1C3188FB1DA008EB929 /* CJSONSerializedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1DA188FB1DA008EB929 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1C6188FB1DA008EB929 /* CDataScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1DB188FB1DA008EB929 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1C8188FB1DA008EB929 /* NSDictionary_JSONExtensions.m */; };
+		7AAFF1DC188FB1DA008EB929 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1CB188FB1DA008EB929 /* CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1DD188FB1DA008EB929 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1CD188FB1DA008EB929 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1DE188FB1DA008EB929 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1CF188FB1DA008EB929 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AAFF1DF188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAFF1D2188FB1DA008EB929 /* libBaiduMobStat.a */; };
+		7AAFF1E1188FB1EC008EB929 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */; };
 		7AD545BB184EF6FD009A6B79 /* findStyleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */; };
 		7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BF184F2B08009A6B79 /* MBProgressHUD+Add.m */; };
 		7AD545F4184F2B08009A6B79 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545C0184F2B08009A6B79 /* MBProgressHUD.bundle */; };
@@ -306,6 +322,8 @@
 		7AE0700B18519FA700ED1EDE /* userInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0700A18519FA700ED1EDE /* userInforViewController.m */; };
 		7AE0700F18519FBE00ED1EDE /* userDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0700D18519FBE00ED1EDE /* userDetailViewController.m */; };
 		7AE0701018519FBE00ED1EDE /* userDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE0700E18519FBE00ED1EDE /* userDetailViewController.xib */; };
+		7AE0868E188F8D0900DEDDD5 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE0868D188F8D0900DEDDD5 /* TencentOpenAPI.framework */; };
+		7AE08690188F8D1900DEDDD5 /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE0868F188F8D1900DEDDD5 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7AE09DE61857F94D007CA28D /* wayInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09DE51857F94D007CA28D /* wayInforCell.m */; };
 		7AE09DE91857F962007CA28D /* wayInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09DE81857F962007CA28D /* wayInforViewController.m */; };
 		7AE09DEC1857FE1B007CA28D /* wayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09DEB1857FE1B007CA28D /* wayDetailViewController.m */; };
@@ -342,8 +360,6 @@
 		7AE9E3EC18850D690023FDFC /* addphoto_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE9E3EB18850D690023FDFC /* addphoto_green.png */; };
 		7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */; };
 		7AEB52C61880CFEC00538279 /* addbeaspeakHairStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */; };
-		7AF20C80188E57AB0015E841 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF20C7F188E57AB0015E841 /* TencentOpenAPI.framework */; };
-		7AF20C82188E57B80015E841 /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF20C81188E57B80015E841 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7AF20C84188E88110015E841 /* 编辑资料.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF20C83188E88110015E841 /* 编辑资料.png */; };
 		7AF20C8C188E92A30015E841 /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF20C85188E92A30015E841 /* icon-29.png */; };
 		7AF20C8D188E92A30015E841 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AF20C86188E92A30015E841 /* icon-120.png */; };
@@ -652,6 +668,36 @@
 		7A63A500185AF42800502E75 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		7A63A501185AF42800502E75 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		7A63A502185AF42800502E75 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		7AAFF1AC188F9DCE008EB929 /* setOpenOrCloseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setOpenOrCloseViewController.h; sourceTree = "<group>"; };
+		7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setOpenOrCloseViewController.m; sourceTree = "<group>"; };
+		7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setOpenOrCloseViewController.xib; sourceTree = "<group>"; };
+		7AAFF1B3188FB1DA008EB929 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		7AAFF1B4188FB1DA008EB929 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		7AAFF1B6188FB1DA008EB929 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		7AAFF1B7188FB1DA008EB929 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		7AAFF1B9188FB1DA008EB929 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		7AAFF1BA188FB1DA008EB929 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		7AAFF1BC188FB1DA008EB929 /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
+		7AAFF1BD188FB1DA008EB929 /* CFilteringJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFilteringJSONSerializer.m; sourceTree = "<group>"; };
+		7AAFF1BE188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer_BlocksExtensions.h; sourceTree = "<group>"; };
+		7AAFF1BF188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer_BlocksExtensions.m; sourceTree = "<group>"; };
+		7AAFF1C0188FB1DA008EB929 /* CJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerialization.h; sourceTree = "<group>"; };
+		7AAFF1C1188FB1DA008EB929 /* CJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerialization.m; sourceTree = "<group>"; };
+		7AAFF1C2188FB1DA008EB929 /* CJSONSerializedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializedData.h; sourceTree = "<group>"; };
+		7AAFF1C3188FB1DA008EB929 /* CJSONSerializedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializedData.m; sourceTree = "<group>"; };
+		7AAFF1C5188FB1DA008EB929 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		7AAFF1C6188FB1DA008EB929 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		7AAFF1C7188FB1DA008EB929 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		7AAFF1C8188FB1DA008EB929 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		7AAFF1CA188FB1DA008EB929 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		7AAFF1CB188FB1DA008EB929 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		7AAFF1CC188FB1DA008EB929 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		7AAFF1CD188FB1DA008EB929 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		7AAFF1CE188FB1DA008EB929 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		7AAFF1CF188FB1DA008EB929 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		7AAFF1D0188FB1DA008EB929 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		7AAFF1D2188FB1DA008EB929 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7AD545B9184EF6FD009A6B79 /* findStyleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findStyleDetailViewController.h; sourceTree = "<group>"; };
 		7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findStyleDetailViewController.m; sourceTree = "<group>"; };
 		7AD545BE184F2B08009A6B79 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
@@ -797,6 +843,8 @@
 		7AE0700C18519FBE00ED1EDE /* userDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userDetailViewController.h; sourceTree = "<group>"; };
 		7AE0700D18519FBE00ED1EDE /* userDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userDetailViewController.m; sourceTree = "<group>"; };
 		7AE0700E18519FBE00ED1EDE /* userDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = userDetailViewController.xib; sourceTree = "<group>"; };
+		7AE0868D188F8D0900DEDDD5 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		7AE0868F188F8D1900DEDDD5 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7AE09DE41857F94D007CA28D /* wayInforCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wayInforCell.h; sourceTree = "<group>"; };
 		7AE09DE51857F94D007CA28D /* wayInforCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wayInforCell.m; sourceTree = "<group>"; };
 		7AE09DE71857F962007CA28D /* wayInforViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wayInforViewController.h; sourceTree = "<group>"; };
@@ -861,8 +909,6 @@
 		7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
 		7AEB52C41880CFEC00538279 /* addbeaspeakHairStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addbeaspeakHairStyleCell.h; sourceTree = "<group>"; };
 		7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addbeaspeakHairStyleCell.m; sourceTree = "<group>"; };
-		7AF20C7F188E57AB0015E841 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		7AF20C81188E57B80015E841 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7AF20C83188E88110015E841 /* 编辑资料.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "编辑资料.png"; sourceTree = "<group>"; };
 		7AF20C85188E92A30015E841 /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
 		7AF20C86188E92A30015E841 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
@@ -904,17 +950,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF20C82188E57B80015E841 /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */,
+				7AAFF1E1188FB1EC008EB929 /* AdSupport.framework in Frameworks */,
+				7AE08690188F8D1900DEDDD5 /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */,
 				7A37D74D1844CB4600D9C4D9 /* CFNetwork.framework in Frameworks */,
 				7A37D74B1844CB4000D9C4D9 /* QuartzCore.framework in Frameworks */,
 				7A37D7491844CB3900D9C4D9 /* CoreLocation.framework in Frameworks */,
 				7A37D7471844CB2D00D9C4D9 /* ImageIO.framework in Frameworks */,
+				7AAFF1D3188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */,
+				7AAFF1D4188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */,
 				7A37D7451844CB2300D9C4D9 /* MapKit.framework in Frameworks */,
 				7A37D7431844CB1A00D9C4D9 /* libsqlite3.dylib in Frameworks */,
 				7A37D7411844CB0900D9C4D9 /* libsqlite3.0.dylib in Frameworks */,
-				7AF20C80188E57AB0015E841 /* TencentOpenAPI.framework in Frameworks */,
+				7AE0868E188F8D0900DEDDD5 /* TencentOpenAPI.framework in Frameworks */,
 				7A37D73F1844CAFE00D9C4D9 /* libstdc++.dylib in Frameworks */,
 				7A37D73D1844CAF300D9C4D9 /* CoreTelephony.framework in Frameworks */,
+				7AAFF1DF188FB1DA008EB929 /* libBaiduMobStat.a in Frameworks */,
 				7A37D73B1844CAE300D9C4D9 /* libz.dylib in Frameworks */,
 				7A37D7391844CAD700D9C4D9 /* SystemConfiguration.framework in Frameworks */,
 				7A63A503185AF42800502E75 /* libWeiboSDK.a in Frameworks */,
@@ -986,6 +1036,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7AAFF1B1188FB1DA008EB929 /* ios_api */,
 				7AF54A20187D264200C93092 /* Sources */,
 				7AF4995D1876B9970066C894 /* FMDB */,
 				7A4BEC7B18710616005E896C /* 新版个人中心 */,
@@ -1018,8 +1069,9 @@
 		7A37D6831844C9E100D9C4D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7AF20C81188E57B80015E841 /* TencentOpenApi_IOS_Bundle.bundle */,
-				7AF20C7F188E57AB0015E841 /* TencentOpenAPI.framework */,
+				7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */,
+				7AE0868F188F8D1900DEDDD5 /* TencentOpenApi_IOS_Bundle.bundle */,
+				7AE0868D188F8D0900DEDDD5 /* TencentOpenAPI.framework */,
 				7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */,
 				7A37D74A1844CB4000D9C4D9 /* QuartzCore.framework */,
 				7A37D7481844CB3900D9C4D9 /* CoreLocation.framework */,
@@ -1187,6 +1239,9 @@
 				7ADF3177188CBE5C00DF58ED /* setBeaspeakViewController.h */,
 				7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */,
 				7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */,
+				7AAFF1AC188F9DCE008EB929 /* setOpenOrCloseViewController.h */,
+				7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */,
+				7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */,
 				7ADF316D188CB29400DF58ED /* adviceViewController.h */,
 				7ADF316E188CB29400DF58ED /* adviceViewController.m */,
 				7ADF316F188CB29400DF58ED /* adviceViewController.xib */,
@@ -1520,6 +1575,95 @@
 				7A63A502185AF42800502E75 /* WeiboSDK.h */,
 			);
 			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
+		7AAFF1B1188FB1DA008EB929 /* ios_api */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1B2188FB1DA008EB929 /* Release-iphoneos */,
+				7AAFF1B5188FB1DA008EB929 /* Release-iphonesimulator */,
+				7AAFF1B8188FB1DA008EB929 /* TouchJSON */,
+				7AAFF1D1188FB1DA008EB929 /* universal-bin */,
+			);
+			path = ios_api;
+			sourceTree = "<group>";
+		};
+		7AAFF1B2188FB1DA008EB929 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1B3188FB1DA008EB929 /* BaiduMobStat.h */,
+				7AAFF1B4188FB1DA008EB929 /* libBaiduMobStat.a */,
+			);
+			path = "Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		7AAFF1B5188FB1DA008EB929 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1B6188FB1DA008EB929 /* BaiduMobStat.h */,
+				7AAFF1B7188FB1DA008EB929 /* libBaiduMobStat.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
+		7AAFF1B8188FB1DA008EB929 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1B9188FB1DA008EB929 /* CDataScanner.h */,
+				7AAFF1BA188FB1DA008EB929 /* CDataScanner.m */,
+				7AAFF1BB188FB1DA008EB929 /* Experimental */,
+				7AAFF1C4188FB1DA008EB929 /* Extensions */,
+				7AAFF1C9188FB1DA008EB929 /* JSON */,
+			);
+			path = TouchJSON;
+			sourceTree = "<group>";
+		};
+		7AAFF1BB188FB1DA008EB929 /* Experimental */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1BC188FB1DA008EB929 /* CFilteringJSONSerializer.h */,
+				7AAFF1BD188FB1DA008EB929 /* CFilteringJSONSerializer.m */,
+				7AAFF1BE188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.h */,
+				7AAFF1BF188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.m */,
+				7AAFF1C0188FB1DA008EB929 /* CJSONSerialization.h */,
+				7AAFF1C1188FB1DA008EB929 /* CJSONSerialization.m */,
+				7AAFF1C2188FB1DA008EB929 /* CJSONSerializedData.h */,
+				7AAFF1C3188FB1DA008EB929 /* CJSONSerializedData.m */,
+			);
+			path = Experimental;
+			sourceTree = "<group>";
+		};
+		7AAFF1C4188FB1DA008EB929 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1C5188FB1DA008EB929 /* CDataScanner_Extensions.h */,
+				7AAFF1C6188FB1DA008EB929 /* CDataScanner_Extensions.m */,
+				7AAFF1C7188FB1DA008EB929 /* NSDictionary_JSONExtensions.h */,
+				7AAFF1C8188FB1DA008EB929 /* NSDictionary_JSONExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7AAFF1C9188FB1DA008EB929 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1CA188FB1DA008EB929 /* CJSONDeserializer.h */,
+				7AAFF1CB188FB1DA008EB929 /* CJSONDeserializer.m */,
+				7AAFF1CC188FB1DA008EB929 /* CJSONScanner.h */,
+				7AAFF1CD188FB1DA008EB929 /* CJSONScanner.m */,
+				7AAFF1CE188FB1DA008EB929 /* CJSONSerializer.h */,
+				7AAFF1CF188FB1DA008EB929 /* CJSONSerializer.m */,
+				7AAFF1D0188FB1DA008EB929 /* JSONRepresentation.h */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		7AAFF1D1188FB1DA008EB929 /* universal-bin */ = {
+			isa = PBXGroup;
+			children = (
+				7AAFF1D2188FB1DA008EB929 /* libBaiduMobStat.a */,
+			);
+			path = "universal-bin";
 			sourceTree = "<group>";
 		};
 		7AD545BC184F2B08009A6B79 /* lib */ = {
@@ -1915,6 +2059,7 @@
 				7A5D5CA8186C289400F96949 /* 评论.png in Resources */,
 				7A5D5C79186C289400F96949 /* x3.png in Resources */,
 				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
+				7AAFF1B0188F9DCE008EB929 /* setOpenOrCloseViewController.xib in Resources */,
 				7AF54A35187D264200C93092 /* btn_021@2x.png in Resources */,
 				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7AF20C91188E92A30015E841 /* icon-80.png in Resources */,
@@ -1988,6 +2133,8 @@
 				7AD545FF184F2B08009A6B79 /* SDImageCache.m in Sources */,
 				7A37D7351844CA8A00D9C4D9 /* mineViewController.m in Sources */,
 				7AD545F5184F2B08009A6B79 /* MBProgressHUD.m in Sources */,
+				7AAFF1DB188FB1DA008EB929 /* NSDictionary_JSONExtensions.m in Sources */,
+				7AAFF1D7188FB1DA008EB929 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */,
 				7AE03D51184615F500E14EDC /* fansAndfoceAndMassegeCell.m in Sources */,
 				7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */,
@@ -2003,6 +2150,7 @@
 				7AD5460C184F2B08009A6B79 /* UIImageView+WebCache.m in Sources */,
 				7AF499691876B9970066C894 /* FMDatabaseAdditions.m in Sources */,
 				7ADC1A14184D6E22004C61BC /* beaspeakDresserViewController.m in Sources */,
+				7AAFF1DE188FB1DA008EB929 /* CJSONSerializer.m in Sources */,
 				7AE03D61184617A800E14EDC /* talkViewController.m in Sources */,
 				7A37D7111844CA2700D9C4D9 /* PullingRefreshTableView.m in Sources */,
 				7ADF3175188CB2A700DF58ED /* helpViewController.m in Sources */,
@@ -2035,6 +2183,7 @@
 				7ADDE7B11856B2D500D48208 /* sameCityViewController.m in Sources */,
 				7AE03D481845D41C00E14EDC /* HZLocation.m in Sources */,
 				7AD88C27187E3FB000FBC04E /* addBeaspeakViewController.m in Sources */,
+				7AAFF1DD188FB1DA008EB929 /* CJSONScanner.m in Sources */,
 				7AE03D6F18461C0200E14EDC /* SlideImageView.m in Sources */,
 				7AD54606184F2B08009A6B79 /* SDWebImagePrefetcher.m in Sources */,
 				7AF4996B1876B9970066C894 /* FMDatabaseQueue.m in Sources */,
@@ -2065,6 +2214,7 @@
 				7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */,
 				7A0191FC18602CC600AFD637 /* SinaWeibo.m in Sources */,
 				7AD545F9184F2B08009A6B79 /* MJPhotoLoadingView.m in Sources */,
+				7AAFF1D5188FB1DA008EB929 /* CDataScanner.m in Sources */,
 				7AE03D7018461C0200E14EDC /* DemoViewController.m in Sources */,
 				7AD54603184F2B08009A6B79 /* SDWebImageDownloaderOperation.m in Sources */,
 				7AD54602184F2B08009A6B79 /* SDWebImageDownloader.m in Sources */,
@@ -2073,13 +2223,18 @@
 				7ADDE7E418571F8600D48208 /* questionDetailCell.m in Sources */,
 				7AE0700F18519FBE00ED1EDE /* userDetailViewController.m in Sources */,
 				7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */,
+				7AAFF1AF188F9DCE008EB929 /* setOpenOrCloseViewController.m in Sources */,
 				7AE09E0818586AA7007CA28D /* pubInviteInforViewController.m in Sources */,
 				7A4BECA21871459D005E896C /* toolBoxSingleCellViewController.m in Sources */,
 				7A37D71A1844CA2700D9C4D9 /* SBJsonStreamWriterState.m in Sources */,
 				7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */,
+				7AAFF1D9188FB1DA008EB929 /* CJSONSerializedData.m in Sources */,
 				7A37D72C1844CA4400D9C4D9 /* findStyleViewController.m in Sources */,
 				7AD54600184F2B08009A6B79 /* SDWebImageCompat.m in Sources */,
+				7AAFF1DC188FB1DA008EB929 /* CJSONDeserializer.m in Sources */,
 				7A37D70F1844CA2700D9C4D9 /* ASINetworkQueue.m in Sources */,
+				7AAFF1DA188FB1DA008EB929 /* CDataScanner_Extensions.m in Sources */,
+				7AAFF1D6188FB1DA008EB929 /* CFilteringJSONSerializer.m in Sources */,
 				7AE7F52E1855542400CAB2C6 /* AllAroundPullView.m in Sources */,
 				7AE09E04185838D3007CA28D /* inviteDetailViewController.m in Sources */,
 				7A37D70A1844CA2700D9C4D9 /* ASIDataDecompressor.m in Sources */,
@@ -2092,6 +2247,7 @@
 				7A2BA6CE1844E0A200A46A09 /* LoginView.m in Sources */,
 				7AD54608184F2B08009A6B79 /* UIImage+GIF.m in Sources */,
 				7A37D7101844CA2700D9C4D9 /* Reachability.m in Sources */,
+				7AAFF1D8188FB1DA008EB929 /* CJSONSerialization.m in Sources */,
 				7ADDE7B71856E4A900D48208 /* hotTalkCell.m in Sources */,
 				7A0191FD18602CC600AFD637 /* SinaWeiboAuthorizeView.m in Sources */,
 				7AEB52C61880CFEC00538279 /* addbeaspeakHairStyleCell.m in Sources */,
@@ -2164,7 +2320,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2177,8 +2333,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.hefeijumei.hairstylehouse";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.hefeijumei.hairstylehouse";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yin tianhao (982N29DAU6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2204,7 +2360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2217,8 +2373,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.hefeijumei.hairstylehouse";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.hefeijumei.hairstylehouse";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hefei Jumei Network Technology Co., Ltd. (962BW6QCNQ)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2237,12 +2393,15 @@
 		7A37D6B41844C9E100D9C4D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jeason/Desktop,
 					/Users/jeason/Desktop/hairStyleHouse,
+					"/Users/jeason/Desktop/公司",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2251,6 +2410,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jeason/Desktop/hairStyleHouse/libWeiboSDK,
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/Release-iphoneos",
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/universal-bin",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "发型屋";
@@ -2262,12 +2424,15 @@
 		7A37D6B51844C9E100D9C4D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jeason/Desktop,
 					/Users/jeason/Desktop/hairStyleHouse,
+					"/Users/jeason/Desktop/公司",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2276,6 +2441,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jeason/Desktop/hairStyleHouse/libWeiboSDK,
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/Release-iphoneos",
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Desktop/hairStyleHouse/ios_api/universal-bin",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "发型屋";

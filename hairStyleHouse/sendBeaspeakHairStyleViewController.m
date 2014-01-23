@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface sendBeaspeakHairStyleViewController ()
 
 @end
@@ -170,6 +171,7 @@
     timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
 }
 
+
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];
@@ -180,7 +182,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -209,7 +211,7 @@
     
     
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
-    Lab.text = @"预约发型师";
+    Lab.text = @"预约发型详细";
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -220,8 +222,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    
-    
+
+    NSString* cName = [NSString stringWithFormat:@"预约发型详细"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -281,6 +284,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+    NSString* cName = [NSString stringWithFormat:@"预约发型详细"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

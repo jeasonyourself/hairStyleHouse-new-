@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "dresserViewController.h"
+#import "BaiduMobStat.h"
 @interface loginViewController ()
 
 @end
@@ -32,6 +33,10 @@
 
 - (void)viewDidLoad
 {
+    
+    
+    
+    
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     [self refreashNavLab];
@@ -58,12 +63,18 @@
     else
     {
         
+        
+        
+        
         [self cLoginView];
         
     }
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+
+    NSString* cName = [NSString stringWithFormat:@"登陆"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (appDele.uid)
     {
@@ -84,6 +95,12 @@
     }
     
 }
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"登陆"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)refreashNavLab
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
@@ -92,6 +109,7 @@
     Lab.font = [UIFont systemFontOfSize:16];
     Lab.textColor = [UIColor blackColor];
     self.navigationItem.titleView =Lab;
+    
 }
 
 -(void)leftButtonClick
@@ -123,7 +141,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];

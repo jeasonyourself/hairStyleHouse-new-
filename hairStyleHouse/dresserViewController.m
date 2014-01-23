@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface dresserViewController ()
 
 @end
@@ -140,6 +141,21 @@
 //    }
 }
 
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型师"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型师"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)pullLoadMore
 {
 //        if ([sign isEqualToString:@"all"])
@@ -217,10 +233,10 @@
 //        }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-  
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//  
+//}
 -(void)refreashNav
 {
     rightButton=[[UIButton alloc] init];
@@ -251,7 +267,8 @@
     
     
     rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+//    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [rightButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];

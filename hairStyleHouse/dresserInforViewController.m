@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface dresserInforViewController ()
 
 @end
@@ -29,6 +30,13 @@
 - (void)viewDidLoad
 {
     inforDic = [[NSDictionary alloc] init];
+    
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    Lab.text = [NSString stringWithFormat:@"查看发型师"];
+    Lab.textAlignment = NSTextAlignmentCenter;
+    Lab.font = [UIFont systemFontOfSize:16];
+    Lab.textColor = [UIColor blackColor];
+    self.navigationItem.titleView =Lab;
     [self refreashNav];
     
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
@@ -41,6 +49,24 @@
     
     [self getData];
 }
+
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"查看发型师"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"查看发型师"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
     -(void)getData
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -88,7 +114,7 @@
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         [leftButton setTitle:@"返回" forState:UIControlStateNormal];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+        [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];

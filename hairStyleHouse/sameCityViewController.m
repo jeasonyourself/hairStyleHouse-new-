@@ -15,6 +15,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface sameCityViewController ()
 
 @end
@@ -136,6 +137,20 @@
     [self getData1];
 }
 
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"同城"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"同城"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
 -(void)searchButtonClick
 {
    [keyField resignFirstResponder];
@@ -560,30 +575,37 @@
     }
     else
     {
-        dreserView =nil;
-        dreserView =[[dresserInforViewController alloc] init];
-        dreserView._hidden=@"no";
+       
         
         
         if ([sign isEqualToString:@"person"]) {
-            
+            userView=nil;
+            userView =[[userInforViewController alloc] init];
+            userView._hidden=@"no";
             if ([keyField.text isEqualToString:@""])//未搜索
             {
                 
-                dreserView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"id"];
+                userView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"id"];
 
                 
             }
             else
             {
-                dreserView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"id"];
+                userView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"id"];
 
                 
             }
+            NSLog(@"%@", userView.uid);
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            
+            [appDele pushToViewController:userView ];
             
         }
         else
         {
+            dreserView =nil;
+            dreserView =[[dresserInforViewController alloc] init];
+            dreserView._hidden=@"no";
             if ([keyField.text isEqualToString:@""])//未搜索
             {
                 dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"id"];
@@ -594,13 +616,14 @@
             {
                 dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"id"];
             }
+            NSLog(@"%@", dreserView.uid);
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            
+            [appDele pushToViewController:dreserView ];
         }
         
 
-        NSLog(@"%@", dreserView.uid);
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        
-        [appDele pushToViewController:dreserView ];
+       
     }
 }
 

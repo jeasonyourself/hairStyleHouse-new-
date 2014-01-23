@@ -10,6 +10,9 @@
 #import "lookEvaluateViewController.h"
 #import "scanImageViewController.h"
 #import "talkViewController.h"
+#import "talkViewController.h"
+#import "myAnwserCenterViewController.h"
+
 @class userInforViewController;
 @interface userDetailViewController : UIViewController<UIScrollViewDelegate>
 {
@@ -20,8 +23,9 @@
     lookEvaluateViewController * lookEvaluate;
     scanImageViewController * scanView;
     talkViewController * talkView;
+    myAnwserCenterViewController * myAnwserView;
     
-    
+
 
 }
 @property(nonatomic,strong)userInforViewController * fatherController;

@@ -10,7 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "mineViewController.h"
 #import "AppDelegate.h"
-
+#import "BaiduMobStat.h"
 @interface singleTableCellBackgroundViewController ()
 
 @end
@@ -87,6 +87,10 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
     NSString* cityStr = [infoDic objectForKey:@"city"];
@@ -155,6 +159,11 @@
     }
 }
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
 -(void)selectImage:(UIButton*)button
 {
     

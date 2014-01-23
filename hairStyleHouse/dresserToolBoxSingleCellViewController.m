@@ -8,6 +8,7 @@
 
 #import "dresserToolBoxSingleCellViewController.h"
 #import "toolBoxViewController.h"
+#import "BaiduMobStat.h"
 @interface dresserToolBoxSingleCellViewController ()
 
 @end
@@ -56,6 +57,21 @@
     _myShowView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myShowView.layer.masksToBounds = YES;//设为NO去试试
     // Do any additional setup after loading the view from its nib.
+}
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (void)didReceiveMemoryWarning

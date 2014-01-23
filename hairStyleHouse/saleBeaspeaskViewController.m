@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface saleBeaspeaskViewController ()
 
 @end
@@ -114,7 +115,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -171,9 +172,14 @@
         
     }
 }
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     page=@"1";
+    NSString* cName = [NSString stringWithFormat:@"查看价格"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+
     
     
     //    if ([fromFouceLoginCancel isEqualToString:@"all"]) {
@@ -195,6 +201,13 @@
     //    }
     //
 }
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"查看价格"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)oneButtonClick
 {
     [topImage setImage:[UIImage imageNamed:@"洗剪吹.png"]];

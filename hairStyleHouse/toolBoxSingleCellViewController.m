@@ -8,6 +8,7 @@
 
 #import "toolBoxSingleCellViewController.h"
 #import "toolBoxViewController.h"
+#import "BaiduMobStat.h"
 @interface toolBoxSingleCellViewController ()
 
 @end
@@ -45,6 +46,21 @@
     _storeView.layer.masksToBounds = YES;//设为NO去试试
     
         // Do any additional setup after loading the view from its nib.
+}
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (void)didReceiveMemoryWarning

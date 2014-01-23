@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+MJWebCache.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface wayInforViewController ()
 
 @end
@@ -88,6 +89,57 @@
     
     
     [self getData];
+}
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName;
+    if ([self.style  isEqualToString:@"4"]) {
+       cName = [NSString stringWithFormat:@"潮流学堂"];
+
+      
+        
+    }
+    else if ([self.style  isEqualToString:@"5"]) {
+         cName = [NSString stringWithFormat:@"护理方法"];
+        
+    }
+    else if ([self.style  isEqualToString:@"1"]) {
+         cName = [NSString stringWithFormat:@"品牌沙龙"];
+        
+    }
+    else if ([self.style  isEqualToString:@"3"]) {
+         cName = [NSString stringWithFormat:@"行业情报"];
+        
+    }
+
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName;
+    if ([self.style  isEqualToString:@"4"]) {
+        cName = [NSString stringWithFormat:@"潮流学堂"];
+        
+        
+        
+    }
+    else if ([self.style  isEqualToString:@"5"]) {
+        cName = [NSString stringWithFormat:@"护理方法"];
+        
+    }
+    else if ([self.style  isEqualToString:@"1"]) {
+        cName = [NSString stringWithFormat:@"品牌沙龙"];
+        
+    }
+    else if ([self.style  isEqualToString:@"3"]) {
+        cName = [NSString stringWithFormat:@"行业情报"];
+        
+    }
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 -(void)pullLoadMore
 {

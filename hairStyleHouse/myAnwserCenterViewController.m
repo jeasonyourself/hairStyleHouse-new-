@@ -17,12 +17,15 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
+#import "BaiduMobStat.h"
 @interface myAnwserCenterViewController ()
 
 @end
 
 @implementation myAnwserCenterViewController
 @synthesize _hidden;
+@synthesize uid;
+@synthesize whoLookQuestion;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -64,6 +67,40 @@
     
     [self getData];
 }
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName;
+    if ([self.whoLookQuestion isEqualToString:@"self"]) {
+        cName = [NSString stringWithFormat:@"我的提问"];
+    }
+    else
+    {
+        cName = [NSString stringWithFormat:@"TA的提问"];
+        
+    }
+    
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName;
+    if ([self.whoLookQuestion isEqualToString:@"self"]) {
+        cName = [NSString stringWithFormat:@"我的提问"];
+    }
+    else
+    {
+        cName = [NSString stringWithFormat:@"TA的提问"];
+        
+    }
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)pullLoadMore
 {
     NSInteger _pageCount= [pageCount integerValue];
@@ -87,12 +124,12 @@
 }
 -(void)getData
 {
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
     
     request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Problem&a=myquestion&page=%@",page]]];
     
-    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:self.uid forKey:@"uid"];
     
     request.delegate=self;
     request.tag=1;
@@ -215,7 +252,7 @@
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -229,8 +266,15 @@
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
     
-    
-    Lab.text = @"我的提问";
+    if ([self.whoLookQuestion isEqualToString:@"self"]) {
+        Lab.text = @"我的提问";
+
+    }
+    else
+    {
+        Lab.text = @"TA的提问";
+
+    }
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -240,10 +284,23 @@
 
 -(void)selectCell:(NSInteger)_index
 {
-    myAnwserList = nil;
-    myAnwserList= [[myAnwserListViewController alloc] init];
-    myAnwserList.questionId = [[dresserArray  objectAtIndex:_index] objectForKey:@"id"];
-    [self.navigationController pushViewController:myAnwserList animated:NO];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        myAnwserList = nil;
+        myAnwserList= [[myAnwserListViewController alloc] init];
+        myAnwserList.questionId = [[dresserArray  objectAtIndex:_index] objectForKey:@"id"];
+        [self.navigationController pushViewController:myAnwserList animated:NO];
+    }
+    else
+    {
+
+        talkView=nil;
+        talkView = [[talkViewController alloc] init];
+        talkView.talkOrQuestion=@"question";
+        talkView.questionId= appDele.uid;
+        talkView.uid = self.uid;
+        [self.navigationController pushViewController:talkView animated:NO];
+    }
 }
 - (void)didReceiveMemoryWarning
 {

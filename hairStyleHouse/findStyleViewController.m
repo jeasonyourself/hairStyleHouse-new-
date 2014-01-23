@@ -11,6 +11,8 @@
 #import "LoginView.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
+
 @interface findStyleViewController ()
 
 @end
@@ -76,6 +78,20 @@
     [self.view addSubview:myTableView];
 //    [self cView];
 	// Do any additional setup after loading the view.
+}
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"找发型"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"找发型"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

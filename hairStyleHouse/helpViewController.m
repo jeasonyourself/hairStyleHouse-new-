@@ -7,7 +7,7 @@
 //
 
 #import "helpViewController.h"
-
+#import "BaiduMobStat.h"
 @interface helpViewController ()
 
 @end
@@ -36,6 +36,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"使用帮助"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"使用帮助"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];

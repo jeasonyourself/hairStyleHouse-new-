@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "mineViewController.h"
 #import "AppDelegate.h"
+#import "BaiduMobStat.h"
 @interface renewSingleTableCellBackgroundViewController ()
 
 @end
@@ -88,6 +89,8 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
     NSString* fansStr = [infoDic objectForKey:@"fans_num"];
@@ -116,7 +119,11 @@
     
     
 }
-
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"个人中心"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
 -(void)selectImage:(UIButton*)button
 {
     scanView=nil;

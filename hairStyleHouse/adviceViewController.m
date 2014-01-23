@@ -9,6 +9,7 @@
 #import "adviceViewController.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
+#import "BaiduMobStat.h"
 @interface adviceViewController ()
 
 @end
@@ -45,6 +46,24 @@
     _adviceButton.layer.masksToBounds = YES;//设为NO去试试
     // Do any additional setup after loading the view from its nib.
 }
+
+
+
+#pragma mark - View lifecycle
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"反馈意见"];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"反馈意见"];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+}
+
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];
