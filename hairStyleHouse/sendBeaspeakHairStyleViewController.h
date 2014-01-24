@@ -24,7 +24,7 @@
 }
 
 @property (nonatomic,strong)NSDictionary * inforDic;
-@property (nonatomic,strong)UIImage * headImg;
+@property (nonatomic,strong)NSString * headImg;
 @property (nonatomic,strong)NSString * _hidden;
 @property (strong, nonatomic) IBOutlet UIView *backView;
 

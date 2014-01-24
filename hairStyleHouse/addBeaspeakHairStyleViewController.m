@@ -317,7 +317,8 @@
     beaspeakHairStyleView=nil;
     beaspeakHairStyleView = [[sendBeaspeakHairStyleViewController alloc] init];
     beaspeakHairStyleView._hidden=NO;
-       beaspeakHairStyleView.headImg=Img.image;;
+//       beaspeakHairStyleView.headImg=Img.image;;
+    beaspeakHairStyleView.headImg=[workInforDic objectForKey:@"work_image"];
     if (_index==-1)
     {
         beaspeakHairStyleView.inforDic = workInforDic;

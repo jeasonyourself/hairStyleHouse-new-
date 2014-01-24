@@ -281,8 +281,8 @@
         
         
     
-    [request setPostValue:severTime.text forKey:@"long_service"];
-    [request setPostValue:severPrice forKey:@"price"];
+    [request setPostValue:[NSString stringWithFormat:@"%@小时",severTime.text] forKey:@"long_service"];
+    [request setPostValue:severPrice.text forKey:@"price"];
     
     [request setPostValue:saleLable.text forKey:@"rebate"];
     request.delegate=self;

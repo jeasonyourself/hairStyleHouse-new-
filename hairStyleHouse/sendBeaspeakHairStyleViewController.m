@@ -72,7 +72,9 @@
     newPriceString = [self.inforDic objectForKey:@"reserve_price"];
     NSString * addressStr = [self.inforDic objectForKey:@"store_address"];
     
-    _headImage.image = headImg;
+    
+    
+    [_headImage setImageWithURL:[NSURL URLWithString:headImg]];
     
    
     if ([nameStr isEqualToString:@"0"]) {
@@ -152,18 +154,18 @@
     }
     
     
-    NSString * priceStr = [inforDic objectForKey:@"price_info"];
-    NSArray *array = [priceStr componentsSeparatedByString:@"_"];
+//    NSString * priceStr = [inforDic objectForKey:@"price_info"];
+//    NSArray *array = [priceStr componentsSeparatedByString:@"_"];
     //    if ([_sign isEqualToString:@"all"])
     //    {
-    _oldPrice.text = [NSString stringWithFormat:@"￥%@",[array objectAtIndex:0]];
-    NSInteger oldInt= [[array objectAtIndex:0] integerValue];
-    float saleInt= [[array objectAtIndex:4] floatValue];
-    NSInteger nowInt = oldInt*saleInt/10;
-    _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:4]];
-    
-    oldPriceString = [array objectAtIndex:0];
-    saleString = [array objectAtIndex:4];
+//    _oldPrice.text = [NSString stringWithFormat:@"￥%@",[array objectAtIndex:0]];
+//    NSInteger oldInt= [[array objectAtIndex:0] integerValue];
+//    float saleInt= [[array objectAtIndex:4] floatValue];
+//    NSInteger nowInt = oldInt*saleInt/10;
+//    _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:4]];
+//    
+//    oldPriceString = [array objectAtIndex:0];
+//    saleString = [array objectAtIndex:4];
     
     timeString = @"9:00";
     _getTimeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
@@ -446,7 +448,7 @@
 - (IBAction)sendBeaspeakButtonClick:(id)sender
 {
     
-    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0-9]))\\d{8}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     
     BOOL isMatch = [pred evaluateWithObject:_mobileField.text];
@@ -466,7 +468,7 @@
         ASIFormDataRequest* request;
         request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reservation"]]];
         
-        [request setPostValue:@"1"forKey:@"order_type"];//预约发型为2
+        [request setPostValue:@"2"forKey:@"order_type"];//预约发型为2
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         [request setPostValue:appDele.uid forKey:@"my_uid"];
         [request setPostValue:[self.inforDic objectForKey:@"uid"]forKey:@"to_uid"];
