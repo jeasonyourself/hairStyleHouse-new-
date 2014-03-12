@@ -55,22 +55,27 @@
     
     _firstView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _firstView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _firstView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstView.layer.masksToBounds = YES;//设为NO去试试
 
+    _secondView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _secondView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _secondView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _secondView.layer.masksToBounds = YES;//设为NO去试试
+    
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _headImage.layer.masksToBounds = YES;//设为NO去试试
     
     _lookEvauateButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _lookEvauateButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-    _lookEvauateButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _lookEvauateButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _lookEvauateButton.layer.masksToBounds = YES;//设为NO去试试
     
     _lookWorksButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _lookWorksButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-    _lookWorksButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _lookWorksButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _lookWorksButton.layer.masksToBounds = YES;//设为NO去试试
     
     
@@ -78,7 +83,7 @@
     {
         _button.layer.cornerRadius = 5;//设置那个圆角的有多圆
         _button.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-        _button.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        _button.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         _button.layer.masksToBounds = YES;//设为NO去试试
 
     }
@@ -86,17 +91,17 @@
     
     _sureButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _sureButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-    _sureButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _sureButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sureButton.layer.masksToBounds = YES;//设为NO去试试
     
     _otherSecondView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _otherSecondView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _otherSecondView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _otherSecondView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _otherSecondView.layer.masksToBounds = YES;//设为NO去试试
     
     _sendBeaspeakButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _sendBeaspeakButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _sendBeaspeakButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _sendBeaspeakButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sendBeaspeakButton.layer.masksToBounds = YES;//设为NO去试试
     
     NSString * headStr= [self.inforDic objectForKey:@"head_photo"];
@@ -191,6 +196,16 @@
 //        priceLable.text = [NSString stringWithFormat:@"￥%@/%@折",[array objectAtIndex:3],[array objectAtIndex:7]];
 //    }
 
+    if(iPhone5)
+    {
+        
+    }
+    else{
+        _firstView.hidden=YES;
+
+        _secondView.hidden=YES;
+    }
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -249,6 +264,49 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        _firstView.hidden=NO;
+        _secondView.hidden=NO;
+        
+        _firstView.frame = CGRectMake(0, 70, 320, 107);
+        _headBackView.frame = CGRectMake(5, 5, 70, 70);
+        _headImage.frame = CGRectMake(5, 5, 60, 60);
+        _nameLable.frame= CGRectMake(96, 20, 108, 20);
+        _cityLable.frame= CGRectMake(96, 45, 108, 20);
+        _lookWorksButton.frame= CGRectMake(227, 12, 86, 22);
+        _lookEvauateButton.frame=CGRectMake(227, 42, 86, 22);
+        _placeLable.frame = CGRectMake(22, 75, 61, 21);
+
+        _addressLable.frame = CGRectMake(85, 70, 242, 30);
+      
+        
+        
+        _secondView.frame = CGRectMake(0, 182, 320, 437);
+
+        _nineClockButton.frame=CGRectMake(0, 160, 80, 30);
+        _tenClockButton.frame=CGRectMake(80, 160, 80, 30);
+        _elevenClockButton.frame=CGRectMake(160, 160, 80, 30);
+        _twelveClockButton.frame=CGRectMake(240, 160, 80, 30);
+        _thirteenClockButton.frame=CGRectMake(0, 190, 80, 30);
+        _forteenClockButton.frame=CGRectMake(80, 190, 80, 30);
+        _fifteenClockButton.frame=CGRectMake(160, 190, 80, 30);
+        _sixteenClockButton.frame=CGRectMake(240, 190, 80, 30);
+        _seventeenClockButton.frame=CGRectMake(0, 220, 80, 30);
+        _eighteenClockButton.frame=CGRectMake(80, 220, 80, 30);
+        _ninteenClockButton.frame=CGRectMake(160, 220, 80, 30);
+        _twentyClockButton.frame=CGRectMake(240, 220, 80, 30);
+
+        _sureButton.frame=CGRectMake(17, 255, 285, 30);
+        
+        
+        _otherSecondView.frame=CGRectMake(0, 190, 320, 244);
+    }
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -335,7 +393,12 @@
 - (IBAction)lookEvaluateButtonClick:(id)sender
 {
     
+    lookEvaluate=nil;
+    lookEvaluate = [[lookEvaluateViewController alloc] init];
+    lookEvaluate.uid = [inforDic objectForKey:@"uid"];
+    lookEvaluate._hidden = @"no";
     
+    [self.navigationController pushViewController:lookEvaluate animated:NO];
 }
 
 - (IBAction)styleButtonClick:(id)sender {
@@ -627,6 +690,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];

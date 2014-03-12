@@ -19,7 +19,7 @@
         headImage = [[UIImageView alloc] init];
         headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headImage.layer.masksToBounds = YES;//设为NO去试试
         
         nameLable = [[UILabel alloc] init];
@@ -59,7 +59,7 @@
         cellButton = [UIButton buttonWithType:UIButtonTypeCustom];
         cellButton.layer.cornerRadius = 10;//设置那个圆角的有多圆
         cellButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        cellButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        cellButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         cellButton.layer.masksToBounds = YES;//设为NO去试试
         [cellButton addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
        
@@ -71,7 +71,7 @@
         [fouceButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         fouceButton.layer.cornerRadius = 3;//设置那个圆角的有多圆
         fouceButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        fouceButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        fouceButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         fouceButton.layer.masksToBounds = YES;//设为NO去试试
         fouceButton.enabled=NO;
         
@@ -86,7 +86,7 @@
         
         workScroll.layer.cornerRadius = 3;//设置那个圆角的有多圆
         workScroll.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-        workScroll.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        workScroll.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         workScroll.layer.masksToBounds = YES;//设为NO去试试
         
         
@@ -252,7 +252,7 @@
             
             workImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
             workImage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
             workImage.layer.masksToBounds = YES;//设为NO去试试
             
             [workImage setImageWithURL:[[workArr objectAtIndex:i] objectForKey:@"work_image"]];

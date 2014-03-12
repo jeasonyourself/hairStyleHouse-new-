@@ -30,6 +30,10 @@
         Lab.font = [UIFont systemFontOfSize:16];
         Lab.textColor = [UIColor blackColor];
         self.navigationItem.titleView =Lab;
+
+//        subView.frame=CGRectMake(0, 0, 320, 160); //设置frame
+//        [self.view addSubview:subView];
+        
         // Custom initialization
     }
     return self;
@@ -40,7 +44,8 @@
     [super viewDidLoad];
    
     showLocalSuccess=YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.view.backgroundColor = [UIColor redColor];
 
     if (![CLLocationManager locationServicesEnabled] || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
     {
@@ -69,13 +74,39 @@
     fifthArr = [[NSArray alloc] initWithArray:[hairStyleCategory shareData].fifthArray];
     sixthArr = [[NSArray alloc] initWithArray:[hairStyleCategory shareData].sixthArray];
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(80, self.navigationController.navigationBar.frame.size.height+20, self.view.bounds.size.width-80, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-20-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+    
+    
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(81, self.navigationController.navigationBar.frame.size.height+20, self.view.bounds.size.width-80, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-20-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.allowsSelection=NO;
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
     [self.view addSubview:myTableView];
+    
+    if(iPhone5)
+    {
+        
+    }
+    else{
+        _signImage.hidden=YES;
+
+        _firstImage.hidden=YES;
+        _secondImage.hidden=YES;
+        _thirdImage.hidden=YES;
+        _forthImage.hidden=YES;
+        _fifthImage.hidden=YES;
+        _sixthImage.hidden=YES;
+        
+        _firstLable.hidden=YES;
+        _secondLable.hidden=YES;
+        _thirdLable.hidden=YES;
+        _forthLable.hidden=YES;
+        _fifthLable.hidden=YES;
+        _sixthLable.hidden=YES;
+       
+
+    }
 //    [self cView];
 	// Do any additional setup after loading the view.
 }
@@ -85,7 +116,54 @@
 {
     NSString* cName = [NSString stringWithFormat:@"找发型"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
-    
+
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        _signImage.hidden=NO;
+        _firstImage.hidden=NO;
+        _secondImage.hidden=NO;
+        _thirdImage.hidden=NO;
+        _forthImage.hidden=NO;
+        _fifthImage.hidden=NO;
+        _sixthImage.hidden=NO;
+        
+        _firstLable.hidden=NO;
+        _secondLable.hidden=NO;
+        _thirdLable.hidden=NO;
+        _forthLable.hidden=NO;
+        _fifthLable.hidden=NO;
+        _sixthLable.hidden=NO;
+        
+        _signImage.frame = CGRectMake(signOrigionY,signOrigionX-20 , 15, 15);
+
+        _firstImage.frame = CGRectMake(8, 82, 20, 20);
+        _secondImage.frame = CGRectMake(8, 144, 20, 20);
+        _thirdImage.frame = CGRectMake(8, 205, 20, 20);
+        _forthImage.frame = CGRectMake(8, 265, 20, 20);
+        _fifthImage.frame = CGRectMake(8, 325, 20, 20);
+        _sixthImage.frame = CGRectMake(8, 385, 20, 20);
+
+
+        _firstLable.frame = CGRectMake(32, 83, 35, 21);
+        _secondLable.frame = CGRectMake(32, 145, 35, 21);
+        _thirdLable.frame = CGRectMake(32, 205, 35, 21);
+        _forthLable.frame = CGRectMake(32, 265, 35, 21);
+        _fifthLable.frame = CGRectMake(32, 325, 35, 21);
+        _sixthLable.frame = CGRectMake(32, 385, 35, 21);
+        
+        
+        
+        _firstButton.frame= CGRectMake(-2, 75, 75, 60);
+        _secondButton.frame= CGRectMake(-2, 135, 75, 60);
+        _thirdButton.frame= CGRectMake(-2, 195, 75, 60);
+        _forthButton.frame= CGRectMake(-2, 255, 75, 60);
+        _fifthButton.frame= CGRectMake(-2, 315, 75, 60);
+        _sixthButton.frame= CGRectMake(-2, 375, 75, 60);
+    }
 }
 
 -(void) viewDidDisappear:(BOOL)animated
@@ -590,6 +668,9 @@
     NSLog(@"%@",request.responseString);
     NSData*jsondata = [request responseData];
     NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     SBJsonParser* jsonP=[[SBJsonParser alloc] init];
     NSDictionary* dic=[jsonP objectWithString:jsonString];
     NSLog(@"修改经纬度dic:%@",dic);
@@ -648,7 +729,15 @@
 {
     if (sender.tag==1)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX , 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX , 15, 15);
+
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX-20 , 15, 15);
+
+        }
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women1.png"]];
@@ -667,7 +756,15 @@
     }
     else if(sender.tag==2)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX+72, 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+72, 15, 15);
+            
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+42, 15, 15);
+            
+        }
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend1.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women.png"]];
@@ -685,7 +782,15 @@
     }
     else if(sender.tag==3)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX+72*2 , 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+72*2 , 15, 15);
+            
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+52*2 , 15, 15);
+            
+        }
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend1.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women1.png"]];
@@ -703,7 +808,15 @@
     }
     else if(sender.tag==4)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*3 , 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*3+1 , 15, 15);
+            
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+51*3+10 , 15, 15);
+            
+        }
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend1.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women1.png"]];
@@ -721,7 +834,15 @@
     }
     else if(sender.tag==5)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*4 , 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*4+2 , 15, 15);
+            
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+51*4+20 , 15, 15);
+            
+        }
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend1.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women1.png"]];
@@ -739,7 +860,16 @@
     }
     else if(sender.tag==6)
     {
-        _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*5 , 15, 15);
+        if(iPhone5)
+        {
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+71*5+2 , 15, 15);
+            
+        }
+        else{
+            _signImage.frame = CGRectMake(signOrigionY,signOrigionX+51*5+30 , 15, 15);
+            
+        }
+        
         [_firstImage setImage:[UIImage imageNamed:@"icon_recommend1.png"]];
         [_firstLable setTextColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         [_secondImage setImage:[UIImage imageNamed:@"icon_women1.png"]];

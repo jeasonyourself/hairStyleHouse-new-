@@ -33,61 +33,86 @@
     
     _firstBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _firstBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _firstBackView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstBackView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstBackView.layer.masksToBounds = YES;//设为NO去试试
     
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _headImage.layer.masksToBounds = YES;//设为NO去试试
 
     _clearPerson.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _clearPerson.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _clearPerson.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _clearPerson.layer.masksToBounds = YES;//设为NO去试试
     
     
     _myMessage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myMessage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myMessage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myMessage.layer.masksToBounds = YES;//设为NO去试试
     
     _myBeaspeak.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myBeaspeak.layer.masksToBounds = YES;//设为NO去试试
     
     _myWorks.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myWorks.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myWorks.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myWorks.layer.masksToBounds = YES;//设为NO去试试
     
     _mySave.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _mySave.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _mySave.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _mySave.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _mySave.layer.masksToBounds = YES;//设为NO去试试
     
     _toolBox.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _toolBox.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _toolBox.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _toolBox.layer.masksToBounds = YES;//设为NO去试试
     
     _myShow.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _myShow.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myShow.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myShow.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myShow.layer.masksToBounds = YES;//设为NO去试试
     
     _mySet.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _mySet.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _mySet.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _mySet.layer.masksToBounds = YES;//设为NO去试试
     
     
+    
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        _clearPerson.hidden=YES;
+        _clearPersonButton.hidden=YES;
+        _myMessage.hidden=YES;
+        _messageButton.hidden=YES;
+        _beaspeakLable.hidden=YES;
+        _myBeaspeak.hidden=YES;
+        _beaspeakButton.hidden=YES;
+        _myWorks.hidden=YES;
+        _myWorksButton.hidden=YES;
+        _mySave.hidden=YES;
+        _saveButton.hidden=YES;
+        _toolBox.hidden=YES;
+        _toolBoxButton.hidden=YES;
+        _myShow.hidden=YES;
+        _myShowButton.hidden=YES;
+        _mySet.hidden=YES;
+        _mySetButton.hidden=YES;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-
+//
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     
@@ -156,6 +181,50 @@
                 [workScroll addSubview:workImage];
                 [workScroll addSubview:newvideobutton];
             }
+    }
+    
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        
+        _clearPerson.hidden=NO;
+        _clearPersonButton.hidden=NO;
+        _myMessage.hidden=NO;
+        _messageButton.hidden=NO;
+        _beaspeakLable.hidden=NO;
+        _myBeaspeak.hidden=NO;
+        _beaspeakButton.hidden=NO;
+        _myWorks.hidden=NO;
+        _myWorksButton.hidden=NO;
+        _mySave.hidden=NO;
+        _saveButton.hidden=NO;
+        _toolBox.hidden=NO;
+        _toolBoxButton.hidden=NO;
+        _myShow.hidden=NO;
+        _myShowButton.hidden=NO;
+        _mySet.hidden=NO;
+        _mySetButton.hidden=NO;
+        
+        
+        _clearPerson.frame=CGRectMake(2, 110, 316, 40);
+        _clearPersonButton.frame=CGRectMake(2, 110, 316, 40);
+        _myMessage.frame=CGRectMake(2, 155, 316, 40);
+        _messageButton.frame=CGRectMake(2, 155, 316, 40);
+        _myBeaspeak.frame=CGRectMake(2, 200, 316, 40);
+        _beaspeakButton.frame=CGRectMake(2, 200, 316, 40);
+        _myWorks.frame=CGRectMake(2, 245, 316, 40);
+        _myWorksButton.frame=CGRectMake(2, 245, 316, 40);
+        _mySave.frame=CGRectMake(2, 290, 316, 40);
+        _saveButton.frame=CGRectMake(2, 290, 316, 40);
+        _toolBox.frame=CGRectMake(2, 335, 316, 40);
+        _toolBoxButton.frame=CGRectMake(2, 335, 316, 40);
+        _myShow.frame=CGRectMake(2, 380, 316, 40);
+        _myShowButton.frame=CGRectMake(2, 380, 316, 40);
+        _mySet.frame=CGRectMake(2, 425, 316, 40);
+        _mySetButton.frame=CGRectMake(2, 425, 316, 40);
     }
 }
 

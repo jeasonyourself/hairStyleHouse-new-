@@ -45,7 +45,7 @@
     topImage.backgroundColor = [UIColor whiteColor];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage.layer.masksToBounds = YES;//设为NO去试试
     //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
     
@@ -207,6 +207,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"预约列表dic:%@",dic);
@@ -228,6 +231,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"当前预约dic:%@",dic);

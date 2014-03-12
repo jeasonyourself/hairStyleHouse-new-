@@ -27,7 +27,7 @@
 {
     NSString* cName = [NSString stringWithFormat:@"0"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
-    
+//
 }
 
 -(void) viewDidDisappear:(BOOL)animated

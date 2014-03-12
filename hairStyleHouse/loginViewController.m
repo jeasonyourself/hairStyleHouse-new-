@@ -217,6 +217,7 @@
     [self.view addSubview:forthLable];
     
      AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    _tencentOAuth=nil;
     _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
     appDele.tententOAuth=_tencentOAuth;
     _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
@@ -366,11 +367,11 @@
     
 }
 
-- (void)addShareResponse:(APIResponse*) response {
-    
-	
-	
-}
+//- (void)addShareResponse:(APIResponse*) response {
+//    
+//	
+//	
+//}
 
 
 
@@ -435,7 +436,6 @@
 {
     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"网络链接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
-    
 }
 
 - (void)tencentDidLogin
@@ -553,9 +553,9 @@
         }
 //        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
         [userInfor setObject:@"qq" forKey:@"loginType"];
-        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+//        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+//        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+//        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
         
 //        [userInforArr addObject:userInfor];
 //        [userInforArr writeToFile:filename atomically:YES];
@@ -605,9 +605,9 @@
         [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
         [userInfor setObject:[dic objectForKey:@"type"] forKey:@"type"];
         [userInfor setObject:@"qq" forKey:@"loginType"];
-        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+//        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+//        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+//        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
             [userInforArr addObject:userInfor];
             [userInforArr writeToFile:filename atomically:YES];
             
@@ -742,6 +742,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"修改经纬度dic:%@",dic);

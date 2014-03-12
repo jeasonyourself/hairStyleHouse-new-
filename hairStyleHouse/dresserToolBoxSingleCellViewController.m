@@ -30,31 +30,31 @@
     
     _invitedView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _invitedView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _invitedView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _invitedView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _invitedView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _talkPointView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _talkPointView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _talkPointView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _talkPointView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _talkPointView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _wayNewsView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _wayNewsView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _wayNewsView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _wayNewsView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _wayNewsView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _shalongView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _shalongView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _shalongView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _shalongView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _shalongView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _myShowView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _myShowView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myShowView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myShowView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myShowView.layer.masksToBounds = YES;//设为NO去试试
     // Do any additional setup after loading the view from its nib.
 }

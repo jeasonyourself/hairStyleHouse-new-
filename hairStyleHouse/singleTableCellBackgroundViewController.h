@@ -90,7 +90,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *myShowButton;
 
 @property (strong, nonatomic) IBOutlet UIView *mySet;
-@property (strong, nonatomic) IBOutlet UIView *mySetButton;
+@property (strong, nonatomic) IBOutlet UIButton *mySetButton;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *mobileLable;

@@ -16,11 +16,13 @@
 #import "hairStyleIconCell.h"
 
 #define signOrigionX 103
-#define signOrigionY 70
+#define signOrigionY 67
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 @interface findStyleViewController : UIViewController<CLLocationManagerDelegate,UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UIView * backView;
-
+    UIView* subView;
     
     UITableView * myTableView;
     NSString * whichDic;
@@ -35,6 +37,7 @@
     findStyleDetailViewController * findStyleDetail;
     BOOL showLocalSuccess;
 }
+@property (strong, nonatomic) IBOutlet UIView *leftBackView;
 
 @property(nonatomic,strong)IBOutlet UIButton * firstButton;
 @property(nonatomic,strong)IBOutlet UIButton * secondButton;

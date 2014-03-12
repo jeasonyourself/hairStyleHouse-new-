@@ -91,7 +91,7 @@
 
     severTime.layer.cornerRadius = 5;//设置那个圆角的有多圆
     severTime.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    severTime.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severTime.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     severTime.layer.masksToBounds = YES;//设为NO去试试
     [subView addSubview:severTime];
     
@@ -110,7 +110,7 @@
     severPrice.borderStyle = UITextBorderStyleRoundedRect;
     severPrice.layer.cornerRadius = 5;//设置那个圆角的有多圆
     severPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    severPrice.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severPrice.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     severPrice.layer.masksToBounds = YES;//设为NO去试试
     [subView addSubview:severPrice];
     
@@ -128,7 +128,7 @@
     saleLable.textAlignment = NSTextAlignmentCenter;
     saleLable.layer.cornerRadius = 5;//设置那个圆角的有多圆
     saleLable.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    saleLable.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    saleLable.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     saleLable.layer.masksToBounds = YES;//设为NO去试试
     
     
@@ -167,7 +167,7 @@
     myTableView.hidden = YES;
     myTableView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     myTableView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    myTableView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    myTableView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     myTableView.layer.masksToBounds = YES;//设为NO去试试
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [subView addSubview:myTableView];
@@ -296,6 +296,9 @@
     NSLog(@"%@",request.responseString);
     NSData*jsondata = [request responseData];
     NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     SBJsonParser* jsonP=[[SBJsonParser alloc] init];
     NSDictionary* dic=[jsonP objectWithString:jsonString];

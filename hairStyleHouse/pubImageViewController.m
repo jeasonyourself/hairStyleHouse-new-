@@ -44,7 +44,7 @@
     
     _deacribeText.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _deacribeText.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _deacribeText.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _deacribeText.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _deacribeText.layer.masksToBounds = YES;//设为NO去试试
 //    subView = [[UIControl alloc] initWithFrame:CGRectMake(0,+170, 320, 190)];
 //    [subView addTarget:self action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
@@ -77,7 +77,7 @@
     
     severTime.layer.cornerRadius = 5;//设置那个圆角的有多圆
     severTime.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    severTime.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severTime.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     severTime.layer.masksToBounds = YES;//设为NO去试试
     [_secondBackView addSubview:severTime];
     
@@ -96,7 +96,7 @@
     severPrice.borderStyle = UITextBorderStyleRoundedRect;
     severPrice.layer.cornerRadius = 5;//设置那个圆角的有多圆
     severPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    severPrice.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    severPrice.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     severPrice.layer.masksToBounds = YES;//设为NO去试试
     [_secondBackView addSubview:severPrice];
     
@@ -114,7 +114,7 @@
     saleLable.textAlignment = NSTextAlignmentCenter;
     saleLable.layer.cornerRadius = 5;//设置那个圆角的有多圆
     saleLable.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    saleLable.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    saleLable.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     saleLable.layer.masksToBounds = YES;//设为NO去试试
     
     
@@ -132,13 +132,13 @@
     [_secondBackView addSubview:saleButton];
     [_secondBackView addSubview:saleLable];
     
-    UILabel * reallLable1 = [[UILabel alloc] initWithFrame:CGRectMake(5, 75+170, 240, 30)];
+    UILabel * reallLable1 = [[UILabel alloc] initWithFrame:CGRectMake(170, 180, 240, 30)];
     reallLable1.font = [UIFont systemFontOfSize:12.0];
     reallLable1.textColor = [UIColor blackColor];
     reallLable1.text = @"实际价格：";
     [_secondBackView addSubview:reallLable1];
     
-    reallPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(65, 75+170, 200, 30)];
+    reallPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(235, 180, 200, 30)];
     reallPriceLable.font = [UIFont systemFontOfSize:12.0];
     reallPriceLable.textColor = [UIColor blackColor];
     reallPriceLable.text = @"  --  元";
@@ -146,14 +146,22 @@
     
     saleArr = [[NSMutableArray alloc] initWithObjects:@"9.5",@"9",@"8.5",@"8",@"7.5",@"7",@"6.5",@"6",@"5.5",@"5",@"4.5",@"4",@"3.5",@"3",@"2.5",@"2",@"1.5",@"1",@"0.5", nil];
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(saleButton.frame.origin.x, saleButton.frame.origin.y+saleButton.frame.size.height, saleButton.frame.size.width, saleButton.frame.size.height*2+10) style:UITableViewStylePlain];
+    if(iPhone5)
+    {
+        myTableView=[[UITableView alloc] initWithFrame:CGRectMake(saleButton.frame.origin.x, saleButton.frame.origin.y+saleButton.frame.size.height, saleButton.frame.size.width, saleButton.frame.size.height*2+10) style:UITableViewStylePlain];
+    }
+    else
+    {
+        myTableView=[[UITableView alloc] initWithFrame:CGRectMake(saleButton.frame.origin.x, saleButton.frame.origin.y-(saleButton.frame.size.height*2+10), saleButton.frame.size.width, saleButton.frame.size.height*2+10) style:UITableViewStylePlain];
+    }
+    
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.hidden = YES;
     myTableView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     myTableView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    myTableView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    myTableView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     myTableView.layer.masksToBounds = YES;//设为NO去试试
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [_secondBackView addSubview:myTableView];
@@ -163,36 +171,65 @@
     
     
     
-    sureButton=[[UIButton alloc] init];
-    sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sureButton.layer setMasksToBounds:YES];
-    [sureButton.layer setCornerRadius:5.0];
-    [sureButton.layer setBorderWidth:1.0];
-    [sureButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [sureButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
-    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    sureButton.frame = CGRectMake(40,120+170, 100, 30);
+//    sureButton=[[UIButton alloc] init];
+//    sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [sureButton.layer setMasksToBounds:YES];
+//    [sureButton.layer setCornerRadius:5.0];
+//    [sureButton.layer setBorderWidth:1.0];
+//    [sureButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
+//    [sureButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+//    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+//    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+//    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//    
+//    cancelButton=[[UIButton alloc] init];
+//    cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [cancelButton.layer setMasksToBounds:YES];
+//    [cancelButton.layer setCornerRadius:5.0];
+//    [cancelButton.layer setBorderWidth:1.0];
+//    [cancelButton setBackgroundColor:[UIColor colorWithRed:172.0/256.0 green:172.0/256.0 blue:172.0/256.0 alpha:1.0]];
+//    [cancelButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+//    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+//    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    //    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+//    [cancelButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    cancelButton=[[UIButton alloc] init];
-    cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton.layer setMasksToBounds:YES];
-    [cancelButton.layer setCornerRadius:5.0];
-    [cancelButton.layer setBorderWidth:1.0];
-    [cancelButton setBackgroundColor:[UIColor colorWithRed:172.0/256.0 green:172.0/256.0 blue:172.0/256.0 alpha:1.0]];
-    [cancelButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    [cancelButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    cancelButton.frame = CGRectMake(180, 120+170, 100, 30);
-    
-    [_secondBackView addSubview:sureButton];
-    [_secondBackView addSubview:cancelButton];
+//    [_secondBackView addSubview:sureButton];
+//    [_secondBackView addSubview:cancelButton];
 
+    
+    if ([dresserOrComment isEqualToString:@"dresser"])
+    {
+        severTimeLable.hidden=NO;
+        severTime.hidden=NO;
+        severPriceLable.hidden=NO;
+        severPrice.hidden=NO;
+        saleLable1.hidden=NO;
+        saleLable.hidden=NO;
+        saleButton.hidden=NO;
+        reallLable1.hidden=NO;
+        reallPriceLable.hidden=NO;
+//        sureButton.frame = CGRectMake(40,100+170, 100, 30);
+//        cancelButton.frame = CGRectMake(180, 100+170, 100, 30);
+    }
+    else
+    {
+        severTimeLable.hidden=YES;
+        severTime.hidden=YES;
+        severPriceLable.hidden=YES;
+        severPrice.hidden=YES;
+        saleLable1.hidden=YES;
+        saleLable.hidden=YES;
+        saleButton.hidden=YES;
+        reallLable1.hidden=YES;
+        reallPriceLable.hidden=YES;
+//        sureButton.frame = CGRectMake(40,40+170, 100, 30);
+//        cancelButton.frame = CGRectMake(180, 40+170, 100, 30);
+    }
 //    [_secondBackView addSubview:subView];
     sexString= [[NSString alloc] init];
     sexString =@"1";
@@ -239,7 +276,7 @@
     CGRect newTextViewFrame = self.view.bounds;
     newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
     
-    newTextViewFrame.origin.y =newTextViewFrame.size.height+80-self.view.bounds.size.height;//自己加的，特为此界面定制
+    newTextViewFrame.origin.y =newTextViewFrame.size.height+100-self.view.frame.size.height;//自己加的，特为此界面定制
     // Get the duration of the animation.
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration;
@@ -333,7 +370,9 @@
 
 -(void)sureButtonClick
 {
-    
+    [severTime resignFirstResponder];
+    [severPrice resignFirstResponder];
+    [_deacribeText resignFirstResponder];
     
     if ([_deacribeText.text isEqualToString:@""])
     {
@@ -402,8 +441,12 @@
 
 -(void)cancelButtonClick
 {
+    
     [self leftButtonClick];
+
 }
+
+
 
 -(void)saleButtonClick
 {
@@ -467,18 +510,40 @@
 
 -(void)leftButtonClick
 {
-    if ([_hidden isEqualToString:@"yes"])
-    {
-        self.navigationController.navigationBar.hidden=YES;
-        
-    }
-    else
-    {
-        self.navigationController.navigationBar.hidden=NO;
-        
-    }
+    
+    
+    [severTime resignFirstResponder];
+    [severPrice resignFirstResponder];
+    [_deacribeText resignFirstResponder];
+    backAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否放弃当前发布信息" delegate:self cancelButtonTitle:@"取消发布" otherButtonTitles:@"继续发布", nil];
+    [backAlert show];
+    
+   
+    
+}
 
-    [self.navigationController popViewControllerAnimated:NO];
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView==backAlert)
+    {
+        if (buttonIndex==0)
+        {
+            if ([_hidden isEqualToString:@"yes"])
+            {
+                self.navigationController.navigationBar.hidden=YES;
+                
+            }
+            else
+            {
+                self.navigationController.navigationBar.hidden=NO;
+                
+            }
+            
+            [self.navigationController popViewControllerAnimated:NO];
+            
+        }
+    }
     
 }
 -(void)refreashNav
@@ -498,6 +563,23 @@
     leftButton.frame = CGRectMake(12,20, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
+    
+    
+    sureButton=[[UIButton alloc] init];
+    sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sureButton.layer setMasksToBounds:YES];
+    [sureButton.layer setCornerRadius:3.0];
+    [sureButton.layer setBorderWidth:1.0];
+    [sureButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sureButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    sureButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    sureButton.frame = CGRectMake(248,20, 60, 25);
+    UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:sureButton];
+    self.navigationItem.rightBarButtonItem=rightButtonItem;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -763,6 +845,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"上传图片是否成功dic:%@",dic);
@@ -775,6 +860,9 @@
             NSLog(@"%@",request.responseString);
             NSData*jsondata = [request responseData];
             NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
             NSLog(@"图片地址dic:%@",dic);

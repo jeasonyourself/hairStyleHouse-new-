@@ -46,11 +46,12 @@
     [self.view addSubview:myTableView];
     
     lastView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-60, self.view.bounds.size.width, 60)];
-lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];    lastView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+    lastView.layer.cornerRadius = 0;//设置那个圆角的有多圆
     lastView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    lastView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    lastView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     lastView.layer.masksToBounds = YES;//设为NO去试试
-    lastView.backgroundColor = [UIColor lightGrayColor];
+    lastView.backgroundColor = [UIColor colorWithRed:220.0/256.0 green:220.0/256.0 blue:220.0/256.0 alpha:1.0];
   
     [self.view addSubview:lastView];
     
@@ -58,7 +59,7 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
     contentView.font =[UIFont systemFontOfSize:12.0];
     contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    contentView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    contentView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     contentView.layer.masksToBounds = YES;//设为NO去试试
 
     contentView.delegate =self;
@@ -69,11 +70,13 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
     sendButton.frame=CGRectMake(250,10, 60, 40);
     [sendButton.layer setMasksToBounds:YES];
     [sendButton.layer setCornerRadius:3.0];
-    [sendButton.layer setBorderWidth:1.0];
+//    [sendButton.layer setBorderWidth:1.0];
     [sendButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    sendButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    sendButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+//    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sendButton setBackgroundColor:[UIColor clearColor]];
+
     [sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -207,6 +210,9 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"inforDic:%@",inforDic);
@@ -229,6 +235,9 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"评论是否成功dic:%@",dic);
@@ -309,7 +318,10 @@ lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 b
 
 -(void)sendButtonClick
 {
-    
+    if ([contentView.text isEqualToString:@""]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }
     [contentView resignFirstResponder];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=comment"];

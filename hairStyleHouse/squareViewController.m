@@ -121,7 +121,8 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated
-{NSString* cName = [NSString stringWithFormat:@"问答中心"];
+{
+    NSString* cName = [NSString stringWithFormat:@"问答中心"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
 [self.navigationController pushViewController:anwserCenter animated:NO];
 }

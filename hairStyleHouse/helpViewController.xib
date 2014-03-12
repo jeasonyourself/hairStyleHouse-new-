@@ -16,10 +16,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdu-36-09Z">
-                    <rect key="frame" x="0.0" y="26" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="6" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <mutableString key="text">如何认证发型师     1、首先以发型师身份完成注册，然后点击“我的”页面“沙龙认证”按钮，进入如填写资料，点击“认证沙龙”。     2、认证发型师的同时，请先在发型屋平台上发布5张以上原创作品，完成发型师认证，您将获得以下专属功能：        1.开启预约管理工具，有效方便获得、服务、管理客户资源        2.发布的作品可以在“找发型”里面显示。        3.认证发型师的作品将更有机会获得“找发型”推荐作品的推荐。如何开启预约功能     1、成为认证发型师后，点击“我的”中“设置”按钮，进入后点击“设置预约”，按内容填写预约设置，“保存”后，即可开通发型师预约。     2、“设置预约”后，可在“发型师”栏目显示，能获得用户关注和预约。如何发布作品     1、发型师“我的”页面，上传图片可上传原创作品，发布原创作品在“找发型”、“发型师”、“附近的人”等页面具有展示。     2、如何发布高质量作品，按要求上传正面、侧面、背面效果以及发型师与用户合照，且背景干净，画面清新，按要求填写分类，皆可在“找发型”显示，更可获得作品推荐的机会。</mutableString>
+                    <mutableString key="text">如何认证发型师
+     1、首先以发型师身份完成注册，然后点击“我的”页面“沙龙认证”按钮，进入如填写资料，点击“认证沙龙”。
+     2、认证发型师的同时，请先在发型屋平台上发布5张以上原创作品，完成发型师认证，您将获得以下专属功能：
+        1.开启预约管理工具，有效方便获得、服务、管理客户资源
+        2.发布的作品可以在“找发型”里面显示。
+        3.认证发型师的作品将更有机会获得“找发型”推荐作品的推荐。
+
+如何开启预约功能
+     1、成为认证发型师后，点击“我的”中“设置”按钮，进入后点击“设置预约”，按内容填写预约设置，“保存”后，即可开通发型师预约。
+     2、“设置预约”后，可在“发型师”栏目显示，能获得用户关注和预约。
+
+如何发布作品
+     1、发型师“我的”页面，上传图片可上传原创作品，发布原创作品在“找发型”、“发型师”、“附近的人”等页面具有展示。
+     2、如何发布高质量作品，按要求上传正面、侧面、背面效果以及发型师与用户合照，且背景干净，画面清新，按要求填写分类，皆可在“找发型”显示，更可获得作品推荐的机会。</mutableString>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

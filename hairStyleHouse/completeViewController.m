@@ -230,6 +230,28 @@
     _saveButton.hidden=YES;
     _saveButton2.hidden =NO;
     
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        _storeNameLable.frame=CGRectMake(9, 255, 52, 25);
+        _storeNameField.frame=CGRectMake(69, 255, 230, 25);
+        _mobileLable.frame=CGRectMake(9, 285, 52, 25);
+        _mobileField.frame=CGRectMake(69, 285, 230, 25);
+        _addressLable.frame=CGRectMake(9, 315, 52, 25);
+        _addressField.frame=CGRectMake(69, 315, 230, 25);
+        _cityLable.frame=CGRectMake(9, 345, 52, 25);
+        areaText.frame=CGRectMake(69, 345, 230, 25);
+        _selfmobileLable.frame=CGRectMake(9, 375, 52, 25);
+        _selfmobileField.frame=CGRectMake(69, 375, 230, 25);
+        _qqLable.frame=CGRectMake(9, 405, 52, 25);
+        _qqField.frame=CGRectMake(69, 405, 230, 25);
+        _saveButton2.frame=CGRectMake(6, 435, 310, 29);
+
+    }
+    
     whictButton=@"second";
     [_firstButton setBackgroundImage:[UIImage imageNamed:@"未选中.png"] forState:UIControlStateNormal];
     [_secondButton setBackgroundImage:[UIImage imageNamed:@"选中.png"] forState:UIControlStateNormal];
@@ -279,7 +301,7 @@
     }
     else
     {
-        NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0-9]))\\d{8}$";
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         
         BOOL isMatch = [pred evaluateWithObject:_selfmobileField.text];
@@ -320,6 +342,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否完善第一步资料成功dic:%@",dic);
@@ -370,6 +395,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否完善认证资料成功dic:%@",dic);
@@ -389,6 +417,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);

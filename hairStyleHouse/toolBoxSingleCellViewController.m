@@ -30,19 +30,19 @@
     
     _fashionView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _fashionView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _fashionView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _fashionView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _fashionView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _protectView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _protectView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _protectView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _protectView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _protectView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _storeView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _storeView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _storeView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _storeView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _storeView.layer.masksToBounds = YES;//设为NO去试试
     
         // Do any additional setup after loading the view from its nib.

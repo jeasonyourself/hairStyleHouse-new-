@@ -79,24 +79,24 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addphoto_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="cnn-HA-0TX">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="130.png" translatesAutoresizingMaskIntoConstraints="NO" id="cnn-HA-0TX">
                             <rect key="frame" x="3" y="106" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addphoto_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dhl-UI-JQq">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="130.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dhl-UI-JQq">
                             <rect key="frame" x="82" y="106" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addphoto_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="xoh-ks-f5B">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="130.png" translatesAutoresizingMaskIntoConstraints="NO" id="xoh-ks-f5B">
                             <rect key="frame" x="161" y="106" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addphoto_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="oK6-rJ-qJL">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="130.png" translatesAutoresizingMaskIntoConstraints="NO" id="oK6-rJ-qJL">
                             <rect key="frame" x="240" y="106" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hql-If-Hqw">
-                            <rect key="frame" x="3" y="109" width="75" height="75"/>
+                            <rect key="frame" x="3" y="107" width="75" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,7 +361,7 @@
         </view>
     </objects>
     <resources>
-        <image name="addphoto_green.png" width="50" height="50"/>
+        <image name="130.png" width="130" height="130"/>
         <image name="未选中.png" width="49" height="49"/>
         <image name="选中.png" width="49" height="49"/>
     </resources>

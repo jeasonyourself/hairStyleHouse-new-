@@ -81,7 +81,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     lastView.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
     lastView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     lastView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    lastView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    lastView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     lastView.layer.masksToBounds = YES;//设为NO去试试
     [self.view addSubview:lastView];
     
@@ -89,7 +89,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     contentView.font =[UIFont systemFontOfSize:12.0];
     contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    contentView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    contentView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     contentView.layer.masksToBounds = YES;//设为NO去试试
     contentView.delegate =self;
     [lastView addSubview:contentView];
@@ -102,9 +102,11 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [imageButton.layer setCornerRadius:3.0];
     [imageButton.layer setBorderWidth:1.0];
     [imageButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [imageButton setTitle:@"+" forState:UIControlStateNormal];
+    [imageButton setBackgroundImage:[UIImage imageNamed:@"addphoto_green.png"] forState:UIControlStateNormal];
+    //    [imageButton setTitle:@"+" forState:UIControlStateNormal];
+
     imageButton.titleLabel.font = [UIFont systemFontOfSize:18.0];
-    [imageButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+//    [imageButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     [imageButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [imageButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [imageButton addTarget:self action:@selector(imageButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -117,8 +119,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [sendButton.layer setBorderWidth:1.0];
     [sendButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    sendButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    sendButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+//    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sendButton setBackgroundColor:[UIColor clearColor]];
     [sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -500,6 +503,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"聊天列表dic:%@",dic);
@@ -577,6 +583,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否发送成功dic:%@",dic);
@@ -598,6 +607,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "scanImageViewController.h"
+#import "lookEvaluateViewController.h"
 
 @interface addBeaspeakViewController : UIViewController
 {
@@ -28,7 +29,8 @@
     NSMutableArray * twelveButtonArr;
     
     scanImageViewController * scanView;
-    
+    lookEvaluateViewController * lookEvaluate;
+
 }
 @property (strong, nonatomic)  NSString * _hidden;
 @property (strong, nonatomic)  NSMutableDictionary * inforDic;
@@ -39,6 +41,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UILabel *nameLable;
 @property (strong, nonatomic) IBOutlet UILabel *cityLable;
+@property (strong, nonatomic) IBOutlet UILabel *placeLable;
+
 @property (strong, nonatomic) IBOutlet UILabel *addressLable;
 @property (strong, nonatomic) IBOutlet UIButton *lookWorksButton;
 @property (strong, nonatomic) IBOutlet UIButton *lookEvauateButton;

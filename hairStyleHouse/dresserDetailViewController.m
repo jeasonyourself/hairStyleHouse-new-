@@ -36,37 +36,37 @@
     
     _firstView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _firstView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _firstView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstView.layer.masksToBounds = YES;//设为NO去试试
     
 //    _headBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
 //    _headBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-//    _headBackView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+//    _headBackView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
 //    _headBackView.layer.masksToBounds = YES;//设为NO去试试
     
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _headImage.layer.masksToBounds = YES;//设为NO去试试
     
     _secondView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _secondView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _secondView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _secondView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _secondView.layer.masksToBounds = YES;//设为NO去试试
     
     _thirdView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _thirdView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _thirdView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _thirdView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _thirdView.layer.masksToBounds = YES;//设为NO去试试
     
     _askButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _askButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _askButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _askButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _askButton.layer.masksToBounds = YES;//设为NO去试试
     
     _fouceButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _fouceButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _fouceButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _fouceButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _fouceButton.layer.masksToBounds = YES;//设为NO去试试
     
     
@@ -153,7 +153,7 @@
             
             workImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
             workImage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
             workImage.layer.masksToBounds = YES;//设为NO去试试
             
             [workImage setImageWithURL:[[workArr objectAtIndex:i] objectForKey:@"work_image"]];
@@ -192,7 +192,7 @@
             
             workImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
             workImage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
             workImage.layer.masksToBounds = YES;//设为NO去试试
             
             [workImage setImageWithURL:[[canArr objectAtIndex:i] objectForKey:@"work_image"]];

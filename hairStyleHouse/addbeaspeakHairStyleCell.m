@@ -22,25 +22,25 @@
         picBackView = [[UIView alloc] init];
         picBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
         picBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        picBackView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        picBackView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         picBackView.layer.masksToBounds = YES;//设为NO去试试
         
         picImage  = [[UIImageView alloc] init];
         picImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         picImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        picImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        picImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         picImage.layer.masksToBounds = YES;//设为NO去试试
         
         headBack = [[UIView alloc] init];
         headBack.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headBack.layer.masksToBounds = YES;//设为NO去试试
         
         headImage = [[UIImageView alloc] init];
         headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headImage.layer.masksToBounds = YES;//设为NO去试试
         
         headButton = [[UIButton alloc] init];
@@ -69,7 +69,7 @@
        
         beaspeakButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
         beaspeakButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        beaspeakButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        beaspeakButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         beaspeakButton.layer.masksToBounds = YES;//设为NO去试试
         
         askButton = [[UIButton alloc]init];
@@ -80,7 +80,7 @@
         [askButton setBackgroundColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]];
         askButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
         askButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        askButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        askButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         askButton.layer.masksToBounds = YES;//设为NO去试试
 
         [self addSubview:picImage];

@@ -17,7 +17,8 @@
 #import "rigViewController.h"
 #import "setOpenOrCloseViewController.h"
 
-@interface dresserMySetSingleCellViewController : UIViewController
+
+@interface dresserMySetSingleCellViewController : UIViewController<TencentLoginDelegate,TencentSessionDelegate>
 {
     NSMutableDictionary * inforDic;
     personInforViewController* personInfor ;

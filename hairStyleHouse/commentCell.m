@@ -20,20 +20,20 @@
         picImage  = [[UIImageView alloc] init];
         picImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         picImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        picImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        picImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         picImage.layer.masksToBounds = YES;//设为NO去试试
         
         headBack = [[UIView alloc] init];
         headBack.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headBack.layer.masksToBounds = YES;//设为NO去试试
         
         
         headImage = [[UIImageView alloc] init];
         headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headImage.layer.masksToBounds = YES;//设为NO去试试
         
         
@@ -136,7 +136,7 @@
             [workImage setImageWithURL:[[likeArr objectAtIndex:i] objectForKey:@"head_photo"]];
             workImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
             workImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-            workImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            workImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
             workImage.layer.masksToBounds = YES;//设为NO去试试
             
             UIButton *newvideobutton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -195,8 +195,9 @@
     
     NSString* timeStr = [[_arr objectAtIndex:_index-1] objectForKey:@"add_time"];
     timeLable.text=timeStr;
+    timeLable.textAlignment=NSTextAlignmentCenter;
     timeLable.font = [UIFont systemFontOfSize:12];
-    timeLable.frame = CGRectMake(240, 15, 120, 20);
+    timeLable.frame = CGRectMake(200, 15, 120, 20);
     
     NSString* contentStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"content"];
     contentLable.text=contentStr;

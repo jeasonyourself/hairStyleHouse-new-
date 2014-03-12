@@ -84,14 +84,14 @@
         headBack.backgroundColor = [UIColor whiteColor];
         headBack.layer.cornerRadius = 3;//设置那个圆角的有多圆
         headBack.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headBack.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headBack.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headBack.layer.masksToBounds = YES;//设为NO去试试
         
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
         
         headImage.layer.cornerRadius = 3;//设置那个圆角的有多圆
         headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headImage.layer.masksToBounds = YES;//设为NO去试试
         [headBack addSubview: headImage];
         
@@ -147,7 +147,7 @@
         [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
         addButton.layer.cornerRadius = 3;//设置那个圆角的有多圆
         addButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-        addButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        addButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         addButton.layer.masksToBounds = YES;//设为NO去试试
         
         
@@ -252,6 +252,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片详情：dic:%@",dic);
@@ -264,6 +267,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         dic=[jsonP objectWithString:jsonString];
         NSLog(@"收藏dic:%@",dic);
@@ -434,7 +440,7 @@
         }
 
 
-        else if (buttonIndex == 1)
+        if (buttonIndex == 1)
         {
             AppDelegate* dele=(AppDelegate*)[UIApplication sharedApplication].delegate;
             SinaWeibo* _sinaWeibo=dele.sinaweibo;

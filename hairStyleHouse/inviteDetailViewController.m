@@ -112,6 +112,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
@@ -154,5 +157,15 @@
 
 - (IBAction)talkButtonClick:(UIButton *)sender {
     
+
+    talkView=nil;
+    talkView = [[talkViewController alloc] init];
+    talkView.uid = [jobDetailDic objectForKey:@"uid"];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if (![appDele.uid isEqualToString:talkView.uid]) {
+        [self.navigationController pushViewController:talkView animated:NO];
+        
+    }
+
 }
 @end

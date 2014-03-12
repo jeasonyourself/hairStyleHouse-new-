@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "talkViewController.h"
 @interface inviteDetailViewController : UIViewController
 {
     NSDictionary * jobDetailDic;
+    talkViewController * talkView;
+
 }
 @property (strong, nonatomic) NSDictionary * inforDic;
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;

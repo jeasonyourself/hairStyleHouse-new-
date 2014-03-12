@@ -25,6 +25,12 @@
 @synthesize city;
 @synthesize hostReach;
 @synthesize isReachable;
+
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host//重要！！！
+{
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
@@ -39,6 +45,8 @@
 //    statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
     statTracker.enableDebugOn = YES; //打开sdk调试接口，会有log打印
     [statTracker startWithAppId:@"2f279376bb"];//设置您在mtj网站上添加的app的appkey
+    
+    
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
@@ -145,10 +153,10 @@
     tabImageView.frame=CGRectMake(0,-1, 320, 50);
     NSLog(@"tabImageView.frame:%@",NSStringFromCGRect(tabImageView.frame));
     NSLog(@"tabbar.frame:%@",NSStringFromCGRect(rootTab.tabBar.frame));
-    tabImageView.image=[UIImage imageNamed:@"找发型01.png"];
+    tabImageView.image=[UIImage imageNamed:@"找发型新.png"];
     
     firstLable= [[UILabel alloc] init];
-    firstLable.text = @"找发型";
+//    firstLable.text = @"找发型";
     firstLable.textAlignment = NSTextAlignmentCenter;
     [firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
     firstLable.backgroundColor = [UIColor clearColor];
@@ -156,7 +164,7 @@
     firstLable.frame = CGRectMake(0, 32, 80, 19);
     
     secondLable= [[UILabel alloc] init];
-    secondLable.text = @"发型师";
+//    secondLable.text = @"发型师";
     secondLable.textAlignment = NSTextAlignmentCenter;
     secondLable.textColor = [UIColor whiteColor];
     secondLable.backgroundColor = [UIColor clearColor];
@@ -164,7 +172,7 @@
     secondLable.frame = CGRectMake(80, 33, 80, 19);
     
     thirdLable= [[UILabel alloc] init];
-    thirdLable.text = @"问题";
+//    thirdLable.text = @"问题";
     thirdLable.textAlignment = NSTextAlignmentCenter;
     thirdLable.textColor = [UIColor whiteColor];
     thirdLable.backgroundColor = [UIColor clearColor];
@@ -172,7 +180,7 @@
     thirdLable.frame = CGRectMake(162, 32, 80, 19);
     
     forthLable= [[UILabel alloc] init];
-    forthLable.text = @"我的";
+//    forthLable.text = @"我的";
     forthLable.textAlignment = NSTextAlignmentCenter;
     forthLable.textColor = [UIColor whiteColor];
     forthLable.backgroundColor = [UIColor clearColor];
@@ -199,12 +207,13 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
     int index = tabBarController.selectedIndex;
-    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
-    [statTracker logEvent:@"TabClick3" eventLabel:[NSString stringWithFormat: @"Tab%d", index]];
+    
+//    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+//    [statTracker logEvent:@"TabClick3" eventLabel:[NSString stringWithFormat: @"Tab%d", index]];
     
     if (viewController == firstNav) {
 //        signStr=@"1";
-        tabImageView.image=[UIImage imageNamed:@"找发型01.png"];
+        tabImageView.image=[UIImage imageNamed:@"找发型新.png"];
         [firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
         secondLable.textColor = [UIColor whiteColor];
         thirdLable.textColor = [UIColor whiteColor];
@@ -214,7 +223,7 @@
     else if (viewController == secondNav) {
 //        signStr=@"2";
 
-        tabImageView.image=[UIImage imageNamed:@"发型师02.png"];
+        tabImageView.image=[UIImage imageNamed:@"发型师新.png"];
         [firstLable setTextColor:[UIColor whiteColor]];
         secondLable.textColor = [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
         thirdLable.textColor = [UIColor whiteColor];
@@ -224,7 +233,7 @@
     else if (viewController == thirdNav) {
 //        signStr=@"3";
 
-        tabImageView.image=[UIImage imageNamed:@"问题03.png"];
+        tabImageView.image=[UIImage imageNamed:@"问发型新.png"];
         [firstLable setTextColor:[UIColor whiteColor]];
         secondLable.textColor = [UIColor whiteColor];
         thirdLable.textColor = [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
@@ -235,7 +244,7 @@
         
 //        if (self.uid) {
 //            signStr=@"4";
-            tabImageView.image=[UIImage imageNamed:@"我的04.png"];
+            tabImageView.image=[UIImage imageNamed:@"我的新.png"];
         [firstLable setTextColor:[UIColor whiteColor]];
         secondLable.textColor = [UIColor whiteColor];
         thirdLable.textColor = [UIColor whiteColor];
@@ -457,6 +466,9 @@
             NSLog(@"%@",request.responseString);
             NSData*jsondata = [request responseData];
             NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
             NSLog(@"修改经纬度dic:%@",dic);
@@ -634,22 +646,22 @@
     
     
     
-    [[UIApplication sharedApplication]setKeepAliveTimeout:600//定时唤醒
-                                                  handler:^{
-                                                      
-                                                      ASIFormDataRequest* request;
-                                                      request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Message&a=push_andrews"]]];
-                                                      if (self.uid) {
-                                                          [request setPostValue:self.uid forKey:@"uid"];
-                                                          
-                                                          request.delegate=self;
-                                                          request.tag=1000;
-                                                          [request startAsynchronous];
-                                                      }
-                                                     
-                                                      
-                                                                                                           //执行的代码
-                                                  }];
+//    [[UIApplication sharedApplication]setKeepAliveTimeout:600//定时唤醒
+//                                                  handler:^{
+//                                                      
+//                                                      ASIFormDataRequest* request;
+//                                                      request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Message&a=push_andrews"]]];
+//                                                      if (self.uid) {
+//                                                          [request setPostValue:self.uid forKey:@"uid"];
+//                                                          
+//                                                          request.delegate=self;
+//                                                          request.tag=1000;
+//                                                          [request startAsynchronous];
+//                                                      }
+//                                                     
+//                                                      
+//                                                                                                           //执行的代码
+//                                                  }];
     
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

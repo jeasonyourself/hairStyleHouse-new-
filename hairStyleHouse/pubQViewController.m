@@ -192,10 +192,10 @@ else
     backView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
 
     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 20, 200, 200)];
-    headImage.image = [UIImage imageNamed:@"添加图片.png"];
+    headImage.image = [UIImage imageNamed:@"200.png"];
     headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     headImage.layer.masksToBounds = YES;//设为NO去试试
     
     headButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -203,7 +203,7 @@ else
     headButton.backgroundColor = [UIColor clearColor];
     [headButton addTarget:self action:@selector(headButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    describeText = [[UITextView alloc] initWithFrame:CGRectMake(60, 240, 200, 120)];
+    describeText = [[UITextView alloc] initWithFrame:CGRectMake(10, 230, 300, 120)];
     describeText.backgroundColor = [UIColor whiteColor];
     
     describeText.textColor = [UIColor blackColor];//设置textview里面的字体颜色
@@ -211,12 +211,12 @@ else
     describeText.delegate = self;
     describeText.layer.cornerRadius = 5;//设置那个圆角的有多圆
     describeText.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    describeText.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    describeText.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     describeText.layer.masksToBounds = YES;//设为NO去试试
     
     
     sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    sendButton.frame = CGRectMake(60, 400, 200, 30);
+    sendButton.frame = CGRectMake(5, 365, 310, 40);
 //    [_firstLable setTextColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
 
     [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
@@ -224,7 +224,7 @@ else
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
     sendButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     sendButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    sendButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    sendButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     sendButton.layer.masksToBounds = YES;//设为NO去试试
     
     [backView addSubview:headImage];
@@ -404,6 +404,9 @@ else
             NSLog(@"%@",request.responseString);
             NSData*jsondata = [request responseData];
             NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
             NSLog(@"图片地址dic:%@",dic);
@@ -432,6 +435,9 @@ else
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否发布成功dic:%@",dic);

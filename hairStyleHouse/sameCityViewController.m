@@ -43,14 +43,14 @@
     [topImage setBackgroundColor:[UIColor whiteColor]];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    topImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage.layer.masksToBounds = YES;//设为NO去试试
     
-    topImage1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.size.height+72, 250, 45)];
+    topImage1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.size.height+72, 310, 45)];
     [topImage1 setBackgroundColor:[UIColor whiteColor]];
     topImage1.layer.cornerRadius = 5;//设置那个圆角的有多圆
     topImage1.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    topImage1.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage1.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage1.layer.masksToBounds = YES;//设为NO去试试
     
     searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.size.height+72, 40, 40)];
@@ -88,7 +88,7 @@
     [searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [searchButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    searchButton.frame = CGRectMake(260,topImage1.frame.origin.y, 55, topImage1.frame.size.height);
+    searchButton.frame = CGRectMake(260,topImage1.frame.origin.y+5, 50, topImage1.frame.size.height-10);
     
     [self.view addSubview:topImage];
     [self.view addSubview:topImage1];
@@ -309,6 +309,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
@@ -346,6 +349,9 @@
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
@@ -486,10 +492,10 @@
         }
     }
     
-    cell.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    cell.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    cell.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
-    cell.layer.masksToBounds = YES;//设为NO去试试
+//    cell.layer.cornerRadius = 5;//设置那个圆角的有多圆
+//    cell.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    cell.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+//    cell.layer.masksToBounds = YES;//设为NO去试试
     return cell;
     
 }

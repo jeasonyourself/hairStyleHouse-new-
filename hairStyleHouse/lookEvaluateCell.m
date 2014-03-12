@@ -18,14 +18,14 @@
         backView = [[UIView alloc] init];
         backView.layer.cornerRadius = 5;//设置那个圆角的有多圆
         backView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        backView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        backView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         backView.layer.masksToBounds = YES;//设为NO去试试
         
         headImage = [[UIImageView alloc] init];
         headImage.frame = CGRectMake(10, 10, 70, 70);
         headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
         headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-        headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         headImage.layer.masksToBounds = YES;//设为NO去试试
         
         

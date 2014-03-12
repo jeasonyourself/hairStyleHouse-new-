@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface pubImageViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface pubImageViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     
     BOOL ifselectImage;
@@ -32,6 +32,7 @@
     
     UIButton * sureButton;
     UIButton * cancelButton;
+    UIAlertView* backAlert;
     UITableView * myTableView;
     NSMutableArray* saleArr;
 }

@@ -264,33 +264,33 @@
     
 }
 
-- (void)addShareResponse:(APIResponse*) response {
-    NSLog(@"xxxxx");
-	if (response.retCode == URLREQUEST_SUCCEED)
-	{
-		
-		
-		NSMutableString *str=[NSMutableString stringWithFormat:@""];
-		for (id key in response.jsonResponse) {
-			[str appendString: [NSString stringWithFormat:@"%@:%@\n",key,[response.jsonResponse objectForKey:key]]];
-		}
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作成功" message:[NSString stringWithFormat:@"%@",str]
-							  
-													   delegate:self cancelButtonTitle:@"我知道啦" otherButtonTitles:nil];
-		[alert show];
-		
-		
-		
-	}
-	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作失败" message:[NSString stringWithFormat:@"%@", response.errorMsg]
-							  
-													   delegate:self cancelButtonTitle:@"我知道啦" otherButtonTitles: nil];
-		[alert show];
-	}
-	
-	
-}
+//- (void)addShareResponse:(APIResponse*) response {
+//    NSLog(@"xxxxx");
+//	if (response.retCode == URLREQUEST_SUCCEED)
+//	{
+//		
+//		
+//		NSMutableString *str=[NSMutableString stringWithFormat:@""];
+//		for (id key in response.jsonResponse) {
+//			[str appendString: [NSString stringWithFormat:@"%@:%@\n",key,[response.jsonResponse objectForKey:key]]];
+//		}
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作成功" message:[NSString stringWithFormat:@"%@",str]
+//							  
+//													   delegate:self cancelButtonTitle:@"我知道啦" otherButtonTitles:nil];
+//		[alert show];
+//		
+//		
+//		
+//	}
+//	else {
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作失败" message:[NSString stringWithFormat:@"%@", response.errorMsg]
+//							  
+//													   delegate:self cancelButtonTitle:@"我知道啦" otherButtonTitles: nil];
+//		[alert show];
+//	}
+//	
+//	
+//}
 
 
 
@@ -457,9 +457,9 @@
         userInforArr = [NSMutableArray arrayWithArray:dataArray];
         userInfor =[dataArray objectAtIndex:0];
         
-        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
-        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
-        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
+//        [userInfor setObject:[_tencentOAuth accessToken]  forKey:@"tencentOAuth_accesstoken"];
+//        [userInfor setObject:[_tencentOAuth openId]  forKey:@"tencentOAuth_openId"];
+//        [userInfor setObject:[_tencentOAuth expirationDate]  forKey:@"tencentOAuth_expirationDate"];
 //        }
         [userInforArr addObject:userInfor];
         [userInforArr writeToFile:filename atomically:YES];

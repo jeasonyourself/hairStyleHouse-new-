@@ -46,24 +46,29 @@
     
     _firstView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _firstView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _firstView.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _firstView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstView.layer.masksToBounds = YES;//设为NO去试试
     
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _headImage.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _headImage.layer.masksToBounds = YES;//设为NO去试试
     for (UIButton * _button in twelveButtonArr)//日期按钮全设置未圆角
     {
         _button.layer.cornerRadius = 5;//设置那个圆角的有多圆
         _button.layer.borderWidth =0;//设置边框的宽度，当然可以不要
-        _button.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+        _button.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
         _button.layer.masksToBounds = YES;//设为NO去试试
         
     }
+    
+    _secondView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _secondView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _secondView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _secondView.layer.masksToBounds = YES;//设为NO去试试
     _sendBeaspeakButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _sendBeaspeakButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _sendBeaspeakButton.layer.borderColor = [[UIColor colorWithRed:154.0/256.0 green:154.0/256.0 blue:154.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _sendBeaspeakButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sendBeaspeakButton.layer.masksToBounds = YES;//设为NO去试试
 //    NSString * headStr= [self.inforDic objectForKey:@"work_image"];
     NSString * nameStr = [self.inforDic objectForKey:@"long_service"];
@@ -171,6 +176,18 @@
     _getTimeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
     
     timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
+    
+    
+    if(iPhone5)
+    {
+        
+    }
+    else{
+        _firstView.hidden=YES;
+        
+        _secondView.hidden=YES;
+    }
+    
 }
 
 
@@ -229,6 +246,44 @@
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if(iPhone5)
+    {
+        
+    }
+    else
+    {
+        _firstView.hidden=NO;
+        _secondView.hidden=NO;
+        
+        _firstView.frame = CGRectMake(0, 70, 320, 107);
+        _headBackView.frame = CGRectMake(15, 10, 88, 88);
+        _headImage.frame = CGRectMake(5, 5, 78, 78);
+        
+        
+        _addressLable.frame = CGRectMake(117, 82, 193, 20);
+        
+        
+        
+        _secondView.frame = CGRectMake(0, 182, 320, 437);
+        
+        _nineClockButton.frame=CGRectMake(0, 160, 80, 30);
+        _tenClockButton.frame=CGRectMake(80, 160, 80, 30);
+        _elevenClockButton.frame=CGRectMake(160, 160, 80, 30);
+        _twelveClockButton.frame=CGRectMake(240, 160, 80, 30);
+        _thirteenClockButton.frame=CGRectMake(0, 190, 80, 30);
+        _forteenClockButton.frame=CGRectMake(80, 190, 80, 30);
+        _fifteenClockButton.frame=CGRectMake(160, 190, 80, 30);
+        _sixteenClockButton.frame=CGRectMake(240, 190, 80, 30);
+        _seventeenClockButton.frame=CGRectMake(0, 220, 80, 30);
+        _eighteenClockButton.frame=CGRectMake(80, 220, 80, 30);
+        _ninteenClockButton.frame=CGRectMake(160, 220, 80, 30);
+        _twentyClockButton.frame=CGRectMake(240, 220, 80, 30);
+        
+        _sendBeaspeakButton.frame=CGRectMake(17, 255, 285, 30);
+        
+        
+    }
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -507,6 +562,9 @@
     NSLog(@"%@",request.responseString);
     NSData*jsondata = [request responseData];
     NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     SBJsonParser* jsonP=[[SBJsonParser alloc] init];
     NSDictionary* dic=[jsonP objectWithString:jsonString];

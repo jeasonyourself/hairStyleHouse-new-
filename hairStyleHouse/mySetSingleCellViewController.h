@@ -15,7 +15,7 @@
 #import "setOpenOrCloseViewController.h"
 @class mySetViewController;
 
-@interface mySetSingleCellViewController : UIViewController
+@interface mySetSingleCellViewController : UIViewController<TencentLoginDelegate,TencentSessionDelegate>
 {
     NSMutableDictionary * inforDic;
     personInforViewController* personInfor ;
