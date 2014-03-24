@@ -70,10 +70,11 @@
 -(void)getData
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=store_info"]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=storeInfo"]];
     request.delegate=self;
     request.tag=1;
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
 //    [request setPostValue:self.orderId forKey:@"order_id"];
     [request startAsynchronous];
 }
@@ -133,19 +134,19 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
 
 -(void)refreashNavLab
 {
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"认证沙龙";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -191,7 +192,7 @@
     else
     {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=legalize"]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=legalize"]];
     request.delegate=self;
     request.tag=2;
         
@@ -199,6 +200,7 @@
         NSLog(@"city:%@",appDele.city);
         
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
     [request setPostValue:appDele.city forKey:@"city"];
 //        [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
 //        [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"lng"];

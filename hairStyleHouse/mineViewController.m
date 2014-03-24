@@ -17,12 +17,12 @@
 @end
 
 @implementation mineViewController
-
+@synthesize freash;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
         Lab.text = @"个人中心";
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
@@ -39,7 +39,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     inforDic = [[NSDictionary alloc] init];
-    
+    userInfor = [[NSMutableDictionary alloc] init];
+   userInforArr = [[NSMutableArray alloc] init];
+
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
@@ -47,7 +49,9 @@
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [self.view addSubview:myTableView];
-    
+    self.freash=@"yes";
+    [self refreashNav];
+//    [self getData];
    
 	// Do any additional setup after loading the view.
 }
@@ -98,6 +102,7 @@
     {
         [self getData];
     }
+
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //    NSLog(@"appDele.uid:%@",appDele.uid);
 //    
@@ -122,13 +127,12 @@
 
 -(void)getData
 {
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
 //    if ([appDele.type isEqualToString:@"1"]) {
-        ASIHTTPRequest* request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=info&type=%@&uid=%@",appDele.type,appDele.uid]]];
-        request.delegate=self;
-        request.tag=1;
-        [request startAsynchronous];
+//        ASIHTTPRequest* request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=info&type=%@&uid=%@",appDele.type,appDele.uid]]];
+//        request.delegate=self;
+//        request.tag=1;
+//        [request startAsynchronous];
 //    }
 //    else
 //    {
@@ -140,6 +144,15 @@
 //        [request startAsynchronous];
 //    }
     
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=info"]];
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    request.delegate=self;
+    [request setPostValue:appDele.uid forKey:@"to_uid"];
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.type forKey:@"type"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+    //    [request setPostValue:@"" forKey:@"sina_keyid"];
+    [request startAsynchronous];
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request
@@ -158,9 +171,130 @@
     NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
     [ud setObject:[inforDic objectForKey:@"type"] forKey:@"type"];
     
-    [self refreashNav];
-    [self freashView];
-//    AppDelegate *appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;//调用appdel
+    
+    
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    //        NSLog(@"path = %@",path);
+    NSString * plistString = [NSString stringWithFormat:@"userInfor"];
+    NSString *filename=[path stringByAppendingPathComponent:plistString];
+    NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
+    if (!dataArray)
+    {
+        //1. 创建一个plist文件
+        NSFileManager* fm = [NSFileManager defaultManager];
+        [fm createFileAtPath:filename contents:nil attributes:nil];
+    }
+    else
+    {
+        userInfor=[dataArray objectAtIndex:0];
+        
+        if ([[inforDic objectForKey:@"type"] isEqualToString:@"1"])//普通用户
+        {
+            if (![userInfor objectForKey:@"name"])
+                  {
+                      [userInfor setObject:[inforDic objectForKey:@"username"] forKey:@"name"];
+                      [userInfor setObject:[inforDic objectForKey:@"head_photo"] forKey:@"head_photo"];
+                      [userInfor setObject:[inforDic objectForKey:@"city"] forKey:@"city"];
+                      [userInfor setObject:[inforDic objectForKey:@"fans_num"] forKey:@"fans_num"];
+                      [userInfor setObject:[inforDic objectForKey:@"attention_num"] forKey:@"attention_num"];
+                      
+                      
+                      [userInforArr addObject:userInfor];
+                      [userInforArr writeToFile:filename atomically:YES];
+                      
+                      [self refreashNav];
+                      [self freashView];
+                  }
+            
+            else if (![[userInfor objectForKey:@"name"]isEqualToString:[inforDic objectForKey:@"username"]]||![[userInfor objectForKey:@"head_photo"]isEqualToString:[inforDic objectForKey:@"head_photo"]]||![[userInfor objectForKey:@"city"]isEqualToString:[inforDic objectForKey:@"city"]]||![[userInfor objectForKey:@"fans_num"]isEqualToString:[inforDic objectForKey:@"fans_num"]]||![[userInfor objectForKey:@"attention_num"]isEqualToString:[inforDic objectForKey:@"attention_num"]])
+            {
+                userInforArr1=nil;
+                userInforArr1 = [[NSMutableArray alloc] init];
+
+                [userInfor setObject:[inforDic objectForKey:@"username"] forKey:@"name"];
+                [userInfor setObject:[inforDic objectForKey:@"head_photo"] forKey:@"head_photo"];
+                [userInfor setObject:[inforDic objectForKey:@"city"] forKey:@"city"];
+                [userInfor setObject:[inforDic objectForKey:@"fans_num"] forKey:@"fans_num"];
+                [userInfor setObject:[inforDic objectForKey:@"attention_num"] forKey:@"attention_num"];
+                
+                
+                [userInforArr1 addObject:userInfor];
+                [userInforArr1 writeToFile:filename atomically:YES];
+                
+                
+                [self freashView];
+            }
+            else
+            {
+                if ([freash isEqualToString:@"yes"]) {
+                    [self freashView];
+                    self.freash=@"no";
+
+                }
+                else
+                {
+                
+                }
+            }
+            
+        }
+        else//发型师
+        {
+            NSLog(@"userInfor:%@",userInfor);
+
+            if (![userInfor objectForKey:@"name"])
+            {
+                [userInfor setObject:[inforDic objectForKey:@"username"] forKey:@"name"];
+                [userInfor setObject:[inforDic objectForKey:@"head_photo"] forKey:@"head_photo"];
+                [userInfor setObject:[inforDic objectForKey:@"city"] forKey:@"city"];
+                [userInfor setObject:[inforDic objectForKey:@"fans_num"] forKey:@"fans_num"];
+                [userInfor setObject:[inforDic objectForKey:@"attention_num"] forKey:@"attention_num"];
+                [userInfor setObject:[inforDic objectForKey:@"collect_num"] forKey:@"collect_num"];
+                [userInfor setObject:[inforDic objectForKey:@"assess_num"] forKey:@"assess_num"];
+                [userInforArr addObject:userInfor];
+                [userInforArr writeToFile:filename atomically:YES];
+                
+                [self freashView];
+            }
+            
+            
+           else if (![[userInfor objectForKey:@"name"]isEqualToString:[inforDic objectForKey:@"username"]]||![[userInfor objectForKey:@"head_photo"]isEqualToString:[inforDic objectForKey:@"head_photo"]]||![[userInfor objectForKey:@"city"]isEqualToString:[inforDic objectForKey:@"city"]]||![[userInfor objectForKey:@"fans_num"]isEqualToString:[inforDic objectForKey:@"fans_num"]]||![[userInfor objectForKey:@"attention_num"]isEqualToString:[inforDic objectForKey:@"attention_num"]]||![[userInfor objectForKey:@"collect_num"]isEqualToString:[inforDic objectForKey:@"collect_num"]]||![[userInfor objectForKey:@"assess_num"]isEqualToString:[inforDic objectForKey:@"assess_num"]])
+            {
+                userInforArr1=nil;
+                userInforArr1 = [[NSMutableArray alloc] init];
+
+                [userInfor setObject:[inforDic objectForKey:@"username"] forKey:@"name"];
+                [userInfor setObject:[inforDic objectForKey:@"head_photo"] forKey:@"head_photo"];
+                [userInfor setObject:[inforDic objectForKey:@"city"] forKey:@"city"];
+                [userInfor setObject:[inforDic objectForKey:@"fans_num"] forKey:@"fans_num"];
+                [userInfor setObject:[inforDic objectForKey:@"attention_num"] forKey:@"attention_num"];
+                [userInfor setObject:[inforDic objectForKey:@"collect_num"] forKey:@"collect_num"];
+                [userInfor setObject:[inforDic objectForKey:@"assess_num"] forKey:@"assess_num"];
+                [userInforArr1 addObject:userInfor];
+                [userInforArr1 writeToFile:filename atomically:YES];
+                
+                [self freashView];
+            }
+            else
+            {
+                
+                if ([freash isEqualToString:@"yes"]) {
+                    [self freashView];
+                    self.freash=@"no";
+                    
+                }
+                else
+                {
+                    
+                }
+                
+            }
+            
+        }
+ 
+   //    AppDelegate *appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;//调用appdel
+}
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
@@ -180,8 +314,8 @@
     [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [rightButton setTitle:@"上传图片" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [rightButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton setBackgroundColor:[UIColor clearColor]];
+    [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     rightButton.frame = CGRectMake(12,20, 60, 25);

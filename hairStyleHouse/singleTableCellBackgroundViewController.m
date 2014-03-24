@@ -139,8 +139,11 @@
     NSString* inforStr = [infoDic objectForKey:@"signature"];
     
     [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
+    
     _nameLable.text = nameStr;
-    _addressLable.text = cityStr;
+    NSLog(@"cityStr:%@",cityStr);
+    
+    _cityLable.text = cityStr;
     _fansLable.text =fansStr;
     _fouceLable.text = fouceStr;
 //    [_fansButton setTitle:[NSString stringWithFormat:@"我的粉丝%@",fansStr] forState:UIControlStateNormal];

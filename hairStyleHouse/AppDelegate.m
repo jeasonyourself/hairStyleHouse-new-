@@ -16,6 +16,7 @@
 @synthesize sinaweibo;
 @synthesize tententOAuth;
 @synthesize uid;
+@synthesize secret;
 @synthesize loginType;
 @synthesize xuanzheLoginType;
 @synthesize type;
@@ -90,7 +91,8 @@
         self.uid =[[dataArray objectAtIndex:0] objectForKey:@"uid"];
         self.type = [[dataArray objectAtIndex:0] objectForKey:@"type"];
         self.loginType = [[dataArray objectAtIndex:0] objectForKey:@"loginType"];
-        
+        self.secret = [[dataArray objectAtIndex:0] objectForKey:@"secret"];
+
         
 //        tententOAuth =[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
 
@@ -421,6 +423,7 @@
             appDele.type=[dic objectForKey:@"type"];
             appDele.touxiangImage=[dic objectForKey:@"head_photo"];
             appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
+        appDele.secret=[dic objectForKey:@"secret"];
             //        appDele.city=[dic objectForKey:@"city"];
             //        if (request.tag==1) {
             //            appDel.loginType=@"qq";
@@ -435,11 +438,12 @@
             [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];
             
             
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=coordinates"]]];
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=coordinates"]]];
             request.delegate=self;
             request.tag=2;
             
             [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
             //         NSLog(@"%f",appDele.longitude);
             //        NSLog(@"%f",appDele.latitude);
             [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ] forKey:@"lng"];

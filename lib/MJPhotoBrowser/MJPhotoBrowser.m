@@ -411,18 +411,18 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
 -(void)refreashNavLab:(NSInteger)currentIndex and:(NSInteger)allCount
 {
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = [NSString stringWithFormat:@"发型图册(%d / %d)", currentIndex , allCount];
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -456,7 +456,7 @@
     CGRect frame;
     frame.origin.x -= kPadding;
     frame.size.width += (2 * kPadding);
-    NSLog(@"frame:%@",NSStringFromCGRect(frame));
+    NSLog(@"frame11:%@",NSStringFromCGRect(frame));
     
     
     if (_currentPhotoIndex==0)

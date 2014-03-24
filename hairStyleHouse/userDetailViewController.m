@@ -304,10 +304,11 @@
 
 - (IBAction)fouceButtonClick:(id)sender {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=follow"]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=follow"]];
     request.delegate=self;
     request.tag=2;
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
     [request setPostValue:[infoDic objectForKey:@"uid"] forKey:@"touid"];
     [request setPostValue:appDele.type forKey:@"type"];
     [request setPostValue:@"1" forKey:@"totype"];

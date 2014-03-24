@@ -273,8 +273,12 @@
         }
         else
         {
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
             
+//            http://wap.faxingw.cn/index.php?m=Up&a=add_img
+//            http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img
             NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
             NSUInteger dataLength = [imageData length];
             
@@ -284,7 +288,14 @@
                 imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
             }
             
+            NSLog(@"uid:%@",appDele.uid);
+            NSLog(@"secret:%@",appDele.secret);
+            NSLog(@"imageData:%@",imageData);
+
+//            [request setPostValue:appDele.uid forKey:@"uid"];
+//            [request setPostValue:appDele.secret forKey:@"secret"];
             [request appendPostData:imageData];
+
             request.delegate=self;
             request.tag=5;
             [request startAsynchronous];
@@ -313,7 +324,7 @@
         }
         else
         {
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
         NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
         NSUInteger dataLength = [imageData length];
@@ -347,9 +358,13 @@
             jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"是否完善第一步资料成功dic:%@",dic);
-        if ([[dic objectForKey:@"code"] isEqualToString:@"201"]) {
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善信息出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        NSLog(@"是否完善资料成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"201"]&&![[dic objectForKey:@"msg"] isEqualToString:@"该昵称已存在"]) {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善信息失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        else if ([[dic objectForKey:@"code"] isEqualToString:@"201"]&&[[dic objectForKey:@"msg"] isEqualToString:@"该昵称已存在"]) {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"该昵称已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
         }
         else
@@ -384,7 +399,17 @@
             
             else
             {
-                [self postData1];
+//                [self postData1];
+                if ([[dic objectForKey:@"code"] isEqualToString:@"201"]) {
+                    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善认证信息出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alert show];
+                }
+                else
+                {
+                    [fatherView popToController];
+                    
+                }
+
             }
         }
     }
@@ -450,7 +475,7 @@ request.tag=4;
 {
 
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=data_modify"]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=index&a=perfectInfo"]];
     request.delegate=self;
     request.tag=3;
 //    [request setPostValue:appDele.uid forKey:@"uid"];
@@ -468,6 +493,8 @@ request.tag=4;
         [request setPostValue:type forKey:@"type"];
         [request setPostValue:_nameField.text forKey:@"username"];
         [request setPostValue:areaText.text forKey:@"city"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
+
 
         [request setPostValue:@"" forKey:@"sex"];
         [request setPostValue:@"" forKey:@"signature"];
@@ -482,11 +509,18 @@ request.tag=4;
         [request setPostValue:type forKey:@"type"];
         [request setPostValue:_nameField.text forKey:@"username"];
         [request setPostValue:areaText.text forKey:@"city"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
 
         [request setPostValue:@"" forKey:@"sex"];
         [request setPostValue:@"" forKey:@"signature"];
         [request setPostValue:_selfmobileField.text forKey:@"mobile"];
         [request setPostValue:_qqField.text forKey:@"qq"];
+        
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:_addressField.text forKey:@"address"];
+        [request setPostValue:areaText.text forKey:@"city"];
+        [request setPostValue:_storeNameField.text forKey:@"store_name"];
+        [request setPostValue:_mobileField.text forKey:@"telephone"];
         [request startAsynchronous];
         
     }

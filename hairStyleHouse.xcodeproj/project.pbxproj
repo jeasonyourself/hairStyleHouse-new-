@@ -342,6 +342,10 @@
 		7AE09E04185838D3007CA28D /* inviteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09E02185838D3007CA28D /* inviteDetailViewController.m */; };
 		7AE09E05185838D3007CA28D /* inviteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE09E03185838D3007CA28D /* inviteDetailViewController.xib */; };
 		7AE09E0818586AA7007CA28D /* pubInviteInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE09E0718586AA7007CA28D /* pubInviteInforViewController.m */; };
+		7AE1375F18D404A0001ED57B /* 分享.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1375A18D404A0001ED57B /* 分享.png */; };
+		7AE1376018D404A0001ED57B /* 喜欢1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1375B18D404A0001ED57B /* 喜欢1.png */; };
+		7AE1376118D404A0001ED57B /* 保存.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1375C18D404A0001ED57B /* 保存.png */; };
+		7AE1376218D404A0001ED57B /* 喜欢.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1375D18D404A0001ED57B /* 喜欢.png */; };
 		7AE1B2FF184C2E1200F51BB2 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1B2FE184C2E1200F51BB2 /* commentViewController.m */; };
 		7AE1B302184C2E2C00F51BB2 /* commentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1B301184C2E2C00F51BB2 /* commentCell.m */; };
 		7AE214601859AFA00030E5D3 /* pubInviteMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE2145F1859AFA00030E5D3 /* pubInviteMessage.xib */; };
@@ -357,6 +361,7 @@
 		7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */; };
 		7AE5AC2E1853017900C1970E /* renewSingleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */; };
 		7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */; };
+		7AE7BE2D18D9322B006E1B06 /* 评论1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7BE2C18D9322B006E1B06 /* 评论1.png */; };
 		7AE7F52E1855542400CAB2C6 /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F52B1855542400CAB2C6 /* AllAroundPullView.m */; };
 		7AE7F52F1855542400CAB2C6 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F52C1855542400CAB2C6 /* arrow.png */; };
 		7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F52D1855542400CAB2C6 /* arrow@2x.png */; };
@@ -883,6 +888,10 @@
 		7AE09E03185838D3007CA28D /* inviteDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = inviteDetailViewController.xib; sourceTree = "<group>"; };
 		7AE09E0618586AA7007CA28D /* pubInviteInforViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pubInviteInforViewController.h; sourceTree = "<group>"; };
 		7AE09E0718586AA7007CA28D /* pubInviteInforViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pubInviteInforViewController.m; sourceTree = "<group>"; };
+		7AE1375A18D404A0001ED57B /* 分享.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分享.png"; sourceTree = "<group>"; };
+		7AE1375B18D404A0001ED57B /* 喜欢1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "喜欢1.png"; sourceTree = "<group>"; };
+		7AE1375C18D404A0001ED57B /* 保存.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "保存.png"; sourceTree = "<group>"; };
+		7AE1375D18D404A0001ED57B /* 喜欢.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "喜欢.png"; sourceTree = "<group>"; };
 		7AE1B2FD184C2E1200F51BB2 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
 		7AE1B2FE184C2E1200F51BB2 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
 		7AE1B300184C2E2C00F51BB2 /* commentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentCell.h; sourceTree = "<group>"; };
@@ -910,6 +919,7 @@
 		7AE5AC2B1853017900C1970E /* renewSingleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renewSingleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = renewSingleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
 		7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = renewSingleTableCellBackgroundViewController.xib; sourceTree = "<group>"; };
+		7AE7BE2C18D9322B006E1B06 /* 评论1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论1.png"; sourceTree = "<group>"; };
 		7AE7F52A1855542400CAB2C6 /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		7AE7F52B1855542400CAB2C6 /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		7AE7F52C1855542400CAB2C6 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1519,6 +1529,11 @@
 		7A43797018693CE0007F64DB /* 新版找发型 */ = {
 			isa = PBXGroup;
 			children = (
+				7AE7BE2C18D9322B006E1B06 /* 评论1.png */,
+				7AE1375A18D404A0001ED57B /* 分享.png */,
+				7AE1375B18D404A0001ED57B /* 喜欢1.png */,
+				7AE1375C18D404A0001ED57B /* 保存.png */,
+				7AE1375D18D404A0001ED57B /* 喜欢.png */,
 				7AF2416918C04143008FA048 /* 箭头.png */,
 				7AF2416718C03D8B008FA048 /* 130.png */,
 				7AF2416418C03C7A008FA048 /* 200.png */,
@@ -1955,6 +1970,7 @@
 				7A5D5C80186C289400F96949 /* 全部.png in Resources */,
 				7A4379B318693CE0007F64DB /* hairtype_2_5.png in Resources */,
 				7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */,
+				7AE1376018D404A0001ED57B /* 喜欢1.png in Resources */,
 				7A5D5C9B186C289400F96949 /* 添加图片.png in Resources */,
 				7A5D5C75186C289400F96949 /* sixin.png in Resources */,
 				7A5D5CA0186C289400F96949 /* 特惠预约.png in Resources */,
@@ -2044,6 +2060,7 @@
 				7AE9E3EC18850D690023FDFC /* addphoto_green.png in Resources */,
 				7A5D5C9E186C289400F96949 /* 热点话题.png in Resources */,
 				7A5D5C7D186C289400F96949 /* xunzhang.png in Resources */,
+				7AE1375F18D404A0001ED57B /* 分享.png in Resources */,
 				7AE09E05185838D3007CA28D /* inviteDetailViewController.xib in Resources */,
 				7A5D5C89186C289400F96949 /* 品牌名店.png in Resources */,
 				7A5D5C67186C289400F96949 /* 1发型师.png in Resources */,
@@ -2085,6 +2102,7 @@
 				7A4379A418693CE0007F64DB /* hairtype_1_1.png in Resources */,
 				7A43796F186939F9007F64DB /* oprationMenue.xib in Resources */,
 				7A5D5C72186C289400F96949 /* renzhengziliao.png in Resources */,
+				7AE1376218D404A0001ED57B /* 喜欢.png in Resources */,
 				7A5D5C87186C289400F96949 /* 同城发型.png in Resources */,
 				7A06F10C18613482007624D3 /* messages.plist in Resources */,
 				7AF2416A18C04143008FA048 /* 箭头.png in Resources */,
@@ -2096,6 +2114,7 @@
 				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
 				7AAFF1B0188F9DCE008EB929 /* setOpenOrCloseViewController.xib in Resources */,
 				7AF54A35187D264200C93092 /* btn_021@2x.png in Resources */,
+				7AE1376118D404A0001ED57B /* 保存.png in Resources */,
 				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7AF20C91188E92A30015E841 /* icon-80.png in Resources */,
 				7A4379B118693CE0007F64DB /* hairtype_2_3.png in Resources */,
@@ -2125,6 +2144,7 @@
 				7A9CCACF18B5AFA700FB6C4F /* 我的新.png in Resources */,
 				7A4BEC8918710616005E896C /* mycenter_faxingbaojia.png in Resources */,
 				7A5D5C70186C289400F96949 /* like1.png in Resources */,
+				7AE7BE2D18D9322B006E1B06 /* 评论1.png in Resources */,
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
 				7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,

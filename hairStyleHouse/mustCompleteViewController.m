@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     [super viewDidLoad];
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"完善资料";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];

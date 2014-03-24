@@ -120,11 +120,12 @@
 {
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
     NSString* fansStr = [infoDic objectForKey:@"fans_num"];
     NSString* fouceStr = [infoDic objectForKey:@"attention_num"];
-//    NSString* workStr = [infoDic objectForKey:@"works_num"];
+    NSString* cityStr = [infoDic objectForKey:@"city"];
     NSMutableArray * workArr ;
     if ([[infoDic objectForKey:@"portfolio"] isKindOfClass:[NSArray class]])
     {
@@ -141,6 +142,7 @@
     
     [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
     _nameLable.text = nameStr;
+    _cityLable.text=cityStr;
     _fansLable.text  = fansStr;
     _fouceLable.text = fouceStr;
     _introduceLable.text = evaluateStr;
@@ -264,6 +266,7 @@
     scanView = [[scanImageViewController alloc] init];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     scanView.uid = appDele.uid;
+    scanView._hidden = @"yes";
     scanView.worksOrsaveorCan = @"save";
     [fatherController needAppdelegatePushToViewController:scanView];
 }

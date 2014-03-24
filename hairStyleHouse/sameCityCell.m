@@ -66,23 +66,34 @@
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index
 {
     NSString * headStr= [dic objectForKey:@"head_photo"];
-    NSString * nameStr = [dic objectForKey:@"name"];
-    NSString * cityStr = [dic objectForKey:@"works_num"];
+    NSString * nameStr = [dic objectForKey:@"username"];
+    
     NSString * timeStr = [dic objectForKey:@"signature"];
     NSString * addressStr = [dic objectForKey:@"store_address"];
     NSString * concernsStr = [dic objectForKey:@"isconcerns"];
     
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     nameLable.text=nameStr;
-    cityLable.text =[NSString stringWithFormat:@"共有%@张作品",cityStr];
+    
+    if ([[dic objectForKey:@"type"] isEqualToString:@"1"])
+    {
+        cityLable.text =[NSString stringWithFormat:@"TA的问题：%@",[dic objectForKey:@"problem_num"]];
+        ;
+        
+    }
+    else
+    {
+        cityLable.text =[NSString stringWithFormat:@"%@",[dic objectForKey:@"store_name"]];
+        
+    }
     timeLable.text = timeStr;
     addressLable.text = addressStr;
     //    addressLable.lineBreakMode = UILineBreakModeWordWrap;
     addressLable.numberOfLines = 0;
     
     headImage.frame = CGRectMake(10, 10, 60, 60);
-    nameLable.frame = CGRectMake(80, 15, 200, 15);
-    cityLable.frame = CGRectMake(80, 35, 200, 15);
+    nameLable.frame = CGRectMake(80, 20, 200, 15);
+    cityLable.frame = CGRectMake(80, 45, 200, 15);
     timeLable.frame = CGRectMake(80, 55, 200, 15);
     
     cellButton.tag=index;

@@ -23,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
         Lab.text = @"发型师";
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
@@ -268,8 +268,8 @@
     
     rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
 //    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
-    [rightButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton setBackgroundColor:[UIColor clearColor]];
+    [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     rightButton.frame = CGRectMake(12,20, 60, 25);

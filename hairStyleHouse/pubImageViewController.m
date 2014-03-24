@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"发布发型";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -242,6 +242,7 @@
     hairStyle=@"1";
     hairStyle1= [[NSString alloc] init];
     hairStyle1=@"1";
+    imageString = [[NSString alloc] init];
     ifselectImage = NO;
     imageArr = [[NSMutableArray alloc] init];
 
@@ -405,18 +406,17 @@
     }
     else
     {
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
-        
-        
-        for (UIImageView  * imageview in imageArr)
-        {
+            UIImageView  * imageview =[imageArr objectAtIndex:0];
             NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
             NSUInteger dataLength = [imageData length];
             
-            if(dataLength > MAX_IMAGEDATA_LEN) {
+            if(dataLength > MAX_IMAGEDATA_LEN)
+            {
                 imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-            } else {
+            } else
+            {
                 imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
             }
             
@@ -424,10 +424,54 @@
             request.delegate=self;
             request.tag=1;
             [request startAsynchronous];
-            
-        }
+
+    }
+
+}
+
+-(void)pubImage
+{
+    NSURL * url ;
+    if ([dresserOrComment isEqualToString:@"dresser"]) {
+        url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=newAddWorks"];
+    }
+    else
+    {
+        url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=add_works"];
     }
     
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:url];
+    request.delegate=self;
+    request.tag=101;
+    if ([dresserOrComment isEqualToString:@"dresser"])
+    {
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.userName forKey:@"username"];
+        [request setPostValue:appDele.type forKey:@"type"];
+        [request setPostValue:_deacribeText.text forKey:@"content"];
+        [request setPostValue:imageString forKey:@"work_image"];
+        [request setPostValue:sexString forKey:@"sex"];
+        [request setPostValue:hairStyle forKey:@"face"];
+        [request setPostValue:hairStyle1 forKey:@"hair_color"];
+        [request setPostValue:[NSString stringWithFormat:@"%@小时",severTime.text] forKey:@"long_service"];
+        [request setPostValue:severPrice.text forKey:@"price"];
+        [request setPostValue:saleLable.text forKey:@"rebate"];
+        
+    }
+    else
+    {
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.userName forKey:@"username"];
+        [request setPostValue:appDele.type forKey:@"type"];
+        [request setPostValue:_deacribeText.text forKey:@"content"];
+        [request setPostValue:imageString forKey:@"work_image"];
+        //                [request setPostValue:sexString forKey:@"sex"];
+        //                [request setPostValue:hairStyle forKey:@"hair_type"];
+    }
+    
+    
+    [request startAsynchronous];
 
 }
 
@@ -517,9 +561,7 @@
     [_deacribeText resignFirstResponder];
     backAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否放弃当前发布信息" delegate:self cancelButtonTitle:@"取消发布" otherButtonTitles:@"继续发布", nil];
     [backAlert show];
-    
-   
-    
+
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -555,12 +597,12 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
@@ -840,7 +882,7 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (request.tag==2)
+    if (request.tag==101)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -853,10 +895,24 @@
         NSLog(@"上传图片是否成功dic:%@",dic);
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
-        [self leftButtonClick];
+        
+        if ([_hidden isEqualToString:@"yes"])
+        {
+            self.navigationController.navigationBar.hidden=YES;
+            
+        }
+        else
+        {
+            self.navigationController.navigationBar.hidden=NO;
+            
+        }
+        
+        [self.navigationController popViewControllerAnimated:NO];
+        
     }
     else if (request.tag==1)
-        {
+    {
+            
             NSLog(@"%@",request.responseString);
             NSData*jsondata = [request responseData];
             NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -868,49 +924,152 @@
             NSLog(@"图片地址dic:%@",dic);
             NSString * headString=[dic objectForKey:@"image"];
             
-            NSURL * url ;
-            if ([dresserOrComment isEqualToString:@"dresser"]) {
-                url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=newAddWorks"];
-            }
-            else
+            imageString = [NSString stringWithFormat:@"%@",headString];
+            if (imageArr.count==1)
             {
-                url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=add_works"];
-            }
-            
-            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:url];
-            request.delegate=self;
-            request.tag=2;
-            if ([dresserOrComment isEqualToString:@"dresser"])
-            {
-                [request setPostValue:appDele.uid forKey:@"uid"];
-                [request setPostValue:appDele.userName forKey:@"username"];
-                [request setPostValue:appDele.type forKey:@"type"];
-                [request setPostValue:_deacribeText.text forKey:@"content"];
-                [request setPostValue:headString forKey:@"work_image"];
-                [request setPostValue:sexString forKey:@"sex"];
-                [request setPostValue:hairStyle forKey:@"face"];
-                [request setPostValue:hairStyle1 forKey:@"hair_color"];
-                [request setPostValue:[NSString stringWithFormat:@"%@小时",severTime.text] forKey:@"long_service"];
-                [request setPostValue:severPrice.text forKey:@"price"];
-                [request setPostValue:saleLable.text forKey:@"rebate"];
+                [self pubImage];
 
             }
+            
             else
             {
-                [request setPostValue:appDele.uid forKey:@"uid"];
-                [request setPostValue:appDele.userName forKey:@"username"];
-                [request setPostValue:appDele.type forKey:@"type"];
-                [request setPostValue:_deacribeText.text forKey:@"content"];
-                [request setPostValue:headString forKey:@"work_image"];
-//                [request setPostValue:sexString forKey:@"sex"];
-//                [request setPostValue:hairStyle forKey:@"hair_type"];
+                
+                 ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
+                UIImageView  * imageview =[imageArr objectAtIndex:1];
+                NSLog(@"%@",imageview);
+                
+                
+                NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                NSUInteger dataLength = [imageData length];
+                
+                if(dataLength > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+                } else
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                }
+                
+                [request appendPostData:imageData];
+                request.delegate=self;
+                request.tag=2;
+                
+                [request startAsynchronous];
+                
             }
-            
-            
-            [request startAsynchronous];
         }
     
+    else if (request.tag==2)
+    {
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"图片地址dic:%@",dic);
+        NSString * headString=[dic objectForKey:@"image"];
+        
+        imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
+
+        if (imageArr.count==2)
+        {
+            [self pubImage];
+
+        }
+        
+        else
+        {
+             ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
+            UIImageView  * imageview =[imageArr objectAtIndex:2];
+            NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            NSUInteger dataLength = [imageData length];
+            
+            if(dataLength > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+            } else
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            }
+            
+            [request appendPostData:imageData];
+            request.delegate=self;
+            request.tag=3;
+            [request startAsynchronous];
+            
+        }
+
+        }
+    
+    else if (request.tag==3)
+    {
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"图片地址dic:%@",dic);
+        NSString * headString=[dic objectForKey:@"image"];
+        
+        imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
+
+        if (imageArr.count==3)
+        {
+            [self pubImage];
+
+        }
+        
+        else
+        {
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
+            UIImageView  * imageview =[imageArr objectAtIndex:3];
+            NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            NSUInteger dataLength = [imageData length];
+            
+            if(dataLength > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+            } else
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+            }
+            
+            [request appendPostData:imageData];
+            request.delegate=self;
+            request.tag=4;
+            [request startAsynchronous];
+            
+        }
+        
+    }
+    
+    else if (request.tag==4)
+    {
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"图片地址dic:%@",dic);
+        NSString * headString=[dic objectForKey:@"image"];
+        
+        imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
+        [self pubImage];
+    }
+
+
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

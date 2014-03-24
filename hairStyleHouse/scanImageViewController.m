@@ -222,12 +222,12 @@
         [leftButton.layer setBorderWidth:1.0];
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-        leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-        [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [leftButton setBackgroundColor:[UIColor clearColor]];
+        [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        leftButton.frame = CGRectMake(12,20, 60, 25);
+        leftButton.frame = CGRectMake(0,28, 60, 25);
         UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
         self.navigationItem.leftBarButtonItem=leftButtonItem;
     }
@@ -252,7 +252,7 @@
         
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         
-        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
         if ([worksOrsaveorCan isEqualToString:@"works"])//自己作品
         {
             if ([self.uid isEqualToString:appDele.uid]) {
@@ -286,14 +286,15 @@
     
 -(void)getData
     {
-       
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+
         ASIFormDataRequest* request;
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
         if ([worksOrsaveorCan isEqualToString:@"works"])//原创作品
         {
             
-                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=workslist&page=%@",page]]];
+                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=workslist&page=%@",page]]];
             
             
         }
@@ -306,7 +307,7 @@
         }
         else//收藏作品
         {
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=collectlist&page=%@",page]]];
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=collectlist&page=%@",page]]];
         }
         
             request.delegate=self;
@@ -321,6 +322,7 @@
         }
        
             [request setPostValue:self.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
             [request startAsynchronous];
 
     }
@@ -341,6 +343,8 @@
             
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
+            
+            NSLog(@"Dic111:%@",dic);
             
             pageCount = [dic objectForKey:@"page_count"];
             if ([worksOrsaveorCan isEqualToString:@"works"]||[worksOrsaveorCan isEqualToString:@"save"])//作品或者收藏返回列表
@@ -659,7 +663,7 @@
             [dic1 setObject:imageUrl forKey:@"work_image"];
             
             [dic1 setObject:aimage forKey:@"image"];
-            NSLog(@"dic:%@",dic1);
+            NSLog(@"dic1:%@",dic1);
             
             [localcleanDresserArray addObject:dic1];
         }

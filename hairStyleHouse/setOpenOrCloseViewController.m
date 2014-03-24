@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"推送设置";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -70,12 +70,12 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
@@ -173,10 +173,12 @@
 - (IBAction)saveButtonClick:(id)sender
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=setting"]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=noticeSite"]];
     request.delegate=self;
     request.tag=2;
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+
     if (_firstSwitch.on==YES) {
         [request setPostValue:@"1" forKey:@"iscomment"];
         

@@ -24,7 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
         Lab.text = @"找发型";
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
@@ -651,12 +651,14 @@
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=coordinates"]]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=coordinates"]]];
     request.delegate=self;
     request.tag=1;
     
    
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+
     [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude ] forKey:@"lng"];
     [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude ] forKey:@"lat"];
     [request startAsynchronous];

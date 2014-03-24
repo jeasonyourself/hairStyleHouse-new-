@@ -18,8 +18,9 @@
     NSString * sexString;
     NSString * hairStyle;
     NSString * hairStyle1;
+    NSString* imageString;
     NSMutableArray * imageArr;
-    
+    NSInteger imageNum;
 //    UIControl * subView;
 //    UIControl * alphaView;
     UITextField * severTime;

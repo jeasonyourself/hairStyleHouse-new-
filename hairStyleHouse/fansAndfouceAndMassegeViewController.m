@@ -195,19 +195,19 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
 
 -(void)refreashNavLab
 {
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     if ([fansOrFouceOrMessage isEqualToString:@"massege"])
     {
         Lab.text = @"消息记录";
@@ -237,31 +237,32 @@
     if ([fansOrFouceOrMessage isEqualToString:@"massege"])
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=index"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=messageList"]];
         request.delegate=self;
         request.tag=2;
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request startAsynchronous];
-        
     }
     else
     {
         NSURL * urlString;
         if ([fansOrFouce isEqualToString:@"fans"])
         {
-            urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=fanlist"];
+            urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=fanlist"];
 
         }
         else
         {
-           urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=watchlist"];
+           urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=watchlist"];
         }
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
         request.delegate=self;
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
-        
+        [request setPostValue:appDele.secret forKey:@"secret"];
+
             [request setPostValue:@"2" forKey:@"type"];
             
        
@@ -271,18 +272,18 @@
         NSURL * urlString1;
         if ([fansOrFouce isEqualToString:@"fans"])
         {
-            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=fanlist"];
+            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=fanlist"];
             
         }
         else
         {
-            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=watchlist"];
+            urlString1= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=watchlist"];
         }
-        ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:urlString];
+        ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:urlString1];
         request1.delegate=self;
         request1.tag=11;
         [request1 setPostValue:appDele.uid forKey:@"uid"];
-        
+        [request1 setPostValue:appDele.secret forKey:@"secret"];
         [request1 setPostValue:@"1" forKey:@"type"];
         
         

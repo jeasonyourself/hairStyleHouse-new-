@@ -257,7 +257,7 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     //    if (appDele.uid) {
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Near&a=index&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=nearby&a=searchNearby&page=%@",page]]];
     if (!appDele.uid)
     {
         
@@ -265,11 +265,12 @@
     else
     {
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
     }
     
     [request setPostValue:appDele.city forKey:@"city"];
-    [request setPostValue:keyField.text forKey:@"keys"];
-    [request setPostValue:@"hairstylist" forKey:@"condition"];
+    [request setPostValue:keyField.text forKey:@"search"];
+    [request setPostValue:@"2" forKey:@"type"];
     
     request.delegate=self;
     request.tag=1;
@@ -281,7 +282,7 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     //    if (appDele.uid) {
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Near&a=index&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=nearby&a=searchNearby&page=%@",page]]];
     if (!appDele.uid)
     {
         
@@ -289,11 +290,12 @@
     else
     {
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
     }
     
     [request setPostValue:appDele.city forKey:@"city"];
-    [request setPostValue:keyField.text forKey:@"keys"];
-    [request setPostValue:@"person" forKey:@"condition"];
+    [request setPostValue:keyField.text forKey:@"search"];
+    [request setPostValue:@"1" forKey:@"type"];
     
     request.delegate=self;
     request.tag=2;
@@ -318,13 +320,13 @@
         NSLog(@"同城dic：%@",dic);
         
         pageCount = [dic objectForKey:@"count"];
-        if ([[dic objectForKey:@"list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"userList"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"userList"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"list"];
+            arr= [dic objectForKey:@"userList"];
             if ([keyField.text isEqualToString:@""]) {
                 [dresserArray addObjectsFromArray:arr];
                 NSLog(@"dresser.count:%d",dresserArray.count);
@@ -358,13 +360,13 @@
         NSLog(@"同城dic：%@",dic);
         
         pageCount = [dic objectForKey:@"count"];
-        if ([[dic objectForKey:@"list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"userList"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"userList"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"list"];
+            arr= [dic objectForKey:@"userList"];
             if ([keyField.text isEqualToString:@""]) {
                 [dresserArray1 addObjectsFromArray:arr];
                 NSLog(@"dresser.count:%d",dresserArray1.count);
@@ -524,12 +526,12 @@
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
@@ -554,7 +556,7 @@
 
 -(void)refreashNavLab
 {
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"同城";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -591,13 +593,13 @@
             if ([keyField.text isEqualToString:@""])//未搜索
             {
                 
-                userView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"id"];
+                userView.uid = [[dresserArray1 objectAtIndex:_index ] objectForKey:@"uid"];
 
                 
             }
             else
             {
-                userView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"id"];
+                userView.uid = [[dresserArray3 objectAtIndex:_index ] objectForKey:@"uid"];
 
                 
             }
@@ -614,13 +616,13 @@
             dreserView._hidden=@"no";
             if ([keyField.text isEqualToString:@""])//未搜索
             {
-                dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"id"];
+                dreserView.uid = [[dresserArray objectAtIndex:_index ] objectForKey:@"uid"];
 
                 
             }
             else
             {
-                dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"id"];
+                dreserView.uid = [[dresserArray2 objectAtIndex:_index ] objectForKey:@"uid"];
             }
             NSLog(@"%@", dreserView.uid);
             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -658,7 +660,7 @@
         request.delegate=self;
         request.tag=2;
         [request setPostValue:appDele.uid forKey:@"uid"];
-        [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"id"] forKey:@"touid"];
+        [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"uid"] forKey:@"touid"];
         [request setPostValue:appDele.type forKey:@"type"];
         [request setPostValue:[[dresserArray objectAtIndex:_index ] objectForKey:@"type"] forKey:@"totype"];
         if ([[[dresserArray objectAtIndex:_index ] objectForKey:@"isconcerns"] isEqualToString:@"1"]) {

@@ -102,8 +102,6 @@
         [headButton addTarget:self action:@selector(headButtonClick) forControlEvents:UIControlEventTouchDown];
         [self addSubview:headButton];
         
-       
-
         
         nameLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 200, 20)];
         nameLable.textColor =[UIColor whiteColor];
@@ -115,26 +113,26 @@
         [self addSubview:cityLable];
         
         
-        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 65, 30, 25)];
-        messageImage.image = [UIImage imageNamed:@"sixin.png"];
+        messageImage = [[UIImageView alloc] initWithFrame:CGRectMake(160, 65, 30, 30)];
+        messageImage.image = [UIImage imageNamed:@"保存.png"];
         messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [messageButton addTarget:self action:@selector(messageButtonClick) forControlEvents:UIControlEventTouchUpInside];
         messageButton.frame = messageImage.frame;
         
-        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 65, 30, 25)];
-        commentImage.image = [UIImage imageNamed:@"comment.png"];
+        commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(200, 65, 30, 30)];
+        commentImage.image = [UIImage imageNamed:@"评论1.png"];
         commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [commentButton addTarget:self action:@selector(commentButtonClick) forControlEvents:UIControlEventTouchUpInside];
         commentButton.frame = commentImage.frame;
         
-        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 65, 30, 25)];
-        likeImage.image = [UIImage imageNamed:@"like.png"];
+        likeImage = [[UIImageView alloc] initWithFrame:CGRectMake(240, 65, 30, 30)];
+        likeImage.image = [UIImage imageNamed:@"喜欢.png"];
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton addTarget:self action:@selector(likeButtonClick) forControlEvents:UIControlEventTouchUpInside];
         likeButton.frame = likeImage.frame;
         
-        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 65, 30, 25)];
-        shareImage.image = [UIImage imageNamed:@"fenxiang.png"];
+        shareImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 65, 30, 30)];
+        shareImage.image = [UIImage imageNamed:@"分享.png"];
         shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
         shareButton.frame = shareImage.frame;
@@ -297,13 +295,13 @@
     if ([[diction objectForKey:@"islike"] isEqualToString:@"0"])
     {
         likeButton.tag=0;
-        likeImage.image = [UIImage imageNamed:@"like.png"];
+        likeImage.image = [UIImage imageNamed:@"喜欢.png"];
         
     }
     else
     {
         likeButton.tag=1;
-        likeImage.image = [UIImage imageNamed:@"like1.png"];
+        likeImage.image = [UIImage imageNamed:@"喜欢1.png"];
     }
 }
 
@@ -359,14 +357,14 @@
         if (likeButton.tag==0)
         {
             likeButton.tag=1;
-            likeImage.image = [UIImage imageNamed:@"like1.png"];
+            likeImage.image = [UIImage imageNamed:@"喜欢1.png"];
             [request setPostValue:@"1" forKey:@"status"];
             
         }
         else
         {
             likeButton.tag=0;
-            likeImage.image = [UIImage imageNamed:@"like.png"];
+            likeImage.image = [UIImage imageNamed:@"喜欢.png"];
             [request setPostValue:@"0" forKey:@"status"];
             
         }

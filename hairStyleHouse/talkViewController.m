@@ -337,7 +337,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
           }
           else
           {
-              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=publish"];
+              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=sendMessage"];
               
           }
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -355,6 +355,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
           else
           {
               [request setPostValue:appDele.uid forKey:@"uid"];
+              [request setPostValue:appDele.secret forKey:@"secret"];
               [request setPostValue:self.uid forKey:@"to_id"];
               [request setPostValue:contentView.text forKey:@"content"];
               [request setPostValue:imageString forKey:@"pic"];
@@ -367,7 +368,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
        else//有图片
       {
         ASIFormDataRequest* request;
-        request =[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Up&a=add_img"]];
+        request =[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
  
 
         NSData *imageData = UIImageJPEGRepresentation(sendImage.image, 1.0);
@@ -403,19 +404,19 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(12,20, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 60, 25);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
 
 -(void)refreashNavLab
 {
-    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+    UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     Lab.text = @"消息";
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -432,7 +433,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     }
     else
     {
-        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=talk"];
+        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=talk"];
 
     }
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
@@ -440,6 +441,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     request.tag=1;
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
     NSInteger appid = [appDele.uid integerValue];
     NSInteger selfid = [self.uid integerValue];
     NSInteger ftid = appid+selfid;
@@ -618,7 +620,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         
         
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Message&a=publish"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=sendMessage"]];
+       
         request.delegate=self;
         request.tag=4;
         if ([talkOrQuestion isEqualToString:@"question"])

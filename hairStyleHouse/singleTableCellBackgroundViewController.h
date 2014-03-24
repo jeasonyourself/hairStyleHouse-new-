@@ -44,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UIButton *headButton;
 @property (strong, nonatomic) IBOutlet UILabel *nameLable;
+@property (strong, nonatomic) IBOutlet UILabel *cityLable;
 
 @property (strong, nonatomic) IBOutlet UIButton *changeInforButton;
 

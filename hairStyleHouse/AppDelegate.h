@@ -65,6 +65,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) SinaWeibo* sinaweibo;
 @property (strong,nonatomic) NSString* uid;//用到
+@property (strong,nonatomic) NSString* secret;//用到
+
 @property (strong,nonatomic) TencentOAuth* tententOAuth;//用到
 @property (nonatomic,assign) NSString* loginType;//用到
 @property (nonatomic,assign) NSString* xuanzheLoginType;

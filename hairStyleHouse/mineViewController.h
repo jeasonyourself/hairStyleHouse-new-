@@ -19,11 +19,15 @@
     
     UITableView *myTableView;
     NSDictionary * inforDic;
+    NSMutableDictionary * userInfor;
+    NSMutableArray * userInforArr;
+    NSMutableArray * userInforArr1;
     singleTableCellBackgroundViewController * backView;
     renewSingleTableCellBackgroundViewController * backView1;
     pubImageViewController * pubImage;
 
 }
+@property(nonatomic,strong)NSString * freash;
 -(void)pushToViewController:(id)_sen;
 -(void)needAppdelegatePushToViewController:(id)_sen;
 

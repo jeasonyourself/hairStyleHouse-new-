@@ -164,12 +164,12 @@
         [leftButton.layer setBorderWidth:1.0];
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         [leftButton setTitle:@"返回" forState:UIControlStateNormal];
-        leftButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-        [leftButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
-        [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [leftButton setBackgroundColor:[UIColor clearColor]];
+        [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        leftButton.frame = CGRectMake(12,20, 60, 25);
+        leftButton.frame = CGRectMake(0,28, 60, 25);
         UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
         self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -181,7 +181,7 @@
 
     -(void)refreashNavLab
     {
-        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 30)];
+        UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
         Lab.text = [NSString stringWithFormat:@"查看评论"];
         Lab.textAlignment = NSTextAlignmentCenter;
         Lab.font = [UIFont systemFontOfSize:16];
@@ -227,7 +227,8 @@
         {
             dresserArray = [dic objectForKey:@"comment_list"];//评价列表
         }
-        
+        sendButton.userInteractionEnabled=YES;
+
         [self freashView];
     }
     else if (request.tag==2)
@@ -318,11 +319,16 @@
 
 -(void)sendButtonClick
 {
+    [contentView resignFirstResponder];
+
     if ([contentView.text isEqualToString:@""]) {
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }
-    [contentView resignFirstResponder];
+    else
+    {
+    sendButton.userInteractionEnabled=NO;
+
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=comment"];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
@@ -333,6 +339,7 @@
     [request setPostValue:[[inforDic objectForKey:@"works_info"] objectForKey:@"work_id"] forKey:@"works_id"];
     [request setPostValue:contentView.text forKey:@"content"];
     [request startAsynchronous];
+    }
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

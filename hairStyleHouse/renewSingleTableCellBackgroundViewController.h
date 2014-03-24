@@ -43,6 +43,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UIButton *headButton;
 @property (strong, nonatomic) IBOutlet UILabel *nameLable;
+@property (strong, nonatomic) IBOutlet UILabel *cityLable;
+
+
 @property (strong, nonatomic) IBOutlet UILabel *fansLable;
 @property (strong, nonatomic) IBOutlet UILabel *fouceLable;
 
@@ -60,7 +63,7 @@
 
 //@property (strong, nonatomic) IBOutlet UIButton *storeButton;
 
-@property (strong, nonatomic) IBOutlet UIButton *changeInforButton;
+//@property (strong, nonatomic) IBOutlet UIButton *changeInforButton;
 @property (strong, nonatomic) IBOutlet UIButton *fansButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *fouceButton;

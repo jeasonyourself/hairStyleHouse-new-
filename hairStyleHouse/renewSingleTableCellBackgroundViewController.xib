@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="renewSingleTableCellBackgroundViewController">
             <connections>
                 <outlet property="beaspeakButton" destination="L6a-rW-6PW" id="9oP-0d-2ev"/>
-                <outlet property="changeInforButton" destination="jZ3-ke-ftX" id="EE6-x8-0WG"/>
+                <outlet property="cityLable" destination="yHT-yl-D1g" id="RGl-QJ-PqG"/>
                 <outlet property="clearPerson" destination="MzG-rX-k5e" id="H5Z-G4-eMT"/>
                 <outlet property="clearPersonButton" destination="TxF-9d-w53" id="bCB-y4-jGX"/>
                 <outlet property="evaluateButton" destination="xfM-RF-17q" id="eso-jb-OGC"/>
@@ -341,7 +341,14 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qam-Od-og8">
-                                    <rect key="frame" x="94" y="15" width="202" height="21"/>
+                                    <rect key="frame" x="94" y="17" width="202" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="城市" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHT-yl-D1g">
+                                    <rect key="frame" x="94" y="51" width="202" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -368,16 +375,6 @@
                                     </state>
                                     <connections>
                                         <action selector="myFouceButtonClick:" destination="-1" eventType="touchUpInside" id="qnt-R1-y9j"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZ3-ke-ftX">
-                                    <rect key="frame" x="92" y="44" width="80" height="27"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" backgroundImage="编辑资料.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="headButtonClick:" destination="-1" eventType="touchUpInside" id="tCw-7h-ylx"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd8-Tj-rTV">
@@ -507,6 +504,5 @@
         <image name="mycenter_shalong.png" width="42" height="42"/>
         <image name="mycenter_shezhi.png" width="42" height="42"/>
         <image name="mycenter_yuyue.png" width="42" height="42"/>
-        <image name="编辑资料.png" width="90" height="30"/>
     </resources>
 </document>

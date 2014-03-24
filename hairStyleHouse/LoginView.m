@@ -289,11 +289,13 @@
         [ud setObject:[dic objectForKey:@"type"] forKey:@"type"];
         
         
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=User&a=coordinates"]]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=coordinates"]]];
         request.delegate=self;
         request.tag=2;
         
         [request setPostValue:appDel.uid forKey:@"uid"];
+        
+        [request setPostValue:appDel.secret forKey:@"secret"];
         //         NSLog(@"%f",appDele.longitude);
         //        NSLog(@"%f",appDele.latitude);
         [request setPostValue:[NSString stringWithFormat:@"%f",appDel.longitude ] forKey:@"lng"];
