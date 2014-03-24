@@ -433,11 +433,11 @@
 {
     NSURL * url ;
     if ([dresserOrComment isEqualToString:@"dresser"]) {
-        url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=newAddWorks"];
+        url=[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=addWorks"];
     }
     else
     {
-        url=[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=add_works"];
+        url=[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=addWorks"];
     }
     
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -447,6 +447,7 @@
     if ([dresserOrComment isEqualToString:@"dresser"])
     {
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request setPostValue:appDele.userName forKey:@"username"];
         [request setPostValue:appDele.type forKey:@"type"];
         [request setPostValue:_deacribeText.text forKey:@"content"];
@@ -462,6 +463,7 @@
     else
     {
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request setPostValue:appDele.userName forKey:@"username"];
         [request setPostValue:appDele.type forKey:@"type"];
         [request setPostValue:_deacribeText.text forKey:@"content"];
@@ -945,7 +947,8 @@
                 if(dataLength > MAX_IMAGEDATA_LEN)
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-                } else
+                }
+                else
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
                 }

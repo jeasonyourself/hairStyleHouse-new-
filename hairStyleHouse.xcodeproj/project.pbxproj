@@ -21,6 +21,7 @@
 		7A06F11718613493007624D3 /* HRChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A06F11318613493007624D3 /* HRChatCell.xib */; };
 		7A06F11818613493007624D3 /* HRChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A06F11418613493007624D3 /* HRChatCell.m */; };
 		7A13F2B618681E4600F9CFE4 /* rigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A13F2B518681E4600F9CFE4 /* rigViewController.m */; };
+		7A14703718DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A14703518DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m */; };
 		7A2BA6CE1844E0A200A46A09 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2BA6CD1844E0A200A46A09 /* LoginView.m */; };
 		7A32CC6F18C8291700D12A90 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A32CC5018C8291700D12A90 /* libBaiduMobStat.a */; };
 		7A32CC7018C8291700D12A90 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A32CC5318C8291700D12A90 /* libBaiduMobStat.a */; };
@@ -435,6 +436,8 @@
 		7A06F11518613493007624D3 /* HRChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRChatCell.h; sourceTree = "<group>"; };
 		7A13F2B418681E4600F9CFE4 /* rigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rigViewController.h; sourceTree = "<group>"; };
 		7A13F2B518681E4600F9CFE4 /* rigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rigViewController.m; sourceTree = "<group>"; };
+		7A14703518DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFJLeftSwipeDeleteTableView.m; sourceTree = "<group>"; };
+		7A14703618DFCB57001299CA /* YFJLeftSwipeDeleteTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFJLeftSwipeDeleteTableView.h; sourceTree = "<group>"; };
 		7A2BA6CC1844E0A200A46A09 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		7A2BA6CD1844E0A200A46A09 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		7A32CC4F18C8291700D12A90 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
@@ -1400,6 +1403,8 @@
 				7A37D6961844C9E100D9C4D9 /* Main.storyboard */,
 				7A37D6991844C9E100D9C4D9 /* ViewController.h */,
 				7A37D69A1844C9E100D9C4D9 /* ViewController.m */,
+				7A14703618DFCB57001299CA /* YFJLeftSwipeDeleteTableView.h */,
+				7A14703518DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m */,
 				7A37D69C1844C9E100D9C4D9 /* Images.xcassets */,
 				7A37D68B1844C9E100D9C4D9 /* Supporting Files */,
 			);
@@ -2284,6 +2289,7 @@
 				7A4BECA21871459D005E896C /* toolBoxSingleCellViewController.m in Sources */,
 				7A37D71A1844CA2700D9C4D9 /* SBJsonStreamWriterState.m in Sources */,
 				7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */,
+				7A14703718DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m in Sources */,
 				7A32CC7518C8291700D12A90 /* CJSONSerializedData.m in Sources */,
 				7A37D72C1844CA4400D9C4D9 /* findStyleViewController.m in Sources */,
 				7AD54600184F2B08009A6B79 /* SDWebImageCompat.m in Sources */,

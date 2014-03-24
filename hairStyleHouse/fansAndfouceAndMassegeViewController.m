@@ -12,6 +12,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "BaiduMobStat.h"
+#import "AllAroundPullView.h"
+
 @interface fansAndFouceAndmassegeViewController ()
 
 @end
@@ -19,7 +21,7 @@
 @implementation fansAndFouceAndmassegeViewController
 @synthesize fansOrFouce;
 @synthesize fansOrFouceOrMessage;
-
+@synthesize tableViewM;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,10 +39,30 @@
     [self refreashNav];
 
     self.view.backgroundColor = [UIColor whiteColor];
+    dresserArray =[[NSMutableArray alloc] init];
     
+    dresserArray1 =[[NSMutableArray alloc] init];
     if ([fansOrFouceOrMessage isEqualToString:@"massege"])
     {
-         myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+        
+        page =[[NSString alloc] init];
+        page=@"1";
+        pageCount=[[NSString alloc] init];
+         tableViewM=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+        [tableViewM setSeparatorInset:UIEdgeInsetsZero];
+        tableViewM.dataSource=self;
+        tableViewM.delegate=self;
+//        [self.tableViewM registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        tableViewM.backgroundColor=[UIColor whiteColor];
+        [self.view addSubview:tableViewM];
+        
+        bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:tableViewM position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+            NSLog(@"loadMore");
+            [self pullLoadMore];
+            tableViewM.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height) ;
+        }];
+        bottomRefreshView.hidden=NO;
+        [tableViewM addSubview:bottomRefreshView];
     }
     else
     {
@@ -82,21 +104,19 @@
         
         myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-70) style:UITableViewStylePlain];
 //        [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        dresserOrperson =YES;
         
+        //    myTableView.allowsSelection=NO;
+        [myTableView setSeparatorInset:UIEdgeInsetsZero];
+        myTableView.dataSource=self;
+        myTableView.delegate=self;
+        myTableView.backgroundColor=[UIColor whiteColor];
+        [self.view addSubview:myTableView];
     }
 
    
 
-    dresserOrperson =YES;
-    dresserArray =[[NSMutableArray alloc] init];
-    
-   dresserArray1 =[[NSMutableArray alloc] init];
-//    myTableView.allowsSelection=NO;
-    [myTableView setSeparatorInset:UIEdgeInsetsZero];
-    myTableView.dataSource=self;
-    myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:myTableView];
+   
     
     [self getData];
     // Uncomment the following line to preserve selection between presentations.
@@ -106,6 +126,36 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+-(void)pullLoadMore
+{
+    
+    if ([fansOrFouceOrMessage isEqualToString:@"massege"])
+    {
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
+        NSLog(@"page:%@",page);
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+        }
+    }
+    else
+    {
+      
+    }
+    
+}
 #pragma mark - View lifecycle
 
 -(void) viewDidAppear:(BOOL)animated
@@ -237,7 +287,7 @@
     if ([fansOrFouceOrMessage isEqualToString:@"massege"])
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=messageList"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=messageList&page=%@",page]]];
         request.delegate=self;
         request.tag=2;
         [request setPostValue:appDele.uid forKey:@"uid"];
@@ -262,10 +312,8 @@
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
         [request setPostValue:appDele.secret forKey:@"secret"];
-
-            [request setPostValue:@"2" forKey:@"type"];
-            
-       
+        [request setPostValue:@"2" forKey:@"type"];
+        
         [request startAsynchronous];
         
         
@@ -307,7 +355,15 @@
     
    
 }
+-(void)getData1
+{
 
+}
+
+-(void)getData2
+{
+    
+}
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
 //    if (dresserArray!=nil) {
@@ -323,6 +379,7 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"粉丝列表dic:%@",dic);
+        
         if ([[dic objectForKey:@"user_info"] isKindOfClass:[NSString class]])
         {
             
@@ -333,6 +390,9 @@
 
         }
         [self freashView];
+        
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
     }
      if (request.tag==11) {
         NSLog(@"%@",request.responseString);
@@ -354,6 +414,9 @@
             
         }
         [self freashView];
+         
+         [_activityIndicatorView stopAnimating];
+         _activityIndicatorView.hidesWhenStopped = YES;
     }
     
      if (request.tag==2) {
@@ -366,29 +429,55 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"消息表dic:%@",dic);
+         pageCount = [dic objectForKey:@"page_count"];
+         NSMutableArray * mesArr;
         if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSString class]])
         {
             
         }
         else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
         {
-            dresserArray = [dic objectForKey:@"message_list"];
+            mesArr = [dic objectForKey:@"message_list"];
             
         }
+         [dresserArray addObjectsFromArray:mesArr];
         [self freashView];
+         
+         [_activityIndicatorView stopAnimating];
+         _activityIndicatorView.hidesWhenStopped = YES;
     }
-    [_activityIndicatorView stopAnimating];
-    _activityIndicatorView.hidesWhenStopped = YES;
+    if (request.tag==202) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"删除成功dic:%@",dic);
+        
+    }
+
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"请求超时" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
+    [self freashView];
 }
 -(void)freashView
 {
+    [bottomRefreshView performSelector:@selector(finishedLoading)];
+    if ([fansOrFouceOrMessage isEqualToString:@"massege"])
+    {
+    [tableViewM reloadData];
+    }
+    else
+    {
     [myTableView reloadData];
+    }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -429,6 +518,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     static NSString *cellID=@"cell";
     fansAndfoceAndMassegeCell *cell=(fansAndfoceAndMassegeCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell==nil) {
@@ -438,6 +528,8 @@
     if ([fansOrFouceOrMessage isEqualToString:@"massege"])
     {
         [cell setCell2:[dresserArray objectAtIndex:row] andIndex:row];
+        
+        
     }
     else
     {
@@ -451,8 +543,44 @@
         }
     
     }
+    
+    
     return cell;
 }
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=messageDel"]];
+        
+        request.delegate=self;
+        request.tag=202;
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"ftid"] forKey:@"ftid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
+        
+        [request startAsynchronous];
+        
+        [dresserArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

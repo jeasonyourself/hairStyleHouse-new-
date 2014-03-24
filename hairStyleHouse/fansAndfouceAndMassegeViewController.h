@@ -12,6 +12,7 @@
 #import "userInforViewController.h"
 #import "talkViewController.h"
 #import "talkViewController.h"
+#import "YFJLeftSwipeDeleteTableView.h"
 @interface fansAndFouceAndmassegeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
@@ -30,10 +31,18 @@
     dresserInforViewController * dreserView;
     userInforViewController * userView;
     talkViewController * talkView;
+    
+    NSString * page;
+    NSString * pageCount;
+    AllAroundPullView  *  bottomRefreshView;
+    
+    
     NSString * sign;
     UIActivityIndicatorView * _activityIndicatorView ;
     
 }
+@property (nonatomic, strong) YFJLeftSwipeDeleteTableView * tableViewM;
+
 @property (strong,nonatomic)    NSString * fansOrFouceOrMessage;
 @property (strong,nonatomic)    NSString * fansOrFouce;
 @end

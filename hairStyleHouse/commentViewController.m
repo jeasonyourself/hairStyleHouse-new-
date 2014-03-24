@@ -330,12 +330,13 @@
     sendButton.userInteractionEnabled=NO;
 
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=comment"];
+    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=comment"];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=2;
     NSLog(@"````%@",inforDic);
     [request setPostValue:appDele.uid forKey:@"from_uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
     [request setPostValue:[[inforDic objectForKey:@"works_info"] objectForKey:@"work_id"] forKey:@"works_id"];
     [request setPostValue:contentView.text forKey:@"content"];
     [request startAsynchronous];
