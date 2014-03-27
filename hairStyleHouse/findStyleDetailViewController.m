@@ -271,7 +271,7 @@
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Forhair&a=newCate&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=forhair&a=hairCate&page=%@",page]]];
     
     [request setPostValue:self.bcid forKey:@"bcid"];
     [request setPostValue:self.scid forKey:@"scid"];
@@ -302,7 +302,7 @@
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Forhair&a=newCate&page=%@",page1]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=forhair&a=hairCate&page=%@",page1]]];
     
     [request setPostValue:self.bcid forKey:@"bcid"];
     [request setPostValue:self.scid forKey:@"scid"];

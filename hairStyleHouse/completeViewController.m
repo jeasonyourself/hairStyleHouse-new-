@@ -448,10 +448,18 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
         headString=[dic objectForKey:@"image"];
         
         
         [self postData];
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
     }
 
 }

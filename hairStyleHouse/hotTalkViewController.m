@@ -25,6 +25,7 @@
 @implementation hotTalkViewController
 @synthesize style;
 @synthesize _hidden;
+@synthesize myTableView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,6 +43,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
     
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/3, 50);
@@ -88,7 +93,7 @@
     sign =[[NSString alloc] init];
     sign = @"";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0,topImage.frame.size.height+topImage.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
@@ -352,6 +357,17 @@
         }
         [self freashView];
     }
+    if (request.tag==202) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"删除成功dic:%@",dic);
+    }
 
 }
 
@@ -430,6 +446,43 @@
     
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([sign isEqualToString:@"my"]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+    // Return NO if you do not want the specified item to be editable.
+    
+}
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicDel"]];
+        
+        request.delegate=self;
+        request.tag=202;
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:[[dresserArray2 objectAtIndex:[indexPath row]] objectForKey:@"news_id"] forKey:@"news_id"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
+        
+        [request startAsynchronous];
+        
+        [dresserArray2 removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
 -(void)leftButtonClick
 {
     if ([_hidden isEqualToString:@"yes"]) {
@@ -500,13 +553,30 @@
     Lab.textColor = [UIColor blackColor];
     self.navigationItem.titleView =Lab;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([sign isEqualToString:@""]) {
+        questionDetailView = nil;
+        questionDetailView= [[questionDetailViewController alloc] init];
+        questionDetailView.inforDic = [dresserArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:questionDetailView animated:NO];
+    }
+    else if([sign isEqualToString:@"hot"]) {
+        questionDetailView = nil;
+        questionDetailView= [[questionDetailViewController alloc] init];
+        questionDetailView.inforDic = [dresserArray1 objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:questionDetailView animated:NO];
+    }
+    else if([sign isEqualToString:@"my"]) {
+        questionDetailView = nil;
+        questionDetailView= [[questionDetailViewController alloc] init];
+        questionDetailView.inforDic = [dresserArray2 objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:questionDetailView animated:NO];
+    }
 
+}
 -(void)selectCell:(NSInteger)_index
 {
-    questionDetailView = nil;
-     questionDetailView= [[questionDetailViewController alloc] init];
-    questionDetailView.inforDic = [dresserArray objectAtIndex:_index];
-    [self.navigationController pushViewController:questionDetailView animated:NO];
+    
 }
 - (void)didReceiveMemoryWarning
 {

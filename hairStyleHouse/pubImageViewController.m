@@ -246,7 +246,18 @@
     ifselectImage = NO;
     imageArr = [[NSMutableArray alloc] init];
 
-
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -406,6 +417,8 @@
     }
     else
     {
+        sureButton.userInteractionEnabled =NO;
+
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
             UIImageView  * imageview =[imageArr objectAtIndex:0];
@@ -431,6 +444,10 @@
 
 -(void)pubImage
 {
+    [_activityIndicatorView startAnimating];
+    //开始动画
+    sureButton.userInteractionEnabled =NO;
+
     NSURL * url ;
     if ([dresserOrComment isEqualToString:@"dresser"]) {
         url=[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=addWorks"];
@@ -481,6 +498,9 @@
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
+    sureButton.userInteractionEnabled =YES;
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
     [alert show];
 }
@@ -611,6 +631,7 @@
     
     sureButton=[[UIButton alloc] init];
     sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sureButton.userInteractionEnabled =YES;
     [sureButton.layer setMasksToBounds:YES];
     [sureButton.layer setCornerRadius:3.0];
     [sureButton.layer setBorderWidth:1.0];
@@ -886,6 +907,8 @@
 {
     if (request.tag==101)
     {
+        sureButton.userInteractionEnabled =YES;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -895,6 +918,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"上传图片是否成功dic:%@",dic);
+        
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
         
@@ -924,6 +950,8 @@
             SBJsonParser* jsonP=[[SBJsonParser alloc] init];
             NSDictionary* dic=[jsonP objectWithString:jsonString];
             NSLog(@"图片地址dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
             NSString * headString=[dic objectForKey:@"image"];
             
             imageString = [NSString stringWithFormat:@"%@",headString];
@@ -960,6 +988,13 @@
                 [request startAsynchronous];
                 
             }
+            
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
         }
     
     else if (request.tag==2)
@@ -974,6 +1009,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);
+        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
         NSString * headString=[dic objectForKey:@"image"];
         
         imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
@@ -1003,9 +1041,14 @@
             request.delegate=self;
             request.tag=3;
             [request startAsynchronous];
+        }
             
         }
-
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
         }
     
     else if (request.tag==3)
@@ -1021,7 +1064,8 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);
         NSString * headString=[dic objectForKey:@"image"];
-        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
         imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
 
         if (imageArr.count==3)
@@ -1049,9 +1093,14 @@
             request.delegate=self;
             request.tag=4;
             [request startAsynchronous];
+        }
             
         }
-        
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
     }
     
     else if (request.tag==4)
@@ -1067,13 +1116,21 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);
         NSString * headString=[dic objectForKey:@"image"];
-        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
         imageString = [NSString stringWithFormat:@"%@,%@",imageString,headString];
         [self pubImage];
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
     }
 
 
 }
+
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {

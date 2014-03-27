@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "wayDetailCell.h"
+
 @interface wayDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;

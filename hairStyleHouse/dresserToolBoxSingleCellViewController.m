@@ -117,12 +117,31 @@
     myShowView1._hidden = @"no";
     [ fatherController pushToViewController:myShowView1];
 }
+
 - (IBAction)shalongButtonClick:(id)sender
 {
     wayView = nil;
     wayView= [[wayInforViewController alloc] init];
     wayView._hidden = @"no";
     wayView.style = @"1";
+    
+    [fatherController pushToViewController:wayView];
+}
+
+- (IBAction)fameButtonClick:(id)sender {
+    wayView = nil;
+    wayView= [[wayInforViewController alloc] init];
+    wayView._hidden = @"no";
+    wayView.style = @"2";
+    
+    [fatherController pushToViewController:wayView];
+}
+
+- (IBAction)saleButtonClick:(id)sender {
+    wayView = nil;
+    wayView= [[wayInforViewController alloc] init];
+    wayView._hidden = @"no";
+    wayView.style = @"5";
     
     [fatherController pushToViewController:wayView];
 }

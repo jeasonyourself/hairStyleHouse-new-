@@ -52,7 +52,7 @@
 }
 -(void)cellButtonClick:(UIButton*)_btn
 {
-    [fatherView selectCell:_btn.tag];
+//    [fatherView selectCell:_btn.tag];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  EGOTableViewPullRefreshTest
+
+  Created by 唐韧 on 12-9-3.
+  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+*/
+"loading" = "加载中...";
+"pull up to refresh" = "上拉刷新...";
+"release to refresh" = "松开刷新...";
+"last updated" = "最后更新:";

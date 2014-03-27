@@ -438,9 +438,8 @@
         else if ([[dic objectForKey:@"message_list"] isKindOfClass:[NSArray class]])
         {
             mesArr = [dic objectForKey:@"message_list"];
-            
+            [dresserArray addObjectsFromArray:mesArr];
         }
-         [dresserArray addObjectsFromArray:mesArr];
         [self freashView];
          
          [_activityIndicatorView stopAnimating];
@@ -551,8 +550,15 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([fansOrFouceOrMessage isEqualToString:@"massege"]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
 }
 
 // Override to support editing the table view.

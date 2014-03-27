@@ -306,6 +306,17 @@
 		7ADF3176188CB2A700DF58ED /* helpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF3174188CB2A700DF58ED /* helpViewController.xib */; };
 		7ADF317A188CBE5C00DF58ED /* setBeaspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */; };
 		7ADF317B188CBE5C00DF58ED /* setBeaspeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */; };
+		7ADF67D718E11EA6008FF73D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF67CA18E11EA6008FF73D /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7ADF67DA18E11EA6008FF73D /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67CF18E11EA6008FF73D /* blackArrow.png */; };
+		7ADF67DB18E11EA6008FF73D /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D018E11EA6008FF73D /* blackArrow@2x.png */; };
+		7ADF67DC18E11EA6008FF73D /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D118E11EA6008FF73D /* blueArrow.png */; };
+		7ADF67DD18E11EA6008FF73D /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D218E11EA6008FF73D /* blueArrow@2x.png */; };
+		7ADF67DE18E11EA6008FF73D /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D318E11EA6008FF73D /* grayArrow.png */; };
+		7ADF67DF18E11EA6008FF73D /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D418E11EA6008FF73D /* grayArrow@2x.png */; };
+		7ADF67E018E11EA6008FF73D /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D518E11EA6008FF73D /* whiteArrow.png */; };
+		7ADF67E118E11EA6008FF73D /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67D618E11EA6008FF73D /* whiteArrow@2x.png */; };
+		7ADF67E318E12155008FF73D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF67E218E12155008FF73D /* Localizable.strings */; };
+		7ADF67F918E1619A008FF73D /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF67F818E1619A008FF73D /* EGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */; };
 		7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D2D184589A400E14EDC /* singleTableCellBackgroundViewController.xib */; };
 		7AE03D341845B9F300E14EDC /* changeInforViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE03D321845B9F300E14EDC /* changeInforViewController.xib */; };
@@ -827,6 +838,19 @@
 		7ADF3177188CBE5C00DF58ED /* setBeaspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setBeaspeakViewController.h; sourceTree = "<group>"; };
 		7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setBeaspeakViewController.m; sourceTree = "<group>"; };
 		7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setBeaspeakViewController.xib; sourceTree = "<group>"; };
+		7ADF67C918E11EA6008FF73D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		7ADF67CA18E11EA6008FF73D /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		7ADF67CF18E11EA6008FF73D /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		7ADF67D018E11EA6008FF73D /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		7ADF67D118E11EA6008FF73D /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		7ADF67D218E11EA6008FF73D /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		7ADF67D318E11EA6008FF73D /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		7ADF67D418E11EA6008FF73D /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		7ADF67D518E11EA6008FF73D /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		7ADF67D618E11EA6008FF73D /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		7ADF67E218E12155008FF73D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		7ADF67F718E1619A008FF73D /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
+		7ADF67F818E1619A008FF73D /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
 		7AE03D2B184589A400E14EDC /* singleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE03D2C184589A400E14EDC /* singleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = singleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
 		7AE03D2D184589A400E14EDC /* singleTableCellBackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = singleTableCellBackgroundViewController.xib; sourceTree = "<group>"; };
@@ -1156,6 +1180,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7ADF67C618E11EA6008FF73D /* EGOTableViewPullRefresh */,
 				7A32CC4D18C8291700D12A90 /* ios_api */,
 				7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */,
 				7AF54A20187D264200C93092 /* Sources */,
@@ -1795,6 +1820,50 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		7ADF67C618E11EA6008FF73D /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				7ADF67C718E11EA6008FF73D /* Classes */,
+				7ADF67CE18E11EA6008FF73D /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		7ADF67C718E11EA6008FF73D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7ADF67C818E11EA6008FF73D /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		7ADF67C818E11EA6008FF73D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7ADF67F718E1619A008FF73D /* EGORefreshTableFooterView.h */,
+				7ADF67F818E1619A008FF73D /* EGORefreshTableFooterView.m */,
+				7ADF67C918E11EA6008FF73D /* EGORefreshTableHeaderView.h */,
+				7ADF67CA18E11EA6008FF73D /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7ADF67CE18E11EA6008FF73D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7ADF67E218E12155008FF73D /* Localizable.strings */,
+				7ADF67CF18E11EA6008FF73D /* blackArrow.png */,
+				7ADF67D018E11EA6008FF73D /* blackArrow@2x.png */,
+				7ADF67D118E11EA6008FF73D /* blueArrow.png */,
+				7ADF67D218E11EA6008FF73D /* blueArrow@2x.png */,
+				7ADF67D318E11EA6008FF73D /* grayArrow.png */,
+				7ADF67D418E11EA6008FF73D /* grayArrow@2x.png */,
+				7ADF67D518E11EA6008FF73D /* whiteArrow.png */,
+				7ADF67D618E11EA6008FF73D /* whiteArrow@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7AE03D3C1845D41C00E14EDC /* areapicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1952,6 +2021,7 @@
 				7A4379D318693CE0007F64DB /* icon_women.png in Resources */,
 				7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */,
 				7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */,
+				7ADF67E318E12155008FF73D /* Localizable.strings in Resources */,
 				7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */,
 				7AD88C28187E3FB000FBC04E /* addBeaspeakViewController.xib in Resources */,
 				7A4BEC93187132B1005E896C /* zhaofaxing1.png in Resources */,
@@ -2011,6 +2081,7 @@
 				7A5D5C6A186C289400F96949 /* comment.png in Resources */,
 				7AE03D561846172F00E14EDC /* pubImageViewController.xib in Resources */,
 				7A4379C418693CE0007F64DB /* hairtype_4_9.png in Resources */,
+				7ADF67DF18E11EA6008FF73D /* grayArrow@2x.png in Resources */,
 				7AE0701018519FBE00ED1EDE /* userDetailViewController.xib in Resources */,
 				7A43796118691E05007F64DB /* Default.png in Resources */,
 				7A4379CD18693CE0007F64DB /* icon_man.png in Resources */,
@@ -2034,6 +2105,8 @@
 				7A5D5C7F186C289400F96949 /* 中发.png in Resources */,
 				7A5D5C74186C289400F96949 /* shoucang.png in Resources */,
 				7A37D68F1844C9E100D9C4D9 /* InfoPlist.strings in Resources */,
+				7ADF67E118E11EA6008FF73D /* whiteArrow@2x.png in Resources */,
+				7ADF67DD18E11EA6008FF73D /* blueArrow@2x.png in Resources */,
 				7A4379BB18693CE0007F64DB /* hairtype_3_4.png in Resources */,
 				7A4379D118693CE0007F64DB /* icon_recommend.png in Resources */,
 				7AF2416218C02E01008FA048 /* 三角形.png in Resources */,
@@ -2041,6 +2114,7 @@
 				7A5D5C6D186C289400F96949 /* fenxiang.png in Resources */,
 				7AF20C8E188E92A30015E841 /* icon-57.png in Resources */,
 				7A5D5CA4186C289400F96949 /* 短发.png in Resources */,
+				7ADF67DA18E11EA6008FF73D /* blackArrow.png in Resources */,
 				7AE03D2F184589A400E14EDC /* singleTableCellBackgroundViewController.xib in Resources */,
 				7ADE36811872A789009670E7 /* dresserMySetSingleCellViewController.xib in Resources */,
 				7AF20C8D188E92A30015E841 /* icon-120.png in Resources */,
@@ -2054,6 +2128,7 @@
 				7A37D6981844C9E100D9C4D9 /* Main.storyboard in Resources */,
 				7A4379B618693CE0007F64DB /* hairtype_2_8.png in Resources */,
 				7A5D5C7B186C289400F96949 /* x5.png in Resources */,
+				7ADF67DC18E11EA6008FF73D /* blueArrow.png in Resources */,
 				7A5D5CAB186C289400F96949 /* 钻石.png in Resources */,
 				7A4379C718693CE0007F64DB /* hairtype_5_3.png in Resources */,
 				7A5D5C92186C289400F96949 /* 推荐发型.png in Resources */,
@@ -2091,6 +2166,7 @@
 				7AF54A34187D264200C93092 /* btn_021.press@2x.png in Resources */,
 				7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */,
 				7A4379D618693CE0007F64DB /* 三角.png in Resources */,
+				7ADF67E018E11EA6008FF73D /* whiteArrow.png in Resources */,
 				7AD87E0518502CA10016A329 /* timeline_image_loading.png in Resources */,
 				7A5D5C9C186C289400F96949 /* 潮流学堂.png in Resources */,
 				7A4379BE18693CE0007F64DB /* hairtype_4_3.png in Resources */,
@@ -2122,6 +2198,7 @@
 				7AE1376118D404A0001ED57B /* 保存.png in Resources */,
 				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7AF20C91188E92A30015E841 /* icon-80.png in Resources */,
+				7ADF67DE18E11EA6008FF73D /* grayArrow.png in Resources */,
 				7A4379B118693CE0007F64DB /* hairtype_2_3.png in Resources */,
 				7A5D5C84186C289400F96949 /* 发型师.png in Resources */,
 				7A4379C318693CE0007F64DB /* hairtype_4_8.png in Resources */,
@@ -2153,6 +2230,7 @@
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
 				7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,
+				7ADF67DB18E11EA6008FF73D /* blackArrow@2x.png in Resources */,
 				7AF54A30187D264200C93092 /* btn_020.disable@2x.png in Resources */,
 				7A5D5C18186C1BCD00F96949 /* 找发型01.png in Resources */,
 				7A5D5C6E186C289400F96949 /* jifen.png in Resources */,
@@ -2199,6 +2277,7 @@
 				7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */,
 				7AE03D51184615F500E14EDC /* fansAndfoceAndMassegeCell.m in Sources */,
 				7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */,
+				7ADF67F918E1619A008FF73D /* EGORefreshTableFooterView.m in Sources */,
 				7A06F11818613493007624D3 /* HRChatCell.m in Sources */,
 				7AE09DF518581324007CA28D /* myAnwserCenterViewController.m in Sources */,
 				7A37D7131844CA2700D9C4D9 /* SBJsonParser.m in Sources */,
@@ -2216,6 +2295,7 @@
 				7A37D7111844CA2700D9C4D9 /* PullingRefreshTableView.m in Sources */,
 				7ADF3175188CB2A700DF58ED /* helpViewController.m in Sources */,
 				7AE09DE61857F94D007CA28D /* wayInforCell.m in Sources */,
+				7ADF67D718E11EA6008FF73D /* EGORefreshTableHeaderView.m in Sources */,
 				7ADE36801872A789009670E7 /* dresserMySetSingleCellViewController.m in Sources */,
 				7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */,
 				7A37D71B1844CA2700D9C4D9 /* SBJsonTokeniser.m in Sources */,

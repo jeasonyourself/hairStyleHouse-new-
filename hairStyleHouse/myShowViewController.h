@@ -61,18 +61,18 @@
     
     FMDatabase *db;
     FMDatabase *dbTwo;
-    FMDatabase *dbThree;
+//    FMDatabase *dbThree;
     BOOL localData;
     BOOL needRefeashCleanPic;
     BOOL needRefeashCleanPic1;
     BOOL needRefeashCleanPic2;
 
-
+    NSInteger voteIndex;
 }
 @property(nonatomic,strong)        NSString* style;
 @property(nonatomic,strong)        NSString* _hidden;
 
 -(void)selectImage:(NSInteger)_index;
-
+-(void)selectVote:(NSInteger)_index;
 
 @end

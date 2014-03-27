@@ -229,7 +229,7 @@
 -(void)getData
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=workinfo"]]];
+    ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=workInfo"]]];
     request.delegate=self;
     request.tag=1;
     NSLog(@"appDele.uid111111:%@",appDele.uid);
@@ -257,8 +257,25 @@
         dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片详情：dic:%@",dic);
         
-        diction =[dic objectForKey:@"works_info"];
-        [self setNewButtonTitle];
+        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+            
+           
+            diction =[dic objectForKey:@"works_info"];
+            if ([diction isKindOfClass:[NSDictionary class]]) {
+                [self setNewButtonTitle];
+
+            }
+            else
+            {
+            
+            }
+        }
+        else
+        {
+        
+        }
+        
 
     }
     else if (request.tag==2) {
@@ -348,10 +365,11 @@
     }
     else
     {
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Works&a=collection"]]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=collection"]]];
         request.delegate=self;
         request.tag=2;
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request setPostValue:[diction objectForKey:@"uid"] forKey:@"to_uid"];
         [request setPostValue:[diction objectForKey:@"work_id"] forKey:@"work_id"];
         if (likeButton.tag==0)

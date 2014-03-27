@@ -36,13 +36,40 @@
     [self refreashNav];
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-60) style:UITableViewStylePlain];
     dresserArray =[[NSMutableArray alloc] init];
-    
+    page=[[NSString alloc] init];
+    page=@"1";
+    pageCount = [[NSString alloc] init];
     //    myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.allowsSelection=NO;
     myTableView.backgroundColor=[UIColor whiteColor];
+    
+//    refreshView = [[EGORefreshTableFooterView alloc]  initWithFrame:CGRectZero];
+//    refreshView.delegate = self;
+//    //下拉刷新的控件添加在tableView上
+//    [myTableView addSubview:refreshView];
+//    
+//    
+//    reloading = NO;
+    
+//    if (_refreshTableView == nil) {
+//        //初始化下拉刷新控件
+//        EGORefreshTableHeaderView *refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - myTableView.bounds.size.height, self.view.frame.size.width, myTableView.bounds.size.height)];
+//        refreshView.delegate = self;
+//        //将下拉刷新控件作为子控件添加到UITableView中
+//        [myTableView addSubview:refreshView];
+//        _refreshTableView = refreshView;
+//    }
+    
+    bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+        NSLog(@"loadMore");
+        [self pullLoadMore];
+        myTableView.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-120) ;
+    }];
+    bottomRefreshView.hidden=NO;
+    [myTableView addSubview:bottomRefreshView];
     [self.view addSubview:myTableView];
     
     lastView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-60, self.view.bounds.size.width, 60)];
@@ -86,9 +113,31 @@
     
 }
 
+-(void)pullLoadMore
+{
+    NSInteger _pageCount= [pageCount integerValue];
+    
+    NSInteger _page = [page integerValue];
+    
+    NSLog(@"page:%@",page);
+    NSLog(@"pageCount:%@",pageCount);
+    
+    if (_page<_pageCount) {
+        _page++;
+        page = [NSString stringWithFormat:@"%d",_page];
+        NSLog(@"page:%@",page);
+        [self getData];
+    }
+    else
+    {
+        [bottomRefreshView performSelector:@selector(finishedLoading)];
+    }
+    
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
-
+//    [self setRefreshViewFrame];
     NSString* cName = [NSString stringWithFormat:@"查看评论"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -192,7 +241,7 @@
 -(void)getData
 {
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Works&a=commentlist"];
+    NSURL * urlString= [NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=commentList&page=%@",page]];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=1;
@@ -203,9 +252,11 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (dresserArray!=nil) {
-        [dresserArray removeAllObjects];
-    }
+    if ([page isEqualToString:@"1"]) {
+            if (dresserArray!=nil) {
+                [dresserArray removeAllObjects];
+            }    }
+
     if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -218,6 +269,9 @@
         NSLog(@"inforDic:%@",inforDic);
         NSLog(@"评论列表dic:%@",dic);
         
+        pageCount = [dic objectForKey:@"page_count"];
+        NSMutableArray * mesArr;
+        
         
         if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSString class]])
         {
@@ -225,11 +279,18 @@
         }
         else if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSArray class]])
         {
-            dresserArray = [dic objectForKey:@"comment_list"];//评价列表
+            mesArr = [dic objectForKey:@"comment_list"];//评价列表
+            [dresserArray addObjectsFromArray:mesArr];
         }
         sendButton.userInteractionEnabled=YES;
-
-        [self freashView];
+        if ([page isEqualToString:@"1"]) {
+            [self freashView];
+        }
+        else
+        {
+        
+        }
+        
     }
     else if (request.tag==2)
     {
@@ -243,12 +304,14 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"评论是否成功dic:%@",dic);
         contentView.text=@"";
+        page=@"1";
         [self getData];
     }
 }
 
 -(void)freashView
 {
+[bottomRefreshView performSelector:@selector(finishedLoading)];
     [myTableView reloadData];
 }
 
@@ -460,5 +523,79 @@
 }
 
 
+//-(void)setRefreshViewFrame
+//{
+//    //如果contentsize的高度比表的高度小，那么就需要把刷新视图放在表的bounds的下面
+//    int height = MAX(myTableView.bounds.size.height, myTableView.contentSize.height);
+//    refreshView.frame =CGRectMake(0.0f, height, self.view.frame.size.width, myTableView.bounds.size.height);
+//}
+//
+//#pragma mark -
+//#pragma mark Data Source Loading / Reloading Methods
+////开始重新加载时调用的方法
+//- (void)reloadTableViewDataSource{
+//	reloading = YES;
+//    //开始刷新后执行后台线程，在此之前可以开启HUD或其他对UI进行阻塞
+//    [NSThread detachNewThreadSelector:@selector(doInBackground) toTarget:self withObject:nil];
+//}
+//
+////完成加载时调用的方法
+//- (void)doneLoadingTableViewData{
+//    NSLog(@"doneLoadingTableViewData");
+//    
+//	reloading = NO;
+//	[refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:myTableView];
+//    //刷新表格内容
+//    [myTableView reloadData];
+//}
+//
+//#pragma mark -
+//#pragma mark Background operation
+////这个方法运行于子线程中，完成获取刷新数据的操作
+//-(void)doInBackground
+//{
+//    NSLog(@"doInBackground");
+//    
+//    [self pullLoadMore];
+//     myTableView.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-120) ;
+//    [NSThread sleepForTimeInterval:1];
+//    
+//    //后台操作线程执行完后，到主线程更新UI
+//    [self performSelectorOnMainThread:@selector(doneLoadingTableViewData) withObject:nil waitUntilDone:YES];
+//}
+//
+//
+//#pragma mark -
+//#pragma mark - EGORefreshTableFooterDelegate
+////出发下拉刷新动作，开始拉取数据
+//- (void)egoRefreshTableFooterDidTriggerRefresh:(EGORefreshTableFooterView*)view
+//{
+//    [self reloadTableViewDataSource];
+//}
+////返回当前刷新状态：是否在刷新
+//- (BOOL)egoRefreshTableFooterDataSourceIsLoading:(EGORefreshTableFooterView*)view
+//{
+//    return reloading;
+//}
+////返回刷新时间
+//-(NSDate *)egoRefreshTableFooterDataSourceLastUpdated:(EGORefreshTableFooterView *)view
+//{
+//    return [NSDate date];
+//}
+//
+//
+//#pragma mark - UIScrollView
+//
+////此代理在scrollview滚动时就会调用
+////在下拉一段距离到提示松开和松开后提示都应该有变化，变化可以在这里实现
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    [refreshView egoRefreshScrollViewDidScroll:scrollView];
+//}
+////松开后判断表格是否在刷新，若在刷新则表格位置偏移，且状态说明文字变化为loading...
+//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
+//}
 
 @end

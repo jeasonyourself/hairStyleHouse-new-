@@ -39,6 +39,9 @@
 
 - (IBAction)shalongButtonClick:(id)sender;
 
+- (IBAction)fameButtonClick:(id)sender;
+
+- (IBAction)saleButtonClick:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIView *myShowView;
 

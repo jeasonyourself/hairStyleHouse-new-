@@ -114,6 +114,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     
     sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     sendButton.frame=CGRectMake(250,10, 60, 40);
+    sendButton.userInteractionEnabled =YES;
+
     [sendButton.layer setMasksToBounds:YES];
     [sendButton.layer setCornerRadius:3.0];
     [sendButton.layer setBorderWidth:1.0];
@@ -143,7 +145,16 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         [dresserArray addObjectsFromArray:dataArray];
     }
     
-    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
 //    [self getData];
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -298,6 +309,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         [imageButton setImage:image forState:UIControlStateNormal];
         ifchangeHeadImage =YES;
         sendImage.image = image;
+//         UIImageWriteToSavedPhotosAlbum (image, nil, nil , nil);
         [picker dismissViewControllerAnimated:NO completion:nil];
 //        [picker.navigationController popViewControllerAnimated:NO];
         //        NSData* imageData = UIImagePNGRepresentation(image);
@@ -319,6 +331,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 {
 
     [contentView resignFirstResponder];
+    [_activityIndicatorView startAnimating];
+    //开始动画
     if ([contentView.text isEqualToString:@""]&&ifchangeHeadImage==NO) {
         UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发动内容不能为空" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
         [alert show];
@@ -326,6 +340,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     else
     {
         [timer setFireDate:[NSDate distantFuture]];
+        sendButton.userInteractionEnabled =NO;
 
       if (ifchangeHeadImage==NO)
       {
@@ -372,6 +387,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
  
 
         NSData *imageData = UIImageJPEGRepresentation(sendImage.image, 1.0);
+          NSLog(@"imageData.length:%d",imageData.length);
+          
+          
         NSUInteger dataLength = [imageData length];
         
         if(dataLength > MAX_IMAGEDATA_LEN) {
@@ -379,7 +397,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         } else {
             imageData = UIImageJPEGRepresentation(sendImage.image, 1.0);
         }
-        
+          NSLog(@"imageData.length:%d",imageData.length);
+
+          
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=5;
@@ -502,6 +522,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
     if (request.tag==1) {
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -594,8 +617,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         
         
         ifchangeHeadImage=NO;
-        [imageButton setTitle:@"+" forState:UIControlStateNormal];
-        [imageButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//        [imageButton setTitle:@"+" forState:UIControlStateNormal];
+        [imageButton setImage:[UIImage imageNamed:@"addphoto_green.png"] forState:UIControlStateNormal];
         sendImage.image=[UIImage imageNamed:@""];
         contentView.text=@"";
         imageString = @"";
@@ -616,6 +639,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"图片地址dic:%@",dic);
         
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
         imageString=[dic objectForKey:@"image"];
         
         
@@ -635,19 +660,30 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         else
         {
             [request setPostValue:appDele.uid forKey:@"uid"];
+            [request setPostValue:appDele.secret forKey:@"secret"];
             [request setPostValue:self.uid forKey:@"to_id"];
             [request setPostValue:contentView.text forKey:@"content"];
             [request setPostValue:imageString forKey:@"pic"];
             
         }
-        
-        
         [request startAsynchronous];
+        }
+        
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上传图片出错" delegate:Nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
     }
 
     
 }
 
+-(void)requestFailed
+{
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+}
 -(void)freashView
 {
     

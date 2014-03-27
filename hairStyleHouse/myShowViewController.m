@@ -41,33 +41,33 @@
     [super viewDidLoad];
     [self refreashNavLab];
     [self refreashNav];
-    self.view.backgroundColor = [UIColor whiteColor];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
+    self.view.backgroundColor = [UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1.0];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 40)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
-    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.cornerRadius = 0;//设置那个圆角的有多圆
     topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage.layer.masksToBounds = YES;//设为NO去试试
     
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320/3, 40);
     oneButton.backgroundColor = [UIColor clearColor];
-    [oneButton setTitle:@"最新榜" forState:UIControlStateNormal];
+    [oneButton setTitle:@"全部" forState:UIControlStateNormal];
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
+    twoButton.frame = CGRectMake(320/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 40);
     twoButton.backgroundColor = [UIColor clearColor];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [twoButton setTitle:@"评论榜" forState:UIControlStateNormal];
+    [twoButton setTitle:@"排名" forState:UIControlStateNormal];
 
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+25, 320/3, 40);
+    thirdButton.frame = CGRectMake(320*2/3,self.navigationController.navigationBar.frame.size.height+20, 320/3, 40);
     thirdButton.backgroundColor = [UIColor clearColor];
-    [thirdButton setTitle:@"排行榜" forState:UIControlStateNormal];
+    [thirdButton setTitle:@"介绍" forState:UIControlStateNormal];
      [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
@@ -98,54 +98,54 @@
     
     
     
-    localData = YES;
-    needRefeashCleanPic= NO;
-    needRefeashCleanPic1= NO;
-    needRefeashCleanPic2= NO;
+//    localData = YES;
+//    needRefeashCleanPic= NO;
+//    needRefeashCleanPic1= NO;
+//    needRefeashCleanPic2= NO;
+//
+//    //    canSelect = NO;
+//    //数据库
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    
+//    NSString *documentDirectory = [paths objectAtIndex:0];
+//    
+//    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"addTimeMyDatabase.db"]];
+//    
+//    NSString *dbPath2 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"commentNumMyDatabase.db"]];
+//    
+////    NSString *dbPath3 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"collectNumMyDatabase.db"]];
+//    
+//    db = [FMDatabase databaseWithPath:dbPath] ;
+//    
+//    if (![db open]) {
+//        
+//        NSLog(@"Could not open db.");
+//        
+//    }
+//    
+//    dbTwo = [FMDatabase databaseWithPath:dbPath2] ;
+//    
+//    if (![dbTwo open]) {
+//        
+//        NSLog(@"Could not open dbTwo.");
+//        
+//    }
+    
+//    dbThree = [FMDatabase databaseWithPath:dbPath3] ;
+//    
+//    if (![dbThree open]) {
+//        
+//        NSLog(@"Could not open dbThree.");
+//        
+//    }
 
-    //    canSelect = NO;
-    //数据库
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"addTimeMyDatabase.db"]];
-    
-    NSString *dbPath2 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"commentNumMyDatabase.db"]];
-    
-    NSString *dbPath3 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"collectNumMyDatabase.db"]];
-    
-    db = [FMDatabase databaseWithPath:dbPath] ;
-    
-    if (![db open]) {
-        
-        NSLog(@"Could not open db.");
-        
-    }
-    
-    dbTwo = [FMDatabase databaseWithPath:dbPath2] ;
-    
-    if (![dbTwo open]) {
-        
-        NSLog(@"Could not open dbTwo.");
-        
-    }
-    
-    dbThree = [FMDatabase databaseWithPath:dbPath3] ;
-    
-    if (![dbThree open]) {
-        
-        NSLog(@"Could not open dbThree.");
-        
-    }
-
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 105, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor whiteColor];
+    myTableView.backgroundColor=[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1.0];
     [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
@@ -159,7 +159,7 @@
     
     [self getData];
     [self getData1];
-    [self getData2];
+//    [self getData2];
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
@@ -196,12 +196,12 @@
     {
         NSInteger _pageCount= [pageCount integerValue];
         
-        FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
-        while ([rs next]) {
-            page  = [rs stringForColumn:@"Page"];
-        }
-        
-        [rs close];
+//        FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+//        while ([rs next]) {
+//            page  = [rs stringForColumn:@"Page"];
+//        }
+//        
+//        [rs close];
         NSInteger _page = [page integerValue];
         
         NSLog(@"page:%@",page);
@@ -227,12 +227,12 @@
         {
             NSInteger _pageCount= [pageCount1 integerValue];
             
-            FMResultSet *rs = [dbTwo executeQuery:@"select * from PersonListtwo"];
-            while ([rs next]) {
-                page1  = [rs stringForColumn:@"Page"];
-            }
-            
-            [rs close];
+//            FMResultSet *rs = [dbTwo executeQuery:@"select * from PersonListtwo"];
+//            while ([rs next]) {
+//                page1  = [rs stringForColumn:@"Page"];
+//            }
+//            
+//            [rs close];
             NSInteger _page = [page1 integerValue];
             
             NSLog(@"page:%@",page1);
@@ -256,33 +256,33 @@
         else
             if ([sign isEqualToString:@"collect_num"])
             {
-                NSInteger _pageCount= [pageCount2 integerValue];
-                
-                FMResultSet *rs = [dbThree executeQuery:@"select * from PersonListthree"];
-                while ([rs next]) {
-                    page2  = [rs stringForColumn:@"Page"];
-                }
-                
-                [rs close];
-                NSInteger _page = [page2 integerValue];
-                
-                NSLog(@"page:%@",page2);
-                NSLog(@"pageCount:%@",pageCount2);
-                
-                if (_page<_pageCount) {
-                    _page++;
-                    page2 = [NSString stringWithFormat:@"%d",_page];
-                    NSLog(@"page:%@",page2);
-                    localData=NO;
-
-                    [self getData2];
-                }
-                else
-                {
-                    [bottomRefreshView performSelector:@selector(finishedLoading)];
-                    
-                }
-
+//                NSInteger _pageCount= [pageCount2 integerValue];
+//                
+//                FMResultSet *rs = [dbThree executeQuery:@"select * from PersonListthree"];
+//                while ([rs next]) {
+//                    page2  = [rs stringForColumn:@"Page"];
+//                }
+//                
+//                [rs close];
+//                NSInteger _page = [page2 integerValue];
+//                
+//                NSLog(@"page:%@",page2);
+//                NSLog(@"pageCount:%@",pageCount2);
+//                
+//                if (_page<_pageCount) {
+//                    _page++;
+//                    page2 = [NSString stringWithFormat:@"%d",_page];
+//                    NSLog(@"page:%@",page2);
+//                    localData=NO;
+//
+//                    [self getData2];
+//                }
+//                else
+//                {
+//                    [bottomRefreshView performSelector:@selector(finishedLoading)];
+//                    
+//                }
+//
             }
     }
 
@@ -311,14 +311,14 @@
     [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign = @"collect_num";
-    [myTableView reloadData];
+//    [myTableView reloadData];
     
 }
 -(void)getData
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=worksShow&page=%@",page]]];
     
     
     [request setPostValue:@"add_time" forKey:@"condition"];
@@ -340,10 +340,10 @@
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page1]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=worksShow&page=%@",page1]]];
     
     
-    [request setPostValue:@"comment_num" forKey:@"condition"];
+    [request setPostValue:@"votes" forKey:@"condition"];
     
     request.delegate=self;
     if (localData==YES) {
@@ -361,7 +361,7 @@
 {
     
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Dynamic&a=ranking&page=%@",page2]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=worksShow&page=%@",page2]]];
     
     
     [request setPostValue:@"collect_num" forKey:@"condition"];
@@ -381,7 +381,125 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (request.tag==1)//左列表
+    if (request.tag==0)
+    {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"是否投票成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
+            
+            NSInteger _index = [[[localDresserArray objectAtIndex:voteIndex] objectForKey:@"votes"] integerValue];
+            NSMutableDictionary * _Dic = [localDresserArray objectAtIndex:voteIndex];
+            _index++;
+            NSString * indexStr = [NSString stringWithFormat:@"%d",_index];
+            [_Dic setValue:indexStr forKey:@"votes"];
+            [localDresserArray replaceObjectAtIndex:_index-1 withObject:_Dic];
+            [myTableView reloadData];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"投票成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        else if ([[dic objectForKey:@"code"] isEqualToString:@"105"]) {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"你已对该作品投过票，一小时后可对该作品再次投票" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"投票出现错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+
+    else if (request.tag ==1 || request.tag ==11)
+    {
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        
+        NSMutableArray * arr;
+        NSMutableArray * cleanarr;
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@分类发型dic:%@",style,dic);
+        
+        pageCount = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
+        {
+        }
+        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
+        {
+            arr= [dic objectForKey:@"works_info"];
+            [localDresserArray addObjectsFromArray:arr];
+        }
+            if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
+            {
+                
+            }
+            else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+            {
+                cleanarr= [dic objectForKey:@"image_list"];
+                [localcleanDresserArray addObjectsFromArray:cleanarr];
+            }
+        [myTableView reloadData];
+         [bottomRefreshView performSelector:@selector(finishedLoading)];
+    }
+    else if (request.tag ==2 || request.tag ==22)
+    {
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        
+        NSMutableArray * arr1;
+        NSMutableArray * cleanarr1;
+        
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@分类发型dic:%@",style,dic);
+        
+        pageCount1 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
+        {
+        }
+        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
+        {
+            arr1= [dic objectForKey:@"works_info"];
+            [localDresserArray1 addObjectsFromArray:arr1];
+        }
+        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
+        {
+            
+        }
+        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+        {
+            cleanarr1= [dic objectForKey:@"image_list"];
+            [localcleanDresserArray1 addObjectsFromArray:cleanarr1];
+        }
+        [myTableView reloadData];
+         [bottomRefreshView performSelector:@selector(finishedLoading)];
+    }
+    
+    else  if (request.tag ==10101)//原本地数据
+    {
+     if (request.tag==1)//左列表
     {
         NSMutableArray * arr;
         NSMutableArray * cleanarr;
@@ -418,7 +536,7 @@
              NSLog(@"%@",likeString);
             NSLog(@"%@",commentString);
             
-            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"collect_num"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"comment_num"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"votes"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"rank"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
             {
                 needRefeashCleanPic = NO;
                 
@@ -438,7 +556,7 @@
                 {
                     
                     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                    BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page,data];//插入所在数组位置，id，图片
+                    BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"votes"],[[arr objectAtIndex:i] objectForKey:@"rank"],page,data];//插入所在数组位置，id，图片
                     if (res == NO)
                     {
                         NSLog(@"插入失败");
@@ -544,7 +662,7 @@
             {
                 
                 NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page,data];//插入所在数组位置，id，图片
+                BOOL res =[db executeUpdate:@"INSERT INTO PersonList (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"votes"],[[arr objectAtIndex:i] objectForKey:@"rank"],page,data];//插入所在数组位置，id，图片
                 if (res == NO)
                 {
                     NSLog(@"插入失败");
@@ -621,7 +739,7 @@
             NSString *commentString = [dbTwo stringForQuery:@"SELECT CommentNum FROM PersonListtwo WHERE Name = ?",@"0"];
             
             
-            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"collect_num"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"comment_num"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"votes"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"rank"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
             {
                 
                 needRefeashCleanPic1= NO;
@@ -643,7 +761,7 @@
                 {
                     
                     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                    BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListtwo (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page1,data];//插入所在数组位置，id，图片
+                    BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListtwo (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"votes"],[[arr objectAtIndex:i] objectForKey:@"rank"],page1,data];//插入所在数组位置，id，图片
                     if (res == NO)
                     {
                         NSLog(@"插入失败");
@@ -745,7 +863,7 @@
                 {
                     
                     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                    BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListtwo (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page1,data];//插入所在数组位置，id，图片
+                    BOOL res =[dbTwo executeUpdate:@"INSERT INTO PersonListtwo (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"votes"],[[arr objectAtIndex:i] objectForKey:@"rank"],page1,data];//插入所在数组位置，id，图片
                     if (res == NO)
                     {
                         NSLog(@"插入失败");
@@ -785,205 +903,206 @@
         
         //        [self freashView];
     }
-    else if (request.tag==3)
-    {
-        NSMutableArray * arr;
-        NSMutableArray * cleanarr;
-        
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"%@分类发型dic:%@",style,dic);
-        
-        pageCount2 = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
-        {
-        }
-        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
-        {
-            arr= [dic objectForKey:@"works_info"];
-            //            [dresserArray addObjectsFromArray:arr];
-            //            NSLog(@"dresser.count:%d",dresserArray.count);
-            
-            //            NSString  *str = [NSString stringWithFormat:@"CREATE TABLE %@%@%@ (Name text, id text, Photo blob)",bcid,scid,sign ]; FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
-            
-            
-            
-            NSString *IdString = [dbThree stringForQuery:@"SELECT Id FROM PersonListthree WHERE Name = ?",@"0"];
-            NSString *likeString = [dbThree stringForQuery:@"SELECT LikeNum FROM PersonListthree WHERE Name = ?",@"0"];
-            NSString *commentString = [dbThree stringForQuery:@"SELECT CommentNum FROM PersonListthree WHERE Name = ?",@"0"];
-            
-            
-            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"collect_num"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"comment_num"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
-            {
-                
-                needRefeashCleanPic2=NO;
-            }
-            else//否则更新本地数据库
-            {
-                needRefeashCleanPic2 =YES;
-                NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonListthree"];
-                if (![dbThree executeUpdate:sqlstr])//删除原有数据库
-                {
-                    NSLog(@"Delete table error!");
-                    
-                }
-                [dbThree executeUpdate:@"CREATE TABLE PersonListthree (Name text, Id text,Url text,LikeNum text,CommentNum text,Page text, Photo blob)"];//创建
-                page2=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
-                for (int i = 0; i<arr.count; i++)//重新写入数据库
-                {
-                    
-                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                    BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page2,data];//插入所在数组位置，id，图片
-                    if (res == NO)
-                    {
-                        NSLog(@"插入失败");
-                    }
-                    else
-                    {
-                        NSLog(@"插入成功");
-                    }
-                }
-            }
-        }
-        
-        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
-        {
-            
-        }
-        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]]&&needRefeashCleanPic2==NO)
-        {
-            cleanarr= [dic objectForKey:@"image_list"];
-            //            [cleandresserArray addObjectsFromArray:cleanarr];
-            //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
-            
-            
-            NSString *IdString = [dbThree stringForQuery:@"SELECT Id FROM PersonListthree1 WHERE Name = ?",@"0"];
-            if ([IdString isEqualToString:[[cleanarr objectAtIndex:0] objectForKey:@"work_id"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
-            {
-                
-                
-            }
-            else//否则更新本地数据库
-            {
-                
-                NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonListthree1"];
-                if (![dbThree executeUpdate:sqlstr])//删除原有数据库
-                {
-                    NSLog(@"Delete table error!");
-                    
-                }
-                
-                [dbThree executeUpdate:@"CREATE TABLE PersonListthree1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
-                page2=@"1";//有新的数据返回，则从头开始请求
-                for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
-                {
-                    
-                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
-                   BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page2,data];//插入所在数组位置，id，图片id，图片
-                    if (res == NO)
-                    {
-                        NSLog(@"插入失败");
-                    }
-                    else
-                    {
-                        NSLog(@"插入成功");
-                        
-                    }
-                }
-            }
-            
-        }
-        
-    }
-    
-    else if (request.tag==33)//刷新右列表
-    {
-        NSMutableArray * arr;
-        NSMutableArray * cleanarr;
-        
-        NSLog(@"%@",request.responseString);
-        NSData*jsondata = [request responseData];
-        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
-        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
-        NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"%@分类发型dic:%@",style,dic);
-        
-        pageCount2 = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
-        {
-            
-        }
-        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
-        {
-            arr= [dic objectForKey:@"works_info"];
-            //            [dresserArray addObjectsFromArray:arr];
-            //            NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
-            //            if (![db executeUpdate:sqlstr])//删除原有数据库
-            //            {
-            //                NSLog(@"Delete table error!");
-            //
-            //            }
-            [dbThree executeUpdate:@"CREATE TABLE PersonListthree (Name text, Id text,Url text,LikeNum text,CommentNum text,Page text, Photo blob)"];//创建
-                for (int i = 0; i<arr.count; i++)//重新写入数据库
-                {
-                    
-                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
-                    BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page2,data];//插入所在数组位置，id，图片
-                    if (res == NO)
-                    {
-                        NSLog(@"插入失败");
-                    }
-                    else
-                    {
-                        NSLog(@"插入成功");
-                    }
-                }
-        }
-        
-        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
-        {
-            
-        }
-        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
-        {
-            cleanarr= [dic objectForKey:@"image_list"];
-            //            [cleandresserArray addObjectsFromArray:cleanarr];
-            //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
-            [dbThree executeUpdate:@"CREATE TABLE PersonListthree1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
-            for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
-            {
-                
-                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
-                BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page2,data];//插入所在数组位置，id，图片
-                if (res == NO)
-                {
-                    NSLog(@"插入失败");
-                }
-                else
-                {
-                    NSLog(@"插入成功");
-                }
-            }
-        }
-        
-        //        [self freashView];
-    }
+//    else if (request.tag==3)
+//    {
+//        NSMutableArray * arr;
+//        NSMutableArray * cleanarr;
+//        
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+//            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//        
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"%@分类发型dic:%@",style,dic);
+//        
+//        pageCount2 = [dic objectForKey:@"page_count"];
+//        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
+//        {
+//        }
+//        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
+//        {
+//            arr= [dic objectForKey:@"works_info"];
+//            //            [dresserArray addObjectsFromArray:arr];
+//            //            NSLog(@"dresser.count:%d",dresserArray.count);
+//            
+//            //            NSString  *str = [NSString stringWithFormat:@"CREATE TABLE %@%@%@ (Name text, id text, Photo blob)",bcid,scid,sign ]; FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+//            
+//            
+//            
+//            NSString *IdString = [dbThree stringForQuery:@"SELECT Id FROM PersonListthree WHERE Name = ?",@"0"];
+//            NSString *likeString = [dbThree stringForQuery:@"SELECT LikeNum FROM PersonListthree WHERE Name = ?",@"0"];
+//            NSString *commentString = [dbThree stringForQuery:@"SELECT CommentNum FROM PersonListthree WHERE Name = ?",@"0"];
+//            
+//            
+//            if ([IdString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"work_id"]]&&[likeString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"collect_num"]]&&[commentString isEqualToString:[[arr objectAtIndex:0] objectForKey:@"comment_num"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+//            {
+//                
+//                needRefeashCleanPic2=NO;
+//            }
+//            else//否则更新本地数据库
+//            {
+//                needRefeashCleanPic2 =YES;
+//                NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonListthree"];
+//                if (![dbThree executeUpdate:sqlstr])//删除原有数据库
+//                {
+//                    NSLog(@"Delete table error!");
+//                    
+//                }
+//                [dbThree executeUpdate:@"CREATE TABLE PersonListthree (Name text, Id text,Url text,LikeNum text,CommentNum text,Page text, Photo blob)"];//创建
+//                page2=@"1";//下拉刷新时候有新的数据返回，则从头开始请求
+//                for (int i = 0; i<arr.count; i++)//重新写入数据库
+//                {
+//                    
+//                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
+//                    BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page2,data];//插入所在数组位置，id，图片
+//                    if (res == NO)
+//                    {
+//                        NSLog(@"插入失败");
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"插入成功");
+//                    }
+//                }
+//            }
+//        }
+//        
+//        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
+//        {
+//            
+//        }
+//        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]]&&needRefeashCleanPic2==NO)
+//        {
+//            cleanarr= [dic objectForKey:@"image_list"];
+//            //            [cleandresserArray addObjectsFromArray:cleanarr];
+//            //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
+//            
+//            
+//            NSString *IdString = [dbThree stringForQuery:@"SELECT Id FROM PersonListthree1 WHERE Name = ?",@"0"];
+//            if ([IdString isEqualToString:[[cleanarr objectAtIndex:0] objectForKey:@"work_id"]])//返回没有更新数据，则不需要重新写入数据库，直接本地
+//            {
+//                
+//                
+//            }
+//            else//否则更新本地数据库
+//            {
+//                
+//                NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonListthree1"];
+//                if (![dbThree executeUpdate:sqlstr])//删除原有数据库
+//                {
+//                    NSLog(@"Delete table error!");
+//                    
+//                }
+//                
+//                [dbThree executeUpdate:@"CREATE TABLE PersonListthree1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+//                page2=@"1";//有新的数据返回，则从头开始请求
+//                for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
+//                {
+//                    
+//                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
+//                   BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page2,data];//插入所在数组位置，id，图片id，图片
+//                    if (res == NO)
+//                    {
+//                        NSLog(@"插入失败");
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"插入成功");
+//                        
+//                    }
+//                }
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    else if (request.tag==33)//刷新右列表
+//    {
+//        NSMutableArray * arr;
+//        NSMutableArray * cleanarr;
+//        
+//        NSLog(@"%@",request.responseString);
+//        NSData*jsondata = [request responseData];
+//        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+//            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+//            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//        
+//        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+//        NSDictionary* dic=[jsonP objectWithString:jsonString];
+//        NSLog(@"%@分类发型dic:%@",style,dic);
+//        
+//        pageCount2 = [dic objectForKey:@"page_count"];
+//        if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSString class]])//返回为空
+//        {
+//            
+//        }
+//        else if ([[dic objectForKey:@"works_info"] isKindOfClass:[NSArray class]])//有返回
+//        {
+//            arr= [dic objectForKey:@"works_info"];
+//            //            [dresserArray addObjectsFromArray:arr];
+//            //            NSString *sqlstr = [NSString stringWithFormat:@"DROP TABLE PersonList"];
+//            //            if (![db executeUpdate:sqlstr])//删除原有数据库
+//            //            {
+//            //                NSLog(@"Delete table error!");
+//            //
+//            //            }
+//            [dbThree executeUpdate:@"CREATE TABLE PersonListthree (Name text, Id text,Url text,LikeNum text,CommentNum text,Page text, Photo blob)"];//创建
+//                for (int i = 0; i<arr.count; i++)//重新写入数据库
+//                {
+//                    
+//                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:i] objectForKey:@"work_image"]]];
+//                    BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree (Name, Id,Url,LikeNum,CommentNum, Page, Photo) VALUES (?,?,?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[arr objectAtIndex:i] objectForKey:@"work_id"],[[arr objectAtIndex:i] objectForKey:@"work_image"],[[arr objectAtIndex:i] objectForKey:@"collect_num"],[[arr objectAtIndex:i] objectForKey:@"comment_num"],page2,data];//插入所在数组位置，id，图片
+//                    if (res == NO)
+//                    {
+//                        NSLog(@"插入失败");
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"插入成功");
+//                    }
+//                }
+//        }
+//        
+//        if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSString class]])//高清图
+//        {
+//            
+//        }
+//        else if ([[dic objectForKey:@"image_list"] isKindOfClass:[NSArray class]])
+//        {
+//            cleanarr= [dic objectForKey:@"image_list"];
+//            //            [cleandresserArray addObjectsFromArray:cleanarr];
+//            //            NSLog(@"cleandresserArray.count:%d",cleandresserArray.count);
+//            [dbThree executeUpdate:@"CREATE TABLE PersonListthree1 (Name text, Id text,Url text,Page text, Photo blob)"];//创建
+//            for (int i = 0; i<cleanarr.count; i++)//重新写入数据库
+//            {
+//                
+//                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[cleanarr objectAtIndex:i] objectForKey:@"work_image"]]];
+//                BOOL res =[dbThree executeUpdate:@"INSERT INTO PersonListthree1 (Name, Id,Url, Page, Photo) VALUES (?,?,?,?,?)",[NSString stringWithFormat:@"%d",i], [[cleanarr objectAtIndex:i] objectForKey:@"work_id"],[[cleanarr objectAtIndex:i] objectForKey:@"work_image"],page2,data];//插入所在数组位置，id，图片
+//                if (res == NO)
+//                {
+//                    NSLog(@"插入失败");
+//                }
+//                else
+//                {
+//                    NSLog(@"插入成功");
+//                }
+//            }
+//        }
+//        
+//        //        [self freashView];
+//    }
 
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
 
     [self freashView];
+   }
 }
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
@@ -1057,7 +1176,7 @@
         [dic1 setObject:imageUrl forKey:@"work_image"];
         
         [dic1 setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic1);
+        NSLog(@"dic1:%@",dic1);
         
         [localcleanDresserArray addObject:dic1];
     }
@@ -1136,71 +1255,71 @@
     
     
     //3--本地简略图
-    FMResultSet *rsthree = [dbThree executeQuery:@"select * from PersonListthree"];
+//    FMResultSet *rsthree = [dbThree executeQuery:@"select * from PersonListthree"];
+//    
+//    
+//    //    NSLog(@"[rs next]:%hhd",[rs next]);
+//    localDresserArray2=nil;
+//    localDresserArray2=[[NSMutableArray alloc] init];
+//    
+//    while ([rsthree next]) {
+//        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+//        NSString *name = [rsthree stringForColumn:@"Name"];
+//        
+//        NSString *workId  = [rsthree stringForColumn:@"Id"];
+//        NSString *imageUrl = [rsthree stringForColumn:@"Url"];
+//        NSString *likeNum = [rsthree stringForColumn:@"LikeNum"];
+//        NSString *commentNum = [rsthree stringForColumn:@"CommentNum"];
+//        
+//        NSData * imageData = [rsthree dataForColumn:@"Photo"];
+//        
+//        UIImage *aimage =[UIImage imageWithData: imageData];
+//        
+//        [dic setObject:name forKey:@"name"];
+//        [dic setObject:workId forKey:@"work_id"];
+//        [dic setObject:imageUrl forKey:@"work_image"];
+//        
+//        [dic setObject:likeNum forKey:@"collect_num"];
+//        [dic setObject:commentNum forKey:@"comment_num"];
+//        [dic setObject:aimage forKey:@"image"];
+//        NSLog(@"dic:%@",dic);
+//        
+//        [localDresserArray2 addObject:dic];
+//    }
+//    
+//    [rsthree close];
+//    
+//    //3--高清图
+//    FMResultSet *rsthree1 = [dbThree executeQuery:@"select * from PersonListthree1"];
+//    
+//    
+//    //    NSLog(@"[rs next]:%hhd",[rs next]);
+//    localcleanDresserArray2=nil;
+//    localcleanDresserArray2=[[NSMutableArray alloc] init];
+//    
+//    while ([rsthree1 next]) {
+//        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
+//        NSString *name = [rsthree1 stringForColumn:@"Name"];
+//        
+//        NSString *workId  = [rsthree1 stringForColumn:@"Id"];
+//        NSString *imageUrl = [rsthree1 stringForColumn:@"Url"];
+//        
+//        
+//        NSData * imageData = [rsthree1 dataForColumn:@"Photo"];
+//        
+//        UIImage *aimage =[UIImage imageWithData: imageData];
+//        
+//        [dic1 setObject:name forKey:@"name"];
+//        [dic1 setObject:workId forKey:@"work_id"];
+//        [dic1 setObject:imageUrl forKey:@"work_image"];
+//        
+//        [dic1 setObject:aimage forKey:@"image"];
+//        NSLog(@"dic:%@",dic1);
+//        
+//        [localcleanDresserArray2 addObject:dic1];
+//    }
     
-    
-    //    NSLog(@"[rs next]:%hhd",[rs next]);
-    localDresserArray2=nil;
-    localDresserArray2=[[NSMutableArray alloc] init];
-    
-    while ([rsthree next]) {
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-        NSString *name = [rsthree stringForColumn:@"Name"];
-        
-        NSString *workId  = [rsthree stringForColumn:@"Id"];
-        NSString *imageUrl = [rsthree stringForColumn:@"Url"];
-        NSString *likeNum = [rsthree stringForColumn:@"LikeNum"];
-        NSString *commentNum = [rsthree stringForColumn:@"CommentNum"];
-        
-        NSData * imageData = [rsthree dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic setObject:name forKey:@"name"];
-        [dic setObject:workId forKey:@"work_id"];
-        [dic setObject:imageUrl forKey:@"work_image"];
-        
-        [dic setObject:likeNum forKey:@"collect_num"];
-        [dic setObject:commentNum forKey:@"comment_num"];
-        [dic setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic);
-        
-        [localDresserArray2 addObject:dic];
-    }
-    
-    [rsthree close];
-    
-    //3--高清图
-    FMResultSet *rsthree1 = [dbThree executeQuery:@"select * from PersonListthree1"];
-    
-    
-    //    NSLog(@"[rs next]:%hhd",[rs next]);
-    localcleanDresserArray2=nil;
-    localcleanDresserArray2=[[NSMutableArray alloc] init];
-    
-    while ([rsthree1 next]) {
-        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
-        NSString *name = [rsthree1 stringForColumn:@"Name"];
-        
-        NSString *workId  = [rsthree1 stringForColumn:@"Id"];
-        NSString *imageUrl = [rsthree1 stringForColumn:@"Url"];
-        
-        
-        NSData * imageData = [rsthree1 dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic1 setObject:name forKey:@"name"];
-        [dic1 setObject:workId forKey:@"work_id"];
-        [dic1 setObject:imageUrl forKey:@"work_image"];
-        
-        [dic1 setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic1);
-        
-        [localcleanDresserArray2 addObject:dic1];
-    }
-    
-    [rsthree1 close];
+//    [rsthree1 close];
     
     [myTableView reloadData];
     
@@ -1259,7 +1378,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return   180;
+    return   230;
     
 }
 
@@ -1277,7 +1396,7 @@
     NSLog(@"row2:%d",row2);
 //    NSUInteger row3 = [indexPath row]*3+2;
 //    NSLog(@"row3:%d",row3);
-    
+    cell.backgroundColor = [UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1.0];
     if ([sign isEqualToString:@"add_time"])
     {
         if (row1<localDresserArray.count)//防止可能越界
@@ -1463,6 +1582,7 @@
 
         browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
         browser.photos = photos;
+//        NSLog(@"photos:%@",photos);
 
     }
     else if ([sign isEqualToString:@"comment_num"])
@@ -1501,46 +1621,68 @@
             browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
             browser.photos = photos;
         }
-    else if ([sign isEqualToString:@"collect_num"])
-            {
-                int count = localcleanDresserArray2.count;
-                // 1.封装图片数据
-                NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-                for (int i = 0; i<count; i++) {
-                    // 替换为中等尺寸图片
-                    NSString *string1 = [localcleanDresserArray2[i] objectForKey:@"work_image"];
-                    
-                    NSString *url = [string1 stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
-                    MJPhoto *photo = [[MJPhoto alloc] init];
-                    photo.work_id =[localcleanDresserArray2[i] objectForKey:@"work_id"];
-                    photo.url = [NSURL URLWithString:url]; // 图片路径
-                    //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
-                    [photos addObject:photo];
-                   
-            }
-                browser=nil;
-                browser = [[MJPhotoBrowser alloc] init];
-                NSInteger reallIndex;
-                NSString * str = [localDresserArray2[_index] objectForKey:@"work_id"];
-                for (int i = 0; i<count; i++)
-                {
-                    // 替换为中等尺寸图片
-                    NSString *string1 = [localcleanDresserArray2[i] objectForKey:@"work_id"];
-                    if ([string1 isEqualToString:str])
-                    {
-                        reallIndex =i;
-                        break;
-                    }
-                }
-                browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
-                browser.photos = photos;
-    
-            }
+//    else if ([sign isEqualToString:@"collect_num"])
+//            {
+//                int count = localcleanDresserArray2.count;
+//                // 1.封装图片数据
+//                NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+//                for (int i = 0; i<count; i++) {
+//                    // 替换为中等尺寸图片
+//                    NSString *string1 = [localcleanDresserArray2[i] objectForKey:@"work_image"];
+//                    
+//                    NSString *url = [string1 stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+//                    MJPhoto *photo = [[MJPhoto alloc] init];
+//                    photo.work_id =[localcleanDresserArray2[i] objectForKey:@"work_id"];
+//                    photo.url = [NSURL URLWithString:url]; // 图片路径
+//                    //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
+//                    [photos addObject:photo];
+//                   
+//            }
+//                browser=nil;
+//                browser = [[MJPhotoBrowser alloc] init];
+//                NSInteger reallIndex;
+//                NSString * str = [localDresserArray2[_index] objectForKey:@"work_id"];
+//                for (int i = 0; i<count; i++)
+//                {
+//                    // 替换为中等尺寸图片
+//                    NSString *string1 = [localcleanDresserArray2[i] objectForKey:@"work_id"];
+//                    if ([string1 isEqualToString:str])
+//                    {
+//                        reallIndex =i;
+//                        break;
+//                    }
+//                }
+//                browser.currentPhotoIndex = reallIndex; // 弹出相册时显示的第一张图片是？
+//                browser.photos = photos;
+//    
+//            }
     // 2.显示相册
     // 设置所有的图片
     [self.navigationController pushViewController:browser animated:YES];
     }
     //    [browser show];
+}
+
+-(void)selectVote:(NSInteger)_index
+{
+    voteIndex=_index;
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=works&a=worksVote"]]];
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+    if ([sign isEqualToString:@"add_time"])
+    {
+        [request setPostValue:[localDresserArray[_index] objectForKey:@"work_id"] forKey:@"work_id"];
+    }
+        if ([sign isEqualToString:@"comment_num"])
+        {
+            [request setPostValue:[localDresserArray1[_index] objectForKey:@"work_id"] forKey:@"work_id"];
+        }
+    request.delegate=self;
+    request.tag=0;
+    [request startAsynchronous];
 }
 - (void)didReceiveMemoryWarning
 {

@@ -188,7 +188,7 @@
 //    {
 //        headButton.userInteractionEnabled=YES;
 //    }
-    NSString* nameStr = [[_arr objectAtIndex:_index-1] objectForKey:@"from_name"];
+    NSString* nameStr = [[_arr objectAtIndex:_index-1] objectForKey:@"username"];
     nameLable.text=nameStr;
     nameLable.font = [UIFont systemFontOfSize:12];
     nameLable.frame = CGRectMake(65, 10, 200, 15);

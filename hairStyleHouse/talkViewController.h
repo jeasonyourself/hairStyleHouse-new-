@@ -26,6 +26,7 @@
     UIButton * sendButton;
     
     NSTimer* timer;
+    UIActivityIndicatorView * _activityIndicatorView ;
     
 }
 @property(strong,nonatomic)    NSString * uid;

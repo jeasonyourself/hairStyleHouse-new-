@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#define MAX_IMAGEDATA_LEN 200.0
+#define MAX_IMAGEDATA_LEN 2000000.0
 @interface personInforViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 {
     UITableView *myTableView;

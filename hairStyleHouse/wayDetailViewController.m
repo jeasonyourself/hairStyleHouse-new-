@@ -44,7 +44,7 @@
     myTableView.delegate=self;
     myTableView.allowsSelection=NO;
     
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
     
     [self getData];

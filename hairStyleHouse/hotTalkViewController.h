@@ -12,6 +12,8 @@
 #import "loginViewController.h"
 #import "pubQViewController.h"
 #import "questionDetailViewController.h"
+#import "YFJLeftSwipeDeleteTableView.h"
+
 @class AllAroundPullView;
 @interface hotTalkViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
@@ -19,7 +21,7 @@
     UIButton * oneButton;
     UIButton * twoButton;
     UIButton * thirdButton;
-    UITableView *myTableView;
+//    UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
     
     NSMutableArray * dresserArray;
@@ -43,6 +45,7 @@
     
     questionDetailViewController * questionDetailView;
 }
+@property(nonatomic,strong) YFJLeftSwipeDeleteTableView  *myTableView;
 @property(nonatomic,strong)        NSString* style;
 @property(nonatomic,strong)NSString * _hidden;
 -(void)selectCell:(NSInteger)_index;

@@ -36,6 +36,10 @@
     UIAlertView* backAlert;
     UITableView * myTableView;
     NSMutableArray* saleArr;
+    
+    
+    UIActivityIndicatorView * _activityIndicatorView ;
+
 }
 @property(nonatomic,retain) NSString * _hidden;
 @property(nonatomic,retain) NSString * dresserOrComment;

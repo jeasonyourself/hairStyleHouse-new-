@@ -8,13 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "commentCell.h"
+#import "AllAroundPullView.h"
+#import "EGORefreshTableHeaderView.h"
+#import "EGORefreshTableFooterView.h"
 @class dresserInforViewController;
 @class userInforViewController;
-@interface commentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
+@interface commentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EGORefreshTableFooterDelegate>
 {
     NSDictionary * inforDic;
     
+    NSString * page;
+    NSString * pageCount;
     UITableView *myTableView;
+    AllAroundPullView  *  bottomRefreshView;
+    
+//    EGORefreshTableHeaderView *_refreshTableView;
+//    BOOL _reloading;
+//    
+//    EGORefreshTableFooterView *refreshView;
+//    BOOL reloading;
+    
     
     NSMutableArray * dresserArray;
     
@@ -30,5 +43,9 @@
 -(void)headButtonClick1:(NSInteger)_index;
 -(void)smallButtonClick1:(NSInteger)_index;
 
+//开始重新加载时调用的方法
+- (void)reloadTableViewDataSource;
+//完成加载时调用的方法
+- (void)doneLoadingTableViewData;
 
 @end
