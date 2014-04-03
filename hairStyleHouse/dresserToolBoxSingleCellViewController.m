@@ -52,10 +52,7 @@
     _shalongView.layer.masksToBounds = YES;//设为NO去试试
     
     
-    _myShowView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myShowView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    _myShowView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
-    _myShowView.layer.masksToBounds = YES;//设为NO去试试
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -108,14 +105,6 @@
     
     [fatherController pushToViewController:wayView];
     
-}
-- (IBAction)myShowButtonClick:(id)sender
-{
-
-    myShowView1 = nil;
-    myShowView1 = [[myShowViewController alloc] init];
-    myShowView1._hidden = @"no";
-    [ fatherController pushToViewController:myShowView1];
 }
 
 - (IBAction)shalongButtonClick:(id)sender

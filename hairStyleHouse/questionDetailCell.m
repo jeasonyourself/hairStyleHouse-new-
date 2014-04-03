@@ -60,11 +60,11 @@
 -(void)setFirstCell:(NSDictionary * )_dic andArr:(NSMutableArray *)_arr
 {
  
-    NSString* picStr = [_dic objectForKey:@"pic"]  ;
+    NSString* picStr = [[_dic objectForKey:@"newsInfo"]objectForKey:@"pic"]  ;
     [picImage setImageWithURL:[NSURL URLWithString:picStr]];
     picImage.frame = CGRectMake(60, 45, 200, 240);
     
-    NSString* headStr = [_dic  objectForKey:@"head_photo"];
+    NSString* headStr = [[_dic objectForKey:@"newsInfo"]  objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     headImage.frame = CGRectMake(5, 10, 45, 45);
     headButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -72,7 +72,7 @@
     headButton.frame=headImage.frame;
     [headButton addTarget:self  action:@selector(selectHeadImage) forControlEvents:UIControlEventTouchUpInside];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if ([[_dic objectForKey:@"uid"] isEqualToString:appDele.uid])
+    if ([[[_dic objectForKey:@"newsInfo"]objectForKey:@"uid"] isEqualToString:appDele.uid])
     {
         headButton.userInteractionEnabled=NO;
     }
@@ -81,14 +81,14 @@
         headButton.userInteractionEnabled=YES;
     }
     
-    NSString* nameStr = [_dic  objectForKey:@"username"];
+    NSString* nameStr = [[_dic  objectForKey:@"newsInfo"]objectForKey:@"username"];
     nameLable.text=nameStr;
     nameLable.font = [UIFont systemFontOfSize:12];
     nameLable.frame = CGRectMake(60, 20, 200, 20);
     
     
     
-    NSString* contentStr = [_dic  objectForKey:@"content"];
+    NSString* contentStr = [[_dic  objectForKey:@"newsInfo"]objectForKey:@"content"];
     contentLable.text=contentStr;
     contentLable.font = [UIFont systemFontOfSize:12];
     contentLable.numberOfLines = 0;
@@ -117,8 +117,8 @@
 -(void)setOtherCell:(NSMutableArray *)_arr and:(NSInteger)_index
 {
     
-    
-    
+    picImage.frame = CGRectMake(0, 0, 0, 0);
+     howMuchLable.frame = CGRectMake(0, 0, 0, 0);
     NSString* headStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     headImage.frame = CGRectMake(5, 5, 50, 50);

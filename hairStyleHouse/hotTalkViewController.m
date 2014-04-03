@@ -92,9 +92,11 @@
     pageCount2=[[NSString alloc] init];
     sign =[[NSString alloc] init];
     sign = @"";
+    needFeash = NO;
+    
     
     myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0,topImage.frame.size.height+topImage.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
-    myTableView.allowsSelection=NO;
+    myTableView.allowsSelection=YES;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -104,7 +106,7 @@
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
         NSLog(@"loadMore");
         [self pullLoadMore];
-        myTableView.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height) ;
+//        myTableView.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height) ;
     }];
     bottomRefreshView.hidden=NO;
     [myTableView addSubview:bottomRefreshView];
@@ -133,7 +135,7 @@
 
 -(void)pullLoadMore
 {
-    if ([sign isEqualToString:@""]) {
+    if ([sign isEqualToString:@"day"]) {
         NSInteger _pageCount= [pageCount integerValue];
         
         NSInteger _page = [page integerValue];
@@ -204,11 +206,23 @@
 
 -(void)oneButtonClick
 {
+    
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    sign =@"";
-[myTableView reloadData];
+    sign =@"day";
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
+        [self getData1];
+        page2 = @"1";
+        [self getData2];
+    }
+    else
+    {
+        [myTableView reloadData];
+    }
 
     
 }
@@ -218,7 +232,18 @@
     [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"hot";
-    [myTableView reloadData];
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
+        [self getData1];
+        page2 = @"1";
+        [self getData2];
+    }
+    else
+    {
+        [myTableView reloadData];
+    }
 
 }
 -(void)thirdButtonClick
@@ -228,15 +253,26 @@
     [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     
     sign =@"my";
-   [myTableView reloadData];
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
+        [self getData1];
+        page2 = @"1";
+        [self getData2];
+    }
+    else
+    {
+        [myTableView reloadData];
+    }
     
 }
 -(void)getData
 {
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicList&page=%@",page]]];
    
-        [request setPostValue:@"" forKey:@"condition"];
+        [request setPostValue:@"day" forKey:@"condition"];
 
     request.delegate=self;
     request.tag=1;
@@ -245,7 +281,7 @@
 -(void)getData1
 {
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist&page=%@",page1]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicList&page=%@",page1]]];
     
     
         [request setPostValue:@"hot" forKey:@"condition"];
@@ -261,7 +297,7 @@
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skilllist&page=%@",page2]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicList&page=%@",page2]]];
      [request setPostValue:appDele.uid forKey:@"uid"];
         
  
@@ -279,6 +315,12 @@
 {
     NSMutableArray * arr;
     
+    if (needFeash == YES) {
+        needFeash = NO;
+        [dresserArray removeAllObjects];
+        [dresserArray1 removeAllObjects];
+        [dresserArray2 removeAllObjects];
+    }
     if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -289,16 +331,16 @@
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"%@话题dic:%@",sign,dic);
+        NSLog(@"每日话题dic:%@",dic);
         
         pageCount = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"skill_list"];
+            arr= [dic objectForKey:@"news_list"];
             [dresserArray addObjectsFromArray:arr];
             NSLog(@"dresser.count:%d",dresserArray.count);
             
@@ -315,23 +357,23 @@
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"%@话题dic:%@",sign,dic);
+        NSLog(@"热点话题dic:%@",dic);
         
         pageCount1 = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"skill_list"];
+            arr= [dic objectForKey:@"news_list"];
             [dresserArray1 addObjectsFromArray:arr];
-            NSLog(@"dresser.count:%d",dresserArray1.count);
+            NSLog(@"dresser1.count:%d",dresserArray1.count);
             
         }
         [self freashView];
     }
-    else if (request.tag==2) {
+    else if (request.tag==3) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -341,18 +383,18 @@
         
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"%@话题dic:%@",sign,dic);
+        NSLog(@"我的话题dic:%@",dic);
         
         pageCount2 = [dic objectForKey:@"page_count"];
-        if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"skill_list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"news_list"] isKindOfClass:[NSArray class]])
         {
-            arr= [dic objectForKey:@"skill_list"];
+            arr= [dic objectForKey:@"news_list"];
             [dresserArray2 addObjectsFromArray:arr];
-            NSLog(@"dresser.count:%d",dresserArray2.count);
+            NSLog(@"dresser2.count:%d",dresserArray2.count);
             
         }
         [self freashView];
@@ -367,10 +409,21 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"删除成功dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+            needFeash = YES;
+        }
     }
 
 }
 
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    [bottomRefreshView performSelector:@selector(finishedLoading)];
+
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    [alert show];
+}
 -(void)freashView
 {
     [bottomRefreshView performSelector:@selector(finishedLoading)];
@@ -387,7 +440,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([sign isEqualToString:@""]) {
+    if ([sign isEqualToString:@"day"]) {
         return dresserArray.count;
 
     }
@@ -423,7 +476,7 @@
 
     //    NSUInteger row3 = [indexPath row]*3+2;
     //    NSLog(@"row3:%d",row3);
-    if ([sign isEqualToString:@""]) {
+    if ([sign isEqualToString:@"day"]) {
         [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
 
     }
@@ -531,7 +584,7 @@
     [rightButton.layer setBorderWidth:1.0];
     [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [rightButton setTitle:@"发布" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [rightButton setBackgroundColor:[UIColor clearColor]];
     [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -546,7 +599,7 @@
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     
     
-    Lab.text = @"专业话题";
+    Lab.text = @"行业论坛";
     
     Lab.textAlignment = NSTextAlignmentCenter;
     Lab.font = [UIFont systemFontOfSize:16];
@@ -554,7 +607,7 @@
     self.navigationItem.titleView =Lab;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([sign isEqualToString:@""]) {
+    if ([sign isEqualToString:@"day"]) {
         questionDetailView = nil;
         questionDetailView= [[questionDetailViewController alloc] init];
         questionDetailView.inforDic = [dresserArray objectAtIndex:[indexPath row]];

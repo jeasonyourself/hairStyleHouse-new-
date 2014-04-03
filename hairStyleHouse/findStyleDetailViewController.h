@@ -42,10 +42,10 @@
     
     MJPhotoBrowser *browser;
     
-    FMDatabase *db;
-    FMDatabase *dbTwo;
-
-    BOOL localData;
+//    FMDatabase *db;
+//    FMDatabase *dbTwo;
+//
+//    BOOL localData;
 
 }
 @property(nonatomic,strong)        NSString* style;

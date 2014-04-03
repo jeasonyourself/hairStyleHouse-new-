@@ -217,6 +217,7 @@
     [self.view addSubview:forthLable];
     
      AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
     _tencentOAuth=nil;
     _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
     appDele.tententOAuth=_tencentOAuth;
@@ -590,6 +591,7 @@
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
             appDele.secret=[dic objectForKey:@"secret"];
+            appDele.ifSinceLogOut=@"yes";
 
 //        NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
 //            if (![[dic objectForKey:@"uid"] isEqualToString:[userInfor objectForKey:@"uid"]])
@@ -694,6 +696,7 @@
         appDele.touxiangImage=[dic objectForKey:@"head_photo"];
         appDele.uid=[dic objectForKey:@"uid"];//将值赋再appdelegat.uid上
             appDele.secret=[dic objectForKey:@"secret"];
+            appDele.ifSinceLogOut=@"yes";
 
             [userInfor setObject:[dic objectForKey:@"uid"] forKey:@"uid"];
 

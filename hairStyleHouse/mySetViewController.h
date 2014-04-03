@@ -20,5 +20,6 @@
 @property(nonatomic,retain) NSString * _hidden;
 -(void)pushToViewController:(id)_sen;
 -(void)leftButtonClick;
+-(void)pushToRoot;
 @end
 

@@ -10,8 +10,13 @@
 @class findStyleDetailViewController;
 @interface hairStyleCategoryScanImageCell : UITableViewCell
 {
+    UIView * firstBack;
+    UIView * secondBack;
     UIImageView * firstImage;
     UIImageView * secondImage;
+    UIView * introduceView;
+    UIView * introduceView2;
+    
     UIImageView * thirdImage;
 
     findStyleDetailViewController * fatherView;

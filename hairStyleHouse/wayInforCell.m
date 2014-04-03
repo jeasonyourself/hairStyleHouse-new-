@@ -34,7 +34,7 @@
         [self addSubview:nameLable];
         [self addSubview:contentLable];
         [self addSubview:timeLable];
-        [self addSubview:cellButton];
+//        [self addSubview:cellButton];
         // Initialization code
     }
     return self;
@@ -53,7 +53,7 @@
     nameLable.frame = CGRectMake(80, 15, 200, 15);
     contentLable.frame = CGRectMake(80, 35, 200, 15);
     timeLable.frame = CGRectMake(80, 55, 200, 15);
-    cellButton.frame = CGRectMake(0, 0, 320, 80);
+//    cellButton.frame = CGRectMake(0, 0, 320, 80);
     cellButton.tag=index;
 }
 -(void)cellButtonClick:(UIButton*)_btn

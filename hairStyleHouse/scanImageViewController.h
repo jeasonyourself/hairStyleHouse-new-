@@ -11,8 +11,11 @@
 #import "DemoViewController.h"
 #import "MJPhotoBrowser.h"
 #import "FMDatabase.h"
+#import "SinaWeibo.h"
+#import "rigViewController.h"
+
 @class AllAroundPullView;
-@interface scanImageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface scanImageViewController : UIViewController<UITableViewDataSource,SinaWeiboDelegate,SinaWeiboRequestDelegate,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
 {
 UITableView *myTableView;
     UIActivityIndicatorView * _activityIndicatorView ;
@@ -35,8 +38,12 @@ UITableView *myTableView;
 //    NSString * worksOrsaveorCan;
     NSString* uid;
     
-    BOOL localData;
-    FMDatabase *db;
+    NSInteger  shareIndex;
+    rigViewController * rigView;
+
+    NSString * sign;
+//    BOOL localData;
+//    FMDatabase *db;
 
 }
 @property(nonatomic,strong)NSString * worksOrsaveorCan;
@@ -45,5 +52,6 @@ UITableView *myTableView;
 @property(nonatomic,strong)NSString* uid;
 @property(nonatomic,strong)NSString* _hidden;
 -(void)selectImage:(NSInteger)_index;
-
+-(void)deleteImage:(NSInteger)_index;
+-(void)shareImage:(NSInteger)_index;
 @end

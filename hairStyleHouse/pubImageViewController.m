@@ -252,7 +252,7 @@
     //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
     _activityIndicatorView.color = [UIColor grayColor];
     //设置活动指示器的颜色
-    _activityIndicatorView.hidesWhenStopped = NO;
+    _activityIndicatorView.hidesWhenStopped = YES;
     //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
     [self.view addSubview:_activityIndicatorView];
     //将对象加入到view
@@ -419,6 +419,10 @@
     {
         sureButton.userInteractionEnabled =NO;
 
+        [_activityIndicatorView startAnimating];
+        //开始动画
+        sureButton.userInteractionEnabled =NO;
+        
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
             UIImageView  * imageview =[imageArr objectAtIndex:0];
@@ -444,9 +448,7 @@
 
 -(void)pubImage
 {
-    [_activityIndicatorView startAnimating];
-    //开始动画
-    sureButton.userInteractionEnabled =NO;
+    
 
     NSURL * url ;
     if ([dresserOrComment isEqualToString:@"dresser"]) {
@@ -900,7 +902,7 @@
 - (IBAction)pubButtonClick:(id)sender
 {
     
-  }
+}
 
 
 -(void)requestFinished:(ASIHTTPRequest *)request

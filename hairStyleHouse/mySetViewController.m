@@ -163,7 +163,22 @@
 {
     [self.navigationController pushViewController:_sen animated:NO];
 }
+-(void)pushToRoot
+{
+    if ([_hidden isEqualToString:@"yes"])
+    {
+        self.navigationController.navigationBar.hidden=YES;
+        
+    }
+    else
+    {
+        self.navigationController.navigationBar.hidden=NO;
+        
+    }
+    
 
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
 
 - (void)didReceiveMemoryWarning
 {

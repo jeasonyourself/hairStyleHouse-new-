@@ -38,6 +38,9 @@
     dic = [[NSDictionary alloc] init];
     dresserArray =[[NSMutableArray alloc] init];
     
+    page = [[NSString alloc] init];
+    page =@"1";
+    pageCount = [[NSString alloc] init];
     //    myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
@@ -45,6 +48,14 @@
     myTableView.allowsSelection=NO;
     myTableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:myTableView];
+    
+    bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+        NSLog(@"loadMore");
+        [self pullLoadMore];
+        myTableView.frame=CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height-120) ;
+    }];
+    bottomRefreshView.hidden=NO;
+    [myTableView addSubview:bottomRefreshView];
     
     lastView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-60, self.view.bounds.size.width, 60)];
     lastView.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:231.0/255.0  blue:231.0/255.0  alpha:1.0];
@@ -81,7 +92,29 @@
     [self getData];
     
 }
+-(void)pullLoadMore
+{
+   
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
+        NSLog(@"page:%@",page);
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
 
+}
 -(void)viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"话题详情"];
@@ -186,20 +219,22 @@
 -(void)getData
 {
     //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Infostation&a=skillview"];
+    NSURL * urlString= [NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicView&page=%@",page]];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=1;
-    [request setPostValue:[inforDic objectForKey:@"news_id"] forKey:@"id"];
+    [request setPostValue:[inforDic objectForKey:@"news_id"] forKey:@"news_id"];
     [request startAsynchronous];
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if (dresserArray!=nil) {
-        [dresserArray removeAllObjects];
+    if ([page isEqualToString:@"1"]) {
+        if (dresserArray!=nil) {
+            [dresserArray removeAllObjects];
+        }
     }
-    if (request.tag==1) {
+       if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -210,13 +245,16 @@
         dic=[jsonP objectWithString:jsonString];
         NSLog(@"话题详情评论列表dic:%@",dic);
         
+        pageCount = [dic objectForKey:@"page_count"];
         if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSString class]])
         {
             
         }
         else if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSArray class]])
         {
-            dresserArray = [dic objectForKey:@"comment_list"];//评价列表
+            NSMutableArray * mesArr;
+            mesArr = [dic objectForKey:@"comment_list"];//评价列表
+            [dresserArray addObjectsFromArray:mesArr];
         }
         
         [self freashView];
@@ -233,14 +271,26 @@
         NSDictionary* dic1=[jsonP objectWithString:jsonString];
         NSLog(@"评论是否成功dic:%@",dic1);
         contentView.text=@"";
+        page=@"1";
         [self getData];
     }
 }
 
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    [bottomRefreshView performSelector:@selector(finishedLoading)];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    [alert show];
+}
 -(void)freashView
 {
+    [bottomRefreshView performSelector:@selector(finishedLoading)];
+
     [myTableView reloadData];
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -257,7 +307,7 @@
     
     if ([indexPath row]==0)
     {
-        NSString* contentStr = [dic  objectForKey:@"content"];
+        NSString* contentStr = [[dic  objectForKey:@"newsInfo"]objectForKey:@"content"];
         UIFont *font = [UIFont systemFontOfSize:12.0];
         //设置一个行高上限
         CGSize size = CGSizeMake(200,400);
@@ -321,13 +371,12 @@
 
 -(void)sendButtonClick
 {
-    
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Infostation&a=commentadd"];
+    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicDel"];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=2;
-    [request setPostValue:@"add" forKey:@"action"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
     [request setPostValue:appDele.uid forKey:@"uid"];
     [request setPostValue:[inforDic objectForKey:@"news_id"]  forKey:@"news_id"];
     [request setPostValue:contentView.text forKey:@"content"];

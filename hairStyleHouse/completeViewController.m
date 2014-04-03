@@ -164,6 +164,19 @@
     [_saveButton2.layer setMasksToBounds:YES];
     [_saveButton2.layer setCornerRadius:5.0];
     [_saveButton2.layer setBorderWidth:0];
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:_activityIndicatorView];
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    //将对象加入到view
+    
+	// Do any additional setup after loading the view.
    	// Do any additional setup after loading the view.
 }
 
@@ -299,6 +312,7 @@
             request.delegate=self;
             request.tag=5;
             [request startAsynchronous];
+            
         }
     }
     
@@ -340,6 +354,11 @@
         request.tag=5;
         [request startAsynchronous];
         }
+        
+        
+
+        [_activityIndicatorView startAnimating];
+       
     }
     }
 }
@@ -347,7 +366,8 @@
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
    
-    
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
     if (request.tag==3)
     {
         NSLog(@"%@",request.responseString);
@@ -371,7 +391,8 @@
         {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         appDele.type=type;
-            
+            appDele.ifSinceLogOut=@"yes";
+ 
             NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
             NSString *path=[paths objectAtIndex:0];
             NSLog(@"path = %@",path);
@@ -538,6 +559,8 @@ request.tag=4;
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"完善信息失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
 }

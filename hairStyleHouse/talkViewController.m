@@ -151,7 +151,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
     _activityIndicatorView.color = [UIColor grayColor];
     //设置活动指示器的颜色
-    _activityIndicatorView.hidesWhenStopped = NO;
+    _activityIndicatorView.hidesWhenStopped = YES;
     //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
     [self.view addSubview:_activityIndicatorView];
     //将对象加入到view
@@ -347,7 +347,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
           NSURL * urlString;
           if ([talkOrQuestion isEqualToString:@"question"])
           {
-              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Problem&a=answeradd"];
+              urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=answerAdd"];
               
           }
           else
@@ -362,6 +362,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
           if ([talkOrQuestion isEqualToString:@"question"])
           {
               [request setPostValue:appDele.uid forKey:@"from_id"];
+               [request setPostValue:appDele.secret forKey:@"secret"];
               [request setPostValue:self.uid forKey:@"to_id"];
               [request setPostValue:questionId forKey:@"pid"];
               [request setPostValue:contentView.text forKey:@"content"];
@@ -412,8 +413,17 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
 -(void)leftButtonClick
 {
+    if ([_hidden isEqualToString:@"yes"]) {
+        self.navigationController.navigationBar.hidden=YES;
+        
+    }
+    else
+    {
+        self.navigationController.navigationBar.hidden=NO;
+        
+    }
     [self.navigationController popViewControllerAnimated:NO];
-    
+
 }
 -(void)refreashNav
 {
@@ -448,7 +458,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSURL * urlString;
     if ([talkOrQuestion isEqualToString:@"question"])
     {
-        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Problem&a=topicview"];
+        urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=issueDetails"];
         
     }
     else
@@ -535,7 +545,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"聊天列表dic:%@",dic);
         
-        
+        sendButton.userInteractionEnabled =YES;
         if ([talkOrQuestion isEqualToString:@"question"])
         {
             if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSString class]])
@@ -563,7 +573,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
                 [oldArray writeToFile:filename atomically:YES];
                 
                 
+
                 [self freashView];
+                
                 
             }
             
@@ -605,6 +617,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     
     else if (request.tag==4)
     {
+        
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -629,6 +642,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     }
     else if (request.tag==5)
     {
+        
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -644,14 +658,26 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         imageString=[dic objectForKey:@"image"];
         
         
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=sendMessage"]];
+            NSURL * urlString;
+            if ([talkOrQuestion isEqualToString:@"question"])
+            {
+                urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=answerAdd"];
+                
+            }
+            else
+            {
+                urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=message&a=sendMessage"];
+                
+            }
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
        
         request.delegate=self;
         request.tag=4;
         if ([talkOrQuestion isEqualToString:@"question"])
         {
             [request setPostValue:appDele.uid forKey:@"from_id"];
+            [request setPostValue:appDele.secret forKey:@"secret"];
             [request setPostValue:self.uid forKey:@"to_id"];
             [request setPostValue:questionId forKey:@"pid"];
             [request setPostValue:contentView.text forKey:@"content"];
@@ -681,6 +707,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
 -(void)requestFailed
 {
+    sendButton.userInteractionEnabled =YES;
+
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
 }

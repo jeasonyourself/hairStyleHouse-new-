@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "questionDetailCell.h"
+@class AllAroundPullView;
 @interface questionDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;
-    
+    NSString * page;
+    NSString * pageCount;
     UITableView *myTableView;
+    AllAroundPullView *bottomRefreshView;
+
     
     NSDictionary* dic;
     NSMutableArray * dresserArray;

@@ -26,6 +26,7 @@
 @implementation myAnwserListViewController
 @synthesize questionId;
 @synthesize _hidden;
+@synthesize myTableView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,8 +50,9 @@
     sign =[[NSString alloc] init];
     sign = @"my";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height+50) style:UITableViewStylePlain];
-    myTableView.allowsSelection=NO;
+    
+    myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height+50) style:UITableViewStylePlain];
+    myTableView.allowsSelection=YES;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -109,9 +111,10 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
     
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Problem&a=answerlist&page=%@",page]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=answerList&page=%@",page]]];
     [request setPostValue:questionId forKey:@"pid"];
     [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
     
     request.delegate=self;
     request.tag=1;
@@ -214,6 +217,50 @@
     
 }
 
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        ASIFormDataRequest* request;
+        
+                   request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=answerDel"]];
+            request.delegate=self;
+            request.tag=202;
+            [request setPostValue:[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"pid"] forKey:@"pid"];
+        
+        
+        
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        
+        [request setPostValue:appDele.secret forKey:@"secret"];
+        
+        [request startAsynchronous];
+        
+        [dresserArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    talkView=nil;
+    talkView = [[talkViewController alloc] init];
+    talkView.talkOrQuestion=@"question";
+    talkView.questionId= [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"pid"];
+    talkView.uid = [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"ta_id"];
+    [self.navigationController pushViewController:talkView animated:NO];
+    
+}
 -(void)leftButtonClick
 {
     if ([_hidden isEqualToString:@"yes"]) {
@@ -262,12 +309,12 @@
 
 -(void)selectCell:(NSInteger)_index
 {
-    talkView=nil;
-    talkView = [[talkViewController alloc] init];
-    talkView.talkOrQuestion=@"question";
-    talkView.questionId= [[dresserArray objectAtIndex:_index] objectForKey:@"pid"];
-    talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"ta_id"];
-    [self.navigationController pushViewController:talkView animated:NO];
+//    talkView=nil;
+//    talkView = [[talkViewController alloc] init];
+//    talkView.talkOrQuestion=@"question";
+//    talkView.questionId= [[dresserArray objectAtIndex:_index] objectForKey:@"pid"];
+//    talkView.uid = [[dresserArray objectAtIndex:_index] objectForKey:@"ta_id"];
+//    [self.navigationController pushViewController:talkView animated:NO];
 }
 - (void)didReceiveMemoryWarning
 {

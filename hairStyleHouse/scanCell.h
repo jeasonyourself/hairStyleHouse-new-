@@ -10,11 +10,20 @@
 @class scanImageViewController;
 @interface scanCell : UITableViewCell
 {
+    UIView * firstBack;
+    UIView * secondBack;
     UIImageView * firstImage;
-    UIButton * firstButton;
     UIImageView * secondImage;
-    UIButton * secondButton;
-    UIImageView * thirdImage;
+    UIView * introduceView;
+    UIView * introduceView2;
+    
+//    UIImageView * firstImage;
+    UIButton * firstDleButton;
+//    UIImageView * secondImage;
+    UIButton * secondDleButton;
+    UIButton * firstShareButton;
+    UIButton * secondShareButton;
+//    UIImageView * thirdImage;
     UIButton * thirdButton;
     
     scanImageViewController * fatherView;

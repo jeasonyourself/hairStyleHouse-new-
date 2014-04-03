@@ -17,6 +17,8 @@
 #import "toolBoxViewController.h"
 #import "mySetViewController.h"
 #import "sureStoreViewController.h"
+#import "myShowViewController.h"
+myShowViewController * myShowView1;
 @interface renewSingleTableCellBackgroundViewController : UIViewController<UIScrollViewDelegate>
 {
     NSDictionary * infoDic;
@@ -114,6 +116,12 @@
 - (IBAction)myWorksButtonClick:(id)sender;
 
 - (IBAction)setPriceButtonClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *myShowView;
+
+- (IBAction)myShowButtonClick:(id)sender;
+
+
+
 
 - (IBAction)shalongButtonClick:(id)sender;
 
@@ -121,6 +129,7 @@
 - (IBAction)toolBoxButtonClick:(id)sender;
 
 - (IBAction)mySetButtonClick:(id)sender;
+
 //@property (strong, nonatomic) IBOutlet UILabel *saveLable;
 //@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 //

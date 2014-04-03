@@ -34,58 +34,70 @@
     [super viewDidLoad];
    
     _firstBackView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _firstBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _firstBackView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _firstBackView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstBackView.layer.masksToBounds = YES;//设为NO去试试
     
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _headImage.layer.masksToBounds = YES;//设为NO去试试
     
     _clearPerson.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _clearPerson.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _clearPerson.layer.masksToBounds = YES;//设为NO去试试
     
     
     _myMessage.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _myMessage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myMessage.layer.masksToBounds = YES;//设为NO去试试
     
     _myBeaspeak.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myBeaspeak.layer.masksToBounds = YES;//设为NO去试试
     
     _myWorks.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _myWorks.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myWorks.layer.masksToBounds = YES;//设为NO去试试
     
     _setPrice.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _setPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _setPrice.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _setPrice.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _setPrice.layer.masksToBounds = YES;//设为NO去试试
     
     _shalong.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _shalong.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _shalong.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _shalong.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _shalong.layer.masksToBounds = YES;//设为NO去试试
     
     _toolBox.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _toolBox.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _toolBox.layer.masksToBounds = YES;//设为NO去试试
     
     
     
     _mySet.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+//    _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _mySet.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _mySet.layer.masksToBounds = YES;//设为NO去试试
     
+    _myShowView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+//    _myShowView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myShowView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _myShowView.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _nameLable.text=@"0";
+    _cityLable.text=@"0";
+    _fansLable.text=@"0";
+    _fouceLable.text=@"0";
+    _introduceLable.text=@"0";
+    _saveLable.text =@"0";
     if(iPhone5)
     {
         
@@ -312,7 +324,14 @@
     scanView._hidden = @"yes";
     [fatherController needAppdelegatePushToViewController:scanView];
 }
-
+- (IBAction)myShowButtonClick:(id)sender
+{
+    
+    myShowView1 = nil;
+    myShowView1 = [[myShowViewController alloc] init];
+    myShowView1._hidden = @"yes";
+    [fatherController needAppdelegatePushToViewController:myShowView1];
+}
 - (IBAction)setPriceButtonClick:(id)sender//会做发型
 {
     scanView=nil;

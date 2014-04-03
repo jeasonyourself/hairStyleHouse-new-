@@ -10,7 +10,7 @@
 #import "wayInforViewController.h"
 #import "inviteViewController.h"
 #import "hotTalkViewController.h"
-#import "myShowViewController.h"
+
 @class toolBoxViewController;
 @interface dresserToolBoxSingleCellViewController : UIViewController
 
@@ -18,7 +18,7 @@
     inviteViewController * inviteView;
     hotTalkViewController * hotView;
     wayInforViewController * wayView;
-    myShowViewController * myShowView1;
+    
 
 //    wayInforViewController * wayView;
 }
@@ -43,7 +43,6 @@
 
 - (IBAction)saleButtonClick:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UIView *myShowView;
 
-- (IBAction)myShowButtonClick:(id)sender;
+
 @end

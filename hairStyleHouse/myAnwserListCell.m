@@ -36,7 +36,7 @@
         [self addSubview:nameLable];
         [self addSubview:contentLable];
         [self addSubview:timeLable];
-        [self addSubview:cellButton];
+//        [self addSubview:cellButton];
         // Initialization code
     }
     return self;

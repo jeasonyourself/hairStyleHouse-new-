@@ -12,9 +12,34 @@
 #import "loginViewController.h"
 #import "myAnwserListViewController.h"
 #import "talkViewController.h"
-@interface anwserCenterViewController : UIViewController
+#import "YFJLeftSwipeDeleteTableView.h"
+#import "anwserCell.h"
+
+@interface anwserCenterViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    NSDictionary* dic;
+    UIButton * leftButton;
+    UIImageView * signImage;
+    
+    UIImageView *topImage;
+    UIButton * oneButton;
+    UIButton * twoButton;
+    UIButton * thirdButton;
+    BOOL needFeash;
+//    NSDictionary* dic;
+    NSMutableArray * dresserArray;
+    NSString * page;
+    NSString * pageCount;
+    NSMutableArray * dresserArray1;
+    NSString * page1;
+    NSString * pageCount1;
+    NSMutableArray * dresserArray2;
+    NSString * page2;
+    NSString * pageCount2;
+    NSString * sign;
+    
+    AllAroundPullView *bottomRefreshView;
+
+    
     UIButton * questionButton;
     UIButton * anwserButton;
     pubQViewController * pubQ;
@@ -22,7 +47,12 @@
     loginViewController* loginView;
     myAnwserListViewController * myAnwserList;
     talkViewController * talkView;
-
+    
+    
+    UIActivityIndicatorView * _activityIndicatorView;
 }
+@property(nonatomic,strong) YFJLeftSwipeDeleteTableView  *myTableView;
+
 @property(nonatomic,strong)NSString * _hidden;
+-(void)anwserQ:(NSInteger)row;
 @end

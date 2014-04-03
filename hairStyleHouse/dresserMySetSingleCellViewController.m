@@ -253,6 +253,8 @@
     appDele.loginType = nil;
     [appDele.tententOAuth logout:self];
     appDele.tententOAuth=nil;
+    
+
 //    appDele.sinaweibo=nil;
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
@@ -272,7 +274,7 @@
     //    //    [ud removeObjectForKey:@"uid"];
     //    [ud removeObjectForKey:@"type"];
     
-    [fatherController leftButtonClick];
+    [fatherController pushToRoot];
     
 }
 @end

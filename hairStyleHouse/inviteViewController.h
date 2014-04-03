@@ -13,11 +13,19 @@
 #import "pubInviteInforViewController.h"
 @class AllAroundPullView;
 @interface inviteViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-{ UITableView *myTableView;
+{
+    UIImageView * topImage;
+    UIButton * oneButton;
+    UIButton * twoButton;
+    UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
     NSMutableArray * dresserArray;
     NSString * page;
     NSString * pageCount;
+    
+    NSMutableArray * dresserArray1;
+    NSString * page1;
+    NSString * pageCount1;
     NSString * sign;
     inviteDetailViewController * inviteDetail;
     personInforViewController*personInfor;

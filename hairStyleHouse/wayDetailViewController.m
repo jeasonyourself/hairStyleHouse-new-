@@ -101,7 +101,7 @@
 -(void)getData
 {
     //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Infostation&a=newsview"];
+    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=news&a=newsView"];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=1;

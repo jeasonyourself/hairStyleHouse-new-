@@ -42,6 +42,7 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1.0];
+    
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 40)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
     topImage.layer.cornerRadius = 0;//设置那个圆角的有多圆
@@ -77,6 +78,11 @@
     [self.view addSubview:twoButton];
     [self.view addSubview:thirdButton];
     
+    
+    localDresserArray=[[NSMutableArray alloc] init];
+    localcleanDresserArray=[[NSMutableArray alloc] init];
+    localDresserArray1=[[NSMutableArray alloc] init];
+    localcleanDresserArray1=[[NSMutableArray alloc] init];
 //    dresserArray =[[NSMutableArray alloc] init];
 //    cleandresserArray =[[NSMutableArray alloc] init];
     page =[[NSString alloc] init];
@@ -96,56 +102,16 @@
     sign =[[NSString alloc] init];
     sign = @"add_time";
     
-    
-    
-//    localData = YES;
-//    needRefeashCleanPic= NO;
-//    needRefeashCleanPic1= NO;
-//    needRefeashCleanPic2= NO;
-//
-//    //    canSelect = NO;
-//    //数据库
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    
-//    NSString *documentDirectory = [paths objectAtIndex:0];
-//    
-//    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"addTimeMyDatabase.db"]];
-//    
-//    NSString *dbPath2 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"commentNumMyDatabase.db"]];
-//    
-////    NSString *dbPath3 = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"collectNumMyDatabase.db"]];
-//    
-//    db = [FMDatabase databaseWithPath:dbPath] ;
-//    
-//    if (![db open]) {
-//        
-//        NSLog(@"Could not open db.");
-//        
-//    }
-//    
-//    dbTwo = [FMDatabase databaseWithPath:dbPath2] ;
-//    
-//    if (![dbTwo open]) {
-//        
-//        NSLog(@"Could not open dbTwo.");
-//        
-//    }
-    
-//    dbThree = [FMDatabase databaseWithPath:dbPath3] ;
-//    
-//    if (![dbThree open]) {
-//        
-//        NSLog(@"Could not open dbThree.");
-//        
-//    }
 
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 105, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 105, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-60) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor colorWithRed:230.0/256.0 green:230.0/256.0 blue:230.0/256.0 alpha:1.0];
+    
     [self freashView];//直接本地
     [self.view addSubview:myTableView];
     
@@ -394,17 +360,34 @@
         NSLog(@"是否投票成功dic:%@",dic);
         if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
         {
+            if ([sign isEqualToString:@"add_time"])
+            {
+                NSInteger _index = [[[localDresserArray objectAtIndex:voteIndex] objectForKey:@"votes"] integerValue];
+                NSMutableDictionary * _Dic = [localDresserArray objectAtIndex:voteIndex];
+                _index++;
+                NSString * indexStr = [NSString stringWithFormat:@"%d",_index];
+                [_Dic setValue:indexStr forKey:@"votes"];
+                [localDresserArray replaceObjectAtIndex:_index-1 withObject:_Dic];
+                [myTableView reloadData];
+                UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"投票成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert show];
+
+            }
+            else
+                if ([sign isEqualToString:@"comment_num"])
+                {
+                    NSInteger _index = [[[localDresserArray1 objectAtIndex:voteIndex] objectForKey:@"votes"] integerValue];
+                    NSMutableDictionary * _Dic = [localDresserArray1 objectAtIndex:voteIndex];
+                    _index++;
+                    NSString * indexStr = [NSString stringWithFormat:@"%d",_index];
+                    [_Dic setValue:indexStr forKey:@"votes"];
+                    [localDresserArray1 replaceObjectAtIndex:_index-1 withObject:_Dic];
+                    [myTableView reloadData];
+                    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"投票成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alert show];
+                }
             
-            NSInteger _index = [[[localDresserArray objectAtIndex:voteIndex] objectForKey:@"votes"] integerValue];
-            NSMutableDictionary * _Dic = [localDresserArray objectAtIndex:voteIndex];
-            _index++;
-            NSString * indexStr = [NSString stringWithFormat:@"%d",_index];
-            [_Dic setValue:indexStr forKey:@"votes"];
-            [localDresserArray replaceObjectAtIndex:_index-1 withObject:_Dic];
-            [myTableView reloadData];
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"投票成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-        }
+                   }
         else if ([[dic objectForKey:@"code"] isEqualToString:@"105"]) {
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"你已对该作品投过票，一小时后可对该作品再次投票" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
@@ -1110,202 +1093,134 @@
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
 
-    [self freashView];
+//    [self freashView];
 }
 
 //效率更好，可能要分开三个freashView
 -(void)freashView
 {
-    [bottomRefreshView performSelector:@selector(finishedLoading)];
-    //1--本地简略图
-    FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
-    localDresserArray=nil;
-    localDresserArray=[[NSMutableArray alloc] init];
-    
-    while ([rs next]) {
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-        NSString *name = [rs stringForColumn:@"Name"];
-        
-        NSString *workId  = [rs stringForColumn:@"Id"];
-        NSString *imageUrl = [rs stringForColumn:@"Url"];
-        NSString *likeNum = [rs stringForColumn:@"LikeNum"];
-        NSString *commentNum = [rs stringForColumn:@"CommentNum"];
-
-        
-        NSData * imageData = [rs dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic setObject:name forKey:@"name"];
-        [dic setObject:workId forKey:@"work_id"];
-        [dic setObject:imageUrl forKey:@"work_image"];
-        [dic setObject:likeNum forKey:@"collect_num"];
-        [dic setObject:commentNum forKey:@"comment_num"];
-        
-        [dic setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic);
-        
-        [localDresserArray addObject:dic];
-    }
-    
-    [rs close];
-    NSLog(@"localDresserArray.count:%d",localDresserArray.count);
-    
-    //1--本地高清图
-    FMResultSet *rs1 = [db executeQuery:@"select * from PersonList1"];
-    
-    
-    //    NSLog(@"[rs next]:%hhd",[rs next]);
-    localcleanDresserArray=nil;
-    localcleanDresserArray=[[NSMutableArray alloc] init];
-    
-    while ([rs1 next]) {
-        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
-        NSString *name = [rs1 stringForColumn:@"Name"];
-        
-        NSString *workId  = [rs1 stringForColumn:@"Id"];
-        NSString *imageUrl = [rs1 stringForColumn:@"Url"];
-        
-        
-        NSData * imageData = [rs1 dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic1 setObject:name forKey:@"name"];
-        [dic1 setObject:workId forKey:@"work_id"];
-        [dic1 setObject:imageUrl forKey:@"work_image"];
-        
-        [dic1 setObject:aimage forKey:@"image"];
-        NSLog(@"dic1:%@",dic1);
-        
-        [localcleanDresserArray addObject:dic1];
-    }
-    
-    [rs1 close];
-    NSLog(@"localDresserArray.count:%d",localcleanDresserArray.count);
-    
-    
-    //2--本地简略图
-    FMResultSet *rstwo = [dbTwo executeQuery:@"select * from PersonListtwo"];
-    
-    
-    //    NSLog(@"[rs next]:%hhd",[rs next]);
-    localDresserArray1=nil;
-    localDresserArray1=[[NSMutableArray alloc] init];
-    
-    while ([rstwo next]) {
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-        NSString *name = [rstwo stringForColumn:@"Name"];
-        
-        NSString *workId  = [rstwo stringForColumn:@"Id"];
-        NSString *imageUrl = [rstwo stringForColumn:@"Url"];
-        NSString *likeNum = [rstwo stringForColumn:@"LikeNum"];
-        NSString *commentNum = [rstwo stringForColumn:@"CommentNum"];
-        
-        
-        NSData * imageData = [rstwo dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic setObject:name forKey:@"name"];
-        [dic setObject:workId forKey:@"work_id"];
-        [dic setObject:likeNum forKey:@"collect_num"];
-        [dic setObject:commentNum forKey:@"comment_num"];
-        [dic setObject:imageUrl forKey:@"work_image"];
-        
-        [dic setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic);
-        
-        [localDresserArray1 addObject:dic];
-    }
-    
-    [rstwo close];
-    
-    //2--高清图
-    FMResultSet *rstwo1 = [dbTwo executeQuery:@"select * from PersonListtwo1"];
-    
-    
-    //    NSLog(@"[rs next]:%hhd",[rs next]);
-    localcleanDresserArray1=nil;
-    localcleanDresserArray1=[[NSMutableArray alloc] init];
-    
-    while ([rstwo1 next]) {
-        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
-        NSString *name = [rstwo1 stringForColumn:@"Name"];
-        
-        NSString *workId  = [rstwo1 stringForColumn:@"Id"];
-        NSString *imageUrl = [rstwo1 stringForColumn:@"Url"];
-        
-        
-        NSData * imageData = [rstwo1 dataForColumn:@"Photo"];
-        
-        UIImage *aimage =[UIImage imageWithData: imageData];
-        
-        [dic1 setObject:name forKey:@"name"];
-        [dic1 setObject:workId forKey:@"work_id"];
-        [dic1 setObject:imageUrl forKey:@"work_image"];
-        
-        [dic1 setObject:aimage forKey:@"image"];
-        NSLog(@"dic:%@",dic1);
-        
-        [localcleanDresserArray1 addObject:dic1];
-    }
-    
-    [rstwo1 close];
-    
-    
-    //3--本地简略图
-//    FMResultSet *rsthree = [dbThree executeQuery:@"select * from PersonListthree"];
+//    [bottomRefreshView performSelector:@selector(finishedLoading)];
+//    //1--本地简略图
+//    FMResultSet *rs = [db executeQuery:@"select * from PersonList"];
+//    localDresserArray=nil;
+//    localDresserArray=[[NSMutableArray alloc] init];
 //    
-//    
-//    //    NSLog(@"[rs next]:%hhd",[rs next]);
-//    localDresserArray2=nil;
-//    localDresserArray2=[[NSMutableArray alloc] init];
-//    
-//    while ([rsthree next]) {
+//    while ([rs next]) {
 //        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
-//        NSString *name = [rsthree stringForColumn:@"Name"];
+//        NSString *name = [rs stringForColumn:@"Name"];
 //        
-//        NSString *workId  = [rsthree stringForColumn:@"Id"];
-//        NSString *imageUrl = [rsthree stringForColumn:@"Url"];
-//        NSString *likeNum = [rsthree stringForColumn:@"LikeNum"];
-//        NSString *commentNum = [rsthree stringForColumn:@"CommentNum"];
+//        NSString *workId  = [rs stringForColumn:@"Id"];
+//        NSString *imageUrl = [rs stringForColumn:@"Url"];
+//        NSString *likeNum = [rs stringForColumn:@"LikeNum"];
+//        NSString *commentNum = [rs stringForColumn:@"CommentNum"];
+//
 //        
-//        NSData * imageData = [rsthree dataForColumn:@"Photo"];
+//        NSData * imageData = [rs dataForColumn:@"Photo"];
 //        
 //        UIImage *aimage =[UIImage imageWithData: imageData];
 //        
 //        [dic setObject:name forKey:@"name"];
 //        [dic setObject:workId forKey:@"work_id"];
 //        [dic setObject:imageUrl forKey:@"work_image"];
-//        
 //        [dic setObject:likeNum forKey:@"collect_num"];
 //        [dic setObject:commentNum forKey:@"comment_num"];
+//        
 //        [dic setObject:aimage forKey:@"image"];
 //        NSLog(@"dic:%@",dic);
 //        
-//        [localDresserArray2 addObject:dic];
+//        [localDresserArray addObject:dic];
 //    }
 //    
-//    [rsthree close];
+//    [rs close];
+//    NSLog(@"localDresserArray.count:%d",localDresserArray.count);
 //    
-//    //3--高清图
-//    FMResultSet *rsthree1 = [dbThree executeQuery:@"select * from PersonListthree1"];
+//    //1--本地高清图
+//    FMResultSet *rs1 = [db executeQuery:@"select * from PersonList1"];
 //    
 //    
 //    //    NSLog(@"[rs next]:%hhd",[rs next]);
-//    localcleanDresserArray2=nil;
-//    localcleanDresserArray2=[[NSMutableArray alloc] init];
+//    localcleanDresserArray=nil;
+//    localcleanDresserArray=[[NSMutableArray alloc] init];
 //    
-//    while ([rsthree1 next]) {
+//    while ([rs1 next]) {
 //        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
-//        NSString *name = [rsthree1 stringForColumn:@"Name"];
+//        NSString *name = [rs1 stringForColumn:@"Name"];
 //        
-//        NSString *workId  = [rsthree1 stringForColumn:@"Id"];
-//        NSString *imageUrl = [rsthree1 stringForColumn:@"Url"];
+//        NSString *workId  = [rs1 stringForColumn:@"Id"];
+//        NSString *imageUrl = [rs1 stringForColumn:@"Url"];
 //        
 //        
-//        NSData * imageData = [rsthree1 dataForColumn:@"Photo"];
+//        NSData * imageData = [rs1 dataForColumn:@"Photo"];
+//        
+//        UIImage *aimage =[UIImage imageWithData: imageData];
+//        
+//        [dic1 setObject:name forKey:@"name"];
+//        [dic1 setObject:workId forKey:@"work_id"];
+//        [dic1 setObject:imageUrl forKey:@"work_image"];
+//        
+//        [dic1 setObject:aimage forKey:@"image"];
+//        NSLog(@"dic1:%@",dic1);
+//        
+//        [localcleanDresserArray addObject:dic1];
+//    }
+//    
+//    [rs1 close];
+//    NSLog(@"localDresserArray.count:%d",localcleanDresserArray.count);
+//    
+//    
+//    //2--本地简略图
+//    FMResultSet *rstwo = [dbTwo executeQuery:@"select * from PersonListtwo"];
+//    
+//    
+//    //    NSLog(@"[rs next]:%hhd",[rs next]);
+//    localDresserArray1=nil;
+//    localDresserArray1=[[NSMutableArray alloc] init];
+//    
+//    while ([rstwo next]) {
+//        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+//        NSString *name = [rstwo stringForColumn:@"Name"];
+//        
+//        NSString *workId  = [rstwo stringForColumn:@"Id"];
+//        NSString *imageUrl = [rstwo stringForColumn:@"Url"];
+//        NSString *likeNum = [rstwo stringForColumn:@"LikeNum"];
+//        NSString *commentNum = [rstwo stringForColumn:@"CommentNum"];
+//        
+//        
+//        NSData * imageData = [rstwo dataForColumn:@"Photo"];
+//        
+//        UIImage *aimage =[UIImage imageWithData: imageData];
+//        
+//        [dic setObject:name forKey:@"name"];
+//        [dic setObject:workId forKey:@"work_id"];
+//        [dic setObject:likeNum forKey:@"collect_num"];
+//        [dic setObject:commentNum forKey:@"comment_num"];
+//        [dic setObject:imageUrl forKey:@"work_image"];
+//        
+//        [dic setObject:aimage forKey:@"image"];
+//        NSLog(@"dic:%@",dic);
+//        
+//        [localDresserArray1 addObject:dic];
+//    }
+//    
+//    [rstwo close];
+//    
+//    //2--高清图
+//    FMResultSet *rstwo1 = [dbTwo executeQuery:@"select * from PersonListtwo1"];
+//    
+//    
+//    //    NSLog(@"[rs next]:%hhd",[rs next]);
+//    localcleanDresserArray1=nil;
+//    localcleanDresserArray1=[[NSMutableArray alloc] init];
+//    
+//    while ([rstwo1 next]) {
+//        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
+//        NSString *name = [rstwo1 stringForColumn:@"Name"];
+//        
+//        NSString *workId  = [rstwo1 stringForColumn:@"Id"];
+//        NSString *imageUrl = [rstwo1 stringForColumn:@"Url"];
+//        
+//        
+//        NSData * imageData = [rstwo1 dataForColumn:@"Photo"];
 //        
 //        UIImage *aimage =[UIImage imageWithData: imageData];
 //        
@@ -1316,13 +1231,81 @@
 //        [dic1 setObject:aimage forKey:@"image"];
 //        NSLog(@"dic:%@",dic1);
 //        
-//        [localcleanDresserArray2 addObject:dic1];
+//        [localcleanDresserArray1 addObject:dic1];
 //    }
-    
-//    [rsthree1 close];
-    
-    [myTableView reloadData];
-    
+//    
+//    [rstwo1 close];
+//    
+//    
+//    //3--本地简略图
+////    FMResultSet *rsthree = [dbThree executeQuery:@"select * from PersonListthree"];
+////    
+////    
+////    //    NSLog(@"[rs next]:%hhd",[rs next]);
+////    localDresserArray2=nil;
+////    localDresserArray2=[[NSMutableArray alloc] init];
+////    
+////    while ([rsthree next]) {
+////        NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+////        NSString *name = [rsthree stringForColumn:@"Name"];
+////        
+////        NSString *workId  = [rsthree stringForColumn:@"Id"];
+////        NSString *imageUrl = [rsthree stringForColumn:@"Url"];
+////        NSString *likeNum = [rsthree stringForColumn:@"LikeNum"];
+////        NSString *commentNum = [rsthree stringForColumn:@"CommentNum"];
+////        
+////        NSData * imageData = [rsthree dataForColumn:@"Photo"];
+////        
+////        UIImage *aimage =[UIImage imageWithData: imageData];
+////        
+////        [dic setObject:name forKey:@"name"];
+////        [dic setObject:workId forKey:@"work_id"];
+////        [dic setObject:imageUrl forKey:@"work_image"];
+////        
+////        [dic setObject:likeNum forKey:@"collect_num"];
+////        [dic setObject:commentNum forKey:@"comment_num"];
+////        [dic setObject:aimage forKey:@"image"];
+////        NSLog(@"dic:%@",dic);
+////        
+////        [localDresserArray2 addObject:dic];
+////    }
+////    
+////    [rsthree close];
+////    
+////    //3--高清图
+////    FMResultSet *rsthree1 = [dbThree executeQuery:@"select * from PersonListthree1"];
+////    
+////    
+////    //    NSLog(@"[rs next]:%hhd",[rs next]);
+////    localcleanDresserArray2=nil;
+////    localcleanDresserArray2=[[NSMutableArray alloc] init];
+////    
+////    while ([rsthree1 next]) {
+////        NSMutableDictionary * dic1 = [[NSMutableDictionary alloc] init];
+////        NSString *name = [rsthree1 stringForColumn:@"Name"];
+////        
+////        NSString *workId  = [rsthree1 stringForColumn:@"Id"];
+////        NSString *imageUrl = [rsthree1 stringForColumn:@"Url"];
+////        
+////        
+////        NSData * imageData = [rsthree1 dataForColumn:@"Photo"];
+////        
+////        UIImage *aimage =[UIImage imageWithData: imageData];
+////        
+////        [dic1 setObject:name forKey:@"name"];
+////        [dic1 setObject:workId forKey:@"work_id"];
+////        [dic1 setObject:imageUrl forKey:@"work_image"];
+////        
+////        [dic1 setObject:aimage forKey:@"image"];
+////        NSLog(@"dic:%@",dic1);
+////        
+////        [localcleanDresserArray2 addObject:dic1];
+////    }
+//    
+////    [rsthree1 close];
+//    
+//    [myTableView reloadData];
+
 }
 
 

@@ -42,46 +42,51 @@
     _headImage.layer.masksToBounds = YES;//设为NO去试试
 
     _clearPerson.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _clearPerson.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _clearPerson.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _clearPerson.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _clearPerson.layer.masksToBounds = YES;//设为NO去试试
     
     
     _myMessage.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myMessage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myMessage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _myMessage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myMessage.layer.masksToBounds = YES;//设为NO去试试
     
     _myBeaspeak.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myBeaspeak.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myBeaspeak.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _myBeaspeak.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myBeaspeak.layer.masksToBounds = YES;//设为NO去试试
     
     _myWorks.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myWorks.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myWorks.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _myWorks.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myWorks.layer.masksToBounds = YES;//设为NO去试试
     
     _mySave.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _mySave.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _mySave.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _mySave.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _mySave.layer.masksToBounds = YES;//设为NO去试试
     
     _toolBox.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _toolBox.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _toolBox.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _toolBox.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _toolBox.layer.masksToBounds = YES;//设为NO去试试
     
     _myShow.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _myShow.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _myShow.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _myShow.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _myShow.layer.masksToBounds = YES;//设为NO去试试
     
     _mySet.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _mySet.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _mySet.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _mySet.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _mySet.layer.masksToBounds = YES;//设为NO去试试
     
+    
+    _nameLable.text=@"0";
+    _cityLable.text=@"0";
+    _fansLable.text=@"0";
+    _fouceLable.text=@"0";
     
     
     if(iPhone5)

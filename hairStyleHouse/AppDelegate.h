@@ -18,10 +18,11 @@
 #import "WeiboSDK.h"
 #import "SinaWeibo.h"
 #import "Reachability.h"
+#import "loginViewController.h"
 #define kAppKey             @"276585644"
 #define kAppSecret          @"a71b4382aeda47dfbdd5925b4b407648"
 #define kAppRedirectURI     @"http://www.faxingw.cn"
-//#import "loginViewController.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UINavigationControllerDelegate,UITabBarControllerDelegate,TencentLoginDelegate,TencentSessionDelegate,WeiboSDKDelegate,SinaWeiboDelegate>
 
 {
@@ -41,6 +42,9 @@
     
     UINavigationController * thirdNav;
     
+    
+    
+    loginViewController * loginView;
     mineViewController * mineController;
     UINavigationController * forthNav;
     
@@ -66,7 +70,7 @@
 @property (strong,nonatomic) SinaWeibo* sinaweibo;
 @property (strong,nonatomic) NSString* uid;//用到
 @property (strong,nonatomic) NSString* secret;//用到
-
+@property (strong,nonatomic) NSString* ifSinceLogOut;//用到
 @property (strong,nonatomic) TencentOAuth* tententOAuth;//用到
 @property (nonatomic,assign) NSString* loginType;//用到
 @property (nonatomic,assign) NSString* xuanzheLoginType;

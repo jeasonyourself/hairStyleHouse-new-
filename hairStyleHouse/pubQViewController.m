@@ -47,6 +47,16 @@
     myTableView.delegate=self;
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [self.view addSubview:myTableView];
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = YES;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
 }
 
 -(void)leftButtonClick
@@ -348,18 +358,8 @@ else
 - (void)sendButtonClick
 {
     [describeText resignFirstResponder];
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
-    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
-    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
-    _activityIndicatorView.color = [UIColor grayColor];
-    //设置活动指示器的颜色
-    _activityIndicatorView.hidesWhenStopped = NO;
-    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
-    [self.view addSubview:_activityIndicatorView];
-    //将对象加入到view
-    
-    [_activityIndicatorView startAnimating];
+   
+   
     //开始动画
     
    
@@ -390,6 +390,9 @@ else
         request.delegate=self;
         request.tag=1;
         [request startAsynchronous];
+        
+        
+        [_activityIndicatorView startAnimating];
 
     }
 }
@@ -416,11 +419,11 @@ else
             
             
             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Problem&a=quizadd"]];
+            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=wenda&a=quizAdd"]];
             request.delegate=self;
             request.tag=2;
             [request setPostValue:appDele.uid forKey:@"uid"];
-            [request setPostValue:appDele.city forKey:@"city"];
+            [request setPostValue:appDele.secret forKey:@"secret"];
             [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"lng"];
             [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
             [request setPostValue:headString forKey:@"image"];
@@ -449,15 +452,23 @@ else
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否发布成功dic:%@",dic);
+        
         [_activityIndicatorView stopAnimating];
         _activityIndicatorView.hidesWhenStopped = YES;
-        [self.navigationController popViewControllerAnimated:NO];
+        [self leftButtonClick];
     }
 
 }
-	// Do any additional setup after loading the view.
 
 
+
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    [alert show];
+}
 
 
 @end

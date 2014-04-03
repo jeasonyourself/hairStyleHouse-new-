@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#define MAX_IMAGEDATA_LEN 200.0
+
+#define MAX_IMAGEDATA_LEN 2000000.0
 @class  mustCompleteViewController;
 @interface completeViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 {
+    UIActivityIndicatorView * _activityIndicatorView ;
+   
     BOOL ifchangeHeadImage;
     NSString * headString;
 

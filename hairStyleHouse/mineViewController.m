@@ -94,7 +94,7 @@
         [loginView getBack:self andSuc:@selector(getData) andErr:nil];
         loginView.view.userInteractionEnabled=YES;
 //        [self.view addSubview:loginView.view];
-        [self.navigationController pushViewController:loginView animated:YES];
+        [self.navigationController pushViewController:loginView animated:NO];
         
         
     }
@@ -305,6 +305,21 @@
 
 -(void)refreashNav
 {
+    UIButton * leftButton=[[UIButton alloc] init];
+    leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton.layer setMasksToBounds:YES];
+    [leftButton.layer setCornerRadius:0.0];
+    [leftButton.layer setBorderWidth:0.0];
+    [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [leftButton setBackgroundColor:[UIColor clearColor]];
+    [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    leftButton.frame = CGRectMake(0, 0, 0, 0);
+    UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem=leftButtonItem;
     
     UIButton * rightButton=[[UIButton alloc] init];
     rightButton = [UIButton buttonWithType:UIButtonTypeCustom];

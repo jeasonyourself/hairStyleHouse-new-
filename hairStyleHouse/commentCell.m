@@ -169,6 +169,7 @@
 -(void)setOtherCell:(NSMutableArray *)_arr and:(NSInteger)_index
 {
     picImage.frame = CGRectMake(0, 0, 0, 0);
+    howMuchLable.frame = CGRectMake(0, 0, 0, 0);
     NSString* headStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     headImage.frame = CGRectMake(5, 5, 50, 50);

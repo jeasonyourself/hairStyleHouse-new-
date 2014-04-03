@@ -17,6 +17,7 @@
 @synthesize tententOAuth;
 @synthesize uid;
 @synthesize secret;
+@synthesize ifSinceLogOut;
 @synthesize loginType;
 @synthesize xuanzheLoginType;
 @synthesize type;
@@ -126,13 +127,29 @@
     anwserCenter= [[anwserCenterViewController alloc] init];//新版本
     
     mineController=[[mineViewController alloc] init];
+    loginView = nil;
+    loginView=[[loginViewController alloc] init];
+    loginView._leftButtonhidden = @"yes";
+//    loginView.view.frame=self.view.bounds;
+    [loginView getBack:self andSuc:@selector(setRootView) andErr:nil];
+    loginView.view.userInteractionEnabled=YES;
+    //        [self.view addSubview:loginView.view];
+//    [self.navigationController pushViewController:loginView animated:NO];
     
 //    signStr = [[NSString alloc] init];
     
     firstNav = [[UINavigationController alloc] initWithRootViewController:findStyleController];
     secondNav = [[UINavigationController alloc] initWithRootViewController:dresserController];
     thirdNav = [[UINavigationController alloc] initWithRootViewController:anwserCenter];
-    forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
+    
+    if (self.uid) {
+        forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
+    }
+    else
+    {
+        forthNav = [[UINavigationController alloc] initWithRootViewController:loginView];
+    }
+    
 //[firstNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 //    [secondNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 //    [thirdNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
@@ -206,9 +223,15 @@
     return YES;
 }
 
+-(void)setRootView
+{
+// forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
+    [forthNav pushViewController:mineController animated:NO];
+    
+}
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
-    int index = tabBarController.selectedIndex;
+//    int index = tabBarController.selectedIndex;
     
 //    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
 //    [statTracker logEvent:@"TabClick3" eventLabel:[NSString stringWithFormat: @"Tab%d", index]];

@@ -21,6 +21,8 @@
     UIButton * oneButton;
     UIButton * twoButton;
     UIButton * thirdButton;
+    
+    BOOL needFeash;
 //    UITableView *myTableView;
     AllAroundPullView *bottomRefreshView;
     

@@ -126,6 +126,33 @@
 {
     [self refreashNavLab];
     [self refreashNav];
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
+    topImage.backgroundColor = [UIColor whiteColor];
+    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage.layer.masksToBounds = YES;//设为NO去试试
+    //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
+    
+    oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
+    oneButton.backgroundColor = [UIColor clearColor];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoButton.frame = CGRectMake(320/2,self.navigationController.navigationBar.frame.size.height+25, 320/2, 40);
+    twoButton.backgroundColor = [UIColor clearColor];
+    
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [oneButton setTitle:@"同城" forState:UIControlStateNormal];
+    [twoButton setTitle:@"我的" forState:UIControlStateNormal];
+    [self.view addSubview:topImage];
+    [self.view addSubview:oneButton];
+    [self.view addSubview:twoButton];
+    
     
     _searchButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _searchButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -133,8 +160,8 @@
     _searchButton.layer.masksToBounds = YES;//设为NO去试试
     
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 170, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-120) style:UITableViewStylePlain];
-    myTableView.allowsSelection=NO;
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 210, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-160) style:UITableViewStylePlain];
+    myTableView.allowsSelection=YES;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -145,8 +172,14 @@
     page =[[NSString alloc] init];
     page=@"1";
     pageCount=[[NSString alloc] init];
+    
+    dresserArray1 =[[NSMutableArray alloc] init];
+    page1 =[[NSString alloc] init];
+    page1=@"1";
+    pageCount1=[[NSString alloc] init];
+    
     sign =[[NSString alloc] init];
-    sign = @"4";
+    sign = @"1";
     
     bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
         NSLog(@"loadMore");
@@ -157,6 +190,29 @@
     
     
     [self getData];
+    [self getData1];
+}
+-(void)oneButtonClick
+{
+    //    [topImage setImage:[UIImage imageNamed:@"最新发型.png"]];
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    sign=@"1";
+    [myTableView reloadData];
+    
+}
+-(void)twoButtonClick
+{
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    //    [topImage setImage:[UIImage imageNamed:@"同城发型.png"]];
+    //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    sign=@"2";
+    
+    [myTableView reloadData];
+    
 }
 
 #pragma mark - View lifecycle
@@ -175,30 +231,58 @@
 }
 -(void)pullLoadMore
 {
-    NSInteger _pageCount= [pageCount integerValue];
     
-    NSInteger _page = [page integerValue];
-    
-    NSLog(@"page:%@",page);
-    NSLog(@"pageCount:%@",pageCount);
-    
-    if (_page<_pageCount) {
-        _page++;
-        page = [NSString stringWithFormat:@"%d",_page];
+    if ([sign isEqualToString:@"1"]) {
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
         NSLog(@"page:%@",page);
-        [self getData];
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
     }
     else
     {
-        [bottomRefreshView performSelector:@selector(finishedLoading)];
+        NSInteger _pageCount= [pageCount1 integerValue];
         
+        NSInteger _page = [page1 integerValue];
+        
+        NSLog(@"page1:%@",page1);
+        NSLog(@"pageCount1:%@",pageCount1);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page1 = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData1];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+            
+        }
     }
+    
 }
 -(void)getData
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
-    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=jobslist"]]];
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=jobs&a=jobsList&page%@",page]]];
+    
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:@"new" forKey:@"condition"];
     if (![areaText.text isEqualToString:@""])
     {
         [request setPostValue:areaText.text forKey:@"city"];
@@ -216,10 +300,17 @@
         for(int i =0; i < [newStr length]; i++)
         {
             temp = [newStr substringWithRange:NSMakeRange(i, 1)];
-            if ([temp isEqualToString:@"0"]||[temp isEqualToString:@"1"]||[temp isEqualToString:@"2"]||[temp isEqualToString:@"4"]||[temp isEqualToString:@"6"]||[temp isEqualToString:@"8"]) {
+            if ([temp isEqualToString:@"0"]||[temp isEqualToString:@"1"]||[temp isEqualToString:@"2"]||[temp isEqualToString:@"4"]||[temp isEqualToString:@"6"]||[temp isEqualToString:@"8"]||[temp isEqualToString:@"面"])
+            {
                 
                 [request setPostValue:[newStr substringWithRange:NSMakeRange(0, i-1)] forKey:@"job"];
-                [request setPostValue:[newStr substringWithRange:NSMakeRange(i-1, [newStr length]+1-i)] forKey:@"money"];
+                if ([temp isEqualToString:@"面"]) {
+                    [request setPostValue:@"0" forKey:@"money"];
+                }
+                else
+                {
+                    [request setPostValue:[newStr substringWithRange:NSMakeRange(i-1, [newStr length]+1-i)] forKey:@"money"];
+                }
                 break;
             }
         }
@@ -230,6 +321,54 @@
     request.tag=1;
     [request startAsynchronous];
 }
+
+-(void)getData1
+{
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=jobs&a=jobsList&page%@",page1]]];
+    
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    [request setPostValue:@"my" forKey:@"condition"];
+    if (![areaText.text isEqualToString:@""])
+    {
+        [request setPostValue:areaText.text forKey:@"city"];
+        
+    }
+    else
+    {
+        [request setPostValue:appDele.city forKey:@"city"];
+    }
+    
+    if (![cityText.text isEqualToString:@""]) {
+        NSString *newStr =cityText.text;
+        
+        NSString *temp = nil;
+        for(int i =0; i < [newStr length]; i++)
+        {
+            temp = [newStr substringWithRange:NSMakeRange(i, 1)];
+            if ([temp isEqualToString:@"0"]||[temp isEqualToString:@"1"]||[temp isEqualToString:@"2"]||[temp isEqualToString:@"4"]||[temp isEqualToString:@"6"]||[temp isEqualToString:@"8"]||[temp isEqualToString:@"面"])
+            {
+                
+                [request setPostValue:[newStr substringWithRange:NSMakeRange(0, i-1)] forKey:@"job"];
+                if ([temp isEqualToString:@"面"]) {
+                    [request setPostValue:@"0" forKey:@"money"];
+                }
+                else
+                {
+                    [request setPostValue:[newStr substringWithRange:NSMakeRange(i-1, [newStr length]+1-i)] forKey:@"money"];
+                }
+                break;
+            }
+        }
+        
+    }
+    
+    request.delegate=self;
+    request.tag=2;
+    [request startAsynchronous];
+}
+
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     NSMutableArray * arr;
@@ -258,8 +397,47 @@
             NSLog(@"dresser.count:%d",dresserArray.count);
             
         }
-        [self freashView];
+//        [self freashView];
     }
+    else if (request.tag==2) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"%@招聘列表dic:%@",sign,dic);
+        
+        pageCount1 = [dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"jobs_list"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"jobs_list"] isKindOfClass:[NSArray class]])
+        {
+            arr= [dic objectForKey:@"jobs_list"];
+            [dresserArray1 addObjectsFromArray:arr];
+            NSLog(@"dresser.count:%d",dresserArray1.count);
+            
+        }
+        
+    }
+    if (request.tag==202) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"删除成功dic:%@",dic);
+    }
+
+    [self freashView];
 }
 
 -(void)freashView
@@ -278,7 +456,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dresserArray.count;
+    if ([sign isEqualToString:@"1"]) {
+        return dresserArray.count;
+    }
+    else
+    {
+    return dresserArray1.count;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -299,8 +484,15 @@
     
     //    NSUInteger row3 = [indexPath row]*3+2;
     //    NSLog(@"row3:%d",row3);
-    
-    [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+    if ([sign isEqualToString:@"1"]) {
+        [cell setCell:[dresserArray objectAtIndex:row] andIndex:row];
+
+    }
+    else
+    {
+        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+
+    }
     
     
     //    if (row3<dresserArray.count)//防止可能越界
@@ -311,7 +503,59 @@
     return cell;
     
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([sign isEqualToString:@"2"]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+    // Return NO if you do not want the specified item to be editable.
+    
+}
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=jobs&a=jobsDel"]];
+        
+        request.delegate=self;
+        request.tag=202;
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:[[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"id"] forKey:@"id"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
+        
+        [request startAsynchronous];
+        
+        [dresserArray1 removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self cancelLocatePicker];
+    if ([sign isEqualToString:@"1"]) {
+        inviteDetail = nil;
+        inviteDetail  = [[inviteDetailViewController alloc] init] ;
+        inviteDetail.inforDic = [dresserArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:inviteDetail animated:NO];
+    }
+    else
+    {
+        inviteDetail = nil;
+        inviteDetail  = [[inviteDetailViewController alloc] init] ;
+        inviteDetail.inforDic = [dresserArray1 objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:inviteDetail animated:NO];
+    }
+    
+}
 -(void)leftButtonClick
 {
     if ([_hidden isEqualToString:@"yes"]) {
@@ -361,7 +605,7 @@
     [rightButton.layer setBorderWidth:1.0];
     [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [rightButton setTitle:@"发布" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [rightButton setBackgroundColor:[UIColor clearColor]];
     [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -386,11 +630,7 @@
 
 -(void)selectCell:(NSInteger)_index
 {
-    [self cancelLocatePicker];
-    inviteDetail = nil;
-    inviteDetail  = [[inviteDetailViewController alloc] init] ;
-    inviteDetail.inforDic = [dresserArray objectAtIndex:_index];
-    [self.navigationController pushViewController:inviteDetail animated:NO];
+    
 }
 - (void)didReceiveMemoryWarning
 {

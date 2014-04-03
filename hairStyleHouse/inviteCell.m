@@ -68,12 +68,12 @@
     addressLable.frame = CGRectMake(80, 55, 100, 15);
     timeLable.frame = CGRectMake(240, 55, 80, 15);
 
-    cellButton.frame = CGRectMake(0, 0, 320, 80);
+//    cellButton.frame = CGRectMake(0, 0, 320, 80);
     cellButton.tag=index;
 }
 -(void)cellButtonClick:(UIButton*)_btn
 {
-    [fatherView selectCell:_btn.tag];
+//    [fatherView selectCell:_btn.tag];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

@@ -25,7 +25,7 @@
     singleTableCellBackgroundViewController * backView;
     renewSingleTableCellBackgroundViewController * backView1;
     pubImageViewController * pubImage;
-
+    BOOL needFreashLogin;
 }
 @property(nonatomic,strong)NSString * freash;
 -(void)pushToViewController:(id)_sen;

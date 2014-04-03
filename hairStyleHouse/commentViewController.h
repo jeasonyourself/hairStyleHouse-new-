@@ -13,7 +13,7 @@
 #import "EGORefreshTableFooterView.h"
 @class dresserInforViewController;
 @class userInforViewController;
-@interface commentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EGORefreshTableFooterDelegate>
+@interface commentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;
     
@@ -43,9 +43,9 @@
 -(void)headButtonClick1:(NSInteger)_index;
 -(void)smallButtonClick1:(NSInteger)_index;
 
-//开始重新加载时调用的方法
-- (void)reloadTableViewDataSource;
-//完成加载时调用的方法
-- (void)doneLoadingTableViewData;
+////开始重新加载时调用的方法
+//- (void)reloadTableViewDataSource;
+////完成加载时调用的方法
+//- (void)doneLoadingTableViewData;
 
 @end

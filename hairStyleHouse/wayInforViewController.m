@@ -116,7 +116,7 @@
     sign = @"1";
     
     myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0, topImage.frame.size.height+topImage.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-topImage.frame.size.height-20) style:UITableViewStylePlain];
-    myTableView.allowsSelection=NO;
+    myTableView.allowsSelection=YES;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
@@ -139,39 +139,43 @@
 
 -(void)oneButtonClick
 {
-    if (needFeash==YES) {
-        page=@"0";
-        [self getData];
-        
-    }
-    else
-    {
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"1";
-    [myTableView reloadData];
-    }
     
-    
-}
--(void)twoButtonClick
-{
-    if (needFeash==YES) {
-        page=@"0";
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
         [self getData1];
-        
+        page2 = @"1";
+        [self getData2];
     }
     else
     {
-
+        [myTableView reloadData];
+    }
+}
+-(void)twoButtonClick
+{
     [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign =@"2";
-    [myTableView reloadData];
-    }
     
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
+        [self getData1];
+        page2 = @"1";
+        [self getData2];
+    }
+    else
+    {
+        [myTableView reloadData];
+    }
 }
 -(void)thirdButtonClick
 {
@@ -180,7 +184,18 @@
     [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     
     sign =@"3";
-    [myTableView reloadData];
+    if (needFeash == YES) {
+        page = @"1";
+        [self getData];
+        page1 = @"1";
+        [self getData1];
+        page2 = @"1";
+        [self getData2];
+    }
+    else
+    {
+        [myTableView reloadData];
+    }
     
 }
 
@@ -383,7 +398,13 @@
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     NSMutableArray * arr;
-    
+    if (needFeash == YES) {
+        needFeash = NO;
+
+        [dresserArray removeAllObjects];
+        [dresserArray1 removeAllObjects];
+        [dresserArray2 removeAllObjects];
+    }
     if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -471,7 +492,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"删除成功dic:%@",dic);
-        needFeash=YES;
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+            needFeash  = YES;
+        }
     }
 
     [self freashView];
@@ -609,7 +632,10 @@
 }
 -(void)rightButtonClick
 {
-
+    pubView = nil;
+    pubView = [[enterPubWayViewController alloc] init];
+    pubView.style=self.style;
+    [self.navigationController pushViewController:pubView animated:NO];
 }
 -(void)refreashNav
 {
@@ -652,20 +678,20 @@
 {
     UILabel * Lab= [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 100, 30)];
     
-    if ([self.style  isEqualToString:@"4"]) {
-        Lab.text = @"潮流学堂";
+    if ([self.style  isEqualToString:@"2"]) {
+        Lab.text = @"行业名人";
 
     }
     else if ([self.style  isEqualToString:@"5"]) {
-            Lab.text = @"护理方法";
+            Lab.text = @"优惠活动";
             
         }
         else if ([self.style  isEqualToString:@"1"]) {
-            Lab.text = @"品牌沙龙";
+            Lab.text = @"品牌名店";
             
         }
         else if ([self.style  isEqualToString:@"3"]) {
-            Lab.text = @"行业情报";
+            Lab.text = @"行业新闻";
             
         }
 
@@ -676,10 +702,25 @@
     self.navigationItem.titleView =Lab;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    wayDeatil = nil;
-    wayDeatil = [[wayDetailViewController alloc] init];
-    wayDeatil.inforDic = [dresserArray objectAtIndex:[indexPath row]];
-    [self.navigationController pushViewController:wayDeatil animated:NO];
+    if ([sign isEqualToString:@"1"]) {
+        wayDeatil = nil;
+        wayDeatil = [[wayDetailViewController alloc] init];
+        wayDeatil.inforDic = [dresserArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:wayDeatil animated:NO];
+    }
+    else if([sign isEqualToString:@"2"]) {
+        wayDeatil = nil;
+        wayDeatil = [[wayDetailViewController alloc] init];
+        wayDeatil.inforDic = [dresserArray1 objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:wayDeatil animated:NO];
+    }
+    else if([sign isEqualToString:@"3"]) {
+        wayDeatil = nil;
+        wayDeatil = [[wayDetailViewController alloc] init];
+        wayDeatil.inforDic = [dresserArray2 objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:wayDeatil animated:NO];
+    }
+    
 }
 -(void)selectCell:(NSInteger)_index
 {

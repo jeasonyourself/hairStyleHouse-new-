@@ -96,6 +96,17 @@
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [self.view addSubview:myTableView];
         [self getData];
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = YES;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
 	// Do any additional setup after loading the view.
 }
 
@@ -175,16 +186,7 @@
 
     }
         
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
-        _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
-        //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
-        _activityIndicatorView.color = [UIColor grayColor];
-        //设置活动指示器的颜色
-        _activityIndicatorView.hidesWhenStopped = NO;
-        //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
-        [self.view addSubview:_activityIndicatorView];
-        //将对象加入到view
+        
         
         [_activityIndicatorView startAnimating];
     }

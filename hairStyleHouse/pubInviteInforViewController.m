@@ -316,9 +316,10 @@
     else
     {
         ASIFormDataRequest* request;
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Infostation&a=jobsadd"]]];
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=jobs&a=jobsAdd"]]];
         
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request setPostValue:_numTextField.text forKey:@"number"];
         [request setPostValue:_addressTextField.text forKey:@"address"];
         [request setPostValue:_nameTextField.text forKey:@"store_name"];
@@ -333,10 +334,17 @@
             for(int i =0; i < [newStr length]; i++)
             {
                 temp = [newStr substringWithRange:NSMakeRange(i, 1)];
-                if ([temp isEqualToString:@"0"]||[temp isEqualToString:@"1"]||[temp isEqualToString:@"2"]||[temp isEqualToString:@"4"]||[temp isEqualToString:@"6"]||[temp isEqualToString:@"8"]) {
+                if ([temp isEqualToString:@"0"]||[temp isEqualToString:@"1"]||[temp isEqualToString:@"2"]||[temp isEqualToString:@"4"]||[temp isEqualToString:@"6"]||[temp isEqualToString:@"8"]||[temp isEqualToString:@"面"])
+                {
                     
                     [request setPostValue:[newStr substringWithRange:NSMakeRange(0, i-1)] forKey:@"job"];
+                    if ([temp isEqualToString:@"面"]) {
+                        [request setPostValue:@"1" forKey:@"interviews"];
+                    }
+                    else
+                    {
                     [request setPostValue:[newStr substringWithRange:NSMakeRange(i-1, [newStr length]+1-i)] forKey:@"money"];
+                    }
                     break;
                 }
             }

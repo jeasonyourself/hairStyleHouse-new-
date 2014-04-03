@@ -127,6 +127,7 @@
         NSLog(@"headStr11111:%@",headStr);
         
         firstBack.frame =CGRectMake(5, 5, 152, 230);
+
         firstBack.backgroundColor = [UIColor colorWithRed:243.0/256.0 green:242.0/256.0 blue:241.0/256.0 alpha:1.0];
         
         // 下载图片
@@ -183,7 +184,13 @@
         contentLable.text = [NSString stringWithFormat:@"%@",commentStr];
         contentLable.textColor = [UIColor colorWithRed:240.0/256.0 green:26.0/256.0 blue:98.0/256.0 alpha:1.0];
         
+        secondBack.frame =CGRectMake(0, 0, 0, 0);
         secondImage.frame =CGRectMake(0, 0, 0, 0);
+        introduceView2.frame=CGRectMake(0, 0, 0, 0);
+        likeAmount2.frame =CGRectMake(0, 0, 0, 0);
+        secondButton.frame = CGRectMake(0, 0, 0, 0);
+        voteLable2.frame = CGRectMake(0, 0, 0, 0);
+        contentLable2.frame = CGRectMake(0, 0, 0, 0);
     }
     else if (index%2==1)
     {

@@ -5,12 +5,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>美发学徒</string>
@@ -18,12 +19,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>美发助理</string>
@@ -31,12 +33,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>发型师</string>
@@ -44,12 +47,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>烫染技师</string>
@@ -57,12 +61,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>技术总监</string>
@@ -70,12 +75,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>0-1500</string>
-			<string>1500-3000</string>
-			<string>3000-4000</string>
-			<string>4000-6000</string>
-			<string>6000-8000</string>
-			<string>8000-10000</string>
+			<string>0-1500元</string>
+			<string>1500-3000元</string>
+			<string>3000-4000元</string>
+			<string>4000-6000元</string>
+			<string>6000-8000元</string>
+			<string>8000-10000元</string>
+			<string>面谈薪资</string>
 		</array>
 		<key>state</key>
 		<string>美发店长</string>

@@ -11,7 +11,7 @@
 #import "wayInforCell.h"
 #import "wayDetailViewController.h"
 #import "YFJLeftSwipeDeleteTableView.h"
-
+#import "enterPubWayViewController.h"
 @interface wayInforViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView * topImage;
@@ -36,6 +36,7 @@
     
     wayDetailViewController * wayDeatil;
 
+    enterPubWayViewController * pubView;
 }
 @property(nonatomic,strong) YFJLeftSwipeDeleteTableView  *myTableView;
 @property(nonatomic,strong)NSString* style;
