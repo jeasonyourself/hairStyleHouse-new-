@@ -53,9 +53,23 @@
 #pragma mark - HZAreaPicker delegate
 -(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
 {
-    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
-        self.areaValue = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
-    } else{
+    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict)
+    {
+        if ([picker.locate.state isEqualToString:@"北京"]||[picker.locate.state isEqualToString:@"天津"]||[picker.locate.state isEqualToString:@"上海"]||[picker.locate.state isEqualToString:@"重庆"]) {
+            self.areaValue = [NSString stringWithFormat:@"%@市", picker.locate.state];
+            
+        }
+        else if ([picker.locate.state isEqualToString:@"香港"]||[picker.locate.state isEqualToString:@"澳门"])
+        {
+            self.areaValue = [NSString stringWithFormat:@"%@特别行政区", picker.locate.state];
+        }
+        else
+        {
+            self.areaValue = [NSString stringWithFormat:@"%@市", picker.locate.city];
+        }
+    }
+    else
+    {
         self.cityValue = [NSString stringWithFormat:@"%@ %@", picker.locate.state, picker.locate.city];
     }
 }
@@ -171,14 +185,26 @@
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
         NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
-        NSUInteger dataLength = [imageData length];
         
-        if(dataLength > MAX_IMAGEDATA_LEN) {
-             imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-        } else {
-            imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
+        NSUInteger dataLength = [imageData length];
+        if(dataLength > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
         }
-
+        
+        NSUInteger dataLength1 = [imageData length];
+        if(dataLength1 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(_headImage.image, 0.1);
+        }
+        
+        NSUInteger dataLength2 = [imageData length];
+        if(dataLength2 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(_headImage.image, 0.01);
+        }
+        
+        
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=5;
@@ -199,7 +225,7 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     
     
@@ -207,7 +233,7 @@
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
@@ -376,9 +402,17 @@
         
         [_activityIndicatorView stopAnimating];
         _activityIndicatorView.hidesWhenStopped = YES;
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-        [alert show];
-        [self leftButtonClick];
+        if ([dic objectForKey:@"101"]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+            [self leftButtonClick];
+        }
+        else
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改出错" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
 //            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=success"]];
 //            request.delegate=self;

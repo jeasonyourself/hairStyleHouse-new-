@@ -66,14 +66,14 @@
         CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
         
         contentLable.frame = CGRectMake(22, 18, labelsize.width, labelsize.height);
-        picImage.frame =CGRectMake(20, labelsize.height+28, 150, 200);
+        picImage.frame =CGRectMake(20, labelsize.height+28, 150, 210);
         if ([picStr isEqualToString:@""])
         {
             backImage.frame = CGRectMake(self.frame.size.width-60-labelsize.width-50, 10, labelsize.width+50, labelsize.height+40);
         }
         else
         {
-            backImage.frame = CGRectMake(self.frame.size.width-60-200, 10, 200, labelsize.height+50+200);
+            backImage.frame = CGRectMake(self.frame.size.width-60-200, 10, 200, labelsize.height+50+210);
         }
         timeLable.frame = CGRectMake(100,backImage.frame.size.height+10 , 120, 20);
         
@@ -106,14 +106,14 @@
         CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
         
         contentLable.frame = CGRectMake(28, 18, labelsize.width, labelsize.height);
-        picImage.frame =CGRectMake(30, labelsize.height+28, 150, 200);
+        picImage.frame =CGRectMake(30, labelsize.height+28, 150, 210);
         if ([picStr isEqualToString:@""])
         {
             backImage.frame = CGRectMake(60, 10, labelsize.width+50, labelsize.height+40);
         }
         else
         {
-            backImage.frame = CGRectMake(60, 10, 200, labelsize.height+50+200);
+            backImage.frame = CGRectMake(60, 10, 200, labelsize.height+50+210);
         }
         timeLable.frame = CGRectMake(100,backImage.frame.size.height+10 , 120, 20);
         backImage.image = [backImage.image stretchableImageWithLeftCapWidth:backImage.image.size.width*0.5 topCapHeight:backImage.image.size.height*0.6];

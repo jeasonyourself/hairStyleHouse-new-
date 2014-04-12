@@ -64,7 +64,7 @@
     severTimeLable.font = [UIFont systemFontOfSize:12.0];
     severTimeLable.textColor = [UIColor blackColor];
     severTimeLable.text = @"服务时间：               小时";
-    [_secondBackView addSubview:severTimeLable];
+//    [_secondBackView addSubview:severTimeLable];
     
     severTime = [[UITextField alloc] initWithFrame:CGRectMake(65, 15+170, 50, 22)];
     severTime.delegate = self;
@@ -79,15 +79,15 @@
     severTime.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     severTime.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     severTime.layer.masksToBounds = YES;//设为NO去试试
-    [_secondBackView addSubview:severTime];
+//    [_secondBackView addSubview:severTime];
     
-    UILabel * severPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(5, 42+170, 200, 30)];
+    UILabel * severPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(5, 10+170, 200, 30)];
     severPriceLable.font = [UIFont systemFontOfSize:12.0];
     severPriceLable.textColor = [UIColor blackColor];
     severPriceLable.text = @"服务价格：               元";
     [_secondBackView addSubview:severPriceLable];
     
-    severPrice = [[UITextField alloc] initWithFrame:CGRectMake(65, 47+170, 50, 22)];
+    severPrice = [[UITextField alloc] initWithFrame:CGRectMake(65, 15+170, 50, 22)];
     severPrice.delegate=self;
     severPrice.keyboardType = UIKeyboardTypeNumberPad;
     severPrice.textAlignment = NSTextAlignmentCenter;
@@ -101,13 +101,13 @@
     [_secondBackView addSubview:severPrice];
     
     
-    UILabel * saleLable1 = [[UILabel alloc] initWithFrame:CGRectMake(170, 42+170, 200, 30)];
+    UILabel * saleLable1 = [[UILabel alloc] initWithFrame:CGRectMake(170, 10+170, 200, 30)];
     saleLable1.font = [UIFont systemFontOfSize:12.0];
     saleLable1.textColor = [UIColor blackColor];
     saleLable1.text = @"优惠折扣：               折";
     [_secondBackView addSubview:saleLable1];
     
-    saleLable = [[UILabel alloc] initWithFrame:CGRectMake(230, 47+170, 50, 22)];
+    saleLable = [[UILabel alloc] initWithFrame:CGRectMake(230, 15+170, 50, 22)];
     saleLable.backgroundColor=[UIColor whiteColor];
     saleLable.font = [UIFont systemFontOfSize:12.0];
     saleLable.text =@"9.5";
@@ -132,13 +132,13 @@
     [_secondBackView addSubview:saleButton];
     [_secondBackView addSubview:saleLable];
     
-    UILabel * reallLable1 = [[UILabel alloc] initWithFrame:CGRectMake(170, 180, 240, 30)];
+    UILabel * reallLable1 = [[UILabel alloc] initWithFrame:CGRectMake(5, 42+170, 240, 30)];
     reallLable1.font = [UIFont systemFontOfSize:12.0];
     reallLable1.textColor = [UIColor blackColor];
     reallLable1.text = @"实际价格：";
     [_secondBackView addSubview:reallLable1];
     
-    reallPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(235, 180, 200, 30)];
+    reallPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(70, 42+170, 200, 30)];
     reallPriceLable.font = [UIFont systemFontOfSize:12.0];
     reallPriceLable.textColor = [UIColor blackColor];
     reallPriceLable.text = @"  --  元";
@@ -426,17 +426,25 @@
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
             UIImageView  * imageview =[imageArr objectAtIndex:0];
-            NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-            NSUInteger dataLength = [imageData length];
-            
-            if(dataLength > MAX_IMAGEDATA_LEN)
-            {
-                imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-            } else
-            {
-                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-            }
-            
+        NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+        
+        NSUInteger dataLength = [imageData length];
+        if(dataLength > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+        }
+        
+        NSUInteger dataLength1 = [imageData length];
+        if(dataLength1 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+        }
+        
+        NSUInteger dataLength2 = [imageData length];
+        if(dataLength2 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
+        }
             [request appendPostData:imageData];
             request.delegate=self;
             request.tag=1;
@@ -620,13 +628,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
@@ -634,13 +642,12 @@
     sureButton=[[UIButton alloc] init];
     sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     sureButton.userInteractionEnabled =YES;
-    [sureButton.layer setMasksToBounds:YES];
-    [sureButton.layer setCornerRadius:3.0];
-    [sureButton.layer setBorderWidth:1.0];
-    [sureButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
-    [sureButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    sureButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    sureButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    sureButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    sureButton.layer.masksToBounds = YES;//设为NO去试试
     [sureButton setTitle:@"确定" forState:UIControlStateNormal];
-    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [sureButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
     sureButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
@@ -972,15 +979,23 @@
                 
                 
                 NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-                NSUInteger dataLength = [imageData length];
                 
+                NSUInteger dataLength = [imageData length];
                 if(dataLength > MAX_IMAGEDATA_LEN)
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
                 }
-                else
+                
+                NSUInteger dataLength1 = [imageData length];
+                if(dataLength1 > MAX_IMAGEDATA_LEN)
                 {
-                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+                }
+                
+                NSUInteger dataLength2 = [imageData length];
+                if(dataLength2 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
                 }
                 
                 [request appendPostData:imageData];
@@ -1029,14 +1044,23 @@
              ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
             UIImageView  * imageview =[imageArr objectAtIndex:2];
             NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-            NSUInteger dataLength = [imageData length];
             
+            NSUInteger dataLength = [imageData length];
             if(dataLength > MAX_IMAGEDATA_LEN)
             {
                 imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-            } else
+            }
+            
+            NSUInteger dataLength1 = [imageData length];
+            if(dataLength1 > MAX_IMAGEDATA_LEN)
             {
-                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+            }
+            
+            NSUInteger dataLength2 = [imageData length];
+            if(dataLength2 > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
             }
             
             [request appendPostData:imageData];
@@ -1081,16 +1105,24 @@
             ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
             UIImageView  * imageview =[imageArr objectAtIndex:3];
             NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-            NSUInteger dataLength = [imageData length];
             
+            NSUInteger dataLength = [imageData length];
             if(dataLength > MAX_IMAGEDATA_LEN)
             {
                 imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-            } else
-            {
-                imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
             }
             
+            NSUInteger dataLength1 = [imageData length];
+            if(dataLength1 > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+            }
+            
+            NSUInteger dataLength2 = [imageData length];
+            if(dataLength2 > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
+            }
             [request appendPostData:imageData];
             request.delegate=self;
             request.tag=4;

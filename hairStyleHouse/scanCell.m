@@ -12,6 +12,7 @@
 #import "UIImageView+MJWebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "AppDelegate.h"
 @implementation scanCell
 @synthesize fatherView;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -87,6 +88,7 @@
 //        NSLog(@"headStr11111:%@",headStr);
         
         // 下载图片firstBack.frame =CGRectMake(5, 5, 152, 230);
+       
         firstBack.frame =CGRectMake(5, 5, 152, 230);
 
         firstBack.backgroundColor = [UIColor colorWithRed:243.0/256.0 green:242.0/256.0 blue:241.0/256.0 alpha:1.0];
@@ -103,7 +105,14 @@
         firstImage.clipsToBounds = YES;
         firstImage.contentMode = UIViewContentModeScaleAspectFill;
  
+        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        if (![appDele.uid isEqualToString:fatherView.uid]) {
+            firstImage.frame =CGRectMake(5, 5, 142, 220);
+        }
+        else
+        {
         firstImage.frame =CGRectMake(5, 5, 142, 185);
+        }
         introduceView.frame = CGRectMake(0, firstImage.frame.size.height+firstImage.frame.origin.y, 142,firstBack.frame.size.height-firstImage.frame.size.height-firstImage.frame.origin.y);
 //        secondImage.frame =CGRectMake(0, 0, 0, 0);
         
@@ -113,7 +122,12 @@
         firstShareButton.frame=CGRectMake(115, 5, 30, 30);
         firstShareButton.tag=index;
         [firstShareButton addTarget:self action:@selector(ShareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        
+        if (![appDele.uid isEqualToString:fatherView.uid]) {
+            [introduceView removeFromSuperview];
+        }
+        else
+        {
+        }
         secondBack.frame =CGRectMake(0, 0, 0, 0);
         secondImage.frame =CGRectMake(0, 0, 0, 0);
         introduceView2.frame=CGRectMake(0, 0, 0, 0);
@@ -140,7 +154,16 @@
         // 内容模式
         secondImage.clipsToBounds = YES;
         secondImage.contentMode = UIViewContentModeScaleAspectFill;
-        secondImage.frame =CGRectMake(5, 5, 142, 185);
+        
+         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+        if (![appDele.uid isEqualToString:fatherView.uid]) {
+            secondImage.frame =CGRectMake(5, 5, 142, 220);
+        }
+        else
+        {
+            secondImage.frame =CGRectMake(5, 5, 142, 185);
+        }
+      
         introduceView2.frame = CGRectMake(0,secondImage.frame.size.height+secondImage.frame.origin.y, 142,secondBack.frame.size.height-secondImage.frame.size.height-secondImage.frame.origin.y);
         secondDleButton.frame=CGRectMake(5, 5, 30, 30);
         secondDleButton.tag=index;
@@ -149,6 +172,13 @@
         secondShareButton.frame=CGRectMake(115, 5, 30, 30);
         secondShareButton.tag=index;
         [secondShareButton addTarget:self action:@selector(ShareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (![appDele.uid isEqualToString:fatherView.uid]) {
+            [introduceView2 removeFromSuperview];
+        }
+        else
+        {
+        }
 //        thirdImage.frame =CGRectMake(0, 0, 0, 0);
     }
 //    else if (index%3==2)

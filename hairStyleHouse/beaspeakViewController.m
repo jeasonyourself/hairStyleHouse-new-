@@ -36,11 +36,18 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     if ([dresserOrCommen isEqualToString:@"dresser"]) {
+        
+        pageCount  = [[NSString alloc] init];
+        page=[[NSString alloc] init];
+        page = @"1";
         myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     }
     else
     {
     
+        pageCount  = [[NSString alloc] init];
+        page=[[NSString alloc] init];
+        page = @"1";
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
     topImage.backgroundColor = [UIColor whiteColor];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
@@ -142,13 +149,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -169,28 +176,33 @@
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     ASIFormDataRequest* request;
     if ([dresserOrCommen isEqualToString:@"dresser"]) {
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reserve_run"]];
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderList&page=%@",page]]];
         request.delegate=self;
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
+
         [request startAsynchronous];
     }
     else
     {
     
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=current"]];
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderView"]];
         request.delegate=self;
         request.tag=11;
         [request setPostValue:appDele.uid forKey:@"uid"];
         [request setPostValue:@"-1" forKey:@"order_id"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
 
         [request startAsynchronous];
 
         
-         ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=history"]];
+         ASIFormDataRequest* request1=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderList&page=%@",page]]];
         request1.delegate=self;
         request1.tag=1;//发型师查看列表历史页
         [request1 setPostValue:appDele.uid forKey:@"uid"];
+        [request1 setPostValue:appDele.secret forKey:@"secret"];
+
         [request1 startAsynchronous];
     }
     
@@ -214,13 +226,14 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"预约列表dic:%@",dic);
         
-        if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSString class]])
+        pageCount=[dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"orderList"] isKindOfClass:[NSString class]])
         {
             
         }
-        else if ([[dic objectForKey:@"order_list"] isKindOfClass:[NSArray class]])
+        else if ([[dic objectForKey:@"orderList"] isKindOfClass:[NSArray class]])
         {
-            dresserArray = [dic objectForKey:@"order_list"];
+            dresserArray = [dic objectForKey:@"orderList"];
             
         }
         [self freashView];
@@ -238,13 +251,13 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"当前预约dic:%@",dic);
         
-        if ([[dic objectForKey:@"order_info"] isKindOfClass:[NSString class]])
+        if ([[dic objectForKey:@"orderInfo"] isKindOfClass:[NSString class]])
         {
             
         }
         else
         {
-            inforDic = [dic objectForKey:@"order_info"];
+            inforDic = [dic objectForKey:@"orderInfo"];
             [self freashView];
             
         }
@@ -306,7 +319,15 @@
     {
         if (nowOrhistory==YES)//当前预约
         {
-            return myTableView.frame.size.height;
+            if ([[inforDic objectForKey:@"order_type"] isEqualToString:@"1"]) {
+                return myTableView.frame.size.height;
+            }
+            else
+            {
+            return myTableView.frame.size.height+200;
+            }
+            
+            
         }
         else
             
@@ -342,6 +363,7 @@
         if (cell==nil)
         {
             cell=[[beaspeakCellAgain alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.fatherView=self;
         }
 
         if (nowOrhistory==YES)
@@ -397,6 +419,15 @@
     
 }
 
+-(void)pushDresserView:(NSString*)str
+{
+    dreserView =nil;
+    dreserView =[[dresserInforViewController alloc] init];
+    dreserView.uid = str;
+    [self.navigationController pushViewController:dreserView animated:NO];
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    [ appDele pushToViewController:dreserView];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

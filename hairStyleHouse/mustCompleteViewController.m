@@ -56,7 +56,7 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-//    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+//    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:0];
     [leftButton setBackgroundColor:[UIColor colorWithRed:0/256.0 green:0/256.0 blue:0/256.0 alpha:0]];
 //    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

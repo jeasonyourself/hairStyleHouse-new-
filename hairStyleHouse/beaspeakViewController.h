@@ -10,6 +10,9 @@
 #import "beaspeakCell.h"
 #import "beaspeakDresserViewController.h"
 #import "beaspeakCellAgain.h"
+#import "dresserInforViewController.h"
+@class AllAroundPullView;
+
 @interface beaspeakViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
@@ -25,6 +28,14 @@
     
     beaspeakCellAgain *beaspeakView;
     
+    NSString * page;
+    NSString * pageCount;
+    NSString * sign;
+    AllAroundPullView *bottomRefreshView;
+    
+    dresserInforViewController * dreserView;
+
 }
 @property(strong,nonatomic)NSString * dresserOrCommen;
+-(void)pushDresserView:(NSString*)str;
 @end

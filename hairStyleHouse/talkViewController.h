@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "talkCell.h"
+#define MAX_IMAGEDATA_LEN 2000000.0
 @interface talkViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSString * uid;

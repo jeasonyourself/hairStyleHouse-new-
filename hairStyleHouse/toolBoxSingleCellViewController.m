@@ -69,12 +69,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
 - (IBAction)fashinButtonClick:(id)sender
 {
     wayView = nil;
     wayView= [[wayInforViewController alloc] init];
     wayView._hidden = @"no";
-    wayView.style = @"4";
+    wayView.style = @"3";
 
     [fatherController pushToViewController:wayView];
 }
@@ -99,5 +102,14 @@
 
     [fatherController pushToViewController:wayView];
 
+}
+
+- (IBAction)famarButtonClick:(id)sender {
+    wayView = nil;
+    wayView= [[wayInforViewController alloc] init];
+    wayView._hidden = @"no";
+    wayView.style = @"2";
+    
+    [fatherController pushToViewController:wayView];
 }
 @end

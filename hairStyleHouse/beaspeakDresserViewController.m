@@ -56,6 +56,18 @@
     [sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
     sureButton.frame = CGRectMake(40,400, 100, 30);
     
+   
+    _rejectButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _rejectButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+
+    _rejectButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _rejectButton.layer.masksToBounds = YES;//设为NO去试试
+    
+    _refuButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    _refuButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _refuButton.layer.borderColor = [[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _refuButton.layer.masksToBounds = YES;//设为NO去试试
+    
     
     cancelButton=[[UIButton alloc] init];
     cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -98,17 +110,17 @@
 //    [cancelButton1 addTarget:self action:@selector(cancelButton1Click) forControlEvents:UIControlEventTouchUpInside];
 //    cancelButton1.frame = CGRectMake(50, 400, 220, 30);
     
-    [self.view addSubview:sureButton];
-    [self.view addSubview:cancelButton];
-    [self.view addSubview:sureButton1];
+//    [self.view addSubview:sureButton];
+//    [self.view addSubview:cancelButton];
+//    [self.view addSubview:sureButton1];
 //    [self.view addSubview:cancelButton1];
     
-    [_secondView addSubview:sureButton];
-    [_secondView addSubview:cancelButton];
-    [_secondView addSubview:sureButton1];
+//    [_secondView addSubview:sureButton];
+//    [_secondView addSubview:cancelButton];
+//    [_secondView addSubview:sureButton1];
 //    [_secondView addSubview:cancelButton1];
     
-    _secondView.hidden=YES;
+//    _secondView.hidden=YES;
     
     if ([dresserOrCommen isEqualToString:@"dresser"]) {
         
@@ -127,7 +139,7 @@
     cancelButton.hidden = YES;
     sureButton1.hidden=YES;
 //    cancelButton1.hidden = YES;
-    [self getData];
+//    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -135,6 +147,7 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
+    [self getData];
     NSString* cName = [NSString stringWithFormat:@"我的预约"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     
@@ -187,13 +200,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -218,21 +231,23 @@
     if ([dresserOrCommen isEqualToString:@"dresser"])
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reserve_info"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderView"]];
         request.delegate=self;
         request.tag=11;
         [request setPostValue:appDele.uid forKey:@"uid"];
         [request setPostValue:self.orderId forKey:@"order_id"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request startAsynchronous];
     }
     else
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=current"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderView"]];
         request.delegate=self;
         request.tag=1;
         [request setPostValue:appDele.uid forKey:@"uid"];
         [request setPostValue:self.orderId forKey:@"order_id"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request startAsynchronous];
     }
     
@@ -253,12 +268,12 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"用户查看预约详情dic:%@",dic);
-        if ([[dic objectForKey:@"order_info"] isKindOfClass:[NSString class]]) {
+        if ([[dic objectForKey:@"orderInfo"] isKindOfClass:[NSString class]]) {
             
         }
         else
         {
-        orderInfor = [dic objectForKey:@"order_info"];
+        orderInfor = [dic objectForKey:@"orderInfo"];
         }
         
         
@@ -266,11 +281,11 @@
         {
             _secondView.hidden=YES;
             
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
-            request.delegate=self;
-            request.tag=2;
-            [request setPostValue:[orderInfor objectForKey:@"to_uid"] forKey:@"uid"];
-            [request startAsynchronous];
+//            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
+//            request.delegate=self;
+//            request.tag=2;
+//            [request setPostValue:[orderInfor objectForKey:@"to_uid"] forKey:@"uid"];
+//            [request startAsynchronous];
             
             if ([[orderInfor objectForKey:@"status"] isEqualToString:@"1"])
             {
@@ -327,38 +342,68 @@
             
 
         }
-
+        [self freashView];
     }
     
-     if (request.tag==2)
+     else if (request.tag==9)
     { 
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
-            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
-        NSLog(@"预约发型师详情dic:%@",dic);
-        if ([[[dic objectForKey:@"notice_info"] objectForKey:@"info"] isKindOfClass:[NSString class]])
+        NSLog(@"修改状态dic:%@",dic);
+        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
         {
-        
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新预约状态成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+            
+            _statusLable.text=@"已接受";
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=NO;
+            
         }
-        else if ([[[dic objectForKey:@"notice_info"] objectForKey:@"info"] isKindOfClass:[NSArray class]])
+        else
         {
-          dresserArray = [[dic objectForKey:@"notice_info"] objectForKey:@"info"];
-                    
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新预约状态失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
         }
-        
-        
-        
-        [self freashView];
 
     }
+     else if (request.tag==99)
+     {
+         NSLog(@"%@",request.responseString);
+         NSData*jsondata = [request responseData];
+         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+         jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+         jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+         jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+         NSDictionary* dic=[jsonP objectWithString:jsonString];
+         NSLog(@"修改状态dic:%@",dic);
+         
+         if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+         {
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新预约状态成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+             [alert show];
+             
+             _statusLable.text=@"已拒绝";
+             _rejectButton.hidden=YES;
+             _refuButton.hidden=YES;
+             
+         }
+         else
+         {
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"更新预约状态失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+             [alert show];
+         }
+     }
     
-    
-    if (request.tag==11)
+    else if (request.tag==11)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -370,25 +415,23 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"发型师查看详情dic:%@",dic);
         
-        
-        if ([[dic objectForKey:@"order_info"] isKindOfClass:[NSString class]])
-        {
+        if ([[dic objectForKey:@"orderInfo"] isKindOfClass:[NSString class]]) {
             
         }
         else
         {
-            orderInfor = [dic objectForKey:@"order_info"];
-            
+            orderInfor = [dic objectForKey:@"orderInfo"];
         }
+        
         if ([[orderInfor objectForKey:@"order_type"] isEqualToString:@"1"])//预约的是发型师
         {
             _secondView.hidden=YES;
             
-            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
-            request.delegate=self;
-            request.tag=2;
-            [request setPostValue:[orderInfor objectForKey:@"to_uid"] forKey:@"uid"];
-            [request startAsynchronous];
+//            ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Reserve&a=notice_show"]];
+//            request.delegate=self;
+//            request.tag=2;
+//            [request setPostValue:[orderInfor objectForKey:@"to_uid"] forKey:@"uid"];
+//            [request startAsynchronous];
             
             if ([[orderInfor objectForKey:@"status"] isEqualToString:@"1"])
             {
@@ -438,7 +481,7 @@
     }
 
     
-    if (request.tag==101)
+   else if (request.tag==101)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -464,7 +507,7 @@
         }
     }
     
-    if (request.tag==102)
+    else if (request.tag==102)
     {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -502,156 +545,162 @@
     
     if ([dresserOrCommen isEqualToString:@"dresser"])
     {
+        //    NSString * headStr= [orderInfor objectForKey:@"head_photo"];
         NSString * nameStr = [orderInfor objectForKey:@"my_name"];
-        NSString * mobileStr = [orderInfor objectForKey:@"my_tel"];
+        NSString * storeStr = [orderInfor objectForKey:@"store_name"];
+        //    NSString * mobileStr = [orderInfor objectForKey:@"telephone"];
+        NSString * addressStr = [orderInfor objectForKey:@"store_address"];
         NSString * timeStr = [orderInfor objectForKey:@"reserve_time"];
-        NSString * hourStr = [orderInfor objectForKey:@"reserve_hour"];
-//        NSString * orderStr = [orderInfor objectForKey:@"order_type"];
+        //    NSString * hourStr = [orderInfor objectForKey:@"reserve_hour"];
         NSString * typeStr = [orderInfor objectForKey:@"reserve_type"];
         NSString * priceStr = [orderInfor objectForKey:@"reserve_price"];
         NSString * imageStr= [orderInfor objectForKey:@"image_path"];
-        NSLog(@"%@",orderInfor);
-        
+        NSString *stateString=[orderInfor objectForKey:@"status"];
         if ([[orderInfor objectForKey:@"order_type"] isEqualToString:@"1"])//预约的是发型师
         {
-            _storeLable.text=[NSString stringWithFormat:@"预约者姓名: %@",nameStr];
-            _mobileLable.text =[NSString stringWithFormat:@"预约号码: %@",mobileStr];
-            _addressLable.text =[NSString stringWithFormat:@"预约时间: %@%@",timeStr,hourStr];
-            
-                _brespeakLable.text =[NSString stringWithFormat:@"预约类型: %@",typeStr];
-                
-            
-//                _otherTypeLable.text =[NSString stringWithFormat:@"预约下图发型"];
-//                [_picImage setImageWithURL:[NSURL URLWithString:imageStr]];
-            
-            
-            _priceLable.text =[NSString stringWithFormat:@"%@元",priceStr];
-            
-            if (dresserArray.count==1) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0] ];
-                
-            }
-            else if (dresserArray.count==2) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                
-                
-            }
-            else if (dresserArray.count==3) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-            }
-            else if (dresserArray.count==4) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-                _forthLable.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
-            }
-            else if (dresserArray.count==5) {
-                
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-                _forthLable.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
-                _fifthLable.text= [NSString stringWithFormat:@"5、%@",[dresserArray objectAtIndex:4]];
-            }
-            else if (dresserArray.count==0)
-            {
-                
-            }
-
-        }
-            else//预约的是发型
-            {
-                _otherNameLable.text=[NSString stringWithFormat:@"预约者姓名: %@",nameStr];
-                _otherMobileLable.text =[NSString stringWithFormat:@"预约号码: %@",mobileStr];
-                _otherTimeLable.text =[NSString stringWithFormat:@"预约时间: %@%@",timeStr,hourStr];
-                
-                _otherTypeLable.text =[NSString stringWithFormat:@"预约类型: %@",typeStr];
-                
-                
-                _otherTypeLable.text =[NSString stringWithFormat:@"预约下图发型"];
-               [_picImage setImageWithURL:[NSURL URLWithString:imageStr]];
-                
-                
-                _otherMoneyLable.text =[NSString stringWithFormat:@"%@元",priceStr];
-            }
-        
-        
-    }
-    else
-    {
-    
-//    NSString * headStr= [orderInfor objectForKey:@"head_photo"];
-    NSString * nameStr = [orderInfor objectForKey:@"to_username"];
-    NSString * storeStr = [orderInfor objectForKey:@"store_name"];
-    NSString * mobileStr = [orderInfor objectForKey:@"telephone"];
-    NSString * addressStr = [orderInfor objectForKey:@"store_address"];
-    NSString * timeStr = [orderInfor objectForKey:@"reserve_time"];
-    NSString * hourStr = [orderInfor objectForKey:@"reserve_hour"];
-    NSString * typeStr = [orderInfor objectForKey:@"reserve_type"];
-    NSString * priceStr = [orderInfor objectForKey:@"reserve_price"];
-        NSString * imageStr= [orderInfor objectForKey:@"image_path"];
-        if ([[orderInfor objectForKey:@"order_type"] isEqualToString:@"1"])//预约的是发型师
-        {
-            _nameLable.text=nameStr;
+            _nameLable.text=[NSString stringWithFormat:@"用户名称:%@",nameStr];;
             _storeLable.text = [NSString stringWithFormat:@"发型店名称:%@",storeStr];
-            _mobileLable.text =[NSString stringWithFormat:@"预约号码:%@",mobileStr];
+            //            _mobileLable.text =[NSString stringWithFormat:@"预约号码:%@",mobileStr];
             _addressLable.text = [NSString stringWithFormat:@"详细地址:%@",addressStr];
-            _brespeakLable.text =[NSString stringWithFormat:@"预约时间:%@%@",timeStr,hourStr];
+            _brespeakLable.text =[NSString stringWithFormat:@"预约时间:%@",timeStr];
             _typeLable.text =[NSString stringWithFormat:@"预约类型:%@",typeStr];
-             _priceLable.text =[NSString stringWithFormat:@"%@元",priceStr];
+            _priceLable.text =[NSString stringWithFormat:@"价格：￥%@",priceStr];
             
-            if (dresserArray.count==1) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0] ];
-                
-            }
-            else if (dresserArray.count==2) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                
-                
-            }
-            else if (dresserArray.count==3) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-            }
-            else if (dresserArray.count==4) {
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-                _forthLable.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
-            }
-            else if (dresserArray.count==5) {
-                
-                _firstLable.text = [NSString stringWithFormat:@"1、%@",[dresserArray objectAtIndex:0]];
-                _secondLable.text = [NSString stringWithFormat:@"2、%@",[dresserArray objectAtIndex:1]];
-                _thirdLable.text= [NSString stringWithFormat:@"3、%@",[dresserArray objectAtIndex:2]];
-                _forthLable.text= [NSString stringWithFormat:@"4、%@",[dresserArray objectAtIndex:3]];
-                _fifthLable.text= [NSString stringWithFormat:@"5、%@",[dresserArray objectAtIndex:4]];
-            }
-            else if (dresserArray.count==0)
-            {
-                
-            }
-
         }
         else//预约的是发型
         {
-            _otherNameLable.text=[NSString stringWithFormat:@"发型店名称: %@",nameStr];
-            _otherMobileLable.text =[NSString stringWithFormat:@"预约号码: %@",mobileStr];
-            _otherTimeLable.text =[NSString stringWithFormat:@"预约时间: %@%@",timeStr,hourStr];
-            
-            _otherTypeLable.text =[NSString stringWithFormat:@"预约类型: %@",typeStr];
-            
-            
-            _otherTypeLable.text =[NSString stringWithFormat:@"预约下图发型"];
+            _nameLable.text=[NSString stringWithFormat:@"用户名称:%@",nameStr];;
+            _storeLable.text = [NSString stringWithFormat:@"发型店名称:%@",storeStr];
+            //            _mobileLable.text =[NSString stringWithFormat:@"预约号码:%@",mobileStr];
+            _addressLable.text = [NSString stringWithFormat:@"详细地址:%@",addressStr];
+            _brespeakLable.text =[NSString stringWithFormat:@"预约时间:%@",timeStr];
+            _typeLable.text =[NSString stringWithFormat:@"预约类型:%@",typeStr];
+            _priceLable.text =[NSString stringWithFormat:@"价格：￥%@",priceStr];
             [_picImage setImageWithURL:[NSURL URLWithString:imageStr]];
+            [_picImage.layer setCornerRadius:5.0];
+            [_picImage.layer setBorderWidth:0.0];
+            [_picImage.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+        }
+        if ([stateString isEqualToString:@"0"])
+        {
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=YES;
+            _statusLable.text=@"用户取消";
+        }
+        else if ([stateString isEqualToString:@"1"])
+        {
+            [_rejectButton setTitle:@"接受预约" forState:UIControlStateNormal];
+            [_refuButton setTitle:@"拒绝预约" forState:UIControlStateNormal];
+            _statusLable.text=@"进行中";
+        }
+        else if ([stateString isEqualToString:@"2"])
+        {
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=YES;
+            _statusLable.text=@"待评价";
+        }
+        else if ([stateString isEqualToString:@"3"])
+        {
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=YES;
+             _statusLable.text=@"自己取消";
+        }
+        else if ([stateString isEqualToString:@"4"])
+        {
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=YES;
+             _statusLable.text=@"已完成";
+        }
+        else if ([stateString isEqualToString:@"5"])
+        {
+            _rejectButton.hidden=YES;
+            _refuButton.hidden=NO;
+             _statusLable.text=@"已接受";
+        }
+
+        //    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
+        
+        
+    }
+    else//用户查看历史预约详情
+    {
+    
+        _rejectButton.hidden=YES;
+        _refuButton.hidden=YES;
+        
+
+//    NSString * headStr= [orderInfor objectForKey:@"head_photo"];
+    NSString * nameStr = [orderInfor objectForKey:@"to_name"];
+    NSString * storeStr = [orderInfor objectForKey:@"store_name"];
+//    NSString * mobileStr = [orderInfor objectForKey:@"telephone"];
+    NSString * addressStr = [orderInfor objectForKey:@"store_address"];
+    NSString * timeStr = [orderInfor objectForKey:@"reserve_time"];
+//    NSString * hourStr = [orderInfor objectForKey:@"reserve_hour"];
+    NSString * typeStr = [orderInfor objectForKey:@"reserve_type"];
+    NSString * priceStr = [orderInfor objectForKey:@"reserve_price"];
+        NSString * imageStr= [orderInfor objectForKey:@"image_path"];
+        
+        NSString *stateString=[orderInfor objectForKey:@"status"];
+        
+        if ([stateString isEqualToString:@"0"])
+        {
+            _statusLable.text=@"自己取消";
+        }
+        else if ([stateString isEqualToString:@"1"])
+        {
+
+             _statusLable.text=@"进行中";
             
+        }
+        else if ([stateString isEqualToString:@"2"])
+        {
             
-            _otherMoneyLable.text =[NSString stringWithFormat:@"%@元",priceStr];
+            _rejectButton.hidden=NO;
+            [_refuButton setTitle:@"去评价" forState:UIControlStateNormal];
+            _refuButton.hidden=YES;
+             _statusLable.text=@"待评价";
+        }
+        else if ([stateString isEqualToString:@"3"])
+        {
+           
+            _statusLable.text=@"对方取消";
+        }
+        else if ([stateString isEqualToString:@"4"])
+        {
+            
+            _statusLable.text=@"已完成";
+        }
+        else if ([stateString isEqualToString:@"5"])
+        {
+            
+            _statusLable.text=@"已接受";
+        }
+        
+        
+        if ([[orderInfor objectForKey:@"order_type"] isEqualToString:@"1"])//预约的是发型师
+        {
+            _nameLable.text=[NSString stringWithFormat:@"发型师名称:%@",nameStr];;
+            _storeLable.text = [NSString stringWithFormat:@"发型店名称:%@",storeStr];
+//            _mobileLable.text =[NSString stringWithFormat:@"预约号码:%@",mobileStr];
+            _addressLable.text = [NSString stringWithFormat:@"详细地址:%@",addressStr];
+            _brespeakLable.text =[NSString stringWithFormat:@"预约时间:%@",timeStr];
+            _typeLable.text =[NSString stringWithFormat:@"预约类型:%@",typeStr];
+             _priceLable.text =[NSString stringWithFormat:@"价格：￥%@",priceStr];
+            
+        }
+        else//预约的是发型
+        {
+            _nameLable.text=[NSString stringWithFormat:@"发型师名称:%@",nameStr];;
+            _storeLable.text = [NSString stringWithFormat:@"发型店名称:%@",storeStr];
+            //            _mobileLable.text =[NSString stringWithFormat:@"预约号码:%@",mobileStr];
+            _addressLable.text = [NSString stringWithFormat:@"详细地址:%@",addressStr];
+            _brespeakLable.text =[NSString stringWithFormat:@"预约时间:%@",timeStr];
+            _typeLable.text =[NSString stringWithFormat:@"预约类型:%@",typeStr];
+            _priceLable.text =[NSString stringWithFormat:@"价格：￥%@",priceStr];
+            [_picImage setImageWithURL:[NSURL URLWithString:imageStr]];
+            [_picImage.layer setCornerRadius:5.0];
+            [_picImage.layer setBorderWidth:0.0];
+            [_picImage.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
         }
     
 //    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
@@ -672,5 +721,74 @@
     dreserView =[[dresserInforViewController alloc] init];
     dreserView.uid = [orderInfor objectForKey:@"to_uid"];
     [self.navigationController pushViewController:dreserView animated:NO];
+}
+
+
+- (IBAction)lookButtonClick:(id)sender {
+    
+    if ([dresserOrCommen isEqualToString:@"dresser"])
+    {
+        userView =nil;
+        userView =[[userInforViewController alloc] init];
+        userView.uid = [orderInfor objectForKey:@"my_uid"];
+        [self.navigationController pushViewController:userView animated:NO];
+    }
+    else
+    {
+        dreserView =nil;
+        dreserView =[[dresserInforViewController alloc] init];
+        dreserView.uid = [orderInfor objectForKey:@"to_uid"];
+        [self.navigationController pushViewController:dreserView animated:NO];
+
+
+    }
+   
+    
+}
+- (IBAction)rejectButtonClick:(id)sender {
+     if ([dresserOrCommen isEqualToString:@"dresser"])
+     {
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderStatus"]];
+    request.delegate=self;
+    request.tag=9;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    
+    [request setPostValue:orderId forKey:@"order_id"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+    
+    
+    
+    [request setPostValue:@"5" forKey:@"status"];
+    [request startAsynchronous];
+     }
+    else
+    {
+        sendEvalute =nil;
+        sendEvalute =[[sendEvaluateViewController alloc] init];
+        sendEvalute.uid = [orderInfor objectForKey:@"to_uid"];
+        sendEvalute.orderId = [orderInfor objectForKey:@"id"];
+        [self.navigationController pushViewController:sendEvalute animated:NO];
+    }
+
+    
+}
+- (IBAction)refuButtonClick:(id)sender {
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderStatus"]];
+    request.delegate=self;
+    request.tag=99;
+    [request setPostValue:appDele.uid forKey:@"uid"];
+    
+    [request setPostValue:orderId forKey:@"order_id"];
+    [request setPostValue:appDele.secret forKey:@"secret"];
+    
+    
+    
+    [request setPostValue:@"3" forKey:@"status"];
+    [request startAsynchronous];
 }
 @end

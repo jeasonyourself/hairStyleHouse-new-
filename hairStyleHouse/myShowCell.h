@@ -32,8 +32,11 @@
     UILabel* voteLable2;
 
     UILabel * likeAmount2;
+    
+    UITextView * textV;
     myShowViewController * fatherView;
 }
 @property(nonatomic,strong) myShowViewController * fatherView;
 -(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index;
+-(void)setSingleCell;
 @end

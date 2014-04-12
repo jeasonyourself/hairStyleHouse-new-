@@ -37,6 +37,34 @@
     [self refreashNavLab];
     [self refreashNav];
     self.view.backgroundColor = [UIColor whiteColor];
+
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        dresserArray =[[NSMutableArray alloc] init];
+        page =[[NSString alloc] init];
+        page=@"1";
+        pageCount=[[NSString alloc] init];
+        sign=@"1";
+        myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+        myTableView.allowsSelection=YES;
+        [myTableView setSeparatorInset:UIEdgeInsetsZero];
+        myTableView.dataSource=self;
+        myTableView.delegate=self;
+        myTableView.backgroundColor=[UIColor whiteColor];
+        [self.view addSubview:myTableView];
+        
+        bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+            NSLog(@"loadMore");
+            [self pullLoadMore];
+            self.view.frame=CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20,  self.view.bounds.size.width, self.view.bounds.size.height );
+            myTableView=[[YFJLeftSwipeDeleteTableView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+        }];
+        bottomRefreshView.hidden=NO;
+        [myTableView addSubview:bottomRefreshView];
+        [self getData];
+    }
+    else
+    {
     topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
     [topImage setBackgroundColor:[UIColor whiteColor]];
     topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
@@ -135,6 +163,7 @@
     [self getData];
     [self getData1];
     [self getData2];
+    }
 }
 
 -(void)oneButtonClick
@@ -645,25 +674,30 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
-    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    if ([appDele.type isEqualToString:@"1"]) {
+        
+    }
+    else
+    {
     UIButton * rightButton=[[UIButton alloc] init];
     rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton.layer setMasksToBounds:YES];
-    [rightButton.layer setCornerRadius:3.0];
-    [rightButton.layer setBorderWidth:1.0];
-    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    rightButton.layer.masksToBounds = YES;//设为NO去试试
     [rightButton setTitle:@"发布" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [rightButton setBackgroundColor:[UIColor clearColor]];
     [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -671,6 +705,7 @@
     rightButton.frame = CGRectMake(12,20, 60, 25);
     UIBarButtonItem *rightButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem=rightButtonItem;
+    }
     
 }
 

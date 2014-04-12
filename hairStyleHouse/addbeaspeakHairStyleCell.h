@@ -28,6 +28,7 @@
     UILabel* howMuchLable;
     UILabel * timeLable;
     
+    
 }
 @property(nonatomic,strong)addBeaspeakHairStyleViewController *fatherController;
 -(void)setFirstCell:(NSDictionary * )_dic andArr:(NSMutableArray *)_arr;

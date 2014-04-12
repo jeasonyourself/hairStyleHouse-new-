@@ -293,13 +293,23 @@
 //            http://wap.faxingw.cn/index.php?m=Up&a=add_img
 //            http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img
             NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
-            NSUInteger dataLength = [imageData length];
             
+            
+            NSUInteger dataLength = [imageData length];
             if(dataLength > MAX_IMAGEDATA_LEN) {
                 imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-            } else {
-                imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
             }
+                NSUInteger dataLength1 = [imageData length];
+                if(dataLength1 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(_headImage.image, 0.1);
+                }
+                
+                NSUInteger dataLength2 = [imageData length];
+                if(dataLength2 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(_headImage.image, 0.01);
+                }
             
             NSLog(@"uid:%@",appDele.uid);
             NSLog(@"secret:%@",appDele.secret);
@@ -341,14 +351,23 @@
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
         NSData *imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
-        NSUInteger dataLength = [imageData length];
-        
-        if(dataLength > MAX_IMAGEDATA_LEN) {
-            imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-        } else {
-            imageData = UIImageJPEGRepresentation(_headImage.image, 1.0);
-        }
-        
+            NSUInteger dataLength = [imageData length];
+            if(dataLength > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(_headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
+            }
+            
+            NSUInteger dataLength1 = [imageData length];
+            if(dataLength1 > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(_headImage.image, 0.1);
+            }
+            
+            NSUInteger dataLength2 = [imageData length];
+            if(dataLength2 > MAX_IMAGEDATA_LEN)
+            {
+                imageData = UIImageJPEGRepresentation(_headImage.image, 0.01);
+            }
         [request appendPostData:imageData];
         request.delegate=self;
         request.tag=5;

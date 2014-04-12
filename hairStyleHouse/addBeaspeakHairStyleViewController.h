@@ -10,12 +10,15 @@
 #import "addbeaspeakHairStyleCell.h"
 #import "sendBeaspeakHairStyleViewController.h"
 #import "talkViewController.h"
-
+#import "AllAroundPullView.h"
 @interface addBeaspeakHairStyleViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSDictionary * inforDic;
     
     UITableView *myTableView;
+    AllAroundPullView *bottomRefreshView;
+    NSString * page;
+    NSString * pageCount;
     
     NSDictionary * workInforDic;
     NSMutableArray * dresserArray;
@@ -26,6 +29,10 @@
     
     talkViewController * talkView;
     sendBeaspeakHairStyleViewController * beaspeakHairStyleView;
+    
+    UIActivityIndicatorView * _activityIndicatorView ;
+    
+   
 }
 @property (nonatomic,strong)NSDictionary * inforDic;
 -(void)askButtonClick:(NSInteger)_index;

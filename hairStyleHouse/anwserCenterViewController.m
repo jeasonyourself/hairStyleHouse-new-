@@ -40,6 +40,7 @@
 
     if (!appDele.uid) {
         
+        
         [myTableView removeFromSuperview];
         [oneButton removeFromSuperview];
         [twoButton removeFromSuperview];
@@ -757,6 +758,30 @@
 
 -(void)freashView
 {
+    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    if (!appDele.uid) {
+        
+           }
+    else
+    {
+        if ([appDele.type isEqualToString:@"1"]) {
+            if (dresserArray2.count==0) {
+                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+                [myTableView setSeparatorInset:UIEdgeInsetsZero];
+
+            }
+        }
+        else
+        {
+            if (dresserArray.count==0) {
+                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+                [myTableView setSeparatorInset:UIEdgeInsetsZero];
+                
+            }
+        }
+    }
     [bottomRefreshView performSelector:@selector(finishedLoading)];
     
     [myTableView reloadData];
@@ -931,17 +956,17 @@
         if ([appDele.type isEqualToString:@"1"]) {
             
             leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [leftButton.layer setMasksToBounds:YES];
-            [leftButton.layer setCornerRadius:3.0];
-            [leftButton.layer setBorderWidth:1.0];
-            [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+            leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            leftButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+            leftButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+            leftButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
             [leftButton setTitle:@"刷新" forState:UIControlStateNormal];
             leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
             [leftButton setBackgroundColor:[UIColor clearColor]];
             [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
             [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
             [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-            leftButton.frame = CGRectMake(0,28, 60, 25);
+            leftButton.frame = CGRectMake(0,28, 60, 26);
             UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
             self.navigationItem.leftBarButtonItem=leftButtonItem;
 
@@ -950,12 +975,12 @@
             
             UIButton * rightButton=[[UIButton alloc] init];
             rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [rightButton.layer setMasksToBounds:YES];
-            [rightButton.layer setCornerRadius:3.0];
-            [rightButton.layer setBorderWidth:1.0];
-            [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+            rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+            rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+            rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+            rightButton.layer.masksToBounds = YES;//设为NO去试试
             [rightButton setTitle:@"发布" forState:UIControlStateNormal];
-            rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+            rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
             [rightButton setBackgroundColor:[UIColor clearColor]];
             [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
             [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -994,8 +1019,8 @@
             talkView = [[talkViewController alloc] init];
             talkView.talkOrQuestion=@"question";
             talkView._hidden  =@"yes";
-            talkView.questionId= [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"pid"];
-            talkView.uid = [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"ta_id"];
+            talkView.questionId= [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"id"];
+            talkView.uid = [[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"uid"];
             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
             
             [appDele pushToViewController:talkView];
@@ -1006,8 +1031,8 @@
             talkView = [[talkViewController alloc] init];
             talkView.talkOrQuestion=@"question";
             talkView._hidden  =@"yes";
-            talkView.questionId= [[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"pid"];
-            talkView.uid = [[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"ta_id"];
+            talkView.questionId= [[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"id"];
+            talkView.uid = [[dresserArray1 objectAtIndex:[indexPath row]] objectForKey:@"uid"];
             AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
             
             [appDele pushToViewController:talkView];

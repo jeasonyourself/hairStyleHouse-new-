@@ -205,13 +205,13 @@
         [leftButton.layer setCornerRadius:3.0];
         [leftButton.layer setBorderWidth:1.0];
         [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-        [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+        [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         [leftButton setBackgroundColor:[UIColor clearColor]];
         [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        leftButton.frame = CGRectMake(0,28, 60, 25);
+        leftButton.frame = CGRectMake(0,28, 24, 26);
         UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
         self.navigationItem.leftBarButtonItem=leftButtonItem;
     }
@@ -285,7 +285,7 @@
         else if ([worksOrsaveorCan isEqualToString:@"can"])//会做作品
         {
             
-                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoList&page=%@",page]]];
+                request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=willdo&a=willDoList&page=%@",page]]];
             
             
         }
@@ -534,7 +534,7 @@
             NSString *string1 = [localcleanDresserArray[i] objectForKey:@"work_id"];
             if ([string1 isEqualToString:str1])
             {
-                for (int j = i; j<=localcleanDresserArray.count-1; j++) {
+                for (int j = i; j<localcleanDresserArray.count; j++) {
                     [localcleanDresserArray removeObjectAtIndex:j];
                 }
                 break;
@@ -544,6 +544,8 @@
     
     else
     {
+        
+        
     NSInteger index1=0;
     NSInteger index2=0;
     NSString * str1 = [localDresserArray[_index] objectForKey:@"work_id"];

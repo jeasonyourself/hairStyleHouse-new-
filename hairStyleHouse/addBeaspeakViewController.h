@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "scanImageViewController.h"
 #import "lookEvaluateViewController.h"
-
-@interface addBeaspeakViewController : UIViewController
+@class TPKeyboardAvoidingScrollView;
+@interface addBeaspeakViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSString * styleString;
     NSString * oldPriceString;
@@ -30,24 +30,58 @@
     
     scanImageViewController * scanView;
     lookEvaluateViewController * lookEvaluate;
+    NSMutableArray * firstArr;
+    NSMutableArray * secondArr;
+    UILabel * firstLable;
+    UILabel * secondLable;
+    UILabel * thirdLable;
+    UILabel *forthLable;
+    BOOL select;
+    
+    NSMutableArray *yearArray;
+    //    NSMutableArray *monthArray;
+    //    NSMutableArray *DaysArray;
+    //    NSMutableArray *amPmArray;
+    NSMutableArray *hoursArray;
+    NSMutableArray *minutesArray;
+    
+    NSString *currentMonthString;
+    
+    int selectedYearRow;
+    int selectedMonthRow;
+    int selectedDayRow;
+    
+    BOOL firstTimeLoad;
+
 
 }
 @property (strong, nonatomic)  NSString * _hidden;
 @property (strong, nonatomic)  NSMutableDictionary * inforDic;
+
+@property (strong, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIView *backView;
 
 @property (strong, nonatomic) IBOutlet UIView *firstView;
 @property (strong, nonatomic) IBOutlet UIView *headBackView;
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UILabel *nameLable;
+@property (strong, nonatomic) IBOutlet UILabel *worksLable;
+
+@property (strong, nonatomic) IBOutlet UILabel *evaluateLable;
+@property (strong, nonatomic) IBOutlet UILabel *shalongLable;
+
 @property (strong, nonatomic) IBOutlet UILabel *cityLable;
 @property (strong, nonatomic) IBOutlet UILabel *placeLable;
+@property (strong, nonatomic) IBOutlet UILabel *telLable;
 
 @property (strong, nonatomic) IBOutlet UILabel *addressLable;
 @property (strong, nonatomic) IBOutlet UIButton *lookWorksButton;
 @property (strong, nonatomic) IBOutlet UIButton *lookEvauateButton;
 
 @property (strong, nonatomic) IBOutlet UIView *secondView;
+@property (strong, nonatomic) IBOutlet UITableView *firstTable;
+@property (strong, nonatomic) IBOutlet UITableView *secondTable;
+@property (strong, nonatomic) IBOutlet UILabel *introLable;
 
 @property (strong, nonatomic) IBOutlet UIButton *styleOneButton;
 
@@ -115,6 +149,7 @@
 
 - (IBAction)timeClockButtonClick:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField *timeField;
 
 - (IBAction)sureButtonClick:(id)sender;
 
@@ -136,4 +171,12 @@
 -(IBAction)textFiledReturnEditing:(id)sender;
 - (IBAction)touchDown:(id)sender;
 
+
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbarCancelDone;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *customPicker;
+- (IBAction)actionCancel:(id)sender;
+
+- (IBAction)actionDone:(id)sender;
 @end

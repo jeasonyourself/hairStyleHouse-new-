@@ -20,6 +20,7 @@
     UILabel * cityLable;
     UILabel *timeLable;
     UILabel *priceLable;
+    UILabel *oldPriceLable;
     UILabel *distanceLable;
 
      UILabel *addressLable;

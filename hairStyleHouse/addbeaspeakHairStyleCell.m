@@ -107,11 +107,11 @@
 -(void)setFirstCell:(NSDictionary * )_dic andArr:(NSMutableArray *)_arr
 {
 
-    picBackView.frame = CGRectMake(55, 5, 210, 230);
+    picBackView.frame = CGRectMake(55, 5, 170, 230);
     
     NSString* picStr = [_dic objectForKey:@"work_image"];
     [picImage setImageWithURL:[NSURL URLWithString:picStr]];
-    picImage.frame = CGRectMake(60, 10, 200, 220);
+    picImage.frame = CGRectMake(77, 10, 165, 220);
     
     NSString* headStr = [_dic objectForKey:@"head_photo"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
@@ -140,16 +140,18 @@
     askButton.frame = CGRectMake(270, 250, 40, 25);
     askButton.tag=-1;
     
-    NSString* contentStr = [_dic  objectForKey:@"long_service"];
-    if ([contentStr isEqualToString:@"0"]) {
-        contentLable.text=@"服务时长:暂无";
+    NSString* distanceStr = [_dic objectForKey:@"distance"] ;
+    if ([distanceStr isEqualToString:@"0"]) {
+        distanceLable.text=@"距离大概:暂无";
     }
     else
     {
-    contentLable.text=[NSString stringWithFormat:@"服务时长约：%@",contentStr];
+        distanceLable.text=[NSString stringWithFormat:@"距离大概：%@",distanceStr];
     }
-    contentLable.font = [UIFont systemFontOfSize:12];
-    contentLable.frame = CGRectMake(85, 265, 200, 20);
+//    distanceLable.textAlignment = NSTextAlignmentCenter;
+    
+    distanceLable.font = [UIFont systemFontOfSize:12];
+    distanceLable.frame = CGRectMake(85, 265, 200, 20);
     
     
     NSString* oldPriceStr = [_dic  objectForKey:@"price"];
@@ -170,12 +172,13 @@
     }
     else
     {
-        nowPriceLable.text=[NSString stringWithFormat:@"优惠价格：%@元（%@折扣）",nowPriceStr,[_dic  objectForKey:@"rebate"]];
+        nowPriceLable.text=[NSString stringWithFormat:@"优惠价格：%@元",nowPriceStr];
+//        [_dic  objectForKey:@"rebate"]
     }
     nowPriceLable.font = [UIFont systemFontOfSize:12];
     nowPriceLable.frame = CGRectMake(210, 285, 120, 20);
     
-    NSString* addressStr = [_dic objectForKey:@"store_address"] ;
+    NSString* addressStr = [_dic objectForKey:@"address"] ;
     UIFont *font = [UIFont systemFontOfSize:12.0];
     //设置一个行高上限
     CGSize size = CGSizeMake(200,200);
@@ -196,13 +199,6 @@
     addressLable.numberOfLines = 0;
     addressLable.font = [UIFont systemFontOfSize:12];
 
-
-    NSString* distanceStr = [_dic objectForKey:@"distance"] ;
-    distanceLable.text = distanceStr;
-    distanceLable.textAlignment = NSTextAlignmentCenter;
-
-    distanceLable.font = [UIFont systemFontOfSize:12];
-     distanceLable.frame = CGRectMake(220, 310, 100, 20);
     
     if (_arr.count==0)
     {
@@ -255,16 +251,23 @@
     beaspeakButton.tag=_index-1;
     askButton.tag=_index-1;
     
-    NSString* contentStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"long_service"];
-    if ([contentStr isEqualToString:@"0"]) {
-        contentLable.text=@"服务时长:暂无";
+    
+    NSString* distanceStr = [[_arr objectAtIndex:_index-1] objectForKey:@"distance"] ;
+    if ([distanceStr isEqualToString:@"0"]) {
+        distanceLable.text=@"距离大概:暂无";
     }
     else
     {
-        contentLable.text=[NSString stringWithFormat:@"服务时长约：%@",contentStr];
+        distanceLable.text=[NSString stringWithFormat:@"距离大概：%@",distanceStr];
     }
-    contentLable.font = [UIFont systemFontOfSize:12];
-    contentLable.frame = CGRectMake(85, 30, 200, 20);
+//    distanceLable.textAlignment = NSTextAlignmentCenter;
+    
+    distanceLable.font = [UIFont systemFontOfSize:12];
+    distanceLable.frame = CGRectMake(85, 30, 200, 20);
+//    NSString* contentStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"long_service"];
+//    
+//    contentLable.font = [UIFont systemFontOfSize:12];
+//    contentLable.frame = CGRectMake(85, 30, 200, 20);
     
     
     NSString* oldPriceStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"price"];
@@ -276,7 +279,7 @@
         oldPriceLable.text=[NSString stringWithFormat:@"平时价格：%@元",oldPriceStr];
     }
     oldPriceLable.font = [UIFont systemFontOfSize:12];
-    oldPriceLable.frame = CGRectMake(85, 50, 100, 20);
+    oldPriceLable.frame = CGRectMake(85, 50, 120, 20);
     
     
     NSString* nowPriceStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"reserve_price"];
@@ -285,10 +288,11 @@
     }
     else
     {
-        nowPriceLable.text=[NSString stringWithFormat:@"优惠价格：%@元（%@折扣）",nowPriceStr,[[_arr objectAtIndex:_index-1]  objectForKey:@"rebate"]];
+        nowPriceLable.text=[NSString stringWithFormat:@"优惠价格：%@元",nowPriceStr];
+//        ,[[_arr objectAtIndex:_index-1]  objectForKey:@"rebate"]
     }
     nowPriceLable.font = [UIFont systemFontOfSize:12];
-    nowPriceLable.frame = CGRectMake(180, 50, 100, 20);
+    nowPriceLable.frame = CGRectMake(210, 50, 120, 20);
     
     NSString* addressStr = [[_arr objectAtIndex:_index-1] objectForKey:@"store_address"] ;
     UIFont *font = [UIFont systemFontOfSize:12.0];
@@ -313,12 +317,7 @@
     addressLable.font = [UIFont systemFontOfSize:12];
     
     
-    NSString* distanceStr = [[_arr objectAtIndex:_index-1] objectForKey:@"distance"] ;
-    distanceLable.text = distanceStr;
-    distanceLable.textAlignment = NSTextAlignmentCenter;
-    
-    distanceLable.font = [UIFont systemFontOfSize:12];
-    distanceLable.frame = CGRectMake(220, 75, 100, 20);
+   
     
     if (_arr.count==0)
     {

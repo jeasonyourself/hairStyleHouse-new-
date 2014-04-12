@@ -41,50 +41,69 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
 //    [topImage setImage:[UIImage imageNamed:@"全部.png"]];
-    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 320, 40)];
-    topImage.backgroundColor = [UIColor whiteColor];
-    topImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    topImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
-    topImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 60)];
+    [topImage setImage:[UIImage imageNamed:@"未选择默认.png"]];
+    topImage.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
+    topImage.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    topImage.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+    topImage.layer.borderColor = [[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     topImage.layer.masksToBounds = YES;//设为NO去试试
     
     oneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    oneButton.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+25, 80, 40);
+    oneButton.frame = CGRectMake(0, topImage.frame.origin.y, 160, topImage.frame.size.height);
+    oneButton.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    oneButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    oneButton.layer.masksToBounds = YES;//设为NO去试试
     oneButton.backgroundColor = [UIColor clearColor];
     [oneButton addTarget:self action:@selector(oneButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     twoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoButton.frame = CGRectMake(80,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
+    twoButton.frame = CGRectMake(160,topImage.frame.origin.y, 160, topImage.frame.size.height);
+    twoButton.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    twoButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    twoButton.layer.masksToBounds = YES;//设为NO去试试
+    twoButton.backgroundColor = [UIColor clearColor];
     twoButton.backgroundColor = [UIColor clearColor];
     [twoButton addTarget:self action:@selector(twoButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     thirdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    thirdButton.frame = CGRectMake(160,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
+    thirdButton.frame = oneButton.frame;
     thirdButton.backgroundColor = [UIColor clearColor];
     [thirdButton addTarget:self action:@selector(thirdButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     forthButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    forthButton.frame = CGRectMake(240,self.navigationController.navigationBar.frame.size.height+25, 80, 40);
+    forthButton.frame = twoButton.frame;
     forthButton.backgroundColor = [UIColor clearColor];
     [forthButton addTarget:self action:@selector(forthButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
+    fifthButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    fifthButton.frame = oneButton.frame;
+    fifthButton.backgroundColor = [UIColor clearColor];
+    [fifthButton addTarget:self action:@selector(fifthButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    sixthButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sixthButton.frame = twoButton.frame;
+    sixthButton.backgroundColor = [UIColor clearColor];
+    [sixthButton addTarget:self action:@selector(sixthButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     
     
-    [oneButton setTitle:@"洗剪吹" forState:UIControlStateNormal];
-    [twoButton setTitle:@"烫发" forState:UIControlStateNormal];
-    [thirdButton setTitle:@"染发" forState:UIControlStateNormal];
-    [forthButton setTitle:@"护理" forState:UIControlStateNormal];
+    [oneButton setTitle:@"服务项" forState:UIControlStateNormal];
+    [twoButton setTitle:@"排序" forState:UIControlStateNormal];
+//    [thirdButton setTitle:@"染发" forState:UIControlStateNormal];
+//    [forthButton setTitle:@"护理" forState:UIControlStateNormal];
 
     [self.view addSubview:topImage];
     [self.view addSubview:oneButton];
     [self.view addSubview:twoButton];
-    [self.view addSubview:thirdButton];
-    [self.view addSubview:forthButton];
+//    [self.view addSubview:thirdButton];
+//    [self.view addSubview:forthButton];
     
     dresserArray =[[NSMutableArray alloc] init];
     dresserArray1 =[[NSMutableArray alloc] init];
@@ -108,7 +127,7 @@
     sign = @"all";
     fromFouceLoginCancel=@"all";
     
-    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
+    myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, topImage.frame.origin.y+topImage.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height-50) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
@@ -125,6 +144,69 @@
     [myTableView addSubview:bottomRefreshView];
     
     
+    
+    categryOneArr = [[NSMutableArray alloc] initWithObjects:@"默认",@"洗剪吹",@"冷烫",@"数码烫",@"烫发",@"染发",@"挑染",@"护理",@"盘发",@"剪发",@"离子烫", nil];
+    
+    categryTwoArr = [[NSMutableArray alloc] initWithObjects:@"默认",@"价格↑ ",@"价格↓",@"距离↑", nil];
+    serviceStr  = [[NSString alloc] initWithFormat:@"洗剪吹"];
+    sortStr = [[NSString alloc] initWithFormat:@"0"];
+    categryOne = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,  self.view.frame.size.height)];
+//    categryOne.backgroundColor = [UIColor blackColor];
+//    categryOne.alpha=0.2;
+    categryBackOne= [[UIView alloc] initWithFrame:CGRectMake(0, oneButton.frame.size.height+oneButton.frame.origin.y, self.view.frame.size.width,  self.view.frame.size.height/2+100)];
+    categryBackOne.backgroundColor = [UIColor colorWithRed:239.0/256.0 green:239.0/256.0 blue:239.0/256.0 alpha:1.0];
+    categryBackOne1= [[UIView alloc] initWithFrame:CGRectMake(0, categryBackOne.frame.size.height+categryBackOne.frame.origin.y, self.view.frame.size.width,  self.view.frame.size.height-categryBackOne.frame.size.height-categryBackOne.frame.origin.y)];
+    categryBackOne1.backgroundColor = [UIColor blackColor];
+    categryBackOne1.alpha=0.2;
+    clearButtonOne = [[UIButton alloc] initWithFrame:categryOne.frame];
+    [clearButtonOne addTarget:self action:@selector(categoryButtonOneClick) forControlEvents:UIControlEventTouchDown];
+    categryTableOne=[[UITableView alloc] initWithFrame:CGRectMake(0, oneButton.frame.size.height+oneButton.frame.origin.y, 160, categryBackOne.frame.size.height-25) style:UITableViewStylePlain];
+    categryTableOne.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    categryTableOne.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+    categryTableOne.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    categryTableOne.layer.masksToBounds = YES;//设为NO去试试
+    categryTableOne.allowsSelection=YES;
+    [categryTableOne setSeparatorInset:UIEdgeInsetsZero];
+    categryTableOne.dataSource=self;
+    categryTableOne.delegate=self;
+    categryTableOne.backgroundColor=[UIColor whiteColor];
+    [categryOne addSubview:categryBackOne];
+    [categryOne addSubview:categryBackOne1];
+    [categryOne addSubview:clearButtonOne];
+    [categryOne addSubview:categryTableOne];
+    [categryOne addSubview:thirdButton];
+    [categryOne addSubview:forthButton];
+    [self.view addSubview:categryOne];
+    
+    
+    
+    categryTwo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,  self.view.frame.size.height)];
+    categryTwo.backgroundColor = [UIColor clearColor];
+    categryBacktwo= [[UIView alloc] initWithFrame:CGRectMake(0, twoButton.frame.size.height+twoButton.frame.origin.y, self.view.frame.size.width,  self.view.frame.size.height/2+100)];
+    categryBacktwo.backgroundColor = [UIColor colorWithRed:239.0/256.0 green:239.0/256.0 blue:239.0/256.0 alpha:1.0];
+    categryBacktwo1= [[UIView alloc] initWithFrame:CGRectMake(0, categryBacktwo.frame.size.height+categryBacktwo.frame.origin.y, self.view.frame.size.width,  self.view.frame.size.height-categryBacktwo.frame.size.height-categryBacktwo.frame.origin.y)];
+    categryBacktwo1.backgroundColor = [UIColor blackColor];
+    categryBacktwo1.alpha=0.2;
+    clearButtonTwo = [[UIButton alloc] initWithFrame:categryTwo.frame];
+    [clearButtonTwo addTarget:self action:@selector(clearButtonTwoClick) forControlEvents:UIControlEventTouchDown];
+    categryTableTwo=[[UITableView alloc] initWithFrame:CGRectMake(160, twoButton.frame.size.height+twoButton.frame.origin.y, 160, self.view.frame.size.height/2-45) style:UITableViewStylePlain];
+    categryTableTwo.allowsSelection=YES;
+    [categryTableTwo setSeparatorInset:UIEdgeInsetsZero];
+    categryTableTwo.dataSource=self;
+    categryTableTwo.delegate=self;
+    categryTableTwo.backgroundColor=[UIColor whiteColor];
+    [categryTwo addSubview:categryBacktwo];
+    [categryTwo addSubview:categryBacktwo1];
+
+    [categryTwo addSubview:clearButtonTwo];
+    [categryTwo addSubview:categryTableTwo];
+    [categryTwo addSubview:fifthButton];
+    [categryTwo addSubview:sixthButton];
+//    categryTwo.hidden = YES;
+    [self.view addSubview:categryTwo];
+    
+    categryOne.hidden=YES;
+    categryTwo.hidden=YES;
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //    if (appDele.uid)
 //    {
@@ -141,6 +223,20 @@
 //    }
 }
 
+
+-(void)categoryButtonOneClick
+{
+   
+        categryOne.hidden=YES;
+
+    
+}
+-(void)clearButtonTwoClick
+{
+   
+        categryTwo.hidden=YES;
+   
+}
 #pragma mark - View lifecycle
 
 -(void) viewDidAppear:(BOOL)animated
@@ -241,10 +337,15 @@
 {
     rightButton=[[UIButton alloc] init];
     rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton.layer setMasksToBounds:YES];
-    [rightButton.layer setCornerRadius:3.0];
-    [rightButton.layer setBorderWidth:1.0];
-    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    rightButton.layer.masksToBounds = YES;//设为NO去试试
+    
+    rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    rightButton.layer.masksToBounds = YES;//设为NO去试试
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     cityStr = [[NSString alloc] init];
     lonStr = [[NSString alloc] init];
@@ -266,7 +367,7 @@
     }
     
     
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
 //    [rightButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
     [rightButton setBackgroundColor:[UIColor clearColor]];
     [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
@@ -337,10 +438,24 @@
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-//    [requestMain clearDelegatesAndCancel];
+    
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    
+    if (categryOne.hidden==YES) {
+        [topImage setImage:[UIImage imageNamed:@"选择服务.png"]];
+        categryOne.hidden=NO;
+    }
+    else
+    {
+        [topImage setImage:[UIImage imageNamed:@"未选择默认.png"]];
+        categryOne.hidden=YES;
+        
+    }
+    //    [requestMain clearDelegatesAndCancel];
     sign =@"all";
     fromFouceLoginCancel=@"all";
-    [myTableView reloadData];
+//    [myTableView reloadData];
 //    page=@"1";
 ////    [dresserArray removeAllObjects];
 //    [self getData];
@@ -353,10 +468,25 @@
     [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 //    [requestMain clearDelegatesAndCancel];
+    
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+
+    
+    if (categryTwo.hidden==YES) {
+        categryTwo.hidden=NO;
+        [topImage setImage:[UIImage imageNamed:@"选择排序.png"]];
+    }
+    else
+    {
+        categryTwo.hidden=YES;
+        [topImage setImage:[UIImage imageNamed:@"未选择默认.png"]];
+        
+    }
 
     sign =@"sameCity";
     fromFouceLoginCancel=@"sameCity";
-    [myTableView reloadData];
+//    [myTableView reloadData];
 
 //    page1=@"1";
 ////    [dresserArray1 removeAllObjects];
@@ -365,59 +495,98 @@
 -(void)thirdButtonClick
 {
     
-    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+   
+    if (categryOne.hidden==YES) {
+        categryOne.hidden=NO;
+        [topImage setImage:[UIImage imageNamed:@"选择服务.png"]];
+        
+    }
+    else
+    {
+        categryOne.hidden=YES;
+        [topImage setImage:[UIImage imageNamed:@"未选择默认.png"]];
+        
+    }
+            categryTwo.hidden=YES;
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]forState:UIControlStateNormal];
-    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    
-//    [topImage setImage:[UIImage imageNamed:@"推荐.png"]];
-//    [requestMain clearDelegatesAndCancel];
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+   
+//    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [thirdButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]forState:UIControlStateNormal];
+//    [forthButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    
+//
+//    sign =@"introduce";
+//    fromFouceLoginCancel=@"introduce";
+//    [myTableView reloadData];
 
-    sign =@"introduce";
-    fromFouceLoginCancel=@"introduce";
-    [myTableView reloadData];
 
-//    page2=@"1";
-////    [dresserArray2 removeAllObjects];
-//    [self getData2];
-    
 }
 -(void)forthButtonClick
 {
-    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-    [forthButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
-//    [requestMain clearDelegatesAndCancel];
-
-    sign =@"fouce";
-//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    
+    [topImage setImage:[UIImage imageNamed:@"选择排序.png"]];
+    
+    categryOne.hidden = YES;
+   
+    categryTwo.hidden=NO;
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+  
+//    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [thirdButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+//    [forthButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
 //
-//    if (appDele.uid)
-//    {
-        [myTableView reloadData];
+//    sign =@"fouce";
+//
+//        [myTableView reloadData];
 
-//    }
-//    else
-//    {
-//        loginView=nil;
-//        loginView=[[loginViewController alloc] init];
-//        loginView._hidden=@"yes";
-//        loginView.dresserFatherController =self;
-//        loginView._backsign = fromFouceLoginCancel;
-//        loginView.view.frame=self.view.bounds;
-//        [loginView getBack:self andSuc:@selector(getDataback2) andErr:nil];
-//        //        loginView.userInteractionEnabled=YES;
-//        //        [self.view addSubview:loginView];
-//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-//        
-//        [appDele pushToViewController:loginView ];
-//        
-//    }
+    
+}
+-(void)fifthButtonClick
 
-//    page3=@"1";
-////    [dresserArray3 removeAllObjects];
-//    [self getData3];
+{
+    
+    [topImage setImage:[UIImage imageNamed:@"选择服务.png"]];
+    categryOne.hidden=NO;
+    categryTwo.hidden=YES;
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    
+}
+-(void)sixthButtonClick
+{
+    
+    categryOne.hidden = YES;
+    
+    if (categryTwo.hidden==YES) {
+        categryTwo.hidden=NO;
+        
+        [topImage setImage:[UIImage imageNamed:@"选择排序.png"]];
+        
+    }
+    else
+    {
+        categryTwo.hidden=YES;
+        [topImage setImage:[UIImage imageNamed:@"未选择默认.png"]];
+        
+    }
+    
+    [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0]forState:UIControlStateNormal];
+    [twoButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
+    twoButton.layer.borderColor =[ [UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    oneButton.layer.borderColor =[ [UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     
 }
 //-(void)fromFouceCancelBack:(NSString *)_str
@@ -513,13 +682,17 @@
 {
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Reserve&a=check_prices&page=%@",page]]];
+        requestMain=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=goods&a=hairStylistList&page=%@",page]]];
         requestMain.delegate=self;
         requestMain.tag=100;
     
         [requestMain setPostValue:cityStr forKey:@"city"];
         [requestMain setPostValue:lonStr forKey:@"lng"];
         [requestMain setPostValue:latStr forKey:@"lat"];
+    [requestMain setPostValue:serviceStr forKey:@"service"];
+    [requestMain setPostValue:sortStr forKey:@"sort"];
+    
+    
         [requestMain startAsynchronous];
   
 }
@@ -593,6 +766,9 @@
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     NSMutableArray * arr;
+    if ([page isEqualToString:@"1"]) {
+        [dresserArray removeAllObjects];
+    }
 //    if (dresserArray!=nil) {
 //        arr= [NSMutableArray arrayWithArray:dresserArray];
 //        [dresserArray removeAllObjects];
@@ -611,13 +787,13 @@
         
         pageCount = [dic objectForKey:@"page_count"];
         
-            if ([[dic objectForKey:@"price_list"] isKindOfClass:[NSString class]])
+            if ([[dic objectForKey:@"userList"] isKindOfClass:[NSString class]])
             {
-                
+                [dresserArray removeAllObjects];
             }
-            else if ([[dic objectForKey:@"price_list"] isKindOfClass:[NSArray class]])
+            else if ([[dic objectForKey:@"userList"] isKindOfClass:[NSArray class]])
             {
-                arr= [dic objectForKey:@"price_list"];
+                arr= [dic objectForKey:@"userList"];
                 [dresserArray addObjectsFromArray:arr];
                 NSLog(@"dresser.count:%d",dresserArray.count);
                 
@@ -743,7 +919,9 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
     return 1;
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -768,80 +946,196 @@
 //        return dresserArray3.count;
 //
 //    }
-    return dresserArray.count;
+    if (tableView==categryTableOne) {
+        return categryOneArr.count;
+    }
+    else if (tableView==categryTableTwo)
+    {
+        return categryTwoArr.count;
+    }
+    else
+    {
+           return dresserArray.count;
+    }
+ 
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *_content;
-   
-        _content =[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
-        
-   
-    UIFont *font = [UIFont systemFontOfSize:12.0];
-    //设置一个行高上限
-    CGSize size = CGSizeMake(260,200);
-    //计算实际frame大小，并将label的frame变成实际大小
-    CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     
-    if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSString class]])
-    {
-        return   100;
+    if (tableView==categryTableOne) {
+        return 60;
     }
-    else if (![_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSString class]])
-    {
-        return 100+labelsize.height;
+    else if (tableView==categryTableTwo) {
+        return 60;
     }
-    else if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"works_list"] isKindOfClass:[NSArray class]])
-    {
-        return 80+120;
-    }
+
     else
     {
-    return 80+labelsize.height+120;
+        
+        if (dresserArray.count==0) {
+            return myTableView.frame.size.height;
+        }
+        else{
+        NSString *_content;
+        
+        _content =[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"store_address"];
+        
+        
+        UIFont *font = [UIFont systemFontOfSize:12.0];
+        //设置一个行高上限
+        CGSize size = CGSizeMake(260,200);
+        //计算实际frame大小，并将label的frame变成实际大小
+        CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+        
+        if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"worksInfo"] isKindOfClass:[NSString class]])
+        {
+            return   100;
+        }
+        else if (![_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"worksInfo"] isKindOfClass:[NSString class]])
+        {
+            return 100+labelsize.height;
+        }
+        else if ([_content isEqualToString:@""]&&[[[dresserArray objectAtIndex:[indexPath row]] objectForKey:@"worksInfo"] isKindOfClass:[NSArray class]])
+        {
+            return 80+120;
+        }
+        else
+        {
+            return 80+labelsize.height+120;
+        }
+    }
     }
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID=@"cell";
-    dresserCell *cell=(dresserCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell==nil) {
-        cell=[[dresserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.fatherController=self;
-    }
     
-    NSInteger row =[indexPath row];
-//    if ([sign isEqualToString:@"all"])
-//    {
+    
+    if (tableView==categryTableOne) {
+        static NSString *cellID=@"cell";
+        UITableViewCell *cell=(UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil) {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//            cell.fatherController=self;
+        }
+        
+        NSInteger row =[indexPath row];
+        
+        cell.textLabel.text = [categryOneArr objectAtIndex:row];
+        
+        cell.textLabel.textAlignment=NSTextAlignmentCenter;
+        return cell;
+
+    }
+    else if (tableView==categryTableTwo)
+    {
+        static NSString *cellID=@"cell";
+        UITableViewCell *cell=(UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil) {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            //            cell.fatherController=self;
+        }
+        
+        NSInteger row =[indexPath row];
+        
+        cell.textLabel.text = [categryTwoArr objectAtIndex:row];
+        cell.textLabel.textAlignment=NSTextAlignmentCenter;
+
+        
+        return cell;
+
+    }
+    else
+    {
+        static NSString *cellID=@"cell";
+        dresserCell *cell=(dresserCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil) {
+            cell=[[dresserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.fatherController=self;
+        }
+        
+        NSInteger row =[indexPath row];
+        //    if ([sign isEqualToString:@"all"])
+        //    {
         [cell setCell:dresserArray  andIndex:row andSign:sign];
         
-//    }
-//    else if([sign isEqualToString:@"sameCity"])
-//    {
-//        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
-//        
-//    }
-//    else if([sign isEqualToString:@"introduce"])
-//    {
-//        [cell setCell:[dresserArray2 objectAtIndex:row] andIndex:row];
-//        
-//    }
-//    else if([sign isEqualToString:@"fouce"])
-//    {
-//        [cell setCell:[dresserArray3 objectAtIndex:row] andIndex:row];
-//        
-//    }
-    
-    return cell;
-}
+        //    }
+        //    else if([sign isEqualToString:@"sameCity"])
+        //    {
+        //        [cell setCell:[dresserArray1 objectAtIndex:row] andIndex:row];
+        //
+        //    }
+        //    else if([sign isEqualToString:@"introduce"])
+        //    {
+        //        [cell setCell:[dresserArray2 objectAtIndex:row] andIndex:row];
+        //
+        //    }
+        //    else if([sign isEqualToString:@"fouce"])
+        //    {
+        //        [cell setCell:[dresserArray3 objectAtIndex:row] andIndex:row];
+        //        
+        //    }
+        
+        return cell;
+    }
+    }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     //查看发型师
+    if (tableView == categryTableOne) {
+        [oneButton setTitle:[categryOneArr objectAtIndex:[indexPath row]] forState:UIControlStateNormal];
+        categryOne.hidden=YES;
+        if ([indexPath row]==0) {
+            serviceStr  = @"洗剪吹";
+                    }
+        if ([serviceStr isEqualToString:[categryOneArr objectAtIndex:[indexPath row]]]) {
+            
+        }
+        else
+        {
+        serviceStr=[categryOneArr objectAtIndex:[indexPath row]];
+            if ([indexPath row]==0) {
+                serviceStr  = @"洗剪吹";
+            }
+        page=@"1";
+        [self getData];
+        }
+    }
+    else if (tableView == categryTableTwo) {
+        [twoButton setTitle:[categryTwoArr objectAtIndex:[indexPath row]] forState:UIControlStateNormal];
+        categryTwo.hidden=YES;
+        
+        if ([indexPath row]!=0) {
+            twoButton.titleLabel.textAlignment=NSTextAlignmentLeft;
+        }
+        else
+        {
+        twoButton.titleLabel.textAlignment=NSTextAlignmentCenter;
+        }
+        
+        if ([indexPath row]==0) {
+            sortStr = @"0";
+        }
+        if ([sortStr isEqualToString:[NSString stringWithFormat:@"%d",[indexPath row]]]) {
+            
+        }
+        else
+        {
+            sortStr = [NSString stringWithFormat:@"%d",[indexPath row]];
+            if ([indexPath row]==0) {
+                sortStr = @"0";
+            }
+            page=@"1";
+            [self getData];
+        }
+
+       
+    }
     
     
 }

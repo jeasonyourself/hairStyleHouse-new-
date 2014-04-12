@@ -101,6 +101,10 @@
         [introduceView2 addSubview:commentLable2];
         [introduceView2 addSubview:contentLable2];
 
+        
+        textV = [[UITextView alloc] init];
+        textV.font=[UIFont systemFontOfSize:14.0];
+        [self addSubview:textV];
         // Initialization code
     }
     return self;
@@ -191,6 +195,7 @@
         secondButton.frame = CGRectMake(0, 0, 0, 0);
         voteLable2.frame = CGRectMake(0, 0, 0, 0);
         contentLable2.frame = CGRectMake(0, 0, 0, 0);
+        textV.frame=CGRectMake(0, 0, 0, 0);
     }
     else if (index%2==1)
     {
@@ -257,6 +262,8 @@
         contentLable2.font = [UIFont systemFontOfSize:12];
         contentLable2.text = [NSString stringWithFormat:@"%@",commentStr];
         contentLable2.textColor = [UIColor colorWithRed:240.0/256.0 green:26.0/256.0 blue:98.0/256.0 alpha:1.0];
+        
+        textV.frame=CGRectMake(0, 0, 0, 0);
     }
   
     
@@ -264,6 +271,38 @@
     
     
 
+}
+
+-(void)setSingleCell
+{
+    firstBack.frame=CGRectMake(0, 0, 0, 0);
+    secondBack.frame=CGRectMake(0, 0, 0, 0);
+     firstImage.frame=CGRectMake(0, 0, 0, 0);
+     secondImage.frame=CGRectMake(0, 0, 0, 0);
+    introduceView.frame=CGRectMake(0, 0, 0, 0);
+    firstButton.frame=CGRectMake(0, 0, 0, 0);
+    contentLable.frame=CGRectMake(0, 0, 0, 0);
+    commentLable.frame=CGRectMake(0, 0, 0, 0);
+      likeBackground.frame=CGRectMake(0, 0, 0, 0);
+      likeImage.frame=CGRectMake(0, 0, 0, 0);
+     voteLable.frame=CGRectMake(0, 0, 0, 0);
+      likeAmount.frame=CGRectMake(0, 0, 0, 0);
+    
+      introduceView2.frame=CGRectMake(0, 0, 0, 0);
+      secondButton.frame=CGRectMake(0, 0, 0, 0);
+      contentLable2.frame=CGRectMake(0, 0, 0, 0);
+     commentLable2.frame=CGRectMake(0, 0, 0, 0);
+      likeBackground2.frame=CGRectMake(0, 0, 0, 0);
+      likeImage2.frame=CGRectMake(0, 0, 0, 0);
+    voteLable2.frame=CGRectMake(0, 0, 0, 0);
+    
+    likeAmount2.frame=CGRectMake(0, 0, 0, 0);
+    
+    
+    textV.text=[NSString stringWithFormat:@"   活动简介：发型屋超级发型榜自诞生之日就带着时尚，众多发型师和发型达人，在此汇集比拼，好看发型脱颖而出，此评选横跨移动互联两个网络平台，评选过程完全以用户投票为主多少为标准，谁能够成为前三甲，就从你点击的这一刻开始。\n\n   活动时间：一月一季，即2014年4月1日-2014年4月30日为第一季，2014年5月1日-2014年4月31日为第2季，以此类推。\n\n   参与方式：手机发型屋应用、发型屋网站，上传发型照片即可参与秀发型大赛，发型屋应用投票方式，'我型我秀'页面点击投票按钮即可；发型屋网站投票方式，“秀发型”面点击投票按钮即可。\n\n   参与要求：不得上传非照片本人授权的发型图片；个人资料中填写真实信息，以免官方无法与之联系；参与者上传图片必须清晰且是正面。\n\n   活动奖品：超级发型榜每季前三甲，由发型屋官方提供奖品，每季奖品以每季实际奖品为准，详细查看，www.faxingwu.com"];
+ 
+    textV.frame=CGRectMake(0, 0, 320, 460);
+    
 }
 - (void)tapImage:(UITapGestureRecognizer *)tap
 {

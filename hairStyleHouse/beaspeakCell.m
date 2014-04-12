@@ -87,14 +87,14 @@
     NSString * cityStr = [dic objectForKey:@"my_tel"];
     NSString * typeStr = [dic objectForKey:@"reserve_type"];
     NSString * timeStr = [dic objectForKey:@"reserve_time"];
-     NSString * hourStr = [dic objectForKey:@"reserve_hour"];
+//     NSString * hourStr = [dic objectForKey:@"reserve_hour"];
     NSString * statusStr = [dic objectForKey:@"status"];
     
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
     nameLable.text=nameStr;
     mobileLable.text =[NSString stringWithFormat:@"手机号码:%@",cityStr];
     typeLable.text = [NSString stringWithFormat:@"预约类型:%@",typeStr];
-    timeLable.text =[NSString stringWithFormat:@"%@%@",timeStr,hourStr];
+    timeLable.text =[NSString stringWithFormat:@"预定时间: %@",timeStr];
     if ([statusStr isEqualToString:@"0"]) {
         statusLable.text = @"用户取消";
 
@@ -115,6 +115,10 @@
         statusLable.text = @"已完成，已评价";
         
     }
+    else if ([statusStr isEqualToString:@"5"]) {
+        statusLable.text = @"发型师已接受预约";
+        
+    }
     
 //    firstView.frame = self.frame;
     headImage.frame = CGRectMake(10, 10, 60, 60);
@@ -130,8 +134,8 @@
 
 -(void)setCell1:(NSDictionary *)dic andIndex:(NSInteger)index//当前预约
 {
-    NSString * nameStr = [dic objectForKey:@"to_username"];
-    NSString * cityStr = [dic objectForKey:@"telephone"];
+    NSString * nameStr = [dic objectForKey:@"to_name"];
+    NSString * cityStr = [dic objectForKey:@"to_tel"];
     NSString * orderStr = [dic objectForKey:@"order_type"];
     NSString * typeStr = [dic objectForKey:@"reserve_type"];
     NSString * imageStr= [dic objectForKey:@"image_path"];

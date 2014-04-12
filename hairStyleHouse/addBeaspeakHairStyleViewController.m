@@ -37,14 +37,41 @@
     dresserArray =[[NSMutableArray alloc] init];
     workInforDic = [[NSDictionary alloc] init];
     //    myTableView.allowsSelection=NO;
+    
+    page =[[NSString alloc] init];
+    page=@"1";
+    pageCount=[[NSString alloc] init];
+   
+    
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
     myTableView.dataSource=self;
     myTableView.delegate=self;
     myTableView.allowsSelection=NO;
     myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     [self.view addSubview:myTableView];
-
+    
+    bottomRefreshView = [[AllAroundPullView alloc] initWithScrollView:myTableView position:AllAroundPullViewPositionBottom action:^(AllAroundPullView *view){
+        NSLog(@"loadMore");
+        [self pullLoadMore];
+    }];
+    bottomRefreshView.hidden=NO;
+    [myTableView addSubview:bottomRefreshView];
     [self getData];
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //创建一个UIActivityIndicatorView对象：_activityIndicatorView，并初始化风格。
+    _activityIndicatorView.frame = CGRectMake(160, self.view.center.y, 0, 0);
+    //设置对象的位置，大小是固定不变的。WhiteLarge为37 * 37，White为20 * 20
+    _activityIndicatorView.color = [UIColor grayColor];
+    //设置活动指示器的颜色
+    _activityIndicatorView.hidesWhenStopped = NO;
+    //hidesWhenStopped默认为YES，会隐藏活动指示器。要改为NO
+    [self.view addSubview:_activityIndicatorView];
+    //将对象加入到view
+    
+    [_activityIndicatorView startAnimating];
+    //开始动画
+   
     
 }
 
@@ -63,7 +90,29 @@
     [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
-
+-(void)pullLoadMore
+{
+    
+   
+        NSInteger _pageCount= [pageCount integerValue];
+        
+        NSInteger _page = [page integerValue];
+        
+        NSLog(@"page:%@",page);
+        NSLog(@"pageCount:%@",pageCount);
+        
+        if (_page<_pageCount) {
+            _page++;
+            page = [NSString stringWithFormat:@"%d",_page];
+            NSLog(@"page:%@",page);
+            [self getData];
+        }
+        else
+        {
+            [bottomRefreshView performSelector:@selector(finishedLoading)];
+        }
+    
+}
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];
@@ -72,13 +121,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -101,13 +150,14 @@
 -(void)getData
 {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=Willdo&a=willDoItem"];
+    NSURL * urlString= [NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=willdo&a=willDoView&page=%@",page]];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=2;
     
     NSLog(@"inforDic:%@",inforDic);
     [request setPostValue:[[inforDic objectForKey:@"works_info"] objectForKey:@"work_id"] forKey:@"work_id"];
+    [request setPostValue:appDele.city forKey:@"city"];
     [request setPostValue:[NSString stringWithFormat:@"%f",appDele.latitude] forKey:@"lat"];
      [request setPostValue:[NSString stringWithFormat:@"%f",appDele.longitude] forKey:@"lng"];
 
@@ -145,16 +195,7 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"预约作品dic:%@",dic);
         
-        if ([[dic objectForKey:@"willdo_list"] isKindOfClass:[NSString class]])
-        {
-            
-        }
-        else if ([[dic objectForKey:@"willdo_list"] isKindOfClass:[NSArray class]])
-        {
-            dresserArray = [dic objectForKey:@"willdo_list"];//评价列表
-        }
-        
-        [self freashView];
+       
     }
     else if (request.tag==2)//原创信息
     {
@@ -167,13 +208,44 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"原创dic:%@",dic);
+        pageCount=[dic objectForKey:@"page_count"];
+        if ([[dic objectForKey:@"worksInfo"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"worksInfo"] isKindOfClass:[NSDictionary class]])
+        {
+            workInforDic  = [dic objectForKey:@"worksInfo"];//原创信息
+        }
         
-        workInforDic =dic;
-        [self getData1];
+        NSArray * arr;
+        if ([[dic objectForKey:@"willDoList"] isKindOfClass:[NSString class]])
+        {
+            
+        }
+        else if ([[dic objectForKey:@"willDoList"] isKindOfClass:[NSArray class]])
+        {
+            arr = [dic objectForKey:@"willDoList"];//评价列表
+            [dresserArray addObjectsFromArray:arr];
+        }
+        
+        
+        [_activityIndicatorView stopAnimating];
+        _activityIndicatorView.hidesWhenStopped = YES;
+        [self freashView];
+//        [self getData1];
         
     }
 }
 
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    
+    [_activityIndicatorView stopAnimating];
+    _activityIndicatorView.hidesWhenStopped = YES;
+    [bottomRefreshView performSelector:@selector(finishedLoading)];
+
+}
 -(void)freashView
 {
     [myTableView reloadData];

@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "SBJson.h"
 #import "BaiduMobStat.h"
+#import "TPKeyboardAvoidingScrollView.h"
 @interface addBeaspeakViewController ()
 
 @end
@@ -18,6 +19,7 @@
 @implementation addBeaspeakViewController
 @synthesize _hidden;
 @synthesize inforDic;
+@synthesize scrollView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,9 +34,12 @@
     [super viewDidLoad];
     [self refreashNav];
     [self refreashNavLab];
+    yearArray = [[NSMutableArray alloc] init];
+    hoursArray = [[NSMutableArray alloc] init];
+    minutesArray = [[NSMutableArray alloc] init];
     _secondView.hidden=NO;
     _otherSecondView.hidden=YES;
-    
+    select=NO;
     styleString = [[NSString alloc] init];
     styleString = @"洗剪吹";
     oldPriceString = [[NSString alloc] init];
@@ -46,6 +51,8 @@
     timeString = [[NSString alloc] init];
     timeDataString= [[NSString alloc] init];
     
+    firstArr = [[NSMutableArray alloc] init];
+    secondArr = [[NSMutableArray alloc] init];
     fourButtonArr = [[NSMutableArray alloc ] initWithObjects:_styleOneButton,_styleTwoButton,_styleThirdButton,_styleFourButton, nil];
     
     sevenButtonArr = [[NSMutableArray alloc ] initWithObjects:_dateOneButton,_dateTwoButton,_dateThirdButton,_dateFourButton,_dateFiveButton,_dateSixButton,_dateSevenButton, nil];
@@ -54,14 +61,25 @@
     
     
     _firstView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _firstView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _firstView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _firstView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _firstView.layer.masksToBounds = YES;//设为NO去试试
 
-    _secondView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _secondView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _secondView.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    _secondView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _secondView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _secondView.layer.masksToBounds = YES;//设为NO去试试
+    
+    
+    _introLable.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    _introLable.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _introLable.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _introLable.layer.masksToBounds = YES;//设为NO去试试
+    
+    _secondTable.layer.cornerRadius = 0;//设置那个圆角的有多圆
+    _secondTable.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _secondTable.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    _secondTable.layer.masksToBounds = YES;//设为NO去试试
     
     _headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     _headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -79,6 +97,8 @@
     _lookWorksButton.layer.masksToBounds = YES;//设为NO去试试
     
     
+    [_secondTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     for (UIButton * _button in twelveButtonArr)//日期按钮全设置未圆角
     {
         _button.layer.cornerRadius = 5;//设置那个圆角的有多圆
@@ -90,7 +110,7 @@
     
     
     _sureButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _sureButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
+    _sureButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     _sureButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sureButton.layer.masksToBounds = YES;//设为NO去试试
     
@@ -114,88 +134,98 @@
     _nameLable.text=nameStr;
     _cityLable.text = storeStr;
     _addressLable.text = addressStr;
+    _worksLable.text=[self.inforDic objectForKey:@"works_num"];
+    _evaluateLable.text=[self.inforDic objectForKey:@"assess_num"];
+_shalongLable.text=[self.inforDic objectForKey:@"store_name"];
+    _telLable.text=[self.inforDic objectForKey:@"mobile"];
+
     
+    
+    //新版本年月日
+    
+    firstTimeLoad = YES;
+    self.customPicker.hidden = YES;
+    self.toolbarCancelDone.hidden = YES;
     
     
     NSTimeInterval secondsPerDay = 24 * 60 * 60;
     NSDate * today = [NSDate date];
     NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
-    [myDateFormatter setDateFormat:@"M/d/EEEE"];
-    for (int i = 1; i < 8; i ++) {
+    [myDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    for (int i = 1; i < 31; i ++)
+    {
         NSString *dateStr = [myDateFormatter stringFromDate:[today dateByAddingTimeInterval:i * secondsPerDay]];
         NSLog(@"dateString:%@",dateStr);
-    NSArray *array = [dateStr componentsSeparatedByString:@"/"];
-        if (i==1) {
-            _dayOneLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-            _timeOneLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
-            dateString = [NSString stringWithFormat:@"%@月%@日%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
-             dateString1 = [NSString stringWithFormat:@"%@-%@%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]];//哪一天
-        }
-    else if (i==2)
-    {
-        _dayTwoLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeTwoLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
+        [yearArray addObject:dateStr];
     }
-    else if (i==3)
+    
+    NSLog(@"yearArray:%@",yearArray);
+    //    NSDate *date = [NSDate date];
+    
+    // Get Current Year
+    
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    
+    // Get Current  Hour
+    //    [formatter setDateFormat:@"HH"];
+    //    NSString *currentHourString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    //
+    //    // Get Current  Minutes
+    //    [formatter setDateFormat:@"mm"];
+    //    NSString *currentMinutesString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    
+    // Get Current  AM PM
+    
+    //    [formatter setDateFormat:@"a"];
+    //    NSString *currentTimeAMPMString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    
+    
+    // PickerView -  Years data
+    
+    // PickerView -  Hours data
+    
+    hoursArray = [[NSMutableArray alloc]init];
+    for (int i = 9; i <= 22; i++)
     {
-        _dayThirdLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeThirdLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
+        
+        [hoursArray addObject:[NSString stringWithFormat:@"%02d",i]];
+        
+    }    //    hoursArray = @[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12"];
+    
+    NSLog(@"hoursArray:%@",hoursArray);
+    // PickerView -  Hours data
+    
+    minutesArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < 59; i=i+15)
+    {
+        
+        [minutesArray addObject:[NSString stringWithFormat:@"%02d",i]];
         
     }
-    else if (i==4)
-    {
-        _dayFourLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeFourLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
-    }
-    else if (i==5)
-    {
-        _dayFiveLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeFiveLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
-    }
-    else if (i==6)
-    {
-        _daySixLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeSixLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
-    }
-    else if (i==7)
-    {
-        _daySevenLable.text = [NSString stringWithFormat:@"%@-%@",[array objectAtIndex:0],[array objectAtIndex:1]];
-        _timeSevenLable.text =[NSString stringWithFormat:@"%@",[array objectAtIndex:2]];
-    }
-   }
+    NSLog(@"minutesArray:%@",minutesArray);
+    
+    // PickerView -  AM PM data
+    //    amPmArray=[[NSMutableArray alloc] initWithObjects:@"AM",@"PM", nil];
+    //    amPmArray = @[@"AM",@"PM"];
     
     
-    NSString * priceStr = [inforDic objectForKey:@"price_info"];
-    NSArray *array = [priceStr componentsSeparatedByString:@"_"];
-//    if ([_sign isEqualToString:@"all"])
-//    {
-        _oldPrice.text = [NSString stringWithFormat:@"￥%@",[array objectAtIndex:0]];
-    NSInteger oldInt= [[array objectAtIndex:0] integerValue];
-    float saleInt= [[array objectAtIndex:4] floatValue];
-    NSInteger nowInt = oldInt*saleInt/10;
-    _nowPrice.text = [NSString stringWithFormat:@"￥%d(%@折)",nowInt,[array objectAtIndex:4]];
     
-    oldPriceString = [array objectAtIndex:0];
-    saleString = [array objectAtIndex:4];
+    // PickerView -  days data
     
-    timeString = @"9:00";
-    _timeLable.text = [NSString stringWithFormat:@"%@%@",dateString,timeString];
     
-    timeDataString = [NSString stringWithFormat:@"%@ %@",_dayOneLable.text,timeString];
-//    }
-//    else if([_sign isEqualToString:@"sameCity"])
-//    {
-//        priceLable.text = [NSString stringWithFormat:@"￥%@/%@折",[array objectAtIndex:1],[array objectAtIndex:5]];
-//    }
-//    else if([_sign isEqualToString:@"introduce"])
-//    {
-//        priceLable.text = [NSString stringWithFormat:@"￥%@/%@折",[array objectAtIndex:2],[array objectAtIndex:6]];
-//    }
-//    else if([_sign isEqualToString:@"fouce"])
-//    {
-//        priceLable.text = [NSString stringWithFormat:@"￥%@/%@折",[array objectAtIndex:3],[array objectAtIndex:7]];
-//    }
+    // PickerView - Default Selection as per current Date
+    
+    [self.customPicker selectRow:0 inComponent:0 animated:YES];
+    
+    [self.customPicker selectRow:0 inComponent:1 animated:YES];
+    [self.customPicker selectRow:0 inComponent:2 animated:YES];
+    //    [self.customPicker selectRow:[amPmArray indexOfObject:currentTimeAMPMString] inComponent:5 animated:YES];
 
+
+    [self getData];
+    [self getData1];
     if(iPhone5)
     {
         
@@ -209,6 +239,25 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)getData
+{
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=goods&a=promptView"]]];
+    [request setPostValue:[self.inforDic objectForKey:@"uid"]forKey:@"uid"];
+    request.tag=1;
+    request.delegate=self;
+    [request startAsynchronous];
+}
+-(void)getData1
+{
+    ASIFormDataRequest* request;
+    request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=goods&a=goodsView"]]];
+    
+    [request setPostValue:[self.inforDic objectForKey:@"uid"]forKey:@"uid"];
+    request.tag=2;
+    request.delegate=self;
+    [request startAsynchronous];
+}
 -(void)refreashNav
 {
     UIButton * leftButton=[[UIButton alloc] init];
@@ -217,13 +266,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -262,8 +311,8 @@
     NSString* cName = [NSString stringWithFormat:@"预约发型师"];
     [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     if(iPhone5)
     {
@@ -624,12 +673,20 @@
 
 - (IBAction)sureButtonClick:(id)sender
 {
-    _secondView.hidden=YES;
-    _otherSecondView.hidden=NO;
-    
-    _getTimeLable.text = [NSString stringWithFormat:@"%@  %@",dateString,timeString];
-    _beaspeakStyleLable.text = [NSString stringWithFormat:@"%@   平日:%@   优惠:%@",styleString,[_oldPrice text],[_nowPrice text]];
-    
+    if (select==YES) {
+        _secondView.hidden=YES;
+        _otherSecondView.hidden=NO;
+        
+        //    _getTimeLable.text = [NSString stringWithFormat:@"%@  %@",dateString,timeString];
+        _beaspeakStyleLable.text = [NSString stringWithFormat:@"%@        服务价格:￥%@（%@折）",styleString,newPriceString,saleString];
+        
+    }
+    else
+    {
+      UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未选择服务项目" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+   
 }
 - (IBAction)sendBeaspeakButtonClick:(id)sender
 {
@@ -652,31 +709,38 @@
     else
     {
         ASIFormDataRequest* request;
-        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/index.php?m=Reserve&a=reservation"]]];
+        request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=reserve&a=orderAdd"]]];
         
-        [request setPostValue:@"1"forKey:@"order_type"];//预约发型为2
+        [request setPostValue:@"2"forKey:@"order_type"];//预约发型为2
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         [request setPostValue:appDele.uid forKey:@"my_uid"];
         [request setPostValue:[self.inforDic objectForKey:@"uid"]forKey:@"to_uid"];
         
+        [request setPostValue:@"1" forKey:@"order_type"];
+        [request setPostValue:styleString forKey:@"reserve_type"];
         
-        [request setPostValue:dateString1 forKey:@"reserve_time"];
-        [request setPostValue:timeString forKey:@"reserve_hour"];
+        //        [request setPostValue:dateString1 forKey:@"reserve_time"];
+        
+        //        [request setPostValue:timeString forKey:@"reserve_hour"];
         
         [request setPostValue:oldPriceString forKey:@"price"];
         [request setPostValue:saleString forKey:@"rebate"];
+        [request setPostValue:newPriceString forKey:@"reserve_price"];
         [request setPostValue:[_nameField text] forKey:@"my_name"];
         [request setPostValue:[_mobileField text] forKey:@"my_tel"];
-        [request setPostValue:styleString forKey:@"reserve_type"];//预约发型没有这一项
+        [request setPostValue:appDele.secret forKey:@"secret"];
+        [request setPostValue:_timeField.text forKey:@"reserve_time"];
+        [request setPostValue:[inforDic objectForKey:@"work_id"] forKey:@"work_id"];
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"M-d HH:mm"];
-        NSDate* date = [formatter dateFromString:timeDataString];
-         NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[date timeIntervalSince1970]];
-        NSLog(@"timeDataString:%@",timeDataString);
-        NSLog(@"timeSp:%@",timeSp);
-        
-        [request setPostValue:timeSp forKey:@"expire_time"];
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"M-d HH:mm"];
+//        NSDate* date = [formatter dateFromString:timeDataString];
+//         NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[date timeIntervalSince1970]];
+//        NSLog(@"timeDataString:%@",timeDataString);
+//        NSLog(@"timeSp:%@",timeSp);
+//        
+//        [request setPostValue:timeSp forKey:@"expire_time"];
+        request.tag=3;
         request.delegate=self;
         [request startAsynchronous];
        
@@ -686,7 +750,58 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-      
+    if (request.tag==1) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"简介dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
+            firstArr = [dic objectForKey:@"info"];
+//            [_firstTable reloadData];
+        }
+        else
+        {
+//            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+//            [alert show];
+        }
+
+        
+    }
+    else if (request.tag==2) {
+        NSLog(@"%@",request.responseString);
+        NSData*jsondata = [request responseData];
+        NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        SBJsonParser* jsonP=[[SBJsonParser alloc] init];
+        NSDictionary* dic=[jsonP objectWithString:jsonString];
+        NSLog(@"服务项目dic:%@",dic);
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"])
+        {
+            secondArr = [dic objectForKey:@"goodsInfo"];
+            //            [_firstTable reloadData];
+        }
+        else
+        {
+            //            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            //            [alert show];
+        }
+
+        [_secondTable reloadData];
+        
+    }
+    else if (request.tag==3) {
+        
+    
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -708,6 +823,7 @@
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
     }
+    }
 
 }
 
@@ -717,6 +833,426 @@
     [alert show];
 }
 
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView==_firstTable)
+    {
+        return firstArr.count;
+    }
+    else
+        {
+            return secondArr.count+1;
+        }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView==_firstTable)
+    {
+        return 30;
+    }
+    else
+    {
+        return 60;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView==_firstTable) {
+        static NSString *cellID=@"cell";
+        UITableViewCell *cell=(UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil) {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            
+           
+            //            cell.fatherController=self;
+        }
+        
+        NSInteger row =[indexPath row];
+        
+        cell.textLabel.text = [firstArr objectAtIndex:row];
+        
+        return cell;
+        
+    }
+    else
+    {
+        static NSString *cellID=@"cell";
+        UITableViewCell *cell=(UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell==nil) {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            firstLable = [[UILabel alloc] init];
+            firstLable.textAlignment=NSTextAlignmentCenter;
+            firstLable.font=[UIFont systemFontOfSize:12.0];
+            secondLable = [[UILabel alloc] init];
+            secondLable.textAlignment=NSTextAlignmentCenter;
+            secondLable.font=[UIFont systemFontOfSize:12.0];
+            thirdLable = [[UILabel alloc] init];
+            thirdLable.textAlignment=NSTextAlignmentCenter;
+            thirdLable.font=[UIFont systemFontOfSize:12.0];
+            forthLable = [[UILabel alloc] init];
+            forthLable.textAlignment=NSTextAlignmentCenter;
+            forthLable.font=[UIFont systemFontOfSize:12.0];
+            //            cell.fatherController=self;
+        }
+        
+        NSInteger row =[indexPath row];
+        
+        if (row==0) {
+            firstLable.text = @"服务项目";
+            secondLable.text=@"平时价格";
+            thirdLable.text=@"折扣";
+            forthLable.text=@"优惠价格";
+            firstLable.frame=CGRectMake(5, 10, 70, 40);secondLable.frame=CGRectMake(85, 10, 70, 40);thirdLable.frame=CGRectMake(165, 10, 70, 40);forthLable.frame=CGRectMake(245, 10, 70, 40);
+            [cell addSubview:firstLable];
+            [cell addSubview:secondLable];[cell addSubview:thirdLable];[cell addSubview:forthLable];
+            cell.userInteractionEnabled=NO;
+        }
+        else
+        {
+            firstLable.text = [[secondArr objectAtIndex:row-1] objectForKey:@"goods_name"];
+            secondLable.text=[NSString stringWithFormat:@"￥%@",[[secondArr objectAtIndex:row-1] objectForKey:@"price"]];
+            thirdLable.text=[NSString stringWithFormat:@"%@折",[[secondArr objectAtIndex:row-1] objectForKey:@"rebate"]];
+            forthLable.text=[NSString stringWithFormat:@"￥%@",[[secondArr objectAtIndex:row-1] objectForKey:@"reserve_price"]];
+            firstLable.frame=CGRectMake(5, 10, 70, 40);secondLable.frame=CGRectMake(85, 10, 70, 40);thirdLable.frame=CGRectMake(165, 10, 70, 40);forthLable.frame=CGRectMake(245, 10, 70, 40);
+
+            [cell addSubview:firstLable];
+            [cell addSubview:secondLable];[cell addSubview:thirdLable];[cell addSubview:forthLable];
+//        cell.textLabel.text = [[secondArr objectAtIndex:row-1] objectForKey:@"goods_id"];
+        }
+        
+        return cell;
+        
+    }
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    select =YES;
+     NSInteger row =[indexPath row];
+    styleString = [[secondArr objectAtIndex:row-1] objectForKey:@"goods_name"];
+oldPriceString=[NSString stringWithFormat:@"%@",[[secondArr objectAtIndex:row-1] objectForKey:@"price"]];
+    saleString=[NSString stringWithFormat:@"%@",[[secondArr objectAtIndex:row-1] objectForKey:@"rebate"]];
+    newPriceString=[NSString stringWithFormat:@"%@",[[secondArr objectAtIndex:row-1] objectForKey:@"reserve_price"]];
+    
+}
+
+#pragma mark - UIPickerViewDelegate
+//- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+//{
+//
+//    return 3;
+//
+//}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    //
+    //    if (component == 0)
+    //    {
+    //        selectedYearRow = row;
+    //        [self.customPicker reloadAllComponents];
+    //    }
+    //    else if (component == 1)
+    //    {
+    //        selectedMonthRow = row;
+    //        [self.customPicker reloadAllComponents];
+    //    }
+    //    else if (component == 2)
+    //    {
+    //        selectedDayRow = row;
+    //
+    //        [self.customPicker reloadAllComponents];
+    //
+    //    }
+    
+}
+
+
+#pragma mark - UIPickerViewDatasource
+
+- (UIView *)pickerView:(UIPickerView *)pickerView
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view {
+    
+    // Custom View created for each component
+    
+    UILabel *pickerLabel = (UILabel *)view;
+    
+    if (pickerLabel == nil) {
+        CGRect frame;
+        if (component == 0)
+        {
+            frame = CGRectMake(0.0, 0.0, 200, 60);
+        }
+        else
+        {
+            frame = CGRectMake(0.0, 0.0, 50, 60);
+        }
+        
+        pickerLabel = [[UILabel alloc] initWithFrame:frame];
+        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    }
+    
+    
+    
+    if (component == 0)
+    {
+        pickerLabel.text =  [yearArray objectAtIndex:row]; // Year
+        
+    }
+    //    else if (component == 1)
+    //    {
+    //        pickerLabel.text =  [monthArray objectAtIndex:row];  // Month
+    //    }
+    //    else if (component == 2)
+    //    {
+    //        pickerLabel.text =  [DaysArray objectAtIndex:row]; // Date
+    //
+    //    }
+    else if (component == 1)
+    {
+        pickerLabel.text =  [hoursArray objectAtIndex:row]; // Hours
+    }
+    else if (component == 2)
+    {
+        pickerLabel.text =  [minutesArray objectAtIndex:row]; // Mins
+    }
+    //    else
+    //    {
+    //        pickerLabel.text =  [amPmArray objectAtIndex:row]; // AM/PM
+    //    }
+    
+    return pickerLabel;
+    
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    
+    return 3;
+    
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    if (component == 0)
+    {
+        return [yearArray count];
+        
+    }
+    //    else if (component == 1)
+    //    {
+    //        return [monthArray count];
+    //    }
+    //    else if (component == 2)
+    //    { // day
+    //
+    //        if (firstTimeLoad)
+    //        {
+    //            if (currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8 || currentMonth == 10 || currentMonth == 12)
+    //            {
+    //                return 31;
+    //            }
+    //            else if (currentMonth == 2)
+    //            {
+    //                int yearint = [[yearArray objectAtIndex:selectedYearRow]intValue ];
+    //
+    //                if(((yearint %4==0)&&(yearint %100!=0))||(yearint %400==0)){
+    //
+    //                    return 29;
+    //                }
+    //                else
+    //                {
+    //                    return 28; // or return 29
+    //                }
+    //
+    //            }
+    //            else
+    //            {
+    //                return 30;
+    //            }
+    //
+    //        }
+    //        else
+    //        {
+    //
+    //            if (selectedMonthRow == 0 || selectedMonthRow == 2 || selectedMonthRow == 4 || selectedMonthRow == 6 || selectedMonthRow == 7 || selectedMonthRow == 9 || selectedMonthRow == 11)
+    //            {
+    //                return 31;
+    //            }
+    //            else if (selectedMonthRow == 1)
+    //            {
+    //                int yearint = [[yearArray objectAtIndex:selectedYearRow]intValue ];
+    //
+    //                if(((yearint %4==0)&&(yearint %100!=0))||(yearint %400==0)){
+    //                    return 29;
+    //                }
+    //                else
+    //                {
+    //                    return 28; // or return 29
+    //                }
+    //
+    //
+    //
+    //            }
+    //            else
+    //            {
+    //                return 30;
+    //            }
+    //
+    //        }
+    //
+    //
+    //    }
+    else if (component == 1)
+    { // hour
+        
+        return 14;
+        
+    }
+    else if (component == 2)
+    { // min
+        return 4;
+    }
+    else
+    { // am/pm
+        return 2;
+        
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+- (IBAction)actionCancel:(id)sender
+{
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         self.customPicker.hidden = YES;
+                         self.toolbarCancelDone.hidden = YES;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                     }];
+    
+    
+}
+
+- (IBAction)actionDone:(id)sender
+{
+    
+    
+    _timeField.text = [NSString stringWithFormat:@"%@ %@:%@ ",[yearArray objectAtIndex:[self.customPicker selectedRowInComponent:0]],[hoursArray objectAtIndex:[self.customPicker selectedRowInComponent:1]],[minutesArray objectAtIndex:[self.customPicker selectedRowInComponent:2]]];
+    //    timeDataString=_timeField.text;
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         self.customPicker.hidden = YES;
+                         self.toolbarCancelDone.hidden = YES;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                     }];
+    
+    
+    
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField==_timeField) {
+        [self.view endEditing:YES];
+        [_mobileField resignFirstResponder];
+        [_nameField resignFirstResponder];
+    }
+    else
+    {
+        [scrollView adjustOffsetToIdealIfNeeded];
+        [UIView animateWithDuration:0.5
+                              delay:0.1
+                            options: UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             
+                             self.customPicker.hidden = YES;
+                             self.toolbarCancelDone.hidden = YES;
+                             
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                             
+                         }];
+    }
+    
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    
+    if (textField==_timeField) {
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.1
+                            options: UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             
+                             self.customPicker.hidden = NO;
+                             self.toolbarCancelDone.hidden = NO;
+                             _timeField.text = @"";
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+        
+        
+        self.customPicker.hidden = NO;
+        self.toolbarCancelDone.hidden = NO;
+        _timeField.text = @"";
+        [_mobileField resignFirstResponder];
+        [_nameField resignFirstResponder];
+        return NO;
+        
+    }
+    
+    return YES;
+    
+    
+}
 
 -(IBAction)textFiledReturnEditing:(id)sender {
     [sender resignFirstResponder];

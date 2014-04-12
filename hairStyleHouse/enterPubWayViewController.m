@@ -93,16 +93,16 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
-//    UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    leftButton.frame = CGRectMake(0,28, 24, 26);
+    UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem.tintColor=[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0];
-//    self.navigationItem.leftBarButtonItem=leftButtonItem;
+    self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
 -(void)leftButtonClick
 {
@@ -400,16 +400,25 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
     
     UIImageView  * imageview =firstImage;
     NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-    NSUInteger dataLength = [imageData length];
     
+    NSUInteger dataLength = [imageData length];
     if(dataLength > MAX_IMAGEDATA_LEN)
     {
         imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-    } else
-    {
-        imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
     }
     
+    NSUInteger dataLength1 = [imageData length];
+    if(dataLength1 > MAX_IMAGEDATA_LEN)
+    {
+        imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+    }
+    
+    NSUInteger dataLength2 = [imageData length];
+    if(dataLength2 > MAX_IMAGEDATA_LEN)
+    {
+        imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
+    }
+   
     [request appendPostData:imageData];
     request.delegate=self;
     request.tag=1;
@@ -486,15 +495,23 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
                 
                 
                 NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-                NSUInteger dataLength = [imageData length];
                 
+                NSUInteger dataLength = [imageData length];
                 if(dataLength > MAX_IMAGEDATA_LEN)
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
                 }
-                else
+                
+                NSUInteger dataLength1 = [imageData length];
+                if(dataLength1 > MAX_IMAGEDATA_LEN)
                 {
-                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+                }
+                
+                NSUInteger dataLength2 = [imageData length];
+                if(dataLength2 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
                 }
                 
                 [request appendPostData:imageData];
@@ -543,14 +560,23 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
                 ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
                 UIImageView  * imageview =thirdImage;
                 NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-                NSUInteger dataLength = [imageData length];
                 
+                NSUInteger dataLength = [imageData length];
                 if(dataLength > MAX_IMAGEDATA_LEN)
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-                } else
+                }
+                
+                NSUInteger dataLength1 = [imageData length];
+                if(dataLength1 > MAX_IMAGEDATA_LEN)
                 {
-                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+                }
+                
+                NSUInteger dataLength2 = [imageData length];
+                if(dataLength2 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
                 }
                 
                 [request appendPostData:imageData];
@@ -595,16 +621,24 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
                 ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
                 UIImageView  * imageview =forthImage;
                 NSData *imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
-                NSUInteger dataLength = [imageData length];
                 
+                NSUInteger dataLength = [imageData length];
                 if(dataLength > MAX_IMAGEDATA_LEN)
                 {
                     imageData = UIImageJPEGRepresentation(imageview.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-                } else
-                {
-                    imageData = UIImageJPEGRepresentation(imageview.image, 1.0);
                 }
                 
+                NSUInteger dataLength1 = [imageData length];
+                if(dataLength1 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.1);
+                }
+                
+                NSUInteger dataLength2 = [imageData length];
+                if(dataLength2 > MAX_IMAGEDATA_LEN)
+                {
+                    imageData = UIImageJPEGRepresentation(imageview.image, 0.01);
+                }
                 [request appendPostData:imageData];
                 request.delegate=self;
                 request.tag=4;

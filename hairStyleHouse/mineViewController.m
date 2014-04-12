@@ -311,7 +311,7 @@
     [leftButton.layer setCornerRadius:0.0];
     [leftButton.layer setBorderWidth:0.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
@@ -323,10 +323,10 @@
     
     UIButton * rightButton=[[UIButton alloc] init];
     rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton.layer setMasksToBounds:YES];
-    [rightButton.layer setCornerRadius:3.0];
-    [rightButton.layer setBorderWidth:1.0];
-    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    rightButton.layer.masksToBounds = YES;//设为NO去试试
     [rightButton setTitle:@"上传图片" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [rightButton setBackgroundColor:[UIColor clearColor]];

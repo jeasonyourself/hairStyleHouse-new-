@@ -80,13 +80,13 @@ else
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -202,7 +202,7 @@ else
     backView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1.0];
 
     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(60, 20, 200, 200)];
-    headImage.image = [UIImage imageNamed:@"200.png"];
+    headImage.image = [UIImage imageNamed:@"添加图片.png"];
     headImage.layer.cornerRadius = 5;//设置那个圆角的有多圆
     headImage.layer.borderWidth =1;//设置边框的宽度，当然可以不要
     headImage.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
@@ -378,13 +378,25 @@ else
         ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=up&a=add_img"]];
         
         NSData *imageData = UIImageJPEGRepresentation(headImage.image, 1.0);
-        NSUInteger dataLength = [imageData length];
         
-        if(dataLength > MAX_IMAGEDATA_LEN) {
+        NSUInteger dataLength = [imageData length];
+        if(dataLength > MAX_IMAGEDATA_LEN)
+        {
             imageData = UIImageJPEGRepresentation(headImage.image, 1.0 - MAX_IMAGEDATA_LEN / dataLength);
-        } else {
-            imageData = UIImageJPEGRepresentation(headImage.image, 1.0);
         }
+        
+        NSUInteger dataLength1 = [imageData length];
+        if(dataLength1 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(headImage.image, 0.1);
+        }
+        
+        NSUInteger dataLength2 = [imageData length];
+        if(dataLength2 > MAX_IMAGEDATA_LEN)
+        {
+            imageData = UIImageJPEGRepresentation(headImage.image, 0.01);
+        }
+        
         
         [request appendPostData:imageData];
         request.delegate=self;

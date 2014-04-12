@@ -139,13 +139,13 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
 }
@@ -157,7 +157,7 @@
     [leftButton.layer setCornerRadius:0.0];
     [leftButton.layer setBorderWidth:0.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
@@ -216,12 +216,7 @@
     [self.view addSubview:thirdLable];
     [self.view addSubview:forthLable];
     
-     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-    _tencentOAuth=nil;
-    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
-    appDele.tententOAuth=_tencentOAuth;
-    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
 
     
     
@@ -270,7 +265,12 @@
 -(void)QQButtonClick
 {
     
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
+    _tencentOAuth=nil;
+    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+    appDele.tententOAuth=_tencentOAuth;
+    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
 //    appDele.tententOAuth=_tencentOAuth;
@@ -532,6 +532,9 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
         
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+            
+        
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.uid=[dic objectForKey:@"uid"];
         appDele.secret=[dic objectForKey:@"secret"];
@@ -632,6 +635,18 @@
             [self.navigationController popViewControllerAnimated:NO];
 
         }
+        }
+        else if([dic objectForKey:@"103"])//登录失败
+        {
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            appDele.type = nil;
+            appDele.loginType = nil;
+            [appDele.tententOAuth logout:self];
+            appDele.tententOAuth=nil;
+           
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"该账号被禁用" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
         
     }
     else if(request.tag==2)
@@ -644,7 +659,8 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:request.responseString];
         
-        
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
         appDele.uid=[dic objectForKey:@"uid"];
         appDele.secret=[dic objectForKey:@"secret"];
@@ -748,6 +764,18 @@
             [self.navigationController popViewControllerAnimated:NO];
 
         }
+        }
+        else if([dic objectForKey:@"103"])//登录失败
+        {
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            appDele.type = nil;
+            appDele.loginType = nil;
+            [appDele.tententOAuth logout:self];
+            appDele.tententOAuth=nil;
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"该账号被禁用" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+
 
     }
     

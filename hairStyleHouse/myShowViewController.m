@@ -245,7 +245,7 @@
 //                }
 //                else
 //                {
-//                    [bottomRefreshView performSelector:@selector(finishedLoading)];
+                    [bottomRefreshView performSelector:@selector(finishedLoading)];
 //                    
 //                }
 //
@@ -277,7 +277,7 @@
     [oneButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [twoButton setTitleColor:[UIColor colorWithRed:146.0/256.0 green:146.0/256.0 blue:146.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     sign = @"collect_num";
-//    [myTableView reloadData];
+    [myTableView reloadData];
     
 }
 -(void)getData
@@ -1342,14 +1342,7 @@
         else
             if ([sign isEqualToString:@"collect_num"])
             {
-                if (localDresserArray2.count%2==0)
-                {
-                    return localDresserArray2.count/2;
-                }
-                else
-                {
-                    return localDresserArray2.count/2+1;
-                }
+                return 1;
             }
    else
    {
@@ -1361,7 +1354,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([sign isEqualToString:@"collect_num"])
+    {
+        return  460;
+    }
+    else
+    {
     return   230;
+    }
     
 }
 
@@ -1408,21 +1408,17 @@
         else
             if ([sign isEqualToString:@"collect_num"])
             {
-                if (row1<localDresserArray2.count)//防止可能越界
-                {
+                [cell setSingleCell];
                 
-                [cell setCell:[localDresserArray2 objectAtIndex:row1] andIndex:row1];
-                }
-                if (row2<localDresserArray2.count)//防止可能越界
-                {
-                    [cell setCell:[localDresserArray2 objectAtIndex:row2] andIndex:row2];
-                }
-                }
+                
+            }
 
     
     return cell;
     
 }
+
+
 
 -(void)leftButtonClick
 {
@@ -1476,24 +1472,24 @@
     [leftButton.layer setCornerRadius:3.0];
     [leftButton.layer setBorderWidth:1.0];
     [leftButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"返回.png"]  forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [leftButton setBackgroundColor:[UIColor clearColor]];
     [leftButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0,28, 60, 25);
+    leftButton.frame = CGRectMake(0,28, 24, 26);
     UIBarButtonItem *leftButtonItem=[[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem=leftButtonItem;
     
     UIButton * rightButton=[[UIButton alloc] init];
     rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton.layer setMasksToBounds:YES];
-    [rightButton.layer setCornerRadius:3.0];
-    [rightButton.layer setBorderWidth:1.0];
-    [rightButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    rightButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    rightButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    rightButton.layer.borderColor = [[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
+    rightButton.layer.masksToBounds = YES;//设为NO去试试
     [rightButton setTitle:@"上传图片" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [rightButton setBackgroundColor:[UIColor clearColor]];
     [rightButton setTitleColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];

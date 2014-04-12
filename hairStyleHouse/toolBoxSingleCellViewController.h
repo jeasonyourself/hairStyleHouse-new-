@@ -25,5 +25,6 @@
 @property (strong, nonatomic) IBOutlet UIView *storeView;
 
 - (IBAction)storeButtonClick:(id)sender;
+- (IBAction)famarButtonClick:(id)sender;
 
 @end

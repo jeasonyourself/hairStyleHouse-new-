@@ -181,15 +181,17 @@
             else
             {
             
-                if ([[diction objectForKey:@"isWillDo"] isEqualToString:@"1"])//已经加入过我会做
+                if ([[diction objectForKey:@"isWilldo"] isEqualToString:@"1"])//已经加入过我会做
                 {
                     addButton.tag=1;
+                    NSLog(@"已经会做");
                     [addButton setTitle:@"查看报价" forState:UIControlStateNormal];
                     addButton.frame =  CGRectMake(250, 25, 60, 30);
                 }
                 else
                 {
                     addButton.tag=2;
+                    NSLog(@"还不会做");
                     [addButton setTitle:@"我要报价" forState:UIControlStateNormal];
                     addButton.frame =  CGRectMake(250, 25, 60, 30);
                 }
@@ -297,7 +299,7 @@
 {
     [headImage setImageWithURL:[NSURL URLWithString:[diction objectForKey:@"head_photo"]]];
     nameLable.text = [diction objectForKey:@"username"];
-    cityLable.text = [diction objectForKey:@"content"];
+    cityLable.text = [diction objectForKey:@"add_time"];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
     if ([[diction objectForKey:@"uid"] isEqualToString:appDele.uid])
@@ -340,14 +342,15 @@
 }
 -(void)messageButtonClick
 {
-    talkView=nil;
-    talkView = [[talkViewController alloc] init];
-    talkView.uid = [diction objectForKey:@"uid"];
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if (![appDele.uid isEqualToString:talkView.uid]) {
-        [fatherView pushViewController:talkView];
-        
-    }
+    [self saveImage];
+//    talkView=nil;
+//    talkView = [[talkViewController alloc] init];
+//    talkView.uid = [diction objectForKey:@"uid"];
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    if (![appDele.uid isEqualToString:talkView.uid]) {
+//        [fatherView pushViewController:talkView];
+//        
+//    }
 }
 -(void)commentButtonClick
 {

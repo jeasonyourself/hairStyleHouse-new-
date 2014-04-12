@@ -7,14 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface setBeaspeakViewController : UIViewController
+@class TPKeyboardAvoidingTableView;
+@class TPKeyboardAvoidingScrollView;
+#import "setBeaspeakCell.h"
+@interface setBeaspeakViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
 {
     NSMutableArray * dresserArray;
+    NSMutableArray * dresserArray1;
+    
+    NSString * string;
 
 }
 @property(nonatomic,strong) NSString * _hidden;
+-(void)addNew;
+-(void)deleteView:(NSInteger)index;
+-(void)lookAllcell;
+- (void)textFieldEditChanged:(UITextField *)textField;
+@property (strong, nonatomic) IBOutlet UIButton *firstButton;
+@property (strong, nonatomic) IBOutlet UIButton *secondButton;
+
+- (IBAction)firstButtonClick:(id)sender;
+
+
+
+- (IBAction)secondButtonClick:(id)sender;
+
+@property (nonatomic, retain) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet TPKeyboardAvoidingTableView *myTableView;
 
 @property (strong, nonatomic) IBOutlet UIView *backView;
 

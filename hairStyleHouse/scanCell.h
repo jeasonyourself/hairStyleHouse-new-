@@ -30,6 +30,6 @@
 }
 @property(strong,nonatomic)    scanImageViewController * fatherView;
 
--(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index;
+-(void)setCell:(NSDictionary *)dic andIndex:(NSInteger)index ;
 
 @end

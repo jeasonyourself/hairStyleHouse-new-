@@ -39,7 +39,7 @@
                     <rect key="frame" x="90" y="20" width="140" height="140"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="130.png" id="A82-Vf-2Pp">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加图片.png" id="A82-Vf-2Pp">
                             <rect key="frame" x="5" y="5" width="130" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -235,8 +235,8 @@
         </view>
     </objects>
     <resources>
-        <image name="130.png" width="130" height="130"/>
         <image name="未选中.png" width="49" height="49"/>
+        <image name="添加图片.png" width="137" height="121"/>
         <image name="选中.png" width="49" height="49"/>
     </resources>
 </document>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "dresserInforViewController.h"
+#import "userInforViewController.h"
+#import "sendEvaluateViewController.h"
 @interface beaspeakDresserViewController : UIViewController
 {
     NSString * orderId;
@@ -15,11 +17,13 @@
     NSMutableArray * dresserArray;
     
     dresserInforViewController * dreserView;
+    userInforViewController * userView;
 
     UIButton * sureButton;
     UIButton * cancelButton;
     
     UIButton * sureButton1;
+    sendEvaluateViewController * sendEvalute;
 //    UIButton * cancelButton1;
 }
 @property (strong, nonatomic)   NSString * dresserOrCommen;
@@ -34,8 +38,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *brespeakLable;
 @property (strong, nonatomic) IBOutlet UILabel *typeLable;
 @property (strong, nonatomic) IBOutlet UILabel *priceLable;
+@property (strong, nonatomic) IBOutlet UILabel *showPicLable;
+@property (strong, nonatomic) IBOutlet UILabel *statusLable;
 
 @property (strong, nonatomic) IBOutlet UILabel *firstLable;
+@property (strong, nonatomic) IBOutlet UIButton *lookButton;
+- (IBAction)lookButtonClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *rejectButton;
+- (IBAction)rejectButtonClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *refuButton;
+@property (strong, nonatomic) IBOutlet UIButton *refuButtonClick;
+- (IBAction)refuButtonClick:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *secondLable;
 @property (strong, nonatomic) IBOutlet UILabel *thirdLable;

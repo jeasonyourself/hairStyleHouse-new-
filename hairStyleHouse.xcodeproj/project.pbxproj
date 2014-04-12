@@ -12,6 +12,11 @@
 		7A0191FC18602CC600AFD637 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0191F418602CC600AFD637 /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A0191FD18602CC600AFD637 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0191F618602CC600AFD637 /* SinaWeiboAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A0191FE18602CC600AFD637 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0191F918602CC600AFD637 /* SinaWeiboRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7A03403118F8C81E00292B3A /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A03403018F8C81E00292B3A /* 返回.png */; };
+		7A03403818F8E0E400292B3A /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A03403618F8E0E400292B3A /* 选中.png */; };
+		7A03403918F8E0E400292B3A /* 未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A03403718F8E0E400292B3A /* 未选中.png */; };
+		7A03403D18F8F66C00292B3A /* sendEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A03403B18F8F66C00292B3A /* sendEvaluateViewController.m */; };
+		7A03403E18F8F66C00292B3A /* sendEvaluateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A03403C18F8F66C00292B3A /* sendEvaluateViewController.xib */; };
 		7A06F10C18613482007624D3 /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A06F10718613482007624D3 /* messages.plist */; };
 		7A06F10D18613482007624D3 /* mychat_focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A06F10818613482007624D3 /* mychat_focused.png */; };
 		7A06F10E18613482007624D3 /* mychat_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A06F10918613482007624D3 /* mychat_normal.png */; };
@@ -213,7 +218,6 @@
 		7A5D5C93186C289400F96949 /* 星级.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4C186C289400F96949 /* 星级.png */; };
 		7A5D5C94186C289400F96949 /* 最新发型.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4D186C289400F96949 /* 最新发型.png */; };
 		7A5D5C95186C289400F96949 /* 最新榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4E186C289400F96949 /* 最新榜.png */; };
-		7A5D5C96186C289400F96949 /* 未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C4F186C289400F96949 /* 未选中.png */; };
 		7A5D5C97186C289400F96949 /* 染发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C50186C289400F96949 /* 染发.png */; };
 		7A5D5C98186C289400F96949 /* 每日聚焦.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C51186C289400F96949 /* 每日聚焦.png */; };
 		7A5D5C99186C289400F96949 /* 洗剪吹.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C52186C289400F96949 /* 洗剪吹.png */; };
@@ -233,13 +237,17 @@
 		7A5D5CA7186C289400F96949 /* 行业情报.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C60186C289400F96949 /* 行业情报.png */; };
 		7A5D5CA8186C289400F96949 /* 评论.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C61186C289400F96949 /* 评论.png */; };
 		7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C62186C289400F96949 /* 评论榜.png */; };
-		7A5D5CAA186C289400F96949 /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C63186C289400F96949 /* 选中.png */; };
 		7A5D5CAB186C289400F96949 /* 钻石.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C64186C289400F96949 /* 钻石.png */; };
 		7A5D5CAC186C289400F96949 /* 长发.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C65186C289400F96949 /* 长发.png */; };
 		7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5D5C66186C289400F96949 /* 问答中心.png */; };
 		7A5E0DB918A6109000B71074 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5E0DB818A6109000B71074 /* libiconv.dylib */; };
 		7A63A503185AF42800502E75 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A63A500185AF42800502E75 /* libWeiboSDK.a */; };
 		7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A63A501185AF42800502E75 /* WeiboSDK.bundle */; };
+		7A6A695618F7D62100DCD8D3 /* xuxiankuang1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A695418F7D62100DCD8D3 /* xuxiankuang1.png */; };
+		7A6A695718F7D62100DCD8D3 /* xuxiankuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A695518F7D62100DCD8D3 /* xuxiankuang.png */; };
+		7A98094118F504C20077B845 /* 选择服务.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98093E18F504C20077B845 /* 选择服务.png */; };
+		7A98094218F504C20077B845 /* 选择排序.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98093F18F504C20077B845 /* 选择排序.png */; };
+		7A98094318F504C20077B845 /* 未选择默认.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98094018F504C20077B845 /* 未选择默认.png */; };
 		7A9BF12C18C6C84D00C7B35A /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9BF12B18C6C84D00C7B35A /* TencentOpenAPI.framework */; };
 		7A9BF12E18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7A9CCACF18B5AFA700FB6C4F /* 我的新.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9CCACB18B5AFA700FB6C4F /* 我的新.png */; };
@@ -385,6 +393,8 @@
 		7AE7F5301855542400CAB2C6 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7F52D1855542400CAB2C6 /* arrow@2x.png */; };
 		7AE7F533185589F800CAB2C6 /* myShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F532185589F800CAB2C6 /* myShowViewController.m */; };
 		7AE7F53618558A7400CAB2C6 /* myShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7F53518558A7400CAB2C6 /* myShowCell.m */; };
+		7AE9BEEB18F6405200B9359E /* setBeaspeakCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE9BEEA18F6405200B9359E /* setBeaspeakCell.m */; };
+		7AE9BEED18F656AC00B9359E /* image_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE9BEEC18F656AC00B9359E /* image_delete.png */; };
 		7AE9E3EC18850D690023FDFC /* addphoto_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE9E3EB18850D690023FDFC /* addphoto_green.png */; };
 		7AEB52C31880CFD000538279 /* addBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */; };
 		7AEB52C61880CFEC00538279 /* addbeaspeakHairStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB52C51880CFEC00538279 /* addbeaspeakHairStyleCell.m */; };
@@ -446,6 +456,12 @@
 		7A0191F718602CC600AFD637 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
 		7A0191F818602CC600AFD637 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
 		7A0191F918602CC600AFD637 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		7A03403018F8C81E00292B3A /* 返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "返回.png"; sourceTree = "<group>"; };
+		7A03403618F8E0E400292B3A /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
+		7A03403718F8E0E400292B3A /* 未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选中.png"; sourceTree = "<group>"; };
+		7A03403A18F8F66C00292B3A /* sendEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendEvaluateViewController.h; sourceTree = "<group>"; };
+		7A03403B18F8F66C00292B3A /* sendEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendEvaluateViewController.m; sourceTree = "<group>"; };
+		7A03403C18F8F66C00292B3A /* sendEvaluateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendEvaluateViewController.xib; sourceTree = "<group>"; };
 		7A06F10718613482007624D3 /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
 		7A06F10818613482007624D3 /* mychat_focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychat_focused.png; sourceTree = "<group>"; };
 		7A06F10918613482007624D3 /* mychat_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychat_normal.png; sourceTree = "<group>"; };
@@ -707,7 +723,6 @@
 		7A5D5C4C186C289400F96949 /* 星级.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "星级.png"; sourceTree = "<group>"; };
 		7A5D5C4D186C289400F96949 /* 最新发型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新发型.png"; sourceTree = "<group>"; };
 		7A5D5C4E186C289400F96949 /* 最新榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最新榜.png"; sourceTree = "<group>"; };
-		7A5D5C4F186C289400F96949 /* 未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选中.png"; sourceTree = "<group>"; };
 		7A5D5C50186C289400F96949 /* 染发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "染发.png"; sourceTree = "<group>"; };
 		7A5D5C51186C289400F96949 /* 每日聚焦.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "每日聚焦.png"; sourceTree = "<group>"; };
 		7A5D5C52186C289400F96949 /* 洗剪吹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗剪吹.png"; sourceTree = "<group>"; };
@@ -727,7 +742,6 @@
 		7A5D5C60186C289400F96949 /* 行业情报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行业情报.png"; sourceTree = "<group>"; };
 		7A5D5C61186C289400F96949 /* 评论.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论.png"; sourceTree = "<group>"; };
 		7A5D5C62186C289400F96949 /* 评论榜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论榜.png"; sourceTree = "<group>"; };
-		7A5D5C63186C289400F96949 /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
 		7A5D5C64186C289400F96949 /* 钻石.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "钻石.png"; sourceTree = "<group>"; };
 		7A5D5C65186C289400F96949 /* 长发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长发.png"; sourceTree = "<group>"; };
 		7A5D5C66186C289400F96949 /* 问答中心.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问答中心.png"; sourceTree = "<group>"; };
@@ -735,6 +749,11 @@
 		7A63A500185AF42800502E75 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		7A63A501185AF42800502E75 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		7A63A502185AF42800502E75 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		7A6A695418F7D62100DCD8D3 /* xuxiankuang1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuxiankuang1.png; sourceTree = "<group>"; };
+		7A6A695518F7D62100DCD8D3 /* xuxiankuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuxiankuang.png; sourceTree = "<group>"; };
+		7A98093E18F504C20077B845 /* 选择服务.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择服务.png"; sourceTree = "<group>"; };
+		7A98093F18F504C20077B845 /* 选择排序.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择排序.png"; sourceTree = "<group>"; };
+		7A98094018F504C20077B845 /* 未选择默认.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选择默认.png"; sourceTree = "<group>"; };
 		7A9BF12B18C6C84D00C7B35A /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7A9CCACB18B5AFA700FB6C4F /* 我的新.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的新.png"; sourceTree = "<group>"; };
@@ -974,6 +993,9 @@
 		7AE7F532185589F800CAB2C6 /* myShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowViewController.m; sourceTree = "<group>"; };
 		7AE7F53418558A7400CAB2C6 /* myShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myShowCell.h; sourceTree = "<group>"; };
 		7AE7F53518558A7400CAB2C6 /* myShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myShowCell.m; sourceTree = "<group>"; };
+		7AE9BEE918F6405200B9359E /* setBeaspeakCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setBeaspeakCell.h; sourceTree = "<group>"; };
+		7AE9BEEA18F6405200B9359E /* setBeaspeakCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setBeaspeakCell.m; sourceTree = "<group>"; };
+		7AE9BEEC18F656AC00B9359E /* image_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_delete.png; sourceTree = "<group>"; };
 		7AE9E3EB18850D690023FDFC /* addphoto_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addphoto_green.png; sourceTree = "<group>"; };
 		7AEB52C11880CFD000538279 /* addBeaspeakHairStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addBeaspeakHairStyleViewController.h; sourceTree = "<group>"; };
 		7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
@@ -1392,6 +1414,9 @@
 				7ADC1A11184D6E22004C61BC /* beaspeakDresserViewController.h */,
 				7ADC1A12184D6E22004C61BC /* beaspeakDresserViewController.m */,
 				7ADC1A13184D6E22004C61BC /* beaspeakDresserViewController.xib */,
+				7A03403A18F8F66C00292B3A /* sendEvaluateViewController.h */,
+				7A03403B18F8F66C00292B3A /* sendEvaluateViewController.m */,
+				7A03403C18F8F66C00292B3A /* sendEvaluateViewController.xib */,
 				7AE361551847556D008A107C /* scanImageViewController.h */,
 				7AE361561847556D008A107C /* scanImageViewController.m */,
 				7AE3615818475580008A107C /* scanCell.h */,
@@ -1418,6 +1443,8 @@
 				7ADF3177188CBE5C00DF58ED /* setBeaspeakViewController.h */,
 				7ADF3178188CBE5C00DF58ED /* setBeaspeakViewController.m */,
 				7ADF3179188CBE5C00DF58ED /* setBeaspeakViewController.xib */,
+				7AE9BEE918F6405200B9359E /* setBeaspeakCell.h */,
+				7AE9BEEA18F6405200B9359E /* setBeaspeakCell.m */,
 				7AAFF1AC188F9DCE008EB929 /* setOpenOrCloseViewController.h */,
 				7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */,
 				7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */,
@@ -1669,6 +1696,10 @@
 		7A4BEC7B18710616005E896C /* 新版个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				7A03403018F8C81E00292B3A /* 返回.png */,
+				7A6A695418F7D62100DCD8D3 /* xuxiankuang1.png */,
+				7A6A695518F7D62100DCD8D3 /* xuxiankuang.png */,
+				7AE9BEEC18F656AC00B9359E /* image_delete.png */,
 				7AF20C83188E88110015E841 /* 编辑资料.png */,
 				7AE9E3EB18850D690023FDFC /* addphoto_green.png */,
 				7A4BEC92187132B1005E896C /* zhaofaxing1.png */,
@@ -1690,6 +1721,11 @@
 		7A5D5C1F186C289400F96949 /* 11-20 */ = {
 			isa = PBXGroup;
 			children = (
+				7A03403618F8E0E400292B3A /* 选中.png */,
+				7A03403718F8E0E400292B3A /* 未选中.png */,
+				7A98093E18F504C20077B845 /* 选择服务.png */,
+				7A98093F18F504C20077B845 /* 选择排序.png */,
+				7A98094018F504C20077B845 /* 未选择默认.png */,
 				7AF514E418E677CF00C2BDBF /* 添加图片1.png */,
 				7A135F2318EC05E200A2F28D /* signIma.png */,
 				7AF514E218E6761500C2BDBF /* 添加图片.png */,
@@ -1738,7 +1774,6 @@
 				7A5D5C4C186C289400F96949 /* 星级.png */,
 				7A5D5C4D186C289400F96949 /* 最新发型.png */,
 				7A5D5C4E186C289400F96949 /* 最新榜.png */,
-				7A5D5C4F186C289400F96949 /* 未选中.png */,
 				7A5D5C50186C289400F96949 /* 染发.png */,
 				7A5D5C51186C289400F96949 /* 每日聚焦.png */,
 				7A5D5C52186C289400F96949 /* 洗剪吹.png */,
@@ -1758,7 +1793,6 @@
 				7A5D5C60186C289400F96949 /* 行业情报.png */,
 				7A5D5C61186C289400F96949 /* 评论.png */,
 				7A5D5C62186C289400F96949 /* 评论榜.png */,
-				7A5D5C63186C289400F96949 /* 选中.png */,
 				7A5D5C64186C289400F96949 /* 钻石.png */,
 				7A5D5C65186C289400F96949 /* 长发.png */,
 				7A5D5C66186C289400F96949 /* 问答中心.png */,
@@ -2117,6 +2151,7 @@
 				7A5D5C82186C289400F96949 /* 其他.png in Resources */,
 				7A5D5C1D186C1C8B00F96949 /* 问题03.png in Resources */,
 				7A4379CF18693CE0007F64DB /* icon_perm.png in Resources */,
+				7A98094118F504C20077B845 /* 选择服务.png in Resources */,
 				7A4BEC8C18710616005E896C /* mycenter_mypic.png in Resources */,
 				7A4379A518693CE0007F64DB /* hairtype_1_10.png in Resources */,
 				7A5D5C98186C289400F96949 /* 每日聚焦.png in Resources */,
@@ -2131,6 +2166,7 @@
 				7AE03D451845D41C00E14EDC /* city.plist in Resources */,
 				7A5D5C91186C289400F96949 /* 推荐.png in Resources */,
 				7A37D69D1844C9E100D9C4D9 /* Images.xcassets in Resources */,
+				7A98094318F504C20077B845 /* 未选择默认.png in Resources */,
 				7A5D5C6A186C289400F96949 /* comment.png in Resources */,
 				7AE03D561846172F00E14EDC /* pubImageViewController.xib in Resources */,
 				7A4379C418693CE0007F64DB /* hairtype_4_9.png in Resources */,
@@ -2147,6 +2183,7 @@
 				7A5D5C69186C289400F96949 /* 4关注.png in Resources */,
 				7A4379CE18693CE0007F64DB /* icon_man1.png in Resources */,
 				7A06F10E18613482007624D3 /* mychat_normal.png in Resources */,
+				7AE9BEED18F656AC00B9359E /* image_delete.png in Resources */,
 				7A4379BF18693CE0007F64DB /* hairtype_4_4.png in Resources */,
 				7A5D5C86186C289400F96949 /* 同城1.png in Resources */,
 				7A5D5C81186C289400F96949 /* 关注.png in Resources */,
@@ -2165,6 +2202,7 @@
 				7AF2416218C02E01008FA048 /* 三角形.png in Resources */,
 				7A5D5C8E186C289400F96949 /* 护理.png in Resources */,
 				7A5D5C6D186C289400F96949 /* fenxiang.png in Resources */,
+				7A03403E18F8F66C00292B3A /* sendEvaluateViewController.xib in Resources */,
 				7AF20C8E188E92A30015E841 /* icon-57.png in Resources */,
 				7A5D5CA4186C289400F96949 /* 短发.png in Resources */,
 				7ADF67DA18E11EA6008FF73D /* blackArrow.png in Resources */,
@@ -2182,6 +2220,7 @@
 				7A4379B618693CE0007F64DB /* hairtype_2_8.png in Resources */,
 				7A5D5C7B186C289400F96949 /* x5.png in Resources */,
 				7ADF67DC18E11EA6008FF73D /* blueArrow.png in Resources */,
+				7A98094218F504C20077B845 /* 选择排序.png in Resources */,
 				7A5D5CAB186C289400F96949 /* 钻石.png in Resources */,
 				7A4379C718693CE0007F64DB /* hairtype_5_3.png in Resources */,
 				7A5D5C92186C289400F96949 /* 推荐发型.png in Resources */,
@@ -2214,10 +2253,12 @@
 				7AD545F7184F2B08009A6B79 /* MJPhotoBrowser.bundle in Resources */,
 				7AE03D471845D41C00E14EDC /* HZAreaPickerView.xib in Resources */,
 				7A5D5C7C186C289400F96949 /* xiaoxi.png in Resources */,
+				7A6A695718F7D62100DCD8D3 /* xuxiankuang.png in Resources */,
 				7A4BEC9118710616005E896C /* Thumbs.db in Resources */,
 				7A5D5C9D186C289400F96949 /* 烫发.png in Resources */,
 				7A5D5C93186C289400F96949 /* 星级.png in Resources */,
 				7AF54A34187D264200C93092 /* btn_021.press@2x.png in Resources */,
+				7A03403118F8C81E00292B3A /* 返回.png in Resources */,
 				7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */,
 				7A4379D618693CE0007F64DB /* 三角.png in Resources */,
 				7ADF67E018E11EA6008FF73D /* whiteArrow.png in Resources */,
@@ -2260,11 +2301,12 @@
 				7A4379C318693CE0007F64DB /* hairtype_4_8.png in Resources */,
 				7A5D5C95186C289400F96949 /* 最新榜.png in Resources */,
 				7A06F11718613493007624D3 /* HRChatCell.xib in Resources */,
+				7A03403918F8E0E400292B3A /* 未选中.png in Resources */,
 				7A5D5C78186C289400F96949 /* x2.png in Resources */,
-				7A5D5CAA186C289400F96949 /* 选中.png in Resources */,
 				7A4379BA18693CE0007F64DB /* hairtype_3_3.png in Resources */,
 				7AE09DFD18582FBB007CA28D /* inviteViewController.xib in Resources */,
 				7A4379D218693CE0007F64DB /* icon_recommend1.png in Resources */,
+				7A6A695618F7D62100DCD8D3 /* xuxiankuang1.png in Resources */,
 				7AF20C8C188E92A30015E841 /* icon-29.png in Resources */,
 				7ADF3171188CB29400DF58ED /* adviceViewController.xib in Resources */,
 				7A4379AE18693CE0007F64DB /* hairtype_2_1.png in Resources */,
@@ -2276,7 +2318,6 @@
 				7A5D5CA9186C289400F96949 /* 评论榜.png in Resources */,
 				7A4379B518693CE0007F64DB /* hairtype_2_7.png in Resources */,
 				7AF54A38187D264200C93092 /* TSLocateView.xib in Resources */,
-				7A5D5C96186C289400F96949 /* 未选中.png in Resources */,
 				7A0191FB18602CC600AFD637 /* SinaWeibo.bundle in Resources */,
 				7A4379AF18693CE0007F64DB /* hairtype_2_10.png in Resources */,
 				7A9CCACF18B5AFA700FB6C4F /* 我的新.png in Resources */,
@@ -2284,6 +2325,7 @@
 				7A4BEC8918710616005E896C /* mycenter_faxingbaojia.png in Resources */,
 				7A5D5C70186C289400F96949 /* like1.png in Resources */,
 				7AE7BE2D18D9322B006E1B06 /* 评论1.png in Resources */,
+				7A03403818F8E0E400292B3A /* 选中.png in Resources */,
 				7A4379A818693CE0007F64DB /* hairtype_1_4.png in Resources */,
 				7A4BECAB1871720F005E896C /* mySetSingleCellViewController.xib in Resources */,
 				7A06F11018613482007624D3 /* other_normal.png in Resources */,
@@ -2416,6 +2458,7 @@
 				7AD545F9184F2B08009A6B79 /* MJPhotoLoadingView.m in Sources */,
 				7A32CC7118C8291700D12A90 /* CDataScanner.m in Sources */,
 				7AE03D7018461C0200E14EDC /* DemoViewController.m in Sources */,
+				7AE9BEEB18F6405200B9359E /* setBeaspeakCell.m in Sources */,
 				7AD54603184F2B08009A6B79 /* SDWebImageDownloaderOperation.m in Sources */,
 				7AD54602184F2B08009A6B79 /* SDWebImageDownloader.m in Sources */,
 				7A37D6911844C9E100D9C4D9 /* main.m in Sources */,
@@ -2425,6 +2468,7 @@
 				7AE03D2E184589A400E14EDC /* singleTableCellBackgroundViewController.m in Sources */,
 				7AAFF1AF188F9DCE008EB929 /* setOpenOrCloseViewController.m in Sources */,
 				7AE09E0818586AA7007CA28D /* pubInviteInforViewController.m in Sources */,
+				7A03403D18F8F66C00292B3A /* sendEvaluateViewController.m in Sources */,
 				7A4BECA21871459D005E896C /* toolBoxSingleCellViewController.m in Sources */,
 				7A37D71A1844CA2700D9C4D9 /* SBJsonStreamWriterState.m in Sources */,
 				7AE3615418473C26008A107C /* lookEvaluateCell.m in Sources */,

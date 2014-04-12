@@ -26,7 +26,25 @@
     UIButton * twoButton;
     UIButton * thirdButton;
     UIButton * forthButton;
+    UIButton * fifthButton;
+    UIButton * sixthButton;
     UITableView *myTableView;
+    
+    UIView * categryOne;
+    UIView * categryBackOne;
+    UIView * categryBackOne1;
+    UIButton * clearButtonOne;
+    UITableView * categryTableOne;
+    NSMutableArray * categryOneArr;
+    NSMutableArray * categryTwoArr;
+    
+    UIView * categryTwo;
+    UIView * categryBacktwo;
+UIView * categryBacktwo1;
+    UIButton * clearButtonTwo;
+    UITableView * categryTableTwo;
+    
+    
      AllAroundPullView *bottomRefreshView;
     NSMutableArray * dresserArray;
     NSMutableArray * dresserArray1;
@@ -55,6 +73,9 @@ ASIFormDataRequest* requestMain;
     scanImageViewController * scanView;
     
     addBeaspeakViewController * addBeaspeakView;
+    
+    NSString * serviceStr;
+    NSString * sortStr;
 }
 @property(nonatomic,strong)        NSString* fromFouceLoginCancel;
 //-(void)fromFouceCancelBack:(NSString *)_str;
