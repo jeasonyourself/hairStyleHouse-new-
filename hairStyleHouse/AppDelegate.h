@@ -58,9 +58,9 @@
     
   Reachability*  hostReach;
     
-    id interface;
-    SEL sucfun;
-    SEL errfun;
+//    id interface;
+//    SEL sucfun;
+//    SEL errfun;
 
     NSMutableDictionary * userInfor;
 
@@ -83,5 +83,5 @@
 @property (nonatomic) BOOL isReachable;
 @property (strong, nonatomic) Reachability*  hostReach;
 -(void)pushToViewController:(id)_sen;
-    -(void)getSinaLoginBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
+//    -(void)getSinaLoginBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err;
 @end

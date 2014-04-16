@@ -10,7 +10,8 @@
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
 //#define currentMonth [currentMonthString integerValue]
@@ -254,7 +255,7 @@
     
 
     NSString* cName = [NSString stringWithFormat:@"预约发型详细"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -337,7 +338,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"预约发型详细"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

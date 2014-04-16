@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface ViewController ()
 
 @end
@@ -26,14 +27,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"0"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 //
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"0"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 - (void)didReceiveMemoryWarning

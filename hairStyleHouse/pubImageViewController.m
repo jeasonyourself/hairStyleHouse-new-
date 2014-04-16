@@ -13,7 +13,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface pubImageViewController ()
 
 @end
@@ -67,6 +68,7 @@
 //    [_secondBackView addSubview:severTimeLable];
     
     severTime = [[UITextField alloc] initWithFrame:CGRectMake(65, 15+170, 50, 22)];
+    severTime.returnKeyType=UIReturnKeyDone;
     severTime.delegate = self;
     severTime.keyboardType = UIKeyboardTypeNumberPad;
     
@@ -88,6 +90,7 @@
     [_secondBackView addSubview:severPriceLable];
     
     severPrice = [[UITextField alloc] initWithFrame:CGRectMake(65, 15+170, 50, 22)];
+    severPrice.returnKeyType=UIReturnKeyDone;
     severPrice.delegate=self;
     severPrice.keyboardType = UIKeyboardTypeNumberPad;
     severPrice.textAlignment = NSTextAlignmentCenter;
@@ -265,7 +268,7 @@
 {
 
     NSString* cName = [NSString stringWithFormat:@"发布发型"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -326,7 +329,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发布发型"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

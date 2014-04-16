@@ -12,7 +12,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "dresserInforViewController.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface commentViewController ()
 
 @end
@@ -83,6 +84,7 @@
     [self.view addSubview:lastView];
     
     contentView = [[UITextView alloc] initWithFrame:CGRectMake(10,10, 230, 40)];
+    contentView.returnKeyType=UIReturnKeyDone;
     contentView.font =[UIFont systemFontOfSize:12.0];
     contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -139,7 +141,7 @@
 {
 //    [self setRefreshViewFrame];
     NSString* cName = [NSString stringWithFormat:@"查看评论"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -199,7 +201,7 @@
 {
     
     NSString* cName = [NSString stringWithFormat:@"查看评论"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

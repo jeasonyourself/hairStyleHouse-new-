@@ -12,7 +12,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface pubQViewController ()
 
 @end
@@ -94,7 +95,7 @@ else
 {
 
     NSString* cName = [NSString stringWithFormat:@"发布话题"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -151,7 +152,7 @@ else
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发布话题"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -214,6 +215,7 @@ else
     [headButton addTarget:self action:@selector(headButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     describeText = [[UITextView alloc] initWithFrame:CGRectMake(10, 230, 300, 120)];
+    describeText.returnKeyType=UIReturnKeyDone;
     describeText.backgroundColor = [UIColor whiteColor];
     
     describeText.textColor = [UIColor blackColor];//设置textview里面的字体颜色
@@ -402,7 +404,7 @@ else
         request.delegate=self;
         request.tag=1;
         [request startAsynchronous];
-        
+        sendButton.userInteractionEnabled=NO;
         
         [_activityIndicatorView startAnimating];
 
@@ -464,10 +466,21 @@ else
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"是否发布成功dic:%@",dic);
+        sendButton.userInteractionEnabled=YES;
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+            AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+            
+            appDele.ifSinceLogOut=@"yes";
+            [_activityIndicatorView stopAnimating];
+            _activityIndicatorView.hidesWhenStopped = YES;
+            [self leftButtonClick];
+        }
+        else
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
+        }
         
-        [_activityIndicatorView stopAnimating];
-        _activityIndicatorView.hidesWhenStopped = YES;
-        [self leftButtonClick];
     }
 
 }
@@ -478,6 +491,7 @@ else
 {
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
+    sendButton.userInteractionEnabled=YES;
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
     [alert show];
 }

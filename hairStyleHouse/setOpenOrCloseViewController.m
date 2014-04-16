@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface setOpenOrCloseViewController ()
 
 @end
@@ -52,14 +53,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"推送设置"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"推送设置"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)refreashNav
 {

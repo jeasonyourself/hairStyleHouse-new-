@@ -27,6 +27,7 @@
     BOOL needFeash;
 //    NSDictionary* dic;
     NSMutableArray * dresserArray;
+   
     NSString * page;
     NSString * pageCount;
     NSMutableArray * dresserArray1;

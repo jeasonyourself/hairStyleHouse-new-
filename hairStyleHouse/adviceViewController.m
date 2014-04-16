@@ -9,7 +9,8 @@
 #import "adviceViewController.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface adviceViewController ()
 
 @end
@@ -54,14 +55,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"反馈意见"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"反馈意见"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)refreashNav

@@ -87,7 +87,7 @@
                                     <rect key="frame" x="85" y="48" width="225" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="bci-8u-6v9"/>
                                         <outlet property="delegate" destination="-1" id="Kzm-bO-5iA"/>
@@ -97,7 +97,7 @@
                                     <rect key="frame" x="85" y="98" width="225" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="HiI-aD-IC0"/>
                                         <outlet property="delegate" destination="-1" id="fc0-JA-9EN"/>
@@ -107,7 +107,7 @@
                                     <rect key="frame" x="85" y="149" width="225" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="Gpe-AL-rbr"/>
                                         <outlet property="delegate" destination="-1" id="KwS-ds-B2A"/>
@@ -117,7 +117,7 @@
                                     <rect key="frame" x="85" y="200" width="225" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="x8F-mT-grZ"/>
                                         <outlet property="delegate" destination="-1" id="RTA-OC-jvk"/>
@@ -127,7 +127,7 @@
                                     <rect key="frame" x="85" y="249" width="225" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="OSc-b1-Mbk"/>
                                         <outlet property="delegate" destination="-1" id="YnA-mm-oTS"/>

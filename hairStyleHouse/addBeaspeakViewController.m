@@ -10,7 +10,8 @@
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 #import "TPKeyboardAvoidingScrollView.h"
 @interface addBeaspeakViewController ()
 
@@ -231,9 +232,9 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
         
     }
     else{
-        _firstView.hidden=YES;
-
-        _secondView.hidden=YES;
+//        _firstView.hidden=YES;
+//
+//        _secondView.hidden=YES;
     }
     
     // Do any additional setup after loading the view from its nib.
@@ -309,7 +310,7 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
 {
     
     NSString* cName = [NSString stringWithFormat:@"预约发型师"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -320,41 +321,41 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
     }
     else
     {
-        _firstView.hidden=NO;
-        _secondView.hidden=NO;
-        
-        _firstView.frame = CGRectMake(0, 70, 320, 107);
-        _headBackView.frame = CGRectMake(5, 5, 70, 70);
-        _headImage.frame = CGRectMake(5, 5, 60, 60);
-        _nameLable.frame= CGRectMake(96, 20, 108, 20);
-        _cityLable.frame= CGRectMake(96, 45, 108, 20);
-        _lookWorksButton.frame= CGRectMake(227, 12, 86, 22);
-        _lookEvauateButton.frame=CGRectMake(227, 42, 86, 22);
-        _placeLable.frame = CGRectMake(22, 75, 61, 21);
-
-        _addressLable.frame = CGRectMake(85, 70, 242, 30);
-      
-        
-        
-        _secondView.frame = CGRectMake(0, 182, 320, 437);
-
-        _nineClockButton.frame=CGRectMake(0, 160, 80, 30);
-        _tenClockButton.frame=CGRectMake(80, 160, 80, 30);
-        _elevenClockButton.frame=CGRectMake(160, 160, 80, 30);
-        _twelveClockButton.frame=CGRectMake(240, 160, 80, 30);
-        _thirteenClockButton.frame=CGRectMake(0, 190, 80, 30);
-        _forteenClockButton.frame=CGRectMake(80, 190, 80, 30);
-        _fifteenClockButton.frame=CGRectMake(160, 190, 80, 30);
-        _sixteenClockButton.frame=CGRectMake(240, 190, 80, 30);
-        _seventeenClockButton.frame=CGRectMake(0, 220, 80, 30);
-        _eighteenClockButton.frame=CGRectMake(80, 220, 80, 30);
-        _ninteenClockButton.frame=CGRectMake(160, 220, 80, 30);
-        _twentyClockButton.frame=CGRectMake(240, 220, 80, 30);
-
-        _sureButton.frame=CGRectMake(17, 255, 285, 30);
-        
-        
-        _otherSecondView.frame=CGRectMake(0, 190, 320, 244);
+//        _firstView.hidden=NO;
+//        _secondView.hidden=NO;
+//        
+//        _firstView.frame = CGRectMake(0, 70, 320, 107);
+//        _headBackView.frame = CGRectMake(5, 5, 70, 70);
+//        _headImage.frame = CGRectMake(5, 5, 60, 60);
+//        _nameLable.frame= CGRectMake(96, 20, 108, 20);
+//        _cityLable.frame= CGRectMake(96, 45, 108, 20);
+////        _lookWorksButton.frame= CGRectMake(227, 12, 86, 22);
+////        _lookEvauateButton.frame=CGRectMake(227, 42, 86, 22);
+//        _placeLable.frame = CGRectMake(22, 75, 61, 21);
+//
+//        _addressLable.frame = CGRectMake(85, 70, 242, 30);
+//      
+//        
+//        
+//        _secondView.frame = CGRectMake(0, 182, 320, 437);
+//
+//        _nineClockButton.frame=CGRectMake(0, 160, 80, 30);
+//        _tenClockButton.frame=CGRectMake(80, 160, 80, 30);
+//        _elevenClockButton.frame=CGRectMake(160, 160, 80, 30);
+//        _twelveClockButton.frame=CGRectMake(240, 160, 80, 30);
+//        _thirteenClockButton.frame=CGRectMake(0, 190, 80, 30);
+//        _forteenClockButton.frame=CGRectMake(80, 190, 80, 30);
+//        _fifteenClockButton.frame=CGRectMake(160, 190, 80, 30);
+//        _sixteenClockButton.frame=CGRectMake(240, 190, 80, 30);
+//        _seventeenClockButton.frame=CGRectMake(0, 220, 80, 30);
+//        _eighteenClockButton.frame=CGRectMake(80, 220, 80, 30);
+//        _ninteenClockButton.frame=CGRectMake(160, 220, 80, 30);
+//        _twentyClockButton.frame=CGRectMake(240, 220, 80, 30);
+//
+//        _sureButton.frame=CGRectMake(17, 255, 285, 30);
+//        
+//        
+//        _otherSecondView.frame=CGRectMake(0, 190, 320, 244);
     }
 }
 
@@ -415,7 +416,7 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
 {
     
     NSString* cName = [NSString stringWithFormat:@"预约发型师"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -820,7 +821,7 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
     }
     else
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"您尚有未完成预约或预约信息出错" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alert show];
     }
     }
@@ -885,47 +886,24 @@ _shalongLable.text=[self.inforDic objectForKey:@"store_name"];
     else
     {
         static NSString *cellID=@"cell";
-        UITableViewCell *cell=(UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
+        addBeaspeakViewCell *cell=(addBeaspeakViewCell*)[tableView dequeueReusableCellWithIdentifier:cellID];
         if (cell==nil) {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            firstLable = [[UILabel alloc] init];
-            firstLable.textAlignment=NSTextAlignmentCenter;
-            firstLable.font=[UIFont systemFontOfSize:12.0];
-            secondLable = [[UILabel alloc] init];
-            secondLable.textAlignment=NSTextAlignmentCenter;
-            secondLable.font=[UIFont systemFontOfSize:12.0];
-            thirdLable = [[UILabel alloc] init];
-            thirdLable.textAlignment=NSTextAlignmentCenter;
-            thirdLable.font=[UIFont systemFontOfSize:12.0];
-            forthLable = [[UILabel alloc] init];
-            forthLable.textAlignment=NSTextAlignmentCenter;
-            forthLable.font=[UIFont systemFontOfSize:12.0];
+            cell=[[addBeaspeakViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            
             //            cell.fatherController=self;
         }
         
         NSInteger row =[indexPath row];
         
         if (row==0) {
-            firstLable.text = @"服务项目";
-            secondLable.text=@"平时价格";
-            thirdLable.text=@"折扣";
-            forthLable.text=@"优惠价格";
-            firstLable.frame=CGRectMake(5, 10, 70, 40);secondLable.frame=CGRectMake(85, 10, 70, 40);thirdLable.frame=CGRectMake(165, 10, 70, 40);forthLable.frame=CGRectMake(245, 10, 70, 40);
-            [cell addSubview:firstLable];
-            [cell addSubview:secondLable];[cell addSubview:thirdLable];[cell addSubview:forthLable];
+           
+            [cell setFirstCell];
             cell.userInteractionEnabled=NO;
         }
         else
         {
-            firstLable.text = [[secondArr objectAtIndex:row-1] objectForKey:@"goods_name"];
-            secondLable.text=[NSString stringWithFormat:@"￥%@",[[secondArr objectAtIndex:row-1] objectForKey:@"price"]];
-            thirdLable.text=[NSString stringWithFormat:@"%@折",[[secondArr objectAtIndex:row-1] objectForKey:@"rebate"]];
-            forthLable.text=[NSString stringWithFormat:@"￥%@",[[secondArr objectAtIndex:row-1] objectForKey:@"reserve_price"]];
-            firstLable.frame=CGRectMake(5, 10, 70, 40);secondLable.frame=CGRectMake(85, 10, 70, 40);thirdLable.frame=CGRectMake(165, 10, 70, 40);forthLable.frame=CGRectMake(245, 10, 70, 40);
-
-            [cell addSubview:firstLable];
-            [cell addSubview:secondLable];[cell addSubview:thirdLable];[cell addSubview:forthLable];
-//        cell.textLabel.text = [[secondArr objectAtIndex:row-1] objectForKey:@"goods_id"];
+           
+            [cell setOtherCell:secondArr and:row];
         }
         
         return cell;

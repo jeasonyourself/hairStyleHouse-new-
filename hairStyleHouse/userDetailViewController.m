@@ -12,7 +12,8 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface userDetailViewController ()
 
 @end
@@ -72,9 +73,9 @@
     _fouceButton.layer.masksToBounds = YES;//设为NO去试试
     
     
-    NSString* headStr=[infoDic objectForKey:@"head_photo"];
-    NSString* nameStr = [infoDic objectForKey:@"username"];
-    NSString* cityStr = [infoDic objectForKey:@"city"];
+    NSString* headStr=[[infoDic objectForKey:@"user_info"] objectForKey:@"head_photo"];
+    NSString* nameStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"username"];
+    NSString* cityStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"city"];
     
 //    NSString* workStr = [infoDic objectForKey:@"works_num"];
     NSMutableArray * workArr;
@@ -90,10 +91,10 @@
     
     
     
-    NSString* inforStr = [infoDic objectForKey:@"signature"];
+    NSString* inforStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"signature"];
     
     
-    NSString* concerStr = [infoDic objectForKey:@"isconcerns"];//是否关注
+    NSString* concerStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"isconcerns"];//是否关注
     
     
     
@@ -152,7 +153,7 @@
     
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
-    if ([[infoDic objectForKey:@"uid"] isEqualToString:appDele.uid]) {
+    if ([[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"] isEqualToString:appDele.uid]) {
         _askButton.enabled=NO;
     }
     else
@@ -183,14 +184,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看普通用户"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看普通用户"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 //-(void)viewDidAppear:(BOOL)animated
@@ -239,7 +240,7 @@
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView.uid=[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     scanView.worksOrsaveorCan = @"works";
     [fatherController pushToViewController:scanView];
 }
@@ -248,7 +249,7 @@
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView.uid=[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     scanView.worksOrsaveorCan = @"save";
     [fatherController pushToViewController:scanView];
 }
@@ -270,6 +271,8 @@
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if ([appDele.type isEqualToString:@"1"]) {
         
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"查看失败" message:@"普通用户不可查看和回答他人问题" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alert show];
     }
     else
     {
@@ -279,7 +282,7 @@
         myAnwserView._hidden  =@"no";
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
         
-        myAnwserView.uid = [infoDic objectForKey:@"uid"];
+        myAnwserView.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
         
         myAnwserView.whoLookQuestion=@"other";
         [fatherController pushToViewController:myAnwserView];
@@ -290,7 +293,7 @@
     
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView.uid=[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     scanView.worksOrsaveorCan = @"save";
     [fatherController pushToViewController:scanView];
 }
@@ -298,7 +301,9 @@
 - (IBAction)askButtonClick:(id)sender {
     talkView=nil;
     talkView = [[talkViewController alloc] init];
-    talkView.uid = [infoDic objectForKey:@"uid"];
+    talkView.talkOrQuestion=@"question";
+    talkView._hidden  =@"yes";
+    talkView.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     [fatherController  pushToViewController:talkView];
 }
 
@@ -309,7 +314,7 @@
     request.tag=2;
     [request setPostValue:appDele.uid forKey:@"uid"];
     [request setPostValue:appDele.secret forKey:@"secret"];
-    [request setPostValue:[infoDic objectForKey:@"uid"] forKey:@"touid"];
+    [request setPostValue:[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"] forKey:@"touid"];
     [request setPostValue:appDele.type forKey:@"type"];
     [request setPostValue:@"1" forKey:@"totype"];
     

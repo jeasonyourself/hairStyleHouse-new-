@@ -15,7 +15,8 @@
 #import "HZLocation.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface personInforViewController ()<UITextFieldDelegate, HZAreaPickerDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
 @property (strong, nonatomic) NSString *areaValue, *cityValue;
@@ -257,7 +258,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"修改资料"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -315,7 +316,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"修改资料"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

@@ -9,7 +9,8 @@
 #import "setBeaspeakViewController.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 #import "TPKeyboardAvoidingTableView.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "JSONKit.h"
@@ -98,7 +99,7 @@
 {
 
     NSString* cName = [NSString stringWithFormat:@"预约设置"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -167,7 +168,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"预约设置"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

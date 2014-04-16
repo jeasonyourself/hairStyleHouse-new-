@@ -13,7 +13,8 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface enterPubWayViewController ()
 
 @end
@@ -77,9 +78,51 @@ imageString2 = [[NSString alloc] init];imageString3 = [[NSString alloc] init];im
     [self.view addSubview:_activityIndicatorView];
     //将对象加入到view
 }
+
+
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName ;
+    if ([self.style  isEqualToString:@"2"]) {
+        cName  = @"发布行业名人";
+        
+    }
+    else if ([self.style  isEqualToString:@"5"]) {
+        cName = @"发布优惠活动";
+        
+    }
+    else if ([self.style  isEqualToString:@"1"]) {
+        cName = @"发布品牌名店";
+        
+    }
+    else if ([self.style  isEqualToString:@"3"]) {
+        cName = @"发布行业新闻";
+        
+    }
+    
+    [MobClick endLogPageView:cName];
+}
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    NSString* cName ;
+    if ([self.style  isEqualToString:@"2"]) {
+        cName  = @"发布行业名人";
+        
+    }
+    else if ([self.style  isEqualToString:@"5"]) {
+        cName = @"发布优惠活动";
+        
+    }
+    else if ([self.style  isEqualToString:@"1"]) {
+        cName = @"发布品牌名店";
+        
+    }
+    else if ([self.style  isEqualToString:@"3"]) {
+        cName = @"发布行业新闻";
+        
+    }
+    [MobClick beginLogPageView:cName];
 
     _addButton.hidden =NO;
     _sendButton.hidden = NO;

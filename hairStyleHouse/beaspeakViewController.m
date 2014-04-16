@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface beaspeakViewController ()
 
 @end
@@ -106,14 +107,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"预约列表"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"预约列表"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)oneButtonClick

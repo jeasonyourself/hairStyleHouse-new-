@@ -13,7 +13,8 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+MJWebCache.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface wayInforViewController ()
 
 @end
@@ -234,51 +235,49 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName;
-    if ([self.style  isEqualToString:@"4"]) {
-       cName = [NSString stringWithFormat:@"潮流学堂"];
 
-      
+    if ([self.style  isEqualToString:@"2"]) {
+        cName  = @"行业名人";
         
     }
     else if ([self.style  isEqualToString:@"5"]) {
-         cName = [NSString stringWithFormat:@"护理方法"];
+        cName = @"优惠活动";
         
     }
     else if ([self.style  isEqualToString:@"1"]) {
-         cName = [NSString stringWithFormat:@"品牌沙龙"];
+        cName = @"品牌名店";
         
     }
     else if ([self.style  isEqualToString:@"3"]) {
-         cName = [NSString stringWithFormat:@"行业情报"];
+        cName = @"行业新闻";
         
     }
 
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName;
-    if ([self.style  isEqualToString:@"4"]) {
-        cName = [NSString stringWithFormat:@"潮流学堂"];
-        
-        
+    
+    if ([self.style  isEqualToString:@"2"]) {
+        cName  = @"行业名人";
         
     }
     else if ([self.style  isEqualToString:@"5"]) {
-        cName = [NSString stringWithFormat:@"护理方法"];
+        cName = @"优惠活动";
         
     }
     else if ([self.style  isEqualToString:@"1"]) {
-        cName = [NSString stringWithFormat:@"品牌沙龙"];
+        cName = @"品牌名店";
         
     }
     else if ([self.style  isEqualToString:@"3"]) {
-        cName = [NSString stringWithFormat:@"行业情报"];
+        cName = @"行业新闻";
         
     }
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)pullLoadMore

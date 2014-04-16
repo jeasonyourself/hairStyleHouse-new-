@@ -18,7 +18,8 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface scanImageViewController ()
 
 @end
@@ -136,7 +137,7 @@
 
     }
 
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
@@ -168,7 +169,7 @@
         cName = [NSString stringWithFormat:@"收藏作品"];
         
     }
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)pullLoadMore
@@ -299,7 +300,9 @@
             request.tag=1;
             
             [request setPostValue:self.uid forKey:@"uid"];
-        [request setPostValue:appDele.secret forKey:@"secret"];
+        
+        
+//        [request setPostValue:appDele.secret forKey:@"secret"];
             [request startAsynchronous];
 
     }

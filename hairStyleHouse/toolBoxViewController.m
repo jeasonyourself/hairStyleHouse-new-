@@ -8,7 +8,8 @@
 
 #import "toolBoxViewController.h"
 #import "AppDelegate.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface toolBoxViewController ()
 
 @end
@@ -53,14 +54,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发型工具箱"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)refreashNav

@@ -17,6 +17,7 @@
     NSMutableArray * dresserArray;
     NSMutableArray * oldArray;
     NSDictionary * headImageDiction;
+     NSMutableArray * array;
     
     UIView * lastView;
     UITextView * contentView;
@@ -27,6 +28,8 @@
     UIButton * sendButton;
     
     NSTimer* timer;
+    
+//    NSString * sorket;
     UIActivityIndicatorView * _activityIndicatorView ;
     
 }

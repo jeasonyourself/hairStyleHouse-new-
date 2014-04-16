@@ -12,7 +12,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface saleBeaspeaskViewController ()
 
 @end
@@ -178,7 +179,7 @@
 {
     page=@"1";
     NSString* cName = [NSString stringWithFormat:@"查看价格"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 
     
     
@@ -205,7 +206,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看价格"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)oneButtonClick

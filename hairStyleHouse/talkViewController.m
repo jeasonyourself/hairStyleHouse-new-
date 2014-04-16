@@ -13,7 +13,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface talkViewController ()
 
 @end
@@ -41,13 +42,13 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [self refreashNav];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-60) style:UITableViewStylePlain];
     dresserArray =[[NSMutableArray alloc] init];
     oldArray =[[NSMutableArray alloc] init];
     headImageDiction = [[NSDictionary alloc] init];
     sendImage = [[UIImageView alloc] init];
     imageString = [[NSString alloc] init];
+    array=[[NSMutableArray alloc] init];
    
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
@@ -86,6 +87,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [self.view addSubview:lastView];
     
     contentView = [[UITextView alloc] initWithFrame:CGRectMake(60,10, 185, 40)];
+    contentView.returnKeyType=UIReturnKeyDone;
     contentView.font =[UIFont systemFontOfSize:12.0];
     contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -102,7 +104,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [imageButton.layer setCornerRadius:3.0];
     [imageButton.layer setBorderWidth:1.0];
     [imageButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
-    [imageButton setBackgroundImage:[UIImage imageNamed:@"添加图片.png"] forState:UIControlStateNormal];
+    [imageButton setBackgroundImage:[UIImage imageNamed:@"加号.png"] forState:UIControlStateNormal];
     //    [imageButton setTitle:@"+" forState:UIControlStateNormal];
 
     imageButton.titleLabel.font = [UIFont systemFontOfSize:18.0];
@@ -160,8 +162,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 -(void)viewDidAppear:(BOOL)animated
 {
 
-    NSString* cName = [NSString stringWithFormat:@"消息"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    NSString* cName = [NSString stringWithFormat:@"聊天消息"];
+    [MobClick beginLogPageView:cName];
     [contentView resignFirstResponder];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -223,8 +225,8 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 -(void)viewDidDisappear:(BOOL)animated
 {
     
-    NSString* cName = [NSString stringWithFormat:@"消息"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    NSString* cName = [NSString stringWithFormat:@"聊天消息"];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [timer setFireDate:[NSDate distantFuture]];
@@ -465,6 +467,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     Lab.textColor = [UIColor blackColor];
     self.navigationItem.titleView =Lab;
 }
+
 -(void)getData
 {
     NSURL * urlString;
@@ -501,6 +504,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     }
      NSLog(@"uid:%@",self.uid);
     NSLog(@"app.uid:%@",appDele.uid);
+    NSLog(@"pid:%@",questionId);
     NSLog(@"ftid:%d",ftid);
 
     NSLog(@"urlString:%@",urlString);
@@ -513,24 +517,18 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
     
 //    NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
-    if (oldArray.count==0)
+    if (oldArray.count==0||oldArray.count==2)
     {
         //1. 创建一个plist文件
 //        NSFileManager* fm = [NSFileManager defaultManager];
 //        [fm createFileAtPath:filename contents:nil attributes:nil];
-        if([sameCityQuestion isEqualToString:@"samecity"])
-        {
-        [request setPostValue:@"-1" forKey:@"max_id"];
-        }
-        else
-        {
         [request setPostValue:@"0" forKey:@"max_id"];
-        }
 
     }
     else
     {
-        [request setPostValue:[[oldArray objectAtIndex:oldArray.count-2] objectForKey:@"id"] forKey:@"max_id"];
+            [request setPostValue:[[oldArray objectAtIndex:oldArray.count-2] objectForKey:@"id"] forKey:@"max_id"];
+        
     }
     [request startAsynchronous];
 }
@@ -562,13 +560,37 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         {
             if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSString class]])
             {
-                [myTableView reloadData];
+                if (oldArray.count==0) {
+                    [oldArray addObject:[dic objectForKey:@"questionInfo"]];
+                    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                    NSString *path=[paths objectAtIndex:0];
+                    NSLog(@"path = %@",path);
+                    NSString * plistString;
+                    
+                    plistString = [NSString stringWithFormat:@"%@and%@question",appDele.uid,self.uid];
+                    
+                    
+                    NSString *filename=[path stringByAppendingPathComponent:plistString];
+                    
+                    
+                    headImageDiction = [NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"my_head_photo"],@"my_head_photo", [dic objectForKey:@"ta_head_photo"],@"ta_head_photo",[dic objectForKey:@"ta_id"],@"ta_id",[dic objectForKey:@"ta_name"],@"ta_name",[dic objectForKey:@"ta_type"],@"ta_type",nil];
+                    [oldArray addObject:headImageDiction];
+                    [oldArray writeToFile:filename atomically:YES];
+                }
+                
+                [self freashView];
             }
             else if ([[dic objectForKey:@"answer_list"] isKindOfClass:[NSArray class]])
             {
                 arr= [dic objectForKey:@"answer_list"];
+
                 [oldArray removeObject:[oldArray lastObject]];
+                if (oldArray.count==0)
+                {
+                    [oldArray addObject:[dic objectForKey:@"questionInfo"]];
+                }
                 [oldArray addObjectsFromArray:arr];
+
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
                 NSLog(@"path = %@",path);
@@ -583,7 +605,6 @@ static NSString * const RCellIdentifier = @"HRChatCell";
                 headImageDiction = [NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"my_head_photo"],@"my_head_photo", [dic objectForKey:@"ta_head_photo"],@"ta_head_photo",[dic objectForKey:@"ta_id"],@"ta_id",[dic objectForKey:@"ta_name"],@"ta_name",[dic objectForKey:@"ta_type"],@"ta_type",nil];
                 [oldArray addObject:headImageDiction];
                 [oldArray writeToFile:filename atomically:YES];
-                
                 
 
                 [self freashView];
@@ -643,11 +664,12 @@ static NSString * const RCellIdentifier = @"HRChatCell";
         
         ifchangeHeadImage=NO;
 //        [imageButton setTitle:@"+" forState:UIControlStateNormal];
-        [imageButton setImage:[UIImage imageNamed:@"addphoto_green.png"] forState:UIControlStateNormal];
+        [imageButton setImage:[UIImage imageNamed:@"加号.png"] forState:UIControlStateNormal];
         sendImage.image=[UIImage imageNamed:@""];
         contentView.text=@"";
         imageString = @"";
 //        [self getData];
+        appDele.ifSinceLogOut=@"yes";
         [timer setFireDate:[NSDate distantPast]];
 
         
@@ -724,9 +746,9 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     [_activityIndicatorView stopAnimating];
     _activityIndicatorView.hidesWhenStopped = YES;
 }
+
 -(void)freashView
 {
-    
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
     NSLog(@"path = %@",path);

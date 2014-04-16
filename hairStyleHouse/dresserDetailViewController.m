@@ -12,7 +12,8 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface dresserDetailViewController ()
 
 @end
@@ -81,12 +82,12 @@
     [_thirdView addSubview:canScroll];
   
     
-    NSString* headStr=[infoDic objectForKey:@"head_photo"];
-    NSString* nameStr = [infoDic objectForKey:@"username"];
-    NSString* cityStr = [infoDic objectForKey:@"city"];
-    NSString* fansStr = [infoDic objectForKey:@"assess_num"];
-    NSString* workStr = [infoDic objectForKey:@"works_num"];
-    NSMutableArray * workArr;
+    NSString* headStr=[[infoDic objectForKey:@"user_info"] objectForKey:@"head_photo"];
+    NSString* nameStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"username"];
+    NSString* cityStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"city"];
+    NSString* fansStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"assess_num"];
+    NSString* workStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"works_num"];
+    NSMutableArray * workArr=[[NSMutableArray alloc] init];
     if ([[infoDic objectForKey:@"worksInfo"] isKindOfClass:[NSString class]])
     {
         
@@ -97,7 +98,9 @@
         
     }
     
-    NSMutableArray * canArr;
+    NSLog(@"workArr:%@",workArr);
+    
+    NSMutableArray * canArr=[[NSMutableArray alloc] init];
     if ([[infoDic objectForKey:@"willdoInfo"] isKindOfClass:[NSString class]])
     {
         
@@ -108,12 +111,12 @@
         
     }
     
-    NSString* inforStr = [infoDic objectForKey:@"signature"];
+    NSString* inforStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"signature"];
     
-    NSString* storeStr = [infoDic objectForKey:@"store_name"];
-    NSString* mobileStr = [infoDic objectForKey:@"telephone"];
-    NSString* storeAddressStr = [infoDic objectForKey:@"store_address"];
-    NSString* concerStr = [infoDic objectForKey:@"isconcerns"];//是否关注
+    NSString* storeStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"store_name"];
+    NSString* mobileStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"telephone"];
+    NSString* storeAddressStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"store_address"];
+    NSString* concerStr = [[infoDic objectForKey:@"user_info"] objectForKey:@"isconcerns"];//是否关注
     
 //    NSString* clear_reserve = [infoDic objectForKey:@"clear_reserve"];//是否可以预约
     
@@ -208,7 +211,7 @@
 
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-    if ([[infoDic objectForKey:@"uid"] isEqualToString:appDele.uid]) {
+    if ([[[infoDic objectForKey:@"user_info"]objectForKey:@"uid"] isEqualToString:appDele.uid]) {
         _askButton.enabled=NO;
     }
     else
@@ -242,21 +245,21 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看发型师"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看发型师"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)selectImage:(UIButton*)button//原创
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView.uid=[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     scanView._hidden = @"no";
     scanView.worksOrsaveorCan = @"works";
     [fatherController pushToViewController:scanView];
@@ -265,7 +268,7 @@
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-    scanView.uid=[infoDic objectForKey:@"uid"];
+    scanView.uid=[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     scanView._hidden = @"no";
     scanView.worksOrsaveorCan = @"can";
     [fatherController pushToViewController:scanView];
@@ -275,7 +278,7 @@
 {
     lookEvaluate=nil;
     lookEvaluate = [[lookEvaluateViewController alloc] init];
-    lookEvaluate.uid = [infoDic objectForKey:@"uid"];
+    lookEvaluate.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     lookEvaluate._hidden = @"no";
 
     [fatherController  pushToViewController:lookEvaluate];
@@ -285,7 +288,7 @@
 {
     talkView=nil;
     talkView = [[talkViewController alloc] init];
-    talkView.uid = [infoDic objectForKey:@"uid"];
+    talkView.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     [fatherController  pushToViewController:talkView];
 
     
@@ -307,7 +310,7 @@
 
     lookEvaluate=nil;
     lookEvaluate = [[lookEvaluateViewController alloc] init];
-    lookEvaluate.uid = [infoDic objectForKey:@"uid"];
+    lookEvaluate.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     lookEvaluate._hidden = @"no";
     
     [fatherController  pushToViewController:lookEvaluate];
@@ -318,7 +321,7 @@
     
     talkView=nil;
     talkView = [[talkViewController alloc] init];
-    talkView.uid = [infoDic objectForKey:@"uid"];
+    talkView.uid = [[infoDic objectForKey:@"user_info"] objectForKey:@"uid"];
     [fatherController  pushToViewController:talkView];
 }
 
@@ -331,7 +334,7 @@
     request.tag=2;
     [request setPostValue:appDele.uid forKey:@"uid"];
     [request setPostValue:appDele.secret forKey:@"secret"];
-    [request setPostValue:[infoDic objectForKey:@"uid"] forKey:@"touid"];
+    [request setPostValue:[[infoDic objectForKey:@"user_info"] objectForKey:@"uid"] forKey:@"touid"];
     [request setPostValue:appDele.type forKey:@"type"];
     [request setPostValue:@"2" forKey:@"totype"];
     

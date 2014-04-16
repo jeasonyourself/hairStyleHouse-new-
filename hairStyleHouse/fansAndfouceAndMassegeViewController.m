@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 #import "AllAroundPullView.h"
 
 @interface fansAndFouceAndmassegeViewController ()
@@ -190,7 +191,7 @@
         
     }
 
-        [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+        [MobClick beginLogPageView:cName];
     
 }
 
@@ -214,7 +215,7 @@
         }
         
     }
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)oneButtonClick

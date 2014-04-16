@@ -11,7 +11,8 @@
 #import "LoginView.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface mineViewController ()
 
 @end
@@ -81,7 +82,7 @@
 {
 
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 //    [loginView.view removeFromSuperview];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSLog(@"appDele.uid:%@",appDele.uid);
@@ -121,7 +122,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 

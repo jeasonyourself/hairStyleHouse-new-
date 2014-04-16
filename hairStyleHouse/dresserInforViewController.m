@@ -10,7 +10,8 @@
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface dresserInforViewController ()
 
 @end
@@ -57,25 +58,25 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看发型师"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"查看发型师"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
     -(void)getData
     {
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/index.php?m=User&a=visitInfo"]];
+        ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=user&a=info"]];
         request.delegate=self;
         request.tag=1;
-        [request setPostValue:self.uid forKey:@"uid"];
-        [request setPostValue:appDele.uid forKey:@"to_uid"];
-        [request setPostValue:@"2" forKey:@"type"];
+        [request setPostValue:appDele.uid forKey:@"uid"];
+        [request setPostValue:self.uid forKey:@"to_uid"];
+        [request setPostValue:appDele.secret forKey:@"secret"];
         [request startAsynchronous];
     }
 
@@ -94,7 +95,7 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"发型师信息dic:%@",dic);
 //        inforDic = [dic objectForKey:@"user_info"];
-            inforDic = dic;
+           inforDic = dic ;
         
         [self freashView];
         }

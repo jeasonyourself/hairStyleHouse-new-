@@ -31,12 +31,16 @@
         forthLable.font=[UIFont systemFontOfSize:12.0];
         
         firstField = [[UITextField alloc] init];
+        firstField.returnKeyType=UIReturnKeyDone;
         firstField.font=[UIFont systemFontOfSize:12.0];
         secondField = [[UITextField alloc] init];
+        secondField.returnKeyType=UIReturnKeyDone;
         secondField.font=[UIFont systemFontOfSize:12.0];
         thirdField = [[UITextField alloc] init];
+        thirdField.returnKeyType=UIReturnKeyDone;
         thirdField.font=[UIFont systemFontOfSize:12.0];
         forthField = [[UITextField alloc] init];
+        forthField.returnKeyType=UIReturnKeyDone;
         forthField.font=[UIFont systemFontOfSize:12.0];
         
         secondField.keyboardType=UIKeyboardTypeDecimalPad;

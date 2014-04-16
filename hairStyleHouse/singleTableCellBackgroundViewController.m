@@ -10,7 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "mineViewController.h"
 #import "AppDelegate.h"
-#import "BaiduMobStat.h"
+#import "UIImageView+MJWebCache.h"
+#import "MobClick.h"
 @interface singleTableCellBackgroundViewController ()
 
 @end
@@ -119,7 +120,7 @@
 {
 //
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
@@ -143,7 +144,8 @@
     NSString* mobileStr = [infoDic objectForKey:@"mobile"];
     NSString* inforStr = [infoDic objectForKey:@"signature"];
     
-    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
+    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+    [_headImage setImageURLStr:headStr placeholder:placeholder];
     
     _nameLable.text = nameStr;
     NSLog(@"cityStr:%@",cityStr);
@@ -217,29 +219,29 @@
         _mySetButton.hidden=NO;
         
         
-        _clearPerson.frame=CGRectMake(2, 110, 316, 40);
-        _clearPersonButton.frame=CGRectMake(2, 110, 316, 40);
-        _myMessage.frame=CGRectMake(2, 155, 316, 40);
-        _messageButton.frame=CGRectMake(2, 155, 316, 40);
-        _myBeaspeak.frame=CGRectMake(2, 200, 316, 40);
-        _beaspeakButton.frame=CGRectMake(2, 200, 316, 40);
-        _myWorks.frame=CGRectMake(2, 245, 316, 40);
-        _myWorksButton.frame=CGRectMake(2, 245, 316, 40);
-        _mySave.frame=CGRectMake(2, 290, 316, 40);
-        _saveButton.frame=CGRectMake(2, 290, 316, 40);
-        _toolBox.frame=CGRectMake(2, 335, 316, 40);
-        _toolBoxButton.frame=CGRectMake(2, 335, 316, 40);
-        _myShow.frame=CGRectMake(2, 380, 316, 40);
-        _myShowButton.frame=CGRectMake(2, 380, 316, 40);
-        _mySet.frame=CGRectMake(2, 425, 316, 40);
-        _mySetButton.frame=CGRectMake(2, 425, 316, 40);
+        _clearPerson.frame=CGRectMake(2, 290, 316, 40);
+        _clearPersonButton.frame=CGRectMake(2, 290, 316, 40);
+        _myMessage.frame=CGRectMake(2, 110, 316, 40);
+        _messageButton.frame=CGRectMake(2, 110, 316, 40);
+        _myBeaspeak.frame=CGRectMake(2, 151, 316, 40);
+        _beaspeakButton.frame=CGRectMake(2, 151, 316, 40);
+        _myWorks.frame=CGRectMake(2, 192, 316, 40);
+        _myWorksButton.frame=CGRectMake(2, 192, 316, 40);
+        _mySave.frame=CGRectMake(2, 233, 316, 40);
+        _saveButton.frame=CGRectMake(2, 233, 316, 40);
+        _toolBox.frame=CGRectMake(2, 390, 316, 40);
+        _toolBoxButton.frame=CGRectMake(2, 390, 316, 40);
+        _myShow.frame=CGRectMake(2, 331, 316, 40);
+        _myShowButton.frame=CGRectMake(2, 331, 316, 40);
+        _mySet.frame=CGRectMake(2, 431, 316, 40);
+        _mySetButton.frame=CGRectMake(2, 431, 316, 40);
     }
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)selectImage:(UIButton*)button
 {
@@ -321,7 +323,7 @@
 {
     scanView=nil;
     scanView = [[scanImageViewController alloc] init];
-//    scanView._hidden = @"yes";
+    scanView._hidden = @"yes";
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     scanView.uid = appDele.uid;
     scanView.worksOrsaveorCan = @"save";

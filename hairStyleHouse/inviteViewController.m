@@ -17,7 +17,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface inviteViewController () <UITextFieldDelegate, HZAreaPickerDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
@@ -220,14 +221,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"招聘信息"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"招聘信息"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)pullLoadMore
 {

@@ -14,7 +14,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "SBJsonParser.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface inviteDetailViewController ()
 
 @end
@@ -44,14 +45,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"招聘详情"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"招聘详情"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)leftButtonClick
 {

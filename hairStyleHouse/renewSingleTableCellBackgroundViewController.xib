@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
@@ -23,6 +23,7 @@
                 <outlet property="myBeaspeak" destination="xbj-0y-3Lx" id="B1j-GP-NDn"/>
                 <outlet property="myMessage" destination="SOM-9x-4bo" id="x2N-Ad-h0x"/>
                 <outlet property="mySet" destination="rgS-aa-YD6" id="h5H-PH-8fR"/>
+                <outlet property="myShowButton" destination="an8-lh-684" id="Ckv-ga-caZ"/>
                 <outlet property="myShowView" destination="94b-rZ-6px" id="ggM-du-1lY"/>
                 <outlet property="myWorks" destination="N3R-rd-jdW" id="L1r-mY-B3Q"/>
                 <outlet property="myWorksButton" destination="jYW-lG-lG1" id="wUK-k3-DgQ"/>

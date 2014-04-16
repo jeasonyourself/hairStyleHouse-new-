@@ -11,6 +11,9 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
+#import "MobClick.h"
+
+
 @interface sendEvaluateViewController ()
 
 @end
@@ -57,7 +60,18 @@
     [request startAsynchronous];
     // Dispose of any resources that can be recreated.
 }
+-(void) viewDidAppear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"预约评论"];
+    [MobClick beginLogPageView:cName];
+    
+}
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"预约评论"];
+    [MobClick endLogPageView:cName];
+}
 - (IBAction)senfButtonClick:(id)sender
 {
     if ([_evaluateView.text isEqualToString:@""])

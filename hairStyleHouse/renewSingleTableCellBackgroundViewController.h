@@ -41,6 +41,7 @@ myShowViewController * myShowView1;
 @property(nonatomic,strong)mineViewController * fatherController;
 
 @property (strong, nonatomic) IBOutlet UIView *firstBackView;
+@property (strong, nonatomic) IBOutlet UIButton *myShowButton;
 
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UIButton *headButton;

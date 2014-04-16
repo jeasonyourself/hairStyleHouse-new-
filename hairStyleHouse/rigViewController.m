@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "dresserViewController.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface rigViewController ()
 
 @end
@@ -60,31 +61,34 @@
 //    }
 
     NSString* cName = [NSString stringWithFormat:@"绑定"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 
     self.view.backgroundColor = [UIColor whiteColor];
     QQButton=[[UIButton alloc] init];
     QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [QQButton.layer setMasksToBounds:YES];
-    [QQButton.layer setCornerRadius:10.0];
+    [QQButton.layer setCornerRadius:5.0];
     [QQButton.layer setBorderWidth:1.0];
-    [QQButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 1, 0, 0, 1 })];//边框颜色
-    [QQButton setTitle:@"QQ登陆" forState:UIControlStateNormal];
-    [QQButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [QQButton setBackgroundColor:[UIColor colorWithRed:88.0/256.0 green:193.0/256.0 blue:189.0/256.0 alpha:1.0]];
+    [QQButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [QQButton setTitle:@"腾讯QQ登陆" forState:UIControlStateNormal];
+    [QQButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [QQButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [QQButton addTarget:self action:@selector(QQButtonClick) forControlEvents:UIControlEventTouchUpInside];
+
     QQButton.frame = CGRectMake(10, 240, 300, 40);
     
     
     sinaButton=[[UIButton alloc] init];
     sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sinaButton.layer setMasksToBounds:YES];
-    [sinaButton.layer setCornerRadius:10.0];
+    [sinaButton.layer setCornerRadius:5.0];
     [sinaButton.layer setBorderWidth:1.0];
-    [sinaButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 1, 0, 0, 1 })];//边框颜色
-    [sinaButton setTitle:@"新浪登陆" forState:UIControlStateNormal];
-    [sinaButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [sinaButton setBackgroundColor:[UIColor colorWithRed:244.0/256.0 green:22.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sinaButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
+    [sinaButton setTitle:@"新浪微博登陆" forState:UIControlStateNormal];
+    [sinaButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [sinaButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [sinaButton addTarget:self action:@selector(sinaButtonClick) forControlEvents:UIControlEventTouchUpInside];
     sinaButton.frame = CGRectMake(10, 300, 300, 40);
     [self.view addSubview:QQButton];
@@ -104,7 +108,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"绑定"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)refreashNavLab
 {
@@ -299,7 +303,7 @@
 -(void)sinaButtonClick1//最新新浪sdk登陆调用这个
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
-    [appDele getSinaLoginBack:self andSuc:@selector(sinaLoginAndPutData) andErr:nil];
+//    [appDele getSinaLoginBack:self andSuc:@selector(sinaLoginAndPutData) andErr:nil];
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = kAppRedirectURI;
     request.scope = @"all";

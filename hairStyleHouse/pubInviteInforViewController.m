@@ -17,7 +17,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface pubInviteInforViewController () <UITextFieldDelegate, HZAreaPickerDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
@@ -191,7 +192,7 @@
 {
 
     NSString* cName = [NSString stringWithFormat:@"发布招聘"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -250,7 +251,7 @@
 {
     
     NSString* cName = [NSString stringWithFormat:@"发布招聘"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

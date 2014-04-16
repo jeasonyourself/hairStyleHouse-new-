@@ -15,7 +15,8 @@
 #import "HZLocation.h"
 #import "UIImageView+WebCache.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 
 @interface completeViewController ()<UITextFieldDelegate, HZAreaPickerDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
@@ -185,14 +186,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"完善资料"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"完善资料"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 - (void)didReceiveMemoryWarning

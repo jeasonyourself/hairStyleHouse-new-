@@ -17,7 +17,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface myAnwserCenterViewController ()
 
 @end
@@ -83,7 +84,7 @@
         
     }
     
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
@@ -98,7 +99,7 @@
         cName = [NSString stringWithFormat:@"TA的提问"];
         
     }
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)pullLoadMore
@@ -300,7 +301,7 @@
         talkView=nil;
         talkView = [[talkViewController alloc] init];
         talkView.talkOrQuestion=@"question";
-        talkView.questionId= appDele.uid;
+        talkView.questionId= [[dresserArray  objectAtIndex:_index] objectForKey:@"id"];
         talkView.uid = self.uid;
         [self.navigationController pushViewController:talkView animated:NO];
     }

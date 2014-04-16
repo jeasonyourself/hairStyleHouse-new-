@@ -12,7 +12,8 @@
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface dresserViewController ()
 
 @end
@@ -242,14 +243,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发型师"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"发型师"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)pullLoadMore
@@ -362,7 +363,7 @@
     else
     {
     [rightButton setTitle:@"选择城市" forState:UIControlStateNormal];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"定位失败，请通过右上方按钮自定义城市" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"重要提示" message:@"定位失败，请通过右上方按钮自定义城市" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     }
     
@@ -1224,7 +1225,7 @@
     {
         //新版跳转到预约发型师界面
         if ([appDele.type isEqualToString:@"2"]) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"预约失败" message:@"发型师不可预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发型师不可预约" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
             [alert show];
         }
         

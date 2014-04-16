@@ -15,7 +15,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface sameCityViewController ()
 
 @end
@@ -72,6 +73,7 @@
     [twoButton setTitle:@"个人用户" forState:UIControlStateNormal];
     
     keyField = [[UITextField alloc] init];
+    keyField.returnKeyType=UIReturnKeyDone;
     keyField.backgroundColor = [UIColor whiteColor];
     keyField.delegate =self;
     keyField.frame= CGRectMake(45, topImage1.frame.origin.y+2, 200, 40);
@@ -142,14 +144,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"同城"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"同城"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)searchButtonClick
 {

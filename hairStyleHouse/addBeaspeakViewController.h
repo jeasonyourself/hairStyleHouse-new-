@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "scanImageViewController.h"
 #import "lookEvaluateViewController.h"
+#import "addBeaspeakViewCell.h"
 @class TPKeyboardAvoidingScrollView;
 @interface addBeaspeakViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
@@ -32,10 +33,7 @@
     lookEvaluateViewController * lookEvaluate;
     NSMutableArray * firstArr;
     NSMutableArray * secondArr;
-    UILabel * firstLable;
-    UILabel * secondLable;
-    UILabel * thirdLable;
-    UILabel *forthLable;
+    
     BOOL select;
     
     NSMutableArray *yearArray;

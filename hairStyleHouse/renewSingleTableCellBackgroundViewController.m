@@ -11,7 +11,8 @@
 #import "UIImageView+WebCache.h"
 #import "mineViewController.h"
 #import "AppDelegate.h"
-#import "BaiduMobStat.h"
+#import "UIImageView+MJWebCache.h"
+#import "MobClick.h"
 @interface renewSingleTableCellBackgroundViewController ()
 
 @end
@@ -131,7 +132,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
     NSString* headStr=[infoDic objectForKey:@"head_photo"];
     NSString* nameStr = [infoDic objectForKey:@"username"];
@@ -152,7 +153,8 @@
     NSString* saveStr = [infoDic objectForKey:@"collect_num"];
     NSString* evaluateStr = [infoDic objectForKey:@"assess_num"];
     
-    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
+    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+    [_headImage setImageURLStr:headStr placeholder:placeholder];
     _nameLable.text = nameStr;
     _cityLable.text=cityStr;
     _fansLable.text  = fansStr;
@@ -189,28 +191,28 @@
         _mySetButton.hidden=NO;
         
         
-        _clearPerson.frame=CGRectMake(2, 150, 316, 37);
-        _clearPersonButton.frame=CGRectMake(2, 150, 316, 37);
-        _myMessage.frame=CGRectMake(2, 192, 316, 37);
-        _messageButton.frame=CGRectMake(2, 192, 316, 37);
-        _myBeaspeak.frame=CGRectMake(2, 234, 316, 37);
-        _beaspeakButton.frame=CGRectMake(2, 234, 316, 37);
-        _myWorks.frame=CGRectMake(2, 276, 316, 37);
-        _myWorksButton.frame=CGRectMake(2, 276, 316, 37);
+        _clearPerson.frame=CGRectMake(2, 325, 316, 32);
+        _clearPersonButton.frame=CGRectMake(2, 325, 316, 32);
+        _myMessage.frame=CGRectMake(2, 150, 316, 32);
+        _messageButton.frame=CGRectMake(2, 150, 316, 32);
+        _myBeaspeak.frame=CGRectMake(2, 183, 316, 32);
+        _beaspeakButton.frame=CGRectMake(2, 183, 316, 32);
+        _myWorks.frame=CGRectMake(2, 215, 316, 32);
+        _myWorksButton.frame=CGRectMake(2, 215, 316, 32);
 //        _mySave.frame=CGRectMake(2, 290, 316, 40);
 //        _saveButton.frame=CGRectMake(2, 290, 316, 40);
         
-        _setPrice.frame=CGRectMake(2, 318, 316, 37);
-        _setPriceButton.frame=CGRectMake(2, 318, 316, 37);
-        _shalong.frame=CGRectMake(2, 360, 316, 37);
-        _shalongButton.frame=CGRectMake(2, 360, 316, 37);
+        _setPrice.frame=CGRectMake(2, 248, 316, 32);
+        _setPriceButton.frame=CGRectMake(2, 248, 316, 32);
+        _shalong.frame=CGRectMake(2, 358, 316, 32);
+        _shalongButton.frame=CGRectMake(2, 358, 316, 32);
         
-        _toolBox.frame=CGRectMake(2, 402, 316, 37);
-        _toolBoxButton.frame=CGRectMake(2, 402, 316, 37);
-//        _myShow.frame=CGRectMake(2, 380, 316, 40);
-//        _myShowButton.frame=CGRectMake(2, 380, 316, 40);
-        _mySet.frame=CGRectMake(2, 444, 316, 40);
-        _mySetButton.frame=CGRectMake(2, 444, 316, 40);
+        _toolBox.frame=CGRectMake(2, 405, 316, 32);
+        _toolBoxButton.frame=CGRectMake(2, 405, 316, 32);
+        _myShowView.frame=CGRectMake(2, 281, 316, 32);
+        _myShowButton.frame=CGRectMake(2, 281, 316, 32);
+        _mySet.frame=CGRectMake(2, 438, 316, 32);
+        _mySetButton.frame=CGRectMake(2, 438, 316, 32);
     }
 
     
@@ -218,7 +220,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"个人中心"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 -(void)selectImage:(UIButton*)button
 {

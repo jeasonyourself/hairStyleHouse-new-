@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface questionDetailViewController ()
 
 @end
@@ -66,6 +67,7 @@
     [self.view addSubview:lastView];
     
     contentView = [[UITextView alloc] initWithFrame:CGRectMake(10,10, 230, 40)];
+    contentView.returnKeyType=UIReturnKeyDone;
     contentView.font =[UIFont systemFontOfSize:12.0];
     contentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
     contentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
@@ -74,16 +76,17 @@
     contentView.delegate =self;
     [lastView addSubview:contentView];
     
-    //    sendButton=[[UIButton alloc] initWithFrame:CGRectMake(200,10, 60, 40)];
     sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     sendButton.frame=CGRectMake(250,10, 60, 40);
     [sendButton.layer setMasksToBounds:YES];
     [sendButton.layer setCornerRadius:3.0];
-    [sendButton.layer setBorderWidth:1.0];
+    //    [sendButton.layer setBorderWidth:1.0];
     [sendButton.layer setBorderColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(),(CGFloat[]){ 0, 0, 0, 0 })];//边框颜色
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    sendButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:214.0/256.0 green:78.0/256.0 blue:78.0/256.0 alpha:1.0]];
+    sendButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    //    [sendButton setBackgroundColor:[UIColor colorWithRed:245.0/256.0 green:35.0/256.0 blue:96.0/256.0 alpha:1.0]];
+    [sendButton setBackgroundColor:[UIColor clearColor]];
+    
     [sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [sendButton addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -118,7 +121,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"话题详情"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -177,7 +180,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"话题详情"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -229,11 +232,11 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    if ([page isEqualToString:@"1"]) {
-        if (dresserArray!=nil) {
-            [dresserArray removeAllObjects];
-        }
-    }
+//    if ([page isEqualToString:@"1"]) {
+//        if (dresserArray!=nil) {
+//            [dresserArray removeAllObjects];
+//        }
+//    }
        if (request.tag==1) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -246,6 +249,7 @@
         NSLog(@"话题详情评论列表dic:%@",dic);
         
         pageCount = [dic objectForKey:@"page_count"];
+
         if ([[dic objectForKey:@"comment_list"] isKindOfClass:[NSString class]])
         {
             
@@ -261,6 +265,7 @@
     }
     else if (request.tag==2)
     {
+        [contentView resignFirstResponder];
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
         NSString*jsonString = [[NSString alloc]initWithBytes:[jsondata bytes]length:[jsondata length]encoding:NSUTF8StringEncoding];
@@ -371,13 +376,19 @@
 
 -(void)sendButtonClick
 {
+    if ([contentView.text isEqualToString:@""])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"评论失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=topicDel"];
+    NSURL * urlString= [NSURL URLWithString:@"http://wap.faxingw.cn/wapapp.php?g=wap&m=topic&a=commentAdd"];
     ASIFormDataRequest* request=[[ASIFormDataRequest alloc] initWithURL:urlString];
     request.delegate=self;
     request.tag=2;
     [request setPostValue:appDele.secret forKey:@"secret"];
     [request setPostValue:appDele.uid forKey:@"uid"];
+    NSLog(@"````news_id:%@",[inforDic objectForKey:@"news_id"]);
     [request setPostValue:[inforDic objectForKey:@"news_id"]  forKey:@"news_id"];
     [request setPostValue:contentView.text forKey:@"content"];
     [request startAsynchronous];

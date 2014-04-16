@@ -10,7 +10,9 @@
 #import "SBJson.h"
 #import "ASIFormDataRequest.h"
 
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
+#import "MobClick.h"
 @implementation AppDelegate
 @synthesize wbtoken;
 @synthesize sinaweibo;
@@ -32,21 +34,50 @@
 {
     return YES;
 }
+- (void)umengTrack {
+    //    [MobClick setCrashReportEnabled:NO]; // 如果不需要捕捉异常，注释掉此行
+    [MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+    [MobClick setAppVersion:XcodeAppVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    //
+    [MobClick startWithAppkey:@"534892b956240b182f039b9b" reportPolicy:(ReportPolicy) REALTIME channelId:nil];
+    //   reportPolicy为枚举类型,可以为 REALTIME, BATCH,SENDDAILY,SENDWIFIONLY几种
+    //   channelId 为NSString * 类型，channelId 为nil或@""时,默认会被被当作@"App Store"渠道
+    
+    //      [MobClick checkUpdate];   //自动更新检查, 如果需要自定义更新请使用下面的方法,需要接收一个(NSDictionary *)appInfo的参数
+    //    [MobClick checkUpdateWithDelegate:self selector:@selector(updateMethod:)];
+    
+    [MobClick updateOnlineConfig];  //在线参数配置
+    
+    //    1.6.8之前的初始化方法
+    //    [MobClick setDelegate:self reportPolicy:REALTIME];  //建议使用新方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
+    
+}
+
+- (void)onlineConfigCallBack:(NSNotification *)note {
+    
+    NSLog(@"online config has fininshed and note = %@", note.userInfo);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    [self umengTrack];
+    
+//     [MobClick startWithAppkey:@"5348905656240b186a036361" reportPolicy:SEND_INTERVAL   channelId:@"Web"];
     
     
-    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
-    statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
-    statTracker.channelId = @"ReplaceMeWithYourChannel";//设置您的app的发布渠道
-    statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略
-    statTracker.logSendInterval = 1;  //为1时表示发送日志的时间间隔为1小时
-    statTracker.logSendWifiOnly = YES; //是否仅在WIfi情况下发送日志数据
-    statTracker.sessionResumeInterval = 35;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s,测试时使用1S可以用来测试日志的发送。
-//    statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
-    statTracker.enableDebugOn = YES; //打开sdk调试接口，会有log打印
-    [statTracker startWithAppId:@"2f279376bb"];//设置您在mtj网站上添加的app的appkey
+//    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+   
+//    statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
+//    statTracker.channelId = @"ReplaceMeWithYourChannel";//设置您的app的发布渠道
+//    statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略
+//    statTracker.logSendInterval = 1;  //为1时表示发送日志的时间间隔为1小时
+//    statTracker.logSendWifiOnly = YES; //是否仅在WIfi情况下发送日志数据
+//    statTracker.sessionResumeInterval = 35;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s,测试时使用1S可以用来测试日志的发送。
+////    statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+//    statTracker.enableDebugOn = YES; //打开sdk调试接口，会有log打印
+//    [statTracker startWithAppId:@"2f279376bb"];//设置您在mtj网站上添加的app的appkey
     
     
     
@@ -127,12 +158,12 @@
     anwserCenter= [[anwserCenterViewController alloc] init];//新版本
     
     mineController=[[mineViewController alloc] init];
-    loginView = nil;
-    loginView=[[loginViewController alloc] init];
-    loginView._leftButtonhidden = @"yes";
-//    loginView.view.frame=self.view.bounds;
-    [loginView getBack:self andSuc:@selector(setRootView) andErr:nil];
-    loginView.view.userInteractionEnabled=YES;
+//    loginView = nil;
+//    loginView=[[loginViewController alloc] init];
+//    loginView._leftButtonhidden = @"yes";
+////    loginView.view.frame=self.view.bounds;
+//    [loginView getBack:self andSuc:@selector(setRootView) andErr:nil];
+//    loginView.view.userInteractionEnabled=YES;
     //        [self.view addSubview:loginView.view];
 //    [self.navigationController pushViewController:loginView animated:NO];
     
@@ -142,13 +173,13 @@
     secondNav = [[UINavigationController alloc] initWithRootViewController:dresserController];
     thirdNav = [[UINavigationController alloc] initWithRootViewController:anwserCenter];
     
-    if (self.uid) {
+//    if (self.uid) {
         forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
-    }
-    else
-    {
-        forthNav = [[UINavigationController alloc] initWithRootViewController:loginView];
-    }
+//    }
+//    else
+//    {
+//        forthNav = [[UINavigationController alloc] initWithRootViewController:loginView];
+//    }
     
 //[firstNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 //    [secondNav.navigationBar setBarStyle:UIBarStyleBlackOpaque];
@@ -223,12 +254,12 @@
     return YES;
 }
 
--(void)setRootView
-{
-// forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
-    [forthNav pushViewController:mineController animated:NO];
-    
-}
+//-(void)setRootView
+//{
+//// forthNav = [[UINavigationController alloc] initWithRootViewController:mineController];
+//    [forthNav pushViewController:mineController animated:NO];
+//    
+//}
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
 //    int index = tabBarController.selectedIndex;
@@ -345,12 +376,12 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
--(void)getSinaLoginBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err
-{
-    interface =inter;
-    sucfun = suc;
-    errfun =err;
-}
+//-(void)getSinaLoginBack:(id)inter andSuc:(SEL)suc andErr:(SEL)err
+//{
+//    interface =inter;
+//    sucfun = suc;
+//    errfun =err;
+//}
 //sina
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request
 {
@@ -502,7 +533,7 @@
             
             
             
-            [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+//            [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
         }
     
 

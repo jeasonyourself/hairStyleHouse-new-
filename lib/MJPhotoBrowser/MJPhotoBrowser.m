@@ -13,6 +13,7 @@
 #import "MJPhotoView.h"
 #import "MJPhotoToolbar.h"
 #import "commentViewController.h"
+#import "MobClick.h"
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
 #define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
@@ -217,7 +218,13 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    NSString* cName = [NSString stringWithFormat:@"浏览图片"];
+    [MobClick beginLogPageView:cName];
+}
+-(void)viewDidDisappear:(BOOL)animated:(BOOL)animated
+{
+    NSString* cName = [NSString stringWithFormat:@"浏览图片"];
+    [MobClick endLogPageView:cName];
 }
 -(IBAction)textFiledReturnEditing:(id)sender {
     

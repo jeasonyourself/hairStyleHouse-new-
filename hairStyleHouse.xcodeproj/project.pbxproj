@@ -28,9 +28,8 @@
 		7A135F2418EC05E200A2F28D /* signIma.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A135F2318EC05E200A2F28D /* signIma.png */; };
 		7A13F2B618681E4600F9CFE4 /* rigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A13F2B518681E4600F9CFE4 /* rigViewController.m */; };
 		7A14703718DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A14703518DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m */; };
+		7A15DF5318FB735900C39757 /* 加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A15DF5218FB735900C39757 /* 加号.png */; };
 		7A2BA6CE1844E0A200A46A09 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2BA6CD1844E0A200A46A09 /* LoginView.m */; };
-		7A32CC6F18C8291700D12A90 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A32CC5018C8291700D12A90 /* libBaiduMobStat.a */; };
-		7A32CC7018C8291700D12A90 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A32CC5318C8291700D12A90 /* libBaiduMobStat.a */; };
 		7A32CC7118C8291700D12A90 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC5618C8291700D12A90 /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A32CC7218C8291700D12A90 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC5918C8291700D12A90 /* CFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A32CC7318C8291700D12A90 /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC5B18C8291700D12A90 /* CJSONDeserializer_BlocksExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -41,7 +40,6 @@
 		7A32CC7818C8291700D12A90 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC6718C8291700D12A90 /* CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A32CC7918C8291700D12A90 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC6918C8291700D12A90 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A32CC7A18C8291700D12A90 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A32CC6B18C8291700D12A90 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7A32CC7B18C8291700D12A90 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A32CC6E18C8291700D12A90 /* libBaiduMobStat.a */; };
 		7A37D6851844C9E100D9C4D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D6841844C9E100D9C4D9 /* Foundation.framework */; };
 		7A37D6871844C9E100D9C4D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D6861844C9E100D9C4D9 /* CoreGraphics.framework */; };
 		7A37D6891844C9E100D9C4D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D6881844C9E100D9C4D9 /* UIKit.framework */; };
@@ -94,6 +92,8 @@
 		7A37D7491844CB3900D9C4D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D7481844CB3900D9C4D9 /* CoreLocation.framework */; };
 		7A37D74B1844CB4000D9C4D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D74A1844CB4000D9C4D9 /* QuartzCore.framework */; };
 		7A37D74D1844CB4600D9C4D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */; };
+		7A3906BD18FE2BAB008D8334 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */; };
+		7A3906BF18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7A43796018691E05007F64DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795D18691E05007F64DB /* Default-568h@2x.png */; };
 		7A43796118691E05007F64DB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795E18691E05007F64DB /* Default.png */; };
 		7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A43796C186936FD007F64DB /* hairStyleCategory.m */; };
@@ -248,8 +248,6 @@
 		7A98094118F504C20077B845 /* 选择服务.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98093E18F504C20077B845 /* 选择服务.png */; };
 		7A98094218F504C20077B845 /* 选择排序.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98093F18F504C20077B845 /* 选择排序.png */; };
 		7A98094318F504C20077B845 /* 未选择默认.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A98094018F504C20077B845 /* 未选择默认.png */; };
-		7A9BF12C18C6C84D00C7B35A /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9BF12B18C6C84D00C7B35A /* TencentOpenAPI.framework */; };
-		7A9BF12E18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7A9CCACF18B5AFA700FB6C4F /* 我的新.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9CCACB18B5AFA700FB6C4F /* 我的新.png */; };
 		7A9CCAD018B5AFA700FB6C4F /* 问发型新.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9CCACC18B5AFA700FB6C4F /* 问发型新.png */; };
 		7A9CCAD118B5AFA700FB6C4F /* 发型师新.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9CCACD18B5AFA700FB6C4F /* 发型师新.png */; };
@@ -284,6 +282,7 @@
 		7AD5460A184F2B08009A6B79 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545EE184F2B08009A6B79 /* UIImage+WebP.m */; };
 		7AD5460B184F2B08009A6B79 /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */; };
 		7AD5460C184F2B08009A6B79 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */; };
+		7AD6B8EA18FC51CE008E2D62 /* addBeaspeakViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6B8E918FC51CE008E2D62 /* addBeaspeakViewCell.m */; };
 		7AD7CB0D186D27F1005D1698 /* completeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7CB0C186D27F1005D1698 /* completeViewController.m */; };
 		7AD7CB0F186D2808005D1698 /* completeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AD7CB0E186D2808005D1698 /* completeView.xib */; };
 		7AD7CB12186D5D1E005D1698 /* mustCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7CB11186D5D1E005D1698 /* mustCompleteViewController.m */; };
@@ -381,6 +380,8 @@
 		7AE39FF318E56EE5001E8B2A /* enterPubWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE39FF118E56EE5001E8B2A /* enterPubWayViewController.m */; };
 		7AE39FF418E56EE5001E8B2A /* enterPubWayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE39FF218E56EE5001E8B2A /* enterPubWayViewController.xib */; };
 		7AE3AA531889266C00BCA8D3 /* beaspeakCellAgain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3AA521889266C00BCA8D3 /* beaspeakCellAgain.m */; };
+		7AE3B89A18F92AD100D44A1E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE3B89718F92AD100D44A1E /* libMobClickLibrary.a */; };
+		7AE3B89B18F92AD100D44A1E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE3B89818F92AD100D44A1E /* libMobClickLibrary_armv6.a */; };
 		7AE48286188372CF009E88CB /* sendBeaspeakHairStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */; };
 		7AE48287188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */; };
 		7AE4828A1883CEEC009E88CB /* myAnwserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE482891883CEEC009E88CB /* myAnwserListViewController.m */; };
@@ -477,12 +478,9 @@
 		7A13F2B518681E4600F9CFE4 /* rigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rigViewController.m; sourceTree = "<group>"; };
 		7A14703518DFCB57001299CA /* YFJLeftSwipeDeleteTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFJLeftSwipeDeleteTableView.m; sourceTree = "<group>"; };
 		7A14703618DFCB57001299CA /* YFJLeftSwipeDeleteTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFJLeftSwipeDeleteTableView.h; sourceTree = "<group>"; };
+		7A15DF5218FB735900C39757 /* 加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加号.png"; sourceTree = "<group>"; };
 		7A2BA6CC1844E0A200A46A09 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		7A2BA6CD1844E0A200A46A09 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		7A32CC4F18C8291700D12A90 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
-		7A32CC5018C8291700D12A90 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
-		7A32CC5218C8291700D12A90 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
-		7A32CC5318C8291700D12A90 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		7A32CC5518C8291700D12A90 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		7A32CC5618C8291700D12A90 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		7A32CC5818C8291700D12A90 /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -504,7 +502,6 @@
 		7A32CC6A18C8291700D12A90 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		7A32CC6B18C8291700D12A90 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		7A32CC6C18C8291700D12A90 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
-		7A32CC6E18C8291700D12A90 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		7A37D6811844C9E100D9C4D9 /* 发型屋.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "发型屋.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A37D6841844C9E100D9C4D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7A37D6861844C9E100D9C4D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -593,6 +590,8 @@
 		7A37D7481844CB3900D9C4D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7A37D74A1844CB4000D9C4D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7A43795D18691E05007F64DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7A43795E18691E05007F64DB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7A43796B186936FC007F64DB /* hairStyleCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleCategory.h; sourceTree = "<group>"; };
@@ -754,8 +753,6 @@
 		7A98093E18F504C20077B845 /* 选择服务.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择服务.png"; sourceTree = "<group>"; };
 		7A98093F18F504C20077B845 /* 选择排序.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择排序.png"; sourceTree = "<group>"; };
 		7A98094018F504C20077B845 /* 未选择默认.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选择默认.png"; sourceTree = "<group>"; };
-		7A9BF12B18C6C84D00C7B35A /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7A9CCACB18B5AFA700FB6C4F /* 我的新.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的新.png"; sourceTree = "<group>"; };
 		7A9CCACC18B5AFA700FB6C4F /* 问发型新.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问发型新.png"; sourceTree = "<group>"; };
 		7A9CCACD18B5AFA700FB6C4F /* 发型师新.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发型师新.png"; sourceTree = "<group>"; };
@@ -817,6 +814,8 @@
 		7AD545F0184F2B08009A6B79 /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		7AD545F1184F2B08009A6B79 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		7AD545F2184F2B08009A6B79 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		7AD6B8E818FC51CE008E2D62 /* addBeaspeakViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addBeaspeakViewCell.h; sourceTree = "<group>"; };
+		7AD6B8E918FC51CE008E2D62 /* addBeaspeakViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addBeaspeakViewCell.m; sourceTree = "<group>"; };
 		7AD7CB0B186D27F1005D1698 /* completeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = completeViewController.h; sourceTree = "<group>"; };
 		7AD7CB0C186D27F1005D1698 /* completeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = completeViewController.m; sourceTree = "<group>"; };
 		7AD7CB0E186D2808005D1698 /* completeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = completeView.xib; sourceTree = "<group>"; };
@@ -974,6 +973,9 @@
 		7AE39FF218E56EE5001E8B2A /* enterPubWayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = enterPubWayViewController.xib; sourceTree = "<group>"; };
 		7AE3AA511889266B00BCA8D3 /* beaspeakCellAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = beaspeakCellAgain.h; sourceTree = "<group>"; };
 		7AE3AA521889266C00BCA8D3 /* beaspeakCellAgain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = beaspeakCellAgain.m; sourceTree = "<group>"; };
+		7AE3B89718F92AD100D44A1E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		7AE3B89818F92AD100D44A1E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
+		7AE3B89918F92AD100D44A1E /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		7AE48283188372CF009E88CB /* sendBeaspeakHairStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendBeaspeakHairStyleViewController.h; sourceTree = "<group>"; };
 		7AE48284188372CF009E88CB /* sendBeaspeakHairStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendBeaspeakHairStyleViewController.m; sourceTree = "<group>"; };
 		7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendBeaspeakHairStyleViewController.xib; sourceTree = "<group>"; };
@@ -1060,21 +1062,20 @@
 				7A37D74B1844CB4000D9C4D9 /* QuartzCore.framework in Frameworks */,
 				7A37D7491844CB3900D9C4D9 /* CoreLocation.framework in Frameworks */,
 				7A37D7471844CB2D00D9C4D9 /* ImageIO.framework in Frameworks */,
-				7A32CC6F18C8291700D12A90 /* libBaiduMobStat.a in Frameworks */,
+				7AE3B89A18F92AD100D44A1E /* libMobClickLibrary.a in Frameworks */,
 				7A37D7451844CB2300D9C4D9 /* MapKit.framework in Frameworks */,
-				7A32CC7B18C8291700D12A90 /* libBaiduMobStat.a in Frameworks */,
 				7A37D7431844CB1A00D9C4D9 /* libsqlite3.dylib in Frameworks */,
 				7A37D7411844CB0900D9C4D9 /* libsqlite3.0.dylib in Frameworks */,
+				7AE3B89B18F92AD100D44A1E /* libMobClickLibrary_armv6.a in Frameworks */,
 				7A37D73F1844CAFE00D9C4D9 /* libstdc++.dylib in Frameworks */,
 				7A37D73D1844CAF300D9C4D9 /* CoreTelephony.framework in Frameworks */,
 				7A37D73B1844CAE300D9C4D9 /* libz.dylib in Frameworks */,
-				7A32CC7018C8291700D12A90 /* libBaiduMobStat.a in Frameworks */,
 				7A37D7391844CAD700D9C4D9 /* SystemConfiguration.framework in Frameworks */,
 				7A63A503185AF42800502E75 /* libWeiboSDK.a in Frameworks */,
 				7A37D7371844CAC800D9C4D9 /* MobileCoreServices.framework in Frameworks */,
 				7A37D6871844C9E100D9C4D9 /* CoreGraphics.framework in Frameworks */,
-				7A9BF12C18C6C84D00C7B35A /* TencentOpenAPI.framework in Frameworks */,
 				7A37D6891844C9E100D9C4D9 /* UIKit.framework in Frameworks */,
+				7A3906BD18FE2BAB008D8334 /* TencentOpenAPI.framework in Frameworks */,
 				7A37D6851844C9E100D9C4D9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1140,30 +1141,9 @@
 		7A32CC4D18C8291700D12A90 /* ios_api */ = {
 			isa = PBXGroup;
 			children = (
-				7A32CC4E18C8291700D12A90 /* Release-iphoneos */,
-				7A32CC5118C8291700D12A90 /* Release-iphonesimulator */,
 				7A32CC5418C8291700D12A90 /* TouchJSON */,
-				7A32CC6D18C8291700D12A90 /* universal-bin */,
 			);
 			path = ios_api;
-			sourceTree = "<group>";
-		};
-		7A32CC4E18C8291700D12A90 /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				7A32CC4F18C8291700D12A90 /* BaiduMobStat.h */,
-				7A32CC5018C8291700D12A90 /* libBaiduMobStat.a */,
-			);
-			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		7A32CC5118C8291700D12A90 /* Release-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				7A32CC5218C8291700D12A90 /* BaiduMobStat.h */,
-				7A32CC5318C8291700D12A90 /* libBaiduMobStat.a */,
-			);
-			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		7A32CC5418C8291700D12A90 /* TouchJSON */ = {
@@ -1218,21 +1198,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		7A32CC6D18C8291700D12A90 /* universal-bin */ = {
-			isa = PBXGroup;
-			children = (
-				7A32CC6E18C8291700D12A90 /* libBaiduMobStat.a */,
-			);
-			path = "universal-bin";
-			sourceTree = "<group>";
-		};
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */,
+				7AE3B89618F92AD100D44A1E /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				7AF514D818E6588900C2BDBF /* keyboard */,
 				7ADF67C618E11EA6008FF73D /* EGOTableViewPullRefresh */,
 				7A32CC4D18C8291700D12A90 /* ios_api */,
-				7A9BF12D18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle */,
 				7AF54A20187D264200C93092 /* Sources */,
 				7AF4995D1876B9970066C894 /* FMDB */,
 				7A4BEC7B18710616005E896C /* 新版个人中心 */,
@@ -1265,7 +1238,7 @@
 		7A37D6831844C9E100D9C4D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7A9BF12B18C6C84D00C7B35A /* TencentOpenAPI.framework */,
+				7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */,
 				7A5E0DB818A6109000B71074 /* libiconv.dylib */,
 				7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */,
 				7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */,
@@ -1311,6 +1284,8 @@
 				7AD88C24187E3FB000FBC04E /* addBeaspeakViewController.h */,
 				7AD88C25187E3FB000FBC04E /* addBeaspeakViewController.m */,
 				7AD88C26187E3FB000FBC04E /* addBeaspeakViewController.xib */,
+				7AD6B8E818FC51CE008E2D62 /* addBeaspeakViewCell.h */,
+				7AD6B8E918FC51CE008E2D62 /* addBeaspeakViewCell.m */,
 				7AEB52C11880CFD000538279 /* addBeaspeakHairStyleViewController.h */,
 				7AEB52C21880CFD000538279 /* addBeaspeakHairStyleViewController.m */,
 				7AEB52C41880CFEC00538279 /* addbeaspeakHairStyleCell.h */,
@@ -1696,6 +1671,7 @@
 		7A4BEC7B18710616005E896C /* 新版个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				7A15DF5218FB735900C39757 /* 加号.png */,
 				7A03403018F8C81E00292B3A /* 返回.png */,
 				7A6A695418F7D62100DCD8D3 /* xuxiankuang1.png */,
 				7A6A695518F7D62100DCD8D3 /* xuxiankuang.png */,
@@ -1950,6 +1926,16 @@
 			path = areapicker;
 			sourceTree = "<group>";
 		};
+		7AE3B89618F92AD100D44A1E /* UMAnalytics_Sdk_2.2.1.OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				7AE3B89718F92AD100D44A1E /* libMobClickLibrary.a */,
+				7AE3B89818F92AD100D44A1E /* libMobClickLibrary_armv6.a */,
+				7AE3B89918F92AD100D44A1E /* MobClick.h */,
+			);
+			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
+			sourceTree = "<group>";
+		};
 		7AE7F5291855542400CAB2C6 /* PullRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2098,7 +2084,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A9BF12E18C6C85F00C7B35A /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				7A3906BF18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				7A4379A718693CE0007F64DB /* hairtype_1_3.png in Resources */,
 				7A4379CB18693CE0007F64DB /* icon_facetype.png in Resources */,
 				7A5D5C7A186C289400F96949 /* x4.png in Resources */,
@@ -2178,6 +2164,7 @@
 				7A4BEC8818710616005E896C /* mycenter_fav.png in Resources */,
 				7A4379AB18693CE0007F64DB /* hairtype_1_7.png in Resources */,
 				7A63A504185AF42800502E75 /* WeiboSDK.bundle in Resources */,
+				7A15DF5318FB735900C39757 /* 加号.png in Resources */,
 				7A5D5C88186C289400F96949 /* 名人堂.png in Resources */,
 				7A4379C618693CE0007F64DB /* hairtype_5_2.png in Resources */,
 				7A5D5C69186C289400F96949 /* 4关注.png in Resources */,
@@ -2410,6 +2397,7 @@
 				7A37D7171844CA2700D9C4D9 /* SBJsonStreamParserState.m in Sources */,
 				7AE03D64184617DB00E14EDC /* talkCell.m in Sources */,
 				7AD545FC184F2B08009A6B79 /* MJPhotoView.m in Sources */,
+				7AD6B8EA18FC51CE008E2D62 /* addBeaspeakViewCell.m in Sources */,
 				7AE3AA531889266C00BCA8D3 /* beaspeakCellAgain.m in Sources */,
 				7ADF317A188CBE5C00DF58ED /* setBeaspeakViewController.m in Sources */,
 				7A4BECAA1871720F005E896C /* mySetSingleCellViewController.m in Sources */,
@@ -2651,9 +2639,16 @@
 					/Users/jeason/Desktop/hairStyleHouse,
 					"/Users/jeason/Desktop/公司",
 					"/Users/jeason/Desktop/hairStyleHouse副本",
-					"/Users/jeason/Music/hairStyleHouse副本\\ 3",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）后优化界面",
-					"/Users/jeason/Desktop/hairStyleHouse（qq\\ sdk1.5.1，最后版本）后优化界面",
+					"/Users/jeason/Music/hairStyleHouse副本",
+					3,
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）后优化界面",
+					"/Users/jeason/Desktop/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）后优化界面",
+					"$(PROJECT_DIR)",
+					/Users/jeason/Downloads/Connect_IOS_SDK_V2.2,
+					4,
+					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2677,11 +2672,14 @@
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
+					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
+					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "发型屋";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2699,9 +2697,16 @@
 					/Users/jeason/Desktop/hairStyleHouse,
 					"/Users/jeason/Desktop/公司",
 					"/Users/jeason/Desktop/hairStyleHouse副本",
-					"/Users/jeason/Music/hairStyleHouse副本\\ 3",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）后优化界面",
-					"/Users/jeason/Desktop/hairStyleHouse（qq\\ sdk1.5.1，最后版本）后优化界面",
+					"/Users/jeason/Music/hairStyleHouse副本",
+					3,
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）后优化界面",
+					"/Users/jeason/Desktop/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）后优化界面",
+					"$(PROJECT_DIR)",
+					/Users/jeason/Downloads/Connect_IOS_SDK_V2.2,
+					4,
+					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2725,11 +2730,14 @@
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
 					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
+					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
+					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "发型屋";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

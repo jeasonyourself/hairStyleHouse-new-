@@ -17,7 +17,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "AllAroundPullView.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface hotTalkViewController ()
 
 @end
@@ -91,7 +92,7 @@
     page2=@"1";
     pageCount2=[[NSString alloc] init];
     sign =[[NSString alloc] init];
-    sign = @"";
+    sign =@"day";
     needFeash = NO;
     
     
@@ -123,14 +124,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"热点话题"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"热点话题"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)pullLoadMore

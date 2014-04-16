@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface anwserCenterViewController ()
 
 @end
@@ -46,6 +47,8 @@
         [twoButton removeFromSuperview];
         [thirdButton removeFromSuperview];
         [topImage removeFromSuperview];
+        [signImage removeFromSuperview];
+        
         myTableView=nil;
         
         signImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+100, 320, 172)];
@@ -222,7 +225,7 @@
     }
     
     NSString* cName = [NSString stringWithFormat:@"问答中心"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //    if ([appDele.type isEqualToString:@"1"]) {
 //        [questionButton setTitle:@"我要提问" forState:UIControlStateNormal];
@@ -246,7 +249,7 @@
 
 - (void)viewNeedRefreash
 {
-    [super viewDidLoad];
+//    [super viewDidLoad];
     //    self.view.frame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, 320, self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height);
     [self refreashNavLab];
     [self refreashNav];
@@ -265,6 +268,13 @@
     else
     {
         if ([appDele.type isEqualToString:@"1"]) {
+            [myTableView removeFromSuperview];
+            [oneButton removeFromSuperview];
+            [twoButton removeFromSuperview];
+            [thirdButton removeFromSuperview];
+            [topImage removeFromSuperview];
+            [signImage removeFromSuperview];
+            
             dresserArray2=nil;
             dresserArray2 =[[NSMutableArray alloc] init];
             page2=nil;
@@ -294,6 +304,13 @@
         }
         else
         {
+            [myTableView removeFromSuperview];
+            [oneButton removeFromSuperview];
+            [twoButton removeFromSuperview];
+            [thirdButton removeFromSuperview];
+            [topImage removeFromSuperview];
+            [signImage removeFromSuperview];
+            
             topImage=nil;
             topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, 320, 50)];
             [topImage setBackgroundColor:[UIColor whiteColor]];
@@ -389,7 +406,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"问答中心"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 
@@ -618,18 +635,7 @@
     _activityIndicatorView.hidesWhenStopped = YES;
     
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if ([appDele.type isEqualToString:@"1"]) {
-    }
-    else
-    {
-        if (needFeash == YES) {
-            needFeash = NO;
-            
-            [dresserArray removeAllObjects];
-            [dresserArray1 removeAllObjects];
-            [dresserArray2 removeAllObjects];
-        }
-    }
+
     NSMutableArray * arr;
     
     if (request.tag==1) {
@@ -643,6 +649,18 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"dic1111:%@",dic);
+        
+        if ([appDele.type isEqualToString:@"1"]) {
+        }
+        else
+        {
+            if (needFeash == YES) {
+                needFeash = NO;
+                
+                [dresserArray removeAllObjects];
+                
+            }
+        }
         
         pageCount = [dic objectForKey:@"page_count"];
         if ([[dic objectForKey:@"problem_list"] isKindOfClass:[NSString class]])
@@ -670,6 +688,18 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"dic2:%@",dic);
         
+        if ([appDele.type isEqualToString:@"1"]) {
+        }
+        else
+        {
+            if (needFeash == YES) {
+                needFeash = NO;
+                
+              
+                [dresserArray1 removeAllObjects];
+               
+            }
+        }
         pageCount1 = [dic objectForKey:@"page_count"];
         if ([[dic objectForKey:@"problem_list"] isKindOfClass:[NSString class]])
         {
@@ -695,6 +725,17 @@
         SBJsonParser* jsonP=[[SBJsonParser alloc] init];
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"dic3:%@",dic);
+        
+        if ([appDele.type isEqualToString:@"1"]) {
+        }
+        else
+        {
+            if (needFeash == YES) {
+                needFeash = NO;
+                
+                [dresserArray2 removeAllObjects];
+            }
+        }
         
         pageCount2 = [dic objectForKey:@"page_count"];
         AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -731,6 +772,8 @@
 
         }
             }
+    
+     [self freashView];
     if (request.tag==202) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -748,40 +791,45 @@
             {
                 needFeash  = YES;
             }
-            
+//
+        }
+        else
+        {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"删除失败" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                [alert show];
         }
     }
     
-    [self freashView];
+   
     
 }
 
 -(void)freashView
 {
     
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-    if (!appDele.uid) {
-        
-           }
-    else
-    {
-        if ([appDele.type isEqualToString:@"1"]) {
-            if (dresserArray2.count==0) {
-                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-                [myTableView setSeparatorInset:UIEdgeInsetsZero];
-
-            }
-        }
-        else
-        {
-            if (dresserArray.count==0) {
-                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-                [myTableView setSeparatorInset:UIEdgeInsetsZero];
-                
-            }
-        }
-    }
+//    if (!appDele.uid) {
+//        
+//           }
+//    else
+//    {
+//        if ([appDele.type isEqualToString:@"1"]) {
+//            if (dresserArray2.count==0) {
+//                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//                [myTableView setSeparatorInset:UIEdgeInsetsZero];
+//
+//            }
+//        }
+//        else
+//        {
+//            if (dresserArray.count==0) {
+//                [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//                [myTableView setSeparatorInset:UIEdgeInsetsZero];
+//                
+//            }
+//        }
+//    }
     [bottomRefreshView performSelector:@selector(finishedLoading)];
     
     [myTableView reloadData];
@@ -1014,6 +1062,7 @@
     }
     else//发型师的回答
     {
+        
         if ([sign isEqualToString:@"1"]) {
             talkView=nil;
             talkView = [[talkViewController alloc] init];
@@ -1072,6 +1121,7 @@
     }
     else//发型师的回答
     {
+        
         if ([sign isEqualToString:@"1"]) {
             talkView=nil;
             talkView = [[talkViewController alloc] init];

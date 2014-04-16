@@ -12,7 +12,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "UIImageView+WebCache.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface mySetSingleCellViewController ()
 
 @end
@@ -39,54 +40,54 @@
     [super viewDidLoad];
     inforDic = [[NSMutableDictionary alloc] init];
     _changeInforView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _changeInforView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _changeInforView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _changeInforView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _changeInforView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _messageView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _messageView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _messageView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _messageView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _messageView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _sinaView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _sinaView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _sinaView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _sinaView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sinaView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _tencentView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _tencentView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _tencentView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _tencentView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _tencentView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _SuggestView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _SuggestView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _SuggestView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _SuggestView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _SuggestView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _userHelpView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _userHelpView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _userHelpView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _userHelpView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _userHelpView.layer.masksToBounds = YES;//设为NO去试试
     
     _clearAllView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _clearAllView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _clearAllView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _clearAllView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _clearAllView.layer.masksToBounds = YES;//设为NO去试试
     
     
     _updateLevelView.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _updateLevelView.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _updateLevelView.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _updateLevelView.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _updateLevelView.layer.masksToBounds = YES;//设为NO去试试
     _updateLevelView.hidden = YES;//去除版本升级行
     
     _sigoutButton.layer.cornerRadius = 5;//设置那个圆角的有多圆
-    _sigoutButton.layer.borderWidth =1;//设置边框的宽度，当然可以不要
+    _sigoutButton.layer.borderWidth =0;//设置边框的宽度，当然可以不要
     _sigoutButton.layer.borderColor = [[UIColor colorWithRed:212.0/256.0 green:212.0/256.0 blue:212.0/256.0 alpha:1.0] CGColor];//设置边框的颜色
     _sigoutButton.layer.masksToBounds = YES;//设为NO去试试
     
@@ -102,14 +103,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"设置"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"设置"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)getData

@@ -304,7 +304,7 @@
     
     if ([[diction objectForKey:@"uid"] isEqualToString:appDele.uid])
     {
-        messageImage.hidden=YES;
+        messageImage.hidden=NO;
     }
     else
     {

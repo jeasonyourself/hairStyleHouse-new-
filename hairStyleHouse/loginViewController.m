@@ -11,7 +11,8 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "dresserViewController.h"
-#import "BaiduMobStat.h"
+
+#import "MobClick.h"
 @interface loginViewController ()
 
 @end
@@ -74,7 +75,7 @@
 {
 
     NSString* cName = [NSString stringWithFormat:@"登陆"];
-    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+    [MobClick beginLogPageView:cName];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     if (appDele.uid)
     {
@@ -98,7 +99,7 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     NSString* cName = [NSString stringWithFormat:@"登陆"];
-    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
+    [MobClick endLogPageView:cName];
 }
 
 -(void)refreashNavLab
@@ -251,8 +252,11 @@
     [self.view addSubview:sinaButton];
     
     
-    
-    
+    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+    _tencentOAuth=nil;
+    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
+    appDele.tententOAuth=_tencentOAuth;
+    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
     //    AppDelegate* dele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     //    (dele.xuanzheLoginType==NULL)?[self xuanzheView]:NULL;
     //    ([dele.xuanzheLoginType isEqual:@"qq"])?[self qqBtnClick]:NULL;
@@ -265,12 +269,13 @@
 -(void)QQButtonClick
 {
     
-    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     
-    _tencentOAuth=nil;
-    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
-    appDele.tententOAuth=_tencentOAuth;
-    _permissions = [NSArray arrayWithObjects:@"get_user_info", @"add_share", nil];
+    
+//    appDele.uid = nil;
+//    appDele.type = nil;
+//    appDele.loginType = nil;
+//    [appDele.tententOAuth logout:self];
+    
 //    AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 //    _tencentOAuth=[[TencentOAuth alloc] initWithAppId:@"100478968" andDelegate:self];
 //    appDele.tententOAuth=_tencentOAuth;
@@ -380,7 +385,7 @@
 -(void)sinaButtonClick1//最新新浪sdk登陆调用这个
 {
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;//调用appdel
-    [appDele getSinaLoginBack:self andSuc:@selector(sinaLoginAndPutData) andErr:nil];
+//    [appDele getSinaLoginBack:self andSuc:@selector(sinaLoginAndPutData) andErr:nil];
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = kAppRedirectURI;
     request.scope = @"all";
@@ -414,7 +419,7 @@
         
     }
     [self.navigationController popViewControllerAnimated:YES];
-    [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
+//    [interface performSelectorOnMainThread:sucfun withObject:nil waitUntilDone:NO];
 }
 
 
