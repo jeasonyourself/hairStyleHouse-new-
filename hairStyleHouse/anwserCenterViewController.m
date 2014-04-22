@@ -726,7 +726,10 @@
         NSDictionary* dic=[jsonP objectWithString:jsonString];
         NSLog(@"dic3:%@",dic);
         
-        if ([appDele.type isEqualToString:@"1"]) {
+        if ([appDele.type isEqualToString:@"1"])
+        {
+            
+            
         }
         else
         {
@@ -774,6 +777,7 @@
             }
     
      [self freashView];
+    
     if (request.tag==202) {
         NSLog(@"%@",request.responseString);
         NSData*jsondata = [request responseData];
@@ -789,7 +793,7 @@
             }
             else
             {
-                needFeash  = YES;
+//                needFeash  = YES;
             }
 //
         }

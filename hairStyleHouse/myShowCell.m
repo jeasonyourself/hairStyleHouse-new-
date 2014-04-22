@@ -104,6 +104,7 @@
         
         textV = [[UITextView alloc] init];
         textV.returnKeyType=UIReturnKeyDone;
+        textV.userInteractionEnabled=NO;
         textV.font=[UIFont systemFontOfSize:14.0];
         [self addSubview:textV];
         // Initialization code

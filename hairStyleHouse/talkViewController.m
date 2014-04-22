@@ -57,7 +57,7 @@ static NSString * const RCellIdentifier = @"HRChatCell";
     NSString * plistString;
     if ([talkOrQuestion isEqualToString:@"question"])
     {
-        plistString = [NSString stringWithFormat:@"%@and%@question",appDele.uid,self.uid];
+        plistString = [NSString stringWithFormat:@"%@and%@and%@question",appDele.uid,self.uid,questionId];
     }
     else
     {
@@ -517,20 +517,41 @@ static NSString * const RCellIdentifier = @"HRChatCell";
 
     
 //    NSArray *dataArray = [NSArray arrayWithContentsOfFile:filename];
-    if (oldArray.count==0||oldArray.count==2)
+    
+    if ([talkOrQuestion isEqualToString:@"question"])//问题
     {
-        //1. 创建一个plist文件
-//        NSFileManager* fm = [NSFileManager defaultManager];
-//        [fm createFileAtPath:filename contents:nil attributes:nil];
-        [request setPostValue:@"0" forKey:@"max_id"];
+        if (oldArray.count==0||oldArray.count==2)
+        {
+            //1. 创建一个plist文件
+            //        NSFileManager* fm = [NSFileManager defaultManager];
+            //        [fm createFileAtPath:filename contents:nil attributes:nil];
+            [request setPostValue:@"0" forKey:@"max_id"];
+            
+        }
+        else
+        {
+            [request setPostValue:[[oldArray objectAtIndex:oldArray.count-2] objectForKey:@"id"] forKey:@"max_id"];
+            
+        }
 
     }
-    else
+    else//聊天
     {
+        if (oldArray.count==0)
+        {
+            //1. 创建一个plist文件
+            //        NSFileManager* fm = [NSFileManager defaultManager];
+            //        [fm createFileAtPath:filename contents:nil attributes:nil];
+            [request setPostValue:@"0" forKey:@"max_id"];
+        }
+        else
+        {
             [request setPostValue:[[oldArray objectAtIndex:oldArray.count-2] objectForKey:@"id"] forKey:@"max_id"];
-        
-    }
-    [request startAsynchronous];
+            
+    
+        }
+    }  
+      [request startAsynchronous];
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request

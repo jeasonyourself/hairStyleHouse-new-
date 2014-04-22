@@ -64,7 +64,7 @@
 {
     NSString* headStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"image"];
     [headImage setImageWithURL:[NSURL URLWithString:headStr]];
-    headImage.frame = CGRectMake(90, 5, 140, 200);
+    headImage.frame = CGRectMake(40, 5, 240, 280);
 
     
     NSString* contentStr = [[_arr objectAtIndex:_index-1]  objectForKey:@"content"];
@@ -81,7 +81,7 @@
         contentLable.textAlignment = NSTextAlignmentCenter;
         
     }
-    contentLable.frame = CGRectMake(20, 220, 280, labelsize.height);
+    contentLable.frame = CGRectMake(20, 300, 300, labelsize.height);
     
     nameLable.frame = CGRectMake(0, 0, 0, 0);
 }

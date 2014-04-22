@@ -691,7 +691,7 @@
                 appDele.longitude = [[ud objectForKey:@"long"] doubleValue];
             }
     if (showLocalSuccess==YES) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"定位出错" message:@"这有可能是网络延迟或你没有允许本应用获取你的位置信息引起的，你可以到设置->隐私->定位服务里允许该项功能，否则可能影响应用很多功能的使用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"定位出错" message:@"网络不给力或你禁用了定位功能，可以到设置->隐私->定位服务里允许服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         showLocalSuccess=NO;
     }

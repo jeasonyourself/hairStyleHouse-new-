@@ -94,6 +94,17 @@
 		7A37D74D1844CB4600D9C4D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */; };
 		7A3906BD18FE2BAB008D8334 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */; };
 		7A3906BF18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		7A40F3071902140800C31A25 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F2ED1902140800C31A25 /* UMSocialLocalizable.strings */; };
+		7A40F3081902140800C31A25 /* libUMSocial_Sdk_3.3.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A40F2FB1902140800C31A25 /* libUMSocial_Sdk_3.3.7.a */; };
+		7A40F3091902140800C31A25 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F2FD1902140800C31A25 /* UMSCommentDetailController.xib */; };
+		7A40F30A1902140800C31A25 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F2FE1902140800C31A25 /* UMSCommentInputController.xib */; };
+		7A40F30B1902140800C31A25 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F2FF1902140800C31A25 /* UMSCommentInputControlleriPad.xib */; };
+		7A40F30C1902140800C31A25 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3001902140800C31A25 /* UMShareEditViewController.xib */; };
+		7A40F30D1902140800C31A25 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3011902140800C31A25 /* UMShareEditViewControlleriPad.xib */; };
+		7A40F30E1902140800C31A25 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3021902140800C31A25 /* UMSLoginViewController.xib */; };
+		7A40F30F1902140800C31A25 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3031902140800C31A25 /* UMSnsAccountViewController.xib */; };
+		7A40F3101902140800C31A25 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3041902140800C31A25 /* UMSShareListController.xib */; };
+		7A40F3111902140800C31A25 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A40F3051902140800C31A25 /* UMSocialSDKResourcesNew.bundle */; };
 		7A43796018691E05007F64DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795D18691E05007F64DB /* Default-568h@2x.png */; };
 		7A43796118691E05007F64DB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A43795E18691E05007F64DB /* Default.png */; };
 		7A43796D186936FD007F64DB /* hairStyleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A43796C186936FD007F64DB /* hairStyleCategory.m */; };
@@ -592,6 +603,29 @@
 		7A37D74C1844CB4600D9C4D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		7A40F2EE1902140800C31A25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
+		7A40F2F01902140800C31A25 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
+		7A40F2F11902140800C31A25 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
+		7A40F2F21902140800C31A25 /* UMSocialBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialBar.h; sourceTree = "<group>"; };
+		7A40F2F31902140800C31A25 /* UMSocialConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialConfig.h; sourceTree = "<group>"; };
+		7A40F2F41902140800C31A25 /* UMSocialControllerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerService.h; sourceTree = "<group>"; };
+		7A40F2F51902140800C31A25 /* UMSocialControllerServiceComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerServiceComment.h; sourceTree = "<group>"; };
+		7A40F2F61902140800C31A25 /* UMSocialData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialData.h; sourceTree = "<group>"; };
+		7A40F2F71902140800C31A25 /* UMSocialDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialDataService.h; sourceTree = "<group>"; };
+		7A40F2F81902140800C31A25 /* UMSocialSnsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsData.h; sourceTree = "<group>"; };
+		7A40F2F91902140800C31A25 /* UMSocialSnsPlatformManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsPlatformManager.h; sourceTree = "<group>"; };
+		7A40F2FA1902140800C31A25 /* UMSocialSnsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsService.h; sourceTree = "<group>"; };
+		7A40F2FB1902140800C31A25 /* libUMSocial_Sdk_3.3.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocial_Sdk_3.3.7.a; sourceTree = "<group>"; };
+		7A40F2FD1902140800C31A25 /* UMSCommentDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentDetailController.xib; sourceTree = "<group>"; };
+		7A40F2FE1902140800C31A25 /* UMSCommentInputController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputController.xib; sourceTree = "<group>"; };
+		7A40F2FF1902140800C31A25 /* UMSCommentInputControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputControlleriPad.xib; sourceTree = "<group>"; };
+		7A40F3001902140800C31A25 /* UMShareEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewController.xib; sourceTree = "<group>"; };
+		7A40F3011902140800C31A25 /* UMShareEditViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewControlleriPad.xib; sourceTree = "<group>"; };
+		7A40F3021902140800C31A25 /* UMSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSLoginViewController.xib; sourceTree = "<group>"; };
+		7A40F3031902140800C31A25 /* UMSnsAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSnsAccountViewController.xib; sourceTree = "<group>"; };
+		7A40F3041902140800C31A25 /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
+		7A40F3051902140800C31A25 /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
+		7A40F3061902140800C31A25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
 		7A43795D18691E05007F64DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7A43795E18691E05007F64DB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7A43796B186936FC007F64DB /* hairStyleCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hairStyleCategory.h; sourceTree = "<group>"; };
@@ -1075,6 +1109,7 @@
 				7A37D7371844CAC800D9C4D9 /* MobileCoreServices.framework in Frameworks */,
 				7A37D6871844C9E100D9C4D9 /* CoreGraphics.framework in Frameworks */,
 				7A37D6891844C9E100D9C4D9 /* UIKit.framework in Frameworks */,
+				7A40F3081902140800C31A25 /* libUMSocial_Sdk_3.3.7.a in Frameworks */,
 				7A3906BD18FE2BAB008D8334 /* TencentOpenAPI.framework in Frameworks */,
 				7A37D6851844C9E100D9C4D9 /* Foundation.framework in Frameworks */,
 			);
@@ -1201,6 +1236,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7A40F2EC1902140800C31A25 /* UMSocial_Sdk_3.3.7 */,
 				7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */,
 				7AE3B89618F92AD100D44A1E /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				7AF514D818E6588900C2BDBF /* keyboard */,
@@ -1589,6 +1625,51 @@
 				7A37D6ED1844CA2700D9C4D9 /* SBJsonWriter.m */,
 			);
 			path = SBJson;
+			sourceTree = "<group>";
+		};
+		7A40F2EC1902140800C31A25 /* UMSocial_Sdk_3.3.7 */ = {
+			isa = PBXGroup;
+			children = (
+				7A40F2ED1902140800C31A25 /* UMSocialLocalizable.strings */,
+				7A40F2EF1902140800C31A25 /* Header */,
+				7A40F2FB1902140800C31A25 /* libUMSocial_Sdk_3.3.7.a */,
+				7A40F2FC1902140800C31A25 /* SocialSDKXib */,
+				7A40F3051902140800C31A25 /* UMSocialSDKResourcesNew.bundle */,
+			);
+			path = UMSocial_Sdk_3.3.7;
+			sourceTree = "<group>";
+		};
+		7A40F2EF1902140800C31A25 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				7A40F2F01902140800C31A25 /* UMSocial.h */,
+				7A40F2F11902140800C31A25 /* UMSocialAccountManager.h */,
+				7A40F2F21902140800C31A25 /* UMSocialBar.h */,
+				7A40F2F31902140800C31A25 /* UMSocialConfig.h */,
+				7A40F2F41902140800C31A25 /* UMSocialControllerService.h */,
+				7A40F2F51902140800C31A25 /* UMSocialControllerServiceComment.h */,
+				7A40F2F61902140800C31A25 /* UMSocialData.h */,
+				7A40F2F71902140800C31A25 /* UMSocialDataService.h */,
+				7A40F2F81902140800C31A25 /* UMSocialSnsData.h */,
+				7A40F2F91902140800C31A25 /* UMSocialSnsPlatformManager.h */,
+				7A40F2FA1902140800C31A25 /* UMSocialSnsService.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		7A40F2FC1902140800C31A25 /* SocialSDKXib */ = {
+			isa = PBXGroup;
+			children = (
+				7A40F2FD1902140800C31A25 /* UMSCommentDetailController.xib */,
+				7A40F2FE1902140800C31A25 /* UMSCommentInputController.xib */,
+				7A40F2FF1902140800C31A25 /* UMSCommentInputControlleriPad.xib */,
+				7A40F3001902140800C31A25 /* UMShareEditViewController.xib */,
+				7A40F3011902140800C31A25 /* UMShareEditViewControlleriPad.xib */,
+				7A40F3021902140800C31A25 /* UMSLoginViewController.xib */,
+				7A40F3031902140800C31A25 /* UMSnsAccountViewController.xib */,
+				7A40F3041902140800C31A25 /* UMSShareListController.xib */,
+			);
+			path = SocialSDKXib;
 			sourceTree = "<group>";
 		};
 		7A43797018693CE0007F64DB /* 新版找发型 */ = {
@@ -2067,6 +2148,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 7A37D6781844C9E100D9C4D9;
 			productRefGroup = 7A37D6821844C9E100D9C4D9 /* Products */;
@@ -2092,6 +2174,7 @@
 				7A4379D318693CE0007F64DB /* icon_women.png in Resources */,
 				7A5D5C8D186C289400F96949 /* 我的话题.png in Resources */,
 				7A5D5C1E186C1C8B00F96949 /* 我的04.png in Resources */,
+				7A40F30A1902140800C31A25 /* UMSCommentInputController.xib in Resources */,
 				7ADF67E318E12155008FF73D /* Localizable.strings in Resources */,
 				7AD87E0618502CA10016A329 /* timeline_image_loading@2x.png in Resources */,
 				7AD88C28187E3FB000FBC04E /* addBeaspeakViewController.xib in Resources */,
@@ -2102,6 +2185,7 @@
 				7A9CCAD218B5AFA700FB6C4F /* 找发型新.png in Resources */,
 				7AF54A32187D264200C93092 /* btn_020@2x.png in Resources */,
 				7A5D5C83186C289400F96949 /* 历史预约.png in Resources */,
+				7A40F30E1902140800C31A25 /* UMSLoginViewController.xib in Resources */,
 				7A06F10F18613482007624D3 /* other_focused.png in Resources */,
 				7A5D5CAD186C289400F96949 /* 问答中心.png in Resources */,
 				7A4379C018693CE0007F64DB /* hairtype_4_5.png in Resources */,
@@ -2115,6 +2199,7 @@
 				7A4379B218693CE0007F64DB /* hairtype_2_4.png in Resources */,
 				7AF54A36187D264200C93092 /* ProvincesAndCities.plist in Resources */,
 				7A5D5C80186C289400F96949 /* 全部.png in Resources */,
+				7A40F30C1902140800C31A25 /* UMShareEditViewController.xib in Resources */,
 				7A4379B318693CE0007F64DB /* hairtype_2_5.png in Resources */,
 				7A5D5C14186C06A800F96949 /* Default@2x.png in Resources */,
 				7AE1376018D404A0001ED57B /* 喜欢1.png in Resources */,
@@ -2159,6 +2244,7 @@
 				7ADF67DF18E11EA6008FF73D /* grayArrow@2x.png in Resources */,
 				7AE0701018519FBE00ED1EDE /* userDetailViewController.xib in Resources */,
 				7A43796118691E05007F64DB /* Default.png in Resources */,
+				7A40F30B1902140800C31A25 /* UMSCommentInputControlleriPad.xib in Resources */,
 				7A4379CD18693CE0007F64DB /* icon_man.png in Resources */,
 				7A4379B018693CE0007F64DB /* hairtype_2_2.png in Resources */,
 				7A4BEC8818710616005E896C /* mycenter_fav.png in Resources */,
@@ -2207,9 +2293,13 @@
 				7A4379B618693CE0007F64DB /* hairtype_2_8.png in Resources */,
 				7A5D5C7B186C289400F96949 /* x5.png in Resources */,
 				7ADF67DC18E11EA6008FF73D /* blueArrow.png in Resources */,
+				7A40F30F1902140800C31A25 /* UMSnsAccountViewController.xib in Resources */,
 				7A98094218F504C20077B845 /* 选择排序.png in Resources */,
 				7A5D5CAB186C289400F96949 /* 钻石.png in Resources */,
+				7A40F3111902140800C31A25 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				7A4379C718693CE0007F64DB /* hairtype_5_3.png in Resources */,
+				7A40F3091902140800C31A25 /* UMSCommentDetailController.xib in Resources */,
+				7A40F3071902140800C31A25 /* UMSocialLocalizable.strings in Resources */,
 				7A5D5C92186C289400F96949 /* 推荐发型.png in Resources */,
 				7A4379D418693CE0007F64DB /* icon_women1.png in Resources */,
 				7A4379C918693CE0007F64DB /* icon_color.png in Resources */,
@@ -2225,6 +2315,7 @@
 				7A5D5C89186C289400F96949 /* 品牌名店.png in Resources */,
 				7A5D5C67186C289400F96949 /* 1发型师.png in Resources */,
 				7A5D5CAC186C289400F96949 /* 长发.png in Resources */,
+				7A40F30D1902140800C31A25 /* UMShareEditViewControlleriPad.xib in Resources */,
 				7AF2416618C03C7A008FA048 /* 200.png in Resources */,
 				7A5D5C85186C289400F96949 /* 同城.png in Resources */,
 				7AF2416818C03D8B008FA048 /* 130.png in Resources */,
@@ -2279,6 +2370,7 @@
 				7A5D5CA1186C289400F96949 /* 男士发型.png in Resources */,
 				7AAFF1B0188F9DCE008EB929 /* setOpenOrCloseViewController.xib in Resources */,
 				7AF54A35187D264200C93092 /* btn_021@2x.png in Resources */,
+				7A40F3101902140800C31A25 /* UMSShareListController.xib in Resources */,
 				7AE1376118D404A0001ED57B /* 保存.png in Resources */,
 				7ADE367718729268009670E7 /* dresserToolBoxSingleCellViewController.xib in Resources */,
 				7AF20C91188E92A30015E841 /* icon-80.png in Resources */,
@@ -2549,6 +2641,15 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		7A40F2ED1902140800C31A25 /* UMSocialLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A40F2EE1902140800C31A25 /* en */,
+				7A40F3061902140800C31A25 /* zh-Hans */,
+			);
+			name = UMSocialLocalizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2663,17 +2764,27 @@
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/Release-iphoneos",
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/Release-iphonesimulator",
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
 					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
+					"$(PROJECT_DIR)/UMSocial_Sdk_3.3.7",
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "发型屋";
@@ -2721,17 +2832,27 @@
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/Release-iphoneos",
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/Release-iphonesimulator",
 					"/Users/jeason/Desktop/hairStyleHouse副本/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk1.5.1，最后版本）/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/universal-bin",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
-					"/Users/jeason/Music/hairStyleHouse（qq\\ sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk1.5.1，最后版本）/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）/ios_api/universal-bin",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphoneos",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/Release-iphonesimulator",
+					"/Users/jeason/Music/hairStyleHouse（qq",
+					"sdk2.2，优化界面，适配设备，3.0.1最后版本）——3月6号改为3.1.1/ios_api/universal-bin",
 					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
+					"$(PROJECT_DIR)/UMSocial_Sdk_3.3.7",
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "发型屋";

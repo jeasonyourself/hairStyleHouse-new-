@@ -37,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1];
 
     inforDic = [[NSDictionary alloc] init];
     userInfor = [[NSMutableDictionary alloc] init];
@@ -46,9 +46,10 @@
     myTableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     myTableView.allowsSelection=NO;
     [myTableView setSeparatorInset:UIEdgeInsetsZero];
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.dataSource=self;
     myTableView.delegate=self;
-    myTableView.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    myTableView.backgroundColor=[UIColor colorWithRed:231.0/256.0 green:231.0/256.0 blue:231.0/256.0 alpha:1];
     [self.view addSubview:myTableView];
     self.freash=@"yes";
     [self refreashNav];
@@ -86,15 +87,18 @@
 //    [loginView.view removeFromSuperview];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
     NSLog(@"appDele.uid:%@",appDele.uid);
-    
-    if (!appDele.uid) {
+    NSLog(@"appDele.secret:%@",appDele.secret);
+    if (!appDele.uid||!appDele.secret) {
         loginView = nil;
         loginView=[[loginViewController alloc] init];
         loginView._leftButtonhidden = @"yes";
+        NSLog(@"loginView:%@",loginView);
+        
         loginView.view.frame=self.view.bounds;
         [loginView getBack:self andSuc:@selector(getData) andErr:nil];
         loginView.view.userInteractionEnabled=YES;
 //        [self.view addSubview:loginView.view];
+        
         [self.navigationController pushViewController:loginView animated:NO];
         
         
@@ -168,6 +172,9 @@
     SBJsonParser* jsonP=[[SBJsonParser alloc] init];
     NSDictionary* dic=[jsonP objectWithString:jsonString];
     NSLog(@"个人信息dic:%@",dic);
+    if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
+        
+    
     inforDic = [dic objectForKey:@"user_info"];
     NSUserDefaults* ud=[NSUserDefaults standardUserDefaults];
     [ud setObject:[inforDic objectForKey:@"type"] forKey:@"type"];
@@ -293,9 +300,16 @@
             }
             
         }
+    }
  
    //    AppDelegate *appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;//调用appdel
-}
+    }
+    
+    else
+    {
+        UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"请求出错了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
@@ -363,7 +377,7 @@
     }
     else if ([appDele.type isEqualToString:@"2"])
     {
-        return   self.view.frame.size.height+12;
+        return   self.view.frame.size.height+40;
 
     }
     else

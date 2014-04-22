@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7A37D6801844C9E100D9C4D9"
-               BuildableName = "&#21457;&#22411;&#23627;.app"
+               BuildableName = "&#x53d1;&#x578b;&#x5c4b;.app"
                BlueprintName = "hairStyleHouse"
                ReferencedContainer = "container:hairStyleHouse.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A37D6801844C9E100D9C4D9"
-            BuildableName = "&#21457;&#22411;&#23627;.app"
+            BuildableName = "&#x53d1;&#x578b;&#x5c4b;.app"
             BlueprintName = "hairStyleHouse"
             ReferencedContainer = "container:hairStyleHouse.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A37D6801844C9E100D9C4D9"
-            BuildableName = "&#21457;&#22411;&#23627;.app"
+            BuildableName = "&#x53d1;&#x578b;&#x5c4b;.app"
             BlueprintName = "hairStyleHouse"
             ReferencedContainer = "container:hairStyleHouse.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A37D6801844C9E100D9C4D9"
-            BuildableName = "&#21457;&#22411;&#23627;.app"
+            BuildableName = "&#x53d1;&#x578b;&#x5c4b;.app"
             BlueprintName = "hairStyleHouse"
             ReferencedContainer = "container:hairStyleHouse.xcodeproj">
          </BuildableReference>

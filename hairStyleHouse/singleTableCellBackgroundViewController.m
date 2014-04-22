@@ -144,8 +144,8 @@
     NSString* mobileStr = [infoDic objectForKey:@"mobile"];
     NSString* inforStr = [infoDic objectForKey:@"signature"];
     
-    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
-    [_headImage setImageURLStr:headStr placeholder:placeholder];
+//    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
     
     _nameLable.text = nameStr;
     NSLog(@"cityStr:%@",cityStr);

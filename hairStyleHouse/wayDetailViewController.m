@@ -186,7 +186,7 @@
         CGSize size = CGSizeMake(300,400);
         //计算实际frame大小，并将label的frame变成实际大小
         CGSize labelsize = [_content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-       return 240+labelsize.height;
+       return 320+labelsize.height;
     }
 }
 

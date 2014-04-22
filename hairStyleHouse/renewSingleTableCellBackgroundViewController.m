@@ -153,8 +153,8 @@
     NSString* saveStr = [infoDic objectForKey:@"collect_num"];
     NSString* evaluateStr = [infoDic objectForKey:@"assess_num"];
     
-    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
-    [_headImage setImageURLStr:headStr placeholder:placeholder];
+//    UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
+    [_headImage setImageWithURL:[NSURL URLWithString:headStr]];
     _nameLable.text = nameStr;
     _cityLable.text=cityStr;
     _fansLable.text  = fansStr;
@@ -191,28 +191,28 @@
         _mySetButton.hidden=NO;
         
         
-        _clearPerson.frame=CGRectMake(2, 325, 316, 32);
-        _clearPersonButton.frame=CGRectMake(2, 325, 316, 32);
-        _myMessage.frame=CGRectMake(2, 150, 316, 32);
-        _messageButton.frame=CGRectMake(2, 150, 316, 32);
-        _myBeaspeak.frame=CGRectMake(2, 183, 316, 32);
-        _beaspeakButton.frame=CGRectMake(2, 183, 316, 32);
-        _myWorks.frame=CGRectMake(2, 215, 316, 32);
-        _myWorksButton.frame=CGRectMake(2, 215, 316, 32);
+        _clearPerson.frame=CGRectMake(2, 350, 316, 37);
+        _clearPersonButton.frame=CGRectMake(2, 350, 316, 37);
+        _myMessage.frame=CGRectMake(2, 150, 316, 37);
+        _messageButton.frame=CGRectMake(2, 150, 316, 37);
+        _myBeaspeak.frame=CGRectMake(2, 188, 316, 37);
+        _beaspeakButton.frame=CGRectMake(2, 188, 316, 37);
+        _myWorks.frame=CGRectMake(2, 226, 316, 37);
+        _myWorksButton.frame=CGRectMake(2, 226, 316, 37);
 //        _mySave.frame=CGRectMake(2, 290, 316, 40);
 //        _saveButton.frame=CGRectMake(2, 290, 316, 40);
         
-        _setPrice.frame=CGRectMake(2, 248, 316, 32);
-        _setPriceButton.frame=CGRectMake(2, 248, 316, 32);
-        _shalong.frame=CGRectMake(2, 358, 316, 32);
-        _shalongButton.frame=CGRectMake(2, 358, 316, 32);
+        _setPrice.frame=CGRectMake(2, 264, 316, 37);
+        _setPriceButton.frame=CGRectMake(2, 264, 316, 37);
+        _shalong.frame=CGRectMake(2, 388, 316, 37);
+        _shalongButton.frame=CGRectMake(2, 388, 316, 37);
         
-        _toolBox.frame=CGRectMake(2, 405, 316, 32);
-        _toolBoxButton.frame=CGRectMake(2, 405, 316, 32);
-        _myShowView.frame=CGRectMake(2, 281, 316, 32);
-        _myShowButton.frame=CGRectMake(2, 281, 316, 32);
-        _mySet.frame=CGRectMake(2, 438, 316, 32);
-        _mySetButton.frame=CGRectMake(2, 438, 316, 32);
+        _toolBox.frame=CGRectMake(2, 436, 316, 37);
+        _toolBoxButton.frame=CGRectMake(2, 436, 316, 37);
+        _myShowView.frame=CGRectMake(2, 302, 316, 37);
+        _myShowButton.frame=CGRectMake(2, 302, 316, 37);
+        _mySet.frame=CGRectMake(2, 474, 316, 37);
+        _mySetButton.frame=CGRectMake(2, 474, 316, 37);
     }
 
     

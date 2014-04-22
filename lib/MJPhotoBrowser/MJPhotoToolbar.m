@@ -19,6 +19,7 @@
 #import "commentViewController.h"
 #import "AppDelegate.h"
 #import "dresserInforViewController.h"
+#import "UMSocial.h"
 @interface MJPhotoToolbar()
 {
     // 显示页码
@@ -401,14 +402,12 @@
     }
     else
     {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:@"请选择方式"
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:@"分享到QQ空间"
-                                      otherButtonTitles:@"分享到新浪微博",nil];
-        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [actionSheet showInView:self];
+        [UMSocialSnsService presentSnsIconSheetView:self.fatherView
+                                             appKey:@"534892b956240b182f039b9b"
+                                          shareText:@"我发现了一款很好的发型分享给你，你觉得怎么样？我在这里https://itunes.apple.com/cn/app/fa-xing-wu/id805462262?mt=8下载应用，发型屋——为你定制私人时尚发型，你身边的发型专家。"
+                                         shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[diction objectForKey:@"works_pic"] firstObject]]]]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
+                                           delegate:nil];
     }
 }
 

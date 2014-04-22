@@ -18,7 +18,7 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
-
+#import "UMSocial.h"
 #import "MobClick.h"
 @interface scanImageViewController ()
 
@@ -271,7 +271,7 @@
     
 -(void)getData
     {
-        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
+//        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
 
         ASIFormDataRequest* request;
 //        AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
@@ -449,7 +449,7 @@
     
     - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        return   230;
+        return   235;
     }
     
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -635,14 +635,12 @@
     }
     else
     {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:@"请选择方式"
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:@"分享到QQ空间"
-                                      otherButtonTitles:@"分享到新浪微博",nil];
-        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [actionSheet showInView:self.view];
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"534892b956240b182f039b9b"
+                                          shareText:@"我发现了一款很好的发型分享给你，你觉得怎么样？我在这里https://itunes.apple.com/cn/app/fa-xing-wu/id805462262?mt=8下载应用，发型屋——为你定制私人时尚发型，你身边的发型专家。"
+                                         shareImage: [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[localDresserArray objectAtIndex:shareIndex] objectForKey:@"work_image"]]]]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
+                                           delegate:nil];
     }
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

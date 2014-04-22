@@ -57,16 +57,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if (appDele.uid)
+    if (appDele.uid&&appDele.secret)
     {
         [self.navigationController popViewControllerAnimated:NO];
     }
     else
     {
-        
-        
-        
-        
         [self cLoginView];
         
     }
@@ -77,7 +73,8 @@
     NSString* cName = [NSString stringWithFormat:@"登陆"];
     [MobClick beginLogPageView:cName];
     AppDelegate* appDele=(AppDelegate* )[UIApplication sharedApplication].delegate;
-    if (appDele.uid)
+    
+    if (appDele.uid&&appDele.secret)
     {
         if ([_hidden isEqualToString:@"yes"]) {
             self.navigationController.navigationBar.hidden=YES;
@@ -281,7 +278,11 @@
 //    appDele.tententOAuth=_tencentOAuth;
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
     [_tencentOAuth authorize:_permissions inSafari:NO];
+    
+    
     delegate.loginType=@"qq";
     
 }

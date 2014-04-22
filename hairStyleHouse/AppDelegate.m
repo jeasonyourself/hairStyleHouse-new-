@@ -13,6 +13,7 @@
 
 #import "MobClick.h"
 #import "MobClick.h"
+#import "UMSocial.h"
 @implementation AppDelegate
 @synthesize wbtoken;
 @synthesize sinaweibo;
@@ -62,7 +63,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+    [UMSocialData setAppKey:@"534892b956240b182f039b9b"];
     [self umengTrack];
+    [MobClick checkUpdate];
     
 //     [MobClick startWithAppkey:@"5348905656240b186a036361" reportPolicy:SEND_INTERVAL   channelId:@"Web"];
     

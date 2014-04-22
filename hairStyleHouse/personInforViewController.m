@@ -403,7 +403,7 @@
         
         [_activityIndicatorView stopAnimating];
         _activityIndicatorView.hidesWhenStopped = YES;
-        if ([dic objectForKey:@"101"]) {
+        if ([[dic objectForKey:@"code"] isEqualToString:@"101"]) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
             [alert show];
             [self leftButtonClick];
