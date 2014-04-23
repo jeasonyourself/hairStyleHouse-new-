@@ -30,7 +30,7 @@
 @synthesize city;
 @synthesize hostReach;
 @synthesize isReachable;
-
+@synthesize isSingin;
 + (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host//重要！！！
 {
     return YES;
@@ -67,6 +67,8 @@
     [self umengTrack];
     [MobClick checkUpdate];
     
+    [UMSocialQQHandler setQQWithAppId:@"100478968" appKey:@"f34301064429943f8126e63d1ec830b0" url:@"http://www.faxingw.cn/wap/download"];
+//    [NSString stringWithFormat:@"http://wap.faxingw.cn/web.php?m=Share&a=index&id=%@",[[diction objectForKey:@"works_id"] firstObject]]
 //     [MobClick startWithAppkey:@"5348905656240b186a036361" reportPolicy:SEND_INTERVAL   channelId:@"Web"];
     
     
@@ -344,9 +346,19 @@
 
 
 //qq
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    if (isSingin==YES)//已登录，这里是分享
+    {
+        return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+
+    }
+    else//未登录这里是登陆
+    {
     if ([self.loginType isEqualToString:@"qq"])
     {
+        
         return [TencentOAuth HandleOpenURL:url];
 
     }
@@ -355,10 +367,21 @@
         return [WeiboSDK handleOpenURL:url delegate:self];
 
     }
+    }
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [TencentOAuth HandleOpenURL:url];
+    
+    if (isSingin==YES)//已登录，这里是分享
+    {
+      return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+
+    }
+    else//未登录这里是登陆
+    {
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    
 }
 
 -(void)tencentDidLogin
@@ -735,6 +758,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
+    if (self.uid&&self.secret)
+    {
+        isSingin=YES;
+    }
+    else
+    {
+        isSingin=NO;
+    }
+     [UMSocialSnsService  applicationDidBecomeActive];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

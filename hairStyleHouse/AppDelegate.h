@@ -19,6 +19,8 @@
 #import "SinaWeibo.h"
 #import "Reachability.h"
 #import "loginViewController.h"
+#import "UMSocialQQHandler.h"
+
 #define kAppKey             @"276585644"
 #define kAppSecret          @"a71b4382aeda47dfbdd5925b4b407648"
 #define kAppRedirectURI     @"http://www.faxingw.cn"
@@ -65,7 +67,8 @@
     NSMutableDictionary * userInfor;
 
 }
-@property (strong, retain) NSString* wbtoken;
+@property (assign, nonatomic) BOOL isSingin;
+@property (strong, nonatomic) NSString* wbtoken;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) SinaWeibo* sinaweibo;
 @property (strong,nonatomic) NSString* uid;//用到

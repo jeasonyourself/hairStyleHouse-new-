@@ -266,6 +266,7 @@
 		7AAFF1AF188F9DCE008EB929 /* setOpenOrCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */; };
 		7AAFF1B0188F9DCE008EB929 /* setOpenOrCloseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */; };
 		7AAFF1E1188FB1EC008EB929 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */; };
+		7AC14E941907A43800A2C678 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC14E901907A43800A2C678 /* libSocialQQ.a */; };
 		7AD545BB184EF6FD009A6B79 /* findStyleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */; };
 		7AD545F3184F2B08009A6B79 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD545BF184F2B08009A6B79 /* MBProgressHUD+Add.m */; };
 		7AD545F4184F2B08009A6B79 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD545C0184F2B08009A6B79 /* MBProgressHUD.bundle */; };
@@ -397,6 +398,7 @@
 		7AE48287188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE48285188372CF009E88CB /* sendBeaspeakHairStyleViewController.xib */; };
 		7AE4828A1883CEEC009E88CB /* myAnwserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE482891883CEEC009E88CB /* myAnwserListViewController.m */; };
 		7AE4828D1883CF0A009E88CB /* myAnwserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */; };
+		7AE53D4F19079FC100635FB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE53D4E19079FC100635FB3 /* Security.framework */; };
 		7AE5AC2E1853017900C1970E /* renewSingleTableCellBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */; };
 		7AE5AC2F1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */; };
 		7AE7BE2D18D9322B006E1B06 /* 评论1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE7BE2C18D9322B006E1B06 /* 评论1.png */; };
@@ -795,6 +797,8 @@
 		7AAFF1AD188F9DCE008EB929 /* setOpenOrCloseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setOpenOrCloseViewController.m; sourceTree = "<group>"; };
 		7AAFF1AE188F9DCE008EB929 /* setOpenOrCloseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setOpenOrCloseViewController.xib; sourceTree = "<group>"; };
 		7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7AC14E901907A43800A2C678 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		7AC14E931907A43800A2C678 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		7AD545B9184EF6FD009A6B79 /* findStyleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findStyleDetailViewController.h; sourceTree = "<group>"; };
 		7AD545BA184EF6FD009A6B79 /* findStyleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findStyleDetailViewController.m; sourceTree = "<group>"; };
 		7AD545BE184F2B08009A6B79 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
@@ -1017,6 +1021,7 @@
 		7AE482891883CEEC009E88CB /* myAnwserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnwserListViewController.m; sourceTree = "<group>"; };
 		7AE4828B1883CF0A009E88CB /* myAnwserListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnwserListCell.h; sourceTree = "<group>"; };
 		7AE4828C1883CF0A009E88CB /* myAnwserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnwserListCell.m; sourceTree = "<group>"; };
+		7AE53D4E19079FC100635FB3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7AE5AC2B1853017900C1970E /* renewSingleTableCellBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renewSingleTableCellBackgroundViewController.h; sourceTree = "<group>"; };
 		7AE5AC2C1853017900C1970E /* renewSingleTableCellBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = renewSingleTableCellBackgroundViewController.m; sourceTree = "<group>"; };
 		7AE5AC2D1853017900C1970E /* renewSingleTableCellBackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = renewSingleTableCellBackgroundViewController.xib; sourceTree = "<group>"; };
@@ -1090,6 +1095,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AC14E941907A43800A2C678 /* libSocialQQ.a in Frameworks */,
+				7A37D73F1844CAFE00D9C4D9 /* libstdc++.dylib in Frameworks */,
+				7AE53D4F19079FC100635FB3 /* Security.framework in Frameworks */,
 				7A5E0DB918A6109000B71074 /* libiconv.dylib in Frameworks */,
 				7AAFF1E1188FB1EC008EB929 /* AdSupport.framework in Frameworks */,
 				7A37D74D1844CB4600D9C4D9 /* CFNetwork.framework in Frameworks */,
@@ -1101,7 +1109,6 @@
 				7A37D7431844CB1A00D9C4D9 /* libsqlite3.dylib in Frameworks */,
 				7A37D7411844CB0900D9C4D9 /* libsqlite3.0.dylib in Frameworks */,
 				7AE3B89B18F92AD100D44A1E /* libMobClickLibrary_armv6.a in Frameworks */,
-				7A37D73F1844CAFE00D9C4D9 /* libstdc++.dylib in Frameworks */,
 				7A37D73D1844CAF300D9C4D9 /* CoreTelephony.framework in Frameworks */,
 				7A37D73B1844CAE300D9C4D9 /* libz.dylib in Frameworks */,
 				7A37D7391844CAD700D9C4D9 /* SystemConfiguration.framework in Frameworks */,
@@ -1236,6 +1243,7 @@
 		7A37D6781844C9E100D9C4D9 = {
 			isa = PBXGroup;
 			children = (
+				7AC14E8F1907A43800A2C678 /* TencentOpenAPI */,
 				7A40F2EC1902140800C31A25 /* UMSocial_Sdk_3.3.7 */,
 				7A3906BE18FE2BC6008D8334 /* TencentOpenApi_IOS_Bundle.bundle */,
 				7AE3B89618F92AD100D44A1E /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
@@ -1274,6 +1282,7 @@
 		7A37D6831844C9E100D9C4D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AE53D4E19079FC100635FB3 /* Security.framework */,
 				7A3906BC18FE2BAB008D8334 /* TencentOpenAPI.framework */,
 				7A5E0DB818A6109000B71074 /* libiconv.dylib */,
 				7AAFF1E0188FB1EC008EB929 /* AdSupport.framework */,
@@ -1865,6 +1874,15 @@
 				7A63A502185AF42800502E75 /* WeiboSDK.h */,
 			);
 			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
+		7AC14E8F1907A43800A2C678 /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				7AC14E901907A43800A2C678 /* libSocialQQ.a */,
+				7AC14E931907A43800A2C678 /* UMSocialQQHandler.h */,
+			);
+			path = TencentOpenAPI;
 			sourceTree = "<group>";
 		};
 		7AD545BC184F2B08009A6B79 /* lib */ = {
@@ -2750,6 +2768,7 @@
 					/Users/jeason/Downloads/Connect_IOS_SDK_V2.2,
 					4,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
+					"$(PROJECT_DIR)/TencentOpenAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2785,8 +2804,12 @@
 					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 					"$(PROJECT_DIR)/UMSocial_Sdk_3.3.7",
+					"$(PROJECT_DIR)/TencentOpenAPI",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "发型屋";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2818,6 +2841,7 @@
 					/Users/jeason/Downloads/Connect_IOS_SDK_V2.2,
 					4,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
+					"$(PROJECT_DIR)/TencentOpenAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hairStyleHouse/hairStyleHouse-Prefix.pch";
@@ -2853,8 +2877,12 @@
 					/Users/jeason/Desktop/hairStyleHouse3.1.1/UMAnalytics_Sdk_2.2.1.OpenUDID,
 					/Users/jeason/Desktop/hairStyleHouse3.1.1,
 					"$(PROJECT_DIR)/UMSocial_Sdk_3.3.7",
+					"$(PROJECT_DIR)/TencentOpenAPI",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "发型屋";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

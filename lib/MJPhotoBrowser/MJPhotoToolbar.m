@@ -402,11 +402,14 @@
     }
     else
     {
+//        [UMSocialQQHandler setQQWithAppId:@"100478968" appKey:@"f34301064429943f8126e63d1ec830b0" url:[NSURL URLWithString:[NSString stringWithFormat:@"http://wap.faxingw.cn/web.php?m=Share&a=index&id=%@",[[diction objectForKey:@"works_id"] firstObject]]]];
+        
+        
         [UMSocialSnsService presentSnsIconSheetView:self.fatherView
                                              appKey:@"534892b956240b182f039b9b"
                                           shareText:@"我发现了一款很好的发型分享给你，你觉得怎么样？我在这里https://itunes.apple.com/cn/app/fa-xing-wu/id805462262?mt=8下载应用，发型屋——为你定制私人时尚发型，你身边的发型专家。"
                                          shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[diction objectForKey:@"works_pic"] firstObject]]]]
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToQQ,UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
                                            delegate:nil];
     }
 }

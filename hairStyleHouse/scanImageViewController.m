@@ -639,7 +639,7 @@
                                              appKey:@"534892b956240b182f039b9b"
                                           shareText:@"我发现了一款很好的发型分享给你，你觉得怎么样？我在这里https://itunes.apple.com/cn/app/fa-xing-wu/id805462262?mt=8下载应用，发型屋——为你定制私人时尚发型，你身边的发型专家。"
                                          shareImage: [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[localDresserArray objectAtIndex:shareIndex] objectForKey:@"work_image"]]]]
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToQQ,UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,UMShareToFacebook,nil]
                                            delegate:nil];
     }
 }
